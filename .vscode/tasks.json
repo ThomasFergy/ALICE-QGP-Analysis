@@ -1,0 +1,12 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Python post-launch",
+        "type": "shell",
+        "command": "python3",
+        "args": [".vscode/post_launch.py", "${file}"],
+        "problemMatcher": []
+      }
+    ]
+  }
