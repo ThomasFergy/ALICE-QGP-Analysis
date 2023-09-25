@@ -4,7 +4,7 @@
 
 // clang-format off
 #include "../lib/Lib/Lib.h" // for syntax highlighting
-// MACROS
+// MACROS for include path
 R__ADD_INCLUDE_PATH(lib/Lib)
 R__LOAD_LIBRARY(lib/Lib/Lib_cpp.so)
 // clang-format on
