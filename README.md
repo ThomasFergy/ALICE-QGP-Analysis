@@ -18,4 +18,4 @@ Further reading:
 Contains root macros which can be executed using `root MacroName.C` or at a root prompt using `.x MacroName.C`.
 
 ### lib
-Contains root libraries for use in macros or independently using `.L LibName.C` at a root prompt.
+Contains root libraries for use in macros or independently using `.L LibName.cpp` at a root prompt. They can be compiled together using `python3 lib_compile.py`.
