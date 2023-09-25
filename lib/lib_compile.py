@@ -13,6 +13,7 @@ if __name__ == "__main__":
                 print("    Found: " + f)
                 cpp_files.append(d + "/" + f)
     # for all .cpp files, compile them into .so files using ROOT
+    print("Found " + str(len(cpp_files)) + " .cpp files.")
     print("Compiling .cpp files:")
     for f in cpp_files:
         print("    Compiling " + f + "...")
