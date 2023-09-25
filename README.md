@@ -13,4 +13,9 @@ Further reading:
 
 
 ## Instructions
-- TODO
+
+### MACROS
+Contains root macros which can be executed using `root MacroName.C` or at a root prompt using `.x MacroName.C`.
+
+### lib
+Contains root libraries for use in macros or independently using `.L LibName.C` at a root prompt.
