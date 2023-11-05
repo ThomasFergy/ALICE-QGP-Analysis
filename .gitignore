@@ -11,5 +11,5 @@ log.txt
 locCCDB/
 dpl-config.json
 performanceMetrics.json
-data/V0/dpl-config.json
+
 .gitignore
