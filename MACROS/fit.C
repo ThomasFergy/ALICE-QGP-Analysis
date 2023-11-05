@@ -12,7 +12,7 @@
 // for syntax highlighting
 #include "../lib/DataLoader.h" 
 #include "../lib/FittingFunctions.h"
-// MACROS for including libs
+// MACROS for including libs for CLING
 R__ADD_INCLUDE_PATH(lib)
 R__LOAD_LIBRARY(lib/DataLoader_cpp.so)
 R__LOAD_LIBRARY(lib/FittingFunctions_cpp.so)
@@ -20,7 +20,7 @@ R__LOAD_LIBRARY(lib/FittingFunctions_cpp.so)
 
 void fit() {
   // Draw 3 sigma lines on plots?
-  bool draw3Sigma = false;
+  bool draw3Sigma = true;
 
   /////////////////////////////////////////////////////////////////////////////
   // Load histogram for hMassK0Short and fit with DoubleSidedCrystalball
