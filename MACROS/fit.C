@@ -14,8 +14,13 @@
 #include "../lib/FittingFunctions.h"
 // MACROS for including libs for CLING
 R__ADD_INCLUDE_PATH(lib)
+#ifdef _WIN32
+R__LOAD_LIBRARY(lib/DataLoader_cpp.dll)
+R__LOAD_LIBRARY(lib/FittingFunctions_cpp.dll)
+#else
 R__LOAD_LIBRARY(lib/DataLoader_cpp.so)
 R__LOAD_LIBRARY(lib/FittingFunctions_cpp.so)
+#endif
 // clang-format on
 
 void fit() {
@@ -27,7 +32,7 @@ void fit() {
   ////////////////
 
   std::unique_ptr<TH1F> h1 = std::make_unique<TH1F>(*DataLoader::LoadHist(
-      "V0/AnalysisResults.root", "strangeness_tutorial", "hMassK0Short"));
+      "data/V0/AnalysisResults.root", "strangeness_tutorial", "hMassK0Short"));
 
   double xLow = 0.48;
   double xHigh = 0.52;
@@ -66,7 +71,7 @@ void fit() {
   ////////////////
 
   std::unique_ptr<TH1F> h2 = std::make_unique<TH1F>(*DataLoader::LoadHist(
-      "V0/AnalysisResults.root", "strangeness_tutorial", "hMassLambda"));
+      "data/V0/AnalysisResults.root", "strangeness_tutorial", "hMassLambda"));
 
   xLow = 1.075;
   xHigh = 1.15;

@@ -2,6 +2,8 @@
 *.d
 *.pcm
 *.log
-data/
-V0/
-V0MC/
+AO2D.root
+.DS_Store
+aodmcs.txt
+log
+log.txt

@@ -19,3 +19,6 @@ Contains root macros which can be executed using `root MacroName.C` or at a root
 
 ### lib
 Contains root libraries for use in macros or independently using `.L LibName.cpp` at a root prompt. They can be compiled together using `python3 lib_compile.py`.
+
+### data
+Contains all data relevant for running code in `lib` and `MACROS`. The relevant analaysis results root files are found in `data/V0/AnalysisResults.root` and `data/V0MC/AnalysisResults.root`. The AO2D.root file should also be within `data/` but it is exculuded from github due to the large filesize.

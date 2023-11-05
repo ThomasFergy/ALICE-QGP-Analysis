@@ -1,0 +1,69 @@
+{
+    "internal-dpl-clock": "",
+    "internal-dpl-aod-reader": {
+        "time-limit": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1",
+        "aod-file": "AO2D.root"
+    },
+    "internal-dpl-aod-spawner": "",
+    "bc-converter": "",
+    "internal-dpl-aod-index-builder": "",
+    "lambdakzero-preselector": {
+        "dIfMCgenerateK0Short": "true",
+        "dIfMCgenerateLambda": "true",
+        "dIfMCgenerateAntiLambda": "true",
+        "dIfMCgenerateGamma": "false",
+        "dIfMCgenerateHypertriton": "false",
+        "dIfMCgenerateAntiHypertriton": "false",
+        "dIfMCselectV0MotherPDG": "0",
+        "dIfMCselectPhysicalPrimary": "true",
+        "ddEdxPreSelectK0Short": "true",
+        "ddEdxPreSelectLambda": "true",
+        "ddEdxPreSelectAntiLambda": "true",
+        "ddEdxPreSelectGamma": "false",
+        "ddEdxPreSelectHypertriton": "false",
+        "ddEdxPreSelectAntiHypertriton": "false",
+        "ddEdxPreSelectionWindow": "7",
+        "dTPCNCrossedRows": "50",
+        "dPreselectOnlyBaryons": "false",
+        "processBuildAll": "true",
+        "processBuildMCAssociated": "false",
+        "processBuildValiddEdx": "false",
+        "processBuildValiddEdxMCAssociated": "false",
+        "processSkipV0sNotUsedInCascades": "false",
+        "processSkipV0sNotUsedInTrackedCascades": "false"
+    },
+    "timestamp-task": {
+        "verbose": "false",
+        "rct-path": "RCT\/Info\/RunInformation",
+        "orbit-reset-path": "CTP\/Calib\/OrbitReset",
+        "ccdb-url": "http:\/\/alice-ccdb.cern.ch",
+        "isRun2MC": "false"
+    },
+    "lambdakzero-builder": "",
+    "bc-selection-task": {
+        "triggerBcShift": "999",
+        "processRun2": "false",
+        "processRun3": "true"
+    },
+    "event-selection-task": {
+        "syst": "pp",
+        "muonSelection": "0",
+        "customDeltaBC": "0",
+        "isMC": "false",
+        "processRun2": "false",
+        "processRun3": "true"
+    },
+    "lambdakzero-initializer": "",
+    "lambdakzero-v0-data-link-builder": "",
+    "strangeness_tutorial": {
+        "nBins": "100"
+    },
+    "internal-dpl-aod-writer": "",
+    "internal-dpl-aod-global-analysis-file-sink": "",
+    "internal-dpl-injected-dummy-sink": ""
+}
