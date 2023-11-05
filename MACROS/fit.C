@@ -57,8 +57,8 @@ void fit() {
     double xMax = mean + 3 * sigma;
     std::unique_ptr<TLine> l1 = std::make_unique<TLine>(xMin, 0, xMin, 0.1);
     std::unique_ptr<TLine> l2 = std::make_unique<TLine>(xMax, 0, xMax, 0.1);
-    l1->SetLineColor(kRed);
-    l2->SetLineColor(kRed);
+    l1->SetLineColor(kBlack);
+    l2->SetLineColor(kBlack);
     l1->Draw("same");
     l2->Draw("same");
     c1->SaveAs("output/figures/hMassK0Short_fitDSCB.pdf");
@@ -96,8 +96,8 @@ void fit() {
     double xMax = mean + 3 * sigma;
     std::unique_ptr<TLine> l1 = std::make_unique<TLine>(xMin, 0, xMin, 0.1);
     std::unique_ptr<TLine> l2 = std::make_unique<TLine>(xMax, 0, xMax, 0.1);
-    l1->SetLineColor(kRed);
-    l2->SetLineColor(kRed);
+    l1->SetLineColor(kBlack);
+    l2->SetLineColor(kBlack);
     l1->Draw("same");
     l2->Draw("same");
     c2->SaveAs("output/figures/hMassLambda_fitDSCB.pdf");
