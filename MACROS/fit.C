@@ -34,7 +34,7 @@ void fit() {
   std::unique_ptr<TH1F> h1 = std::make_unique<TH1F>(*DataLoader::LoadHist(
       "data/V0/AnalysisResults.root", "strangeness_tutorial", "hMassK0Short"));
 
-  double xLow = 0.48;
+  double xLow = 0.47;
   double xHigh = 0.52;
   h1->SetAxisRange(xLow, xHigh);
   h1->Sumw2();
@@ -73,8 +73,8 @@ void fit() {
   std::unique_ptr<TH1F> h2 = std::make_unique<TH1F>(*DataLoader::LoadHist(
       "data/V0/AnalysisResults.root", "strangeness_tutorial", "hMassLambda"));
 
-  xLow = 1.075;
-  xHigh = 1.15;
+  xLow = 1.09;
+  xHigh = 1.14;
   h2->Sumw2();
   h2->SetAxisRange(xLow, xHigh);
   h2->Scale(1. / h2->GetEntries());
@@ -82,7 +82,7 @@ void fit() {
   std::unique_ptr<TF1> ff2 = std::make_unique<TF1>(
       "fitDSCB", FittingFunctions::DoubleSidedCrystalballFunction, xLow, xHigh,
       7);
-  ff2->SetParameters(1, 0.5, 80, 0.1, h2->GetMean(), h2->GetRMS(), 0.02);
+  ff2->SetParameters(1, 1.6, 0.1, 0.1, h2->GetMean(), h2->GetRMS(), 0.002);
   ff2->SetParNames("alpha(low)", "alpha(high)", "n_(low)", "n_(high)", "mean",
                    "sigma", "norm");
   h2->Fit(ff2.get(), "R");
