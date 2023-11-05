@@ -7,6 +7,9 @@
 
 class FittingFunctions {
  public:
+  /**
+   * Crystalball function.
+   */
   static double DoubleSidedCrystalballFunction(double* x, double* par);
 };
 
