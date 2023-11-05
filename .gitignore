@@ -2,3 +2,6 @@
 *.d
 *.pcm
 *.log
+data/
+V0/
+V0MC/
