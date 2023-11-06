@@ -25,7 +25,7 @@ R__LOAD_LIBRARY(lib/FittingFunctions_cpp.so)
 
 void fit() {
   // Draw 3 sigma lines on plots?
-  bool draw3Sigma = true;
+  bool draw3Sigma = false;
 
   /////////////////////////////////////////////////////////////////////////////
   // Load histogram for hMassK0Short and fit with DoubleSidedCrystalball
