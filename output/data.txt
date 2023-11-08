@@ -1,0 +1,14 @@
+K0Short:
+   Cut Parameter:    N/A
+   Cut Value:    N/A
+   Significance: 5.94568
+   S: 44.3079
+   B: 11.2262
+   S+B: 55.5342
+Lambda:
+   Cut Parameter:    N/A
+   Cut Value:    N/A
+   Significance: 1.64623
+   S: 7.03481
+   B: 11.2262
+   S+B: 18.261

@@ -29,4 +29,49 @@ double FittingFunctions::DoubleSidedCrystalballFunction(double* x,
              pow(fact1THihgerAlphaH * fact2THigherAlphaH, -n_h);
   }
   return N * result;
-}
+};
+
+double FittingFunctions::Gaussian(double* x, double* par) {
+  double mean = par[0];
+  double sigma = par[1];
+  double N = par[2];
+  double t = (x[0] - mean) / sigma;
+  double result = exp(-0.5 * t * t);
+  return N * result;
+};
+
+double FittingFunctions::Polynomial4(double* x, double* par) {
+  double result = par[0] + par[1] * x[0] + par[2] * x[0] * x[0] +
+                  par[3] * x[0] * x[0] * x[0] +
+                  par[4] * x[0] * x[0] * x[0] * x[0];
+  return result;
+};
+
+double FittingFunctions::DSCBWithPolynomial(double* x, double* par) {
+  double alpha_l = par[0];
+  double alpha_h = par[1];
+  double n_l = par[2];
+  double n_h = par[3];
+  double mean = par[4];
+  double sigma = par[5];
+  double N = par[6];
+  double t = (x[0] - mean) / sigma;
+  double result = 0.0;
+  double fact1TLessMinosAlphaL = alpha_l / n_l;
+  double fact2TLessMinosAlphaL = (n_l / alpha_l) - alpha_l - t;
+  double fact1THihgerAlphaH = alpha_h / n_h;
+  double fact2THigherAlphaH = (n_h / alpha_h) - alpha_h + t;
+
+  if (-alpha_l <= t && alpha_h >= t) {
+    result = exp(-0.5 * t * t);
+  } else if (t < -alpha_l) {
+    result = exp(-0.5 * alpha_l * alpha_l) *
+             pow(fact1TLessMinosAlphaL * fact2TLessMinosAlphaL, -n_l);
+
+  } else if (t > alpha_h) {
+    result = exp(-0.5 * alpha_h * alpha_h) *
+             pow(fact1THihgerAlphaH * fact2THigherAlphaH, -n_h);
+  }
+  double polyPars[5] = {par[7], par[8], par[9], par[10], par[11]};
+  return N * result + Polynomial4(x, polyPars);
+};
