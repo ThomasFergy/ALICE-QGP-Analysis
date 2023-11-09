@@ -30,17 +30,19 @@ void fit() {
   // Load histogram for hMassK0Short and fit with DoubleSidedCrystalball
   ////////////////
 
+  int numOfSigmas = 5;
+
   std::unique_ptr<TH1F> h1 = std::make_unique<TH1F>(*DataLoader::LoadHist(
       "data/V0/AnalysisResults.root", "strangeness_tutorial", "hMassK0Short"));
 
-  double xLow = 0.47;
-  double xHigh = 0.52;
+  double xLow = 0.45;
+  double xHigh = 0.54;
   h1->SetAxisRange(xLow, xHigh);
   h1->Sumw2();
 
   std::unique_ptr<TF1> ff1 = std::make_unique<TF1>(
       "fitDSCB", FittingFunctions::DSCBWithPolynomial, xLow, xHigh, 12);
-  ff1->SetParameters(1.5, 1.4, 0.4, 0.4, h1->GetMean(), h1->GetRMS(), 4000, 1,
+  ff1->SetParameters(1.2, 1.2, 1.4, 1.4, h1->GetMean(), h1->GetRMS(), 3000, 1,
                      1, 1, 1);
   ff1->SetParNames("alpha(low)", "alpha(high)", "n_(low)", "n_(high)", "mean",
                    "sigma", "norm");
@@ -57,29 +59,31 @@ void fit() {
   pol4_1->SetLineColor(kGreen);
   pol4_1->Draw("same");
 
-  // draw 3 sigma lines
+  // draw numOfSigmas sigma lines
   std::unique_ptr<TLine> l1_1 = std::make_unique<TLine>(
-      ff1->GetParameter(4) - 3 * ff1->GetParameter(5), 0,
-      ff1->GetParameter(4) - 3 * ff1->GetParameter(5), 1.1 * h1->GetMaximum());
+      ff1->GetParameter(4) - numOfSigmas * ff1->GetParameter(5), 0,
+      ff1->GetParameter(4) - numOfSigmas * ff1->GetParameter(5),
+      1.1 * h1->GetMaximum());
   l1_1->SetLineColor(kBlack);
   l1_1->Draw("same");
   std::unique_ptr<TLine> l2_1 = std::make_unique<TLine>(
-      ff1->GetParameter(4) + 3 * ff1->GetParameter(5), 0,
-      ff1->GetParameter(4) + 3 * ff1->GetParameter(5), 1.1 * h1->GetMaximum());
+      ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5), 0,
+      ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5),
+      1.1 * h1->GetMaximum());
   l2_1->SetLineColor(kBlack);
   l2_1->Draw("same");
 
   c1->SaveAs("output/figures/hMassK0Short_fitDSCB.pdf");
 
-  // find integral of DSCB in 3 sigma range
+  // find integral of DSCB in numOfSigmas sigma range
   double integral_1 =
-      ff1->Integral(ff1->GetParameter(4) - 3 * ff1->GetParameter(5),
-                    ff1->GetParameter(4) + 3 * ff1->GetParameter(5));
+      ff1->Integral(ff1->GetParameter(4) - numOfSigmas * ff1->GetParameter(5),
+                    ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5));
 
-  // find integral of pol4 in 3 sigma range
-  double integralPol4_1 =
-      pol4_1->Integral(ff1->GetParameter(4) - 3 * ff1->GetParameter(5),
-                       ff1->GetParameter(4) + 3 * ff1->GetParameter(5));
+  // find integral of pol4 in numOfSigmas sigma range
+  double integralPol4_1 = pol4_1->Integral(
+      ff1->GetParameter(4) - numOfSigmas * ff1->GetParameter(5),
+      ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5));
 
   double SPlusB_1 = integral_1;
   double B_1 = integralPol4_1;
@@ -96,8 +100,8 @@ void fit() {
   std::unique_ptr<TH1F> h2 = std::make_unique<TH1F>(*DataLoader::LoadHist(
       "data/V0/AnalysisResults.root", "strangeness_tutorial", "hMassLambda"));
 
-  xLow = 1.09;
-  xHigh = 1.14;
+  xLow = 1.085;
+  xHigh = 1.145;
   h2->Sumw2();
   h2->SetAxisRange(xLow, xHigh);
 
@@ -120,29 +124,31 @@ void fit() {
   pol4_2->SetLineColor(kGreen);
   pol4_2->Draw("same");
 
-  // draw 3 sigma lines
+  // draw numOfSigmas sigma lines
   std::unique_ptr<TLine> l1_2 = std::make_unique<TLine>(
-      ff2->GetParameter(4) - 3 * ff2->GetParameter(5), 0,
-      ff2->GetParameter(4) - 3 * ff2->GetParameter(5), 1.1 * h2->GetMaximum());
+      ff2->GetParameter(4) - numOfSigmas * ff2->GetParameter(5), 0,
+      ff2->GetParameter(4) - numOfSigmas * ff2->GetParameter(5),
+      1.1 * h2->GetMaximum());
   l1_2->SetLineColor(kBlack);
   l1_2->Draw("same");
   std::unique_ptr<TLine> l2_2 = std::make_unique<TLine>(
-      ff2->GetParameter(4) + 3 * ff2->GetParameter(5), 0,
-      ff2->GetParameter(4) + 3 * ff2->GetParameter(5), 1.1 * h2->GetMaximum());
+      ff2->GetParameter(4) + numOfSigmas * ff2->GetParameter(5), 0,
+      ff2->GetParameter(4) + numOfSigmas * ff2->GetParameter(5),
+      1.1 * h2->GetMaximum());
   l2_2->SetLineColor(kBlack);
   l2_2->Draw("same");
 
   c2->SaveAs("output/figures/hMassLambda_fitDSCB.pdf");
 
-  // find integral of DSCB in 3 sigma range
+  // find integral of DSCB in numOfSigmas sigma range
   double integral_2 =
-      ff2->Integral(ff2->GetParameter(4) - 3 * ff2->GetParameter(5),
-                    ff2->GetParameter(4) + 3 * ff2->GetParameter(5));
+      ff2->Integral(ff2->GetParameter(4) - numOfSigmas * ff2->GetParameter(5),
+                    ff2->GetParameter(4) + numOfSigmas * ff2->GetParameter(5));
 
-  // find integral of pol4 in 3 sigma range
-  double integralPol4_2 =
-      pol4_1->Integral(ff1->GetParameter(4) - 3 * ff1->GetParameter(5),
-                       ff1->GetParameter(4) + 3 * ff1->GetParameter(5));
+  // find integral of pol4 in numOfSigmas sigma range
+  double integralPol4_2 = pol4_1->Integral(
+      ff1->GetParameter(4) - numOfSigmas * ff1->GetParameter(5),
+      ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5));
 
   double SPlusB_2 = integral_2;
   double B_2 = integralPol4_2;
