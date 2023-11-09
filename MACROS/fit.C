@@ -32,12 +32,26 @@ void fit() {
   ////////////////
 
   int numOfSigmas = 5;
+  bool MC = true;
 
-  std::unique_ptr<TH1F> h1 = std::make_unique<TH1F>(*DataLoader::LoadHist(
-      "data/V0/AnalysisResults.root", "strangeness_tutorial", "hMassK0Short"));
+  double xLow;
+  double xHigh;
+  std::unique_ptr<TH1F> h1 = std::make_unique<TH1F>();
+  if (MC) {
+    h1 = std::make_unique<TH1F>(
+        *DataLoader::LoadHist("data/V0MC/AnalysisResults.root",
+                              "strangeness_tutorial", "hMassK0Short"));
 
-  double xLow = 0.45;
-  double xHigh = 0.54;
+    xLow = 0.46;
+    xHigh = 0.54;
+  } else {
+    h1 = std::make_unique<TH1F>(
+        *DataLoader::LoadHist("data/V0/AnalysisResults.root",
+                              "strangeness_tutorial", "hMassK0Short"));
+
+    xLow = 0.45;
+    xHigh = 0.54;
+  }
   h1->SetAxisRange(xLow, xHigh);
   h1->Sumw2();
 
@@ -74,7 +88,11 @@ void fit() {
   l2_1->SetLineColor(kBlack);
   l2_1->Draw("same");
 
-  c1->SaveAs("output/figures/hMassK0Short_fitDSCB.pdf");
+  if (MC) {
+    c1->SaveAs("output/figures/hMassK0ShortMC_fitDSCB.pdf");
+  } else {
+    c1->SaveAs("output/figures/hMassK0ShortDATA_fitDSCB.pdf");
+  }
 
   // count number of entries in numOfSigmas sigma range
   double SPlusB_1 = h1->Integral(
@@ -102,11 +120,22 @@ void fit() {
   // Load histogram for hmassLambda and fit with DoubleSidedCrystalball
   ////////////////
 
-  std::unique_ptr<TH1F> h2 = std::make_unique<TH1F>(*DataLoader::LoadHist(
-      "data/V0/AnalysisResults.root", "strangeness_tutorial", "hMassLambda"));
+  std::unique_ptr<TH1F> h2 = std::make_unique<TH1F>();
 
-  xLow = 1.085;
-  xHigh = 1.145;
+  if (MC) {
+    h2 = std::make_unique<TH1F>(
+        *DataLoader::LoadHist("data/V0MC/AnalysisResults.root",
+                              "strangeness_tutorial", "hMassLambda"));
+
+    xLow = 1.08;
+    xHigh = 1.15;
+  } else {
+    h2 = std::make_unique<TH1F>(*DataLoader::LoadHist(
+        "data/V0/AnalysisResults.root", "strangeness_tutorial", "hMassLambda"));
+
+    xLow = 1.085;
+    xHigh = 1.145;
+  }
   h2->Sumw2();
   h2->SetAxisRange(xLow, xHigh);
 
@@ -143,7 +172,11 @@ void fit() {
   l2_2->SetLineColor(kBlack);
   l2_2->Draw("same");
 
-  c2->SaveAs("output/figures/hMassLambda_fitDSCB.pdf");
+  if (MC) {
+    c2->SaveAs("output/figures/hMassLambdaMC_fitDSCB.pdf");
+  } else {
+    c2->SaveAs("output/figures/hMassLambdaDATA_fitDSCB.pdf");
+  }
 
   // count number of entries in numOfSigmas sigma range
   double SPlusB_2 = h2->Integral(
@@ -167,7 +200,7 @@ void fit() {
 
   std::cout << "Significance: " << significance_2 << std::endl;
 
-  bool writeToFile = true;
+  bool writeToFile = false;
   if (writeToFile) {
     std::ofstream myfile;
     const auto now = std::chrono::system_clock::now();
