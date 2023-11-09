@@ -6,6 +6,7 @@
 #include <TROOT.h>
 #include <TTree.h>
 
+#include <chrono>
 #include <fstream>
 #include <memory>
 #include <string>
@@ -75,18 +76,22 @@ void fit() {
 
   c1->SaveAs("output/figures/hMassK0Short_fitDSCB.pdf");
 
-  // find integral of DSCB in numOfSigmas sigma range
-  double integral_1 =
-      ff1->Integral(ff1->GetParameter(4) - numOfSigmas * ff1->GetParameter(5),
-                    ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5));
+  // count number of entries in numOfSigmas sigma range
+  double SPlusB_1 = h1->Integral(
+      h1->FindBin(ff1->GetParameter(4) - numOfSigmas * ff1->GetParameter(5)),
+      h1->FindBin(ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5)));
 
-  // find integral of pol4 in numOfSigmas sigma range
-  double integralPol4_1 = pol4_1->Integral(
-      ff1->GetParameter(4) - numOfSigmas * ff1->GetParameter(5),
-      ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5));
+  // count cumulative number of Y value for pol4 in numOfSigmas sigma range for
+  // each bins
+  double B_1 = 0;
+  for (int i = h1->FindBin(ff1->GetParameter(4) -
+                           numOfSigmas * ff1->GetParameter(5));
+       i <=
+       h1->FindBin(ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5));
+       i++) {
+    B_1 += pol4_1->Eval(h1->GetBinCenter(i));
+  }
 
-  double SPlusB_1 = integral_1;
-  double B_1 = integralPol4_1;
   double S_1 = SPlusB_1 - B_1;
 
   double significance_1 = S_1 / sqrt(B_1 + S_1);
@@ -140,30 +145,38 @@ void fit() {
 
   c2->SaveAs("output/figures/hMassLambda_fitDSCB.pdf");
 
-  // find integral of DSCB in numOfSigmas sigma range
-  double integral_2 =
-      ff2->Integral(ff2->GetParameter(4) - numOfSigmas * ff2->GetParameter(5),
-                    ff2->GetParameter(4) + numOfSigmas * ff2->GetParameter(5));
+  // count number of entries in numOfSigmas sigma range
+  double SPlusB_2 = h2->Integral(
+      h2->FindBin(ff2->GetParameter(4) - numOfSigmas * ff2->GetParameter(5)),
+      h2->FindBin(ff2->GetParameter(4) + numOfSigmas * ff2->GetParameter(5)));
 
-  // find integral of pol4 in numOfSigmas sigma range
-  double integralPol4_2 = pol4_1->Integral(
-      ff1->GetParameter(4) - numOfSigmas * ff1->GetParameter(5),
-      ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5));
+  // count cumulative number of Y value for pol4 in numOfSigmas sigma range for
+  // each bins
+  double B_2 = 0;
+  for (int i = h2->FindBin(ff2->GetParameter(4) -
+                           numOfSigmas * ff2->GetParameter(5));
+       i <=
+       h2->FindBin(ff2->GetParameter(4) + numOfSigmas * ff2->GetParameter(5));
+       i++) {
+    B_2 += pol4_2->Eval(h2->GetBinCenter(i));
+  }
 
-  double SPlusB_2 = integral_2;
-  double B_2 = integralPol4_2;
   double S_2 = SPlusB_2 - B_2;
 
   double significance_2 = S_2 / sqrt(B_2 + S_2);
 
   std::cout << "Significance: " << significance_2 << std::endl;
 
-  bool writeToFile = false;
+  bool writeToFile = true;
   if (writeToFile) {
     std::ofstream myfile;
-    myfile.open("output/data.txt");
+    const auto now = std::chrono::system_clock::now();
+    const std::time_t t_c = std::chrono::system_clock::to_time_t(now);
+    // get time as string
+    std::string timeString = std::ctime(&t_c);
+    myfile.open("output/Results " + timeString + ".txt");
     myfile << "K0Short:\n";
-    myfile << "   Cut Parameter: dcanegtopv"
+    myfile << "   Cut Parameter:"
            << "   N/A"
            << "\n";
     myfile << "   Cut Value: "
@@ -174,7 +187,7 @@ void fit() {
     myfile << "   B: " << B_1 << "\n";
     myfile << "   S+B: " << SPlusB_1 << "\n";
     myfile << "Lambda:\n";
-    myfile << "   Cut Parameter: dcanegtopv"
+    myfile << "   Cut Parameter:"
            << "   N/A"
            << "\n";
     myfile << "   Cut Value: "
