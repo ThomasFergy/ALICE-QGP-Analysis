@@ -3,6 +3,14 @@
 *.pcm
 *.log
 AO2D.root
+AO2DMC1.root
+AO2DMC2.root
+AO2DMC3.root
+AO2DMC4.root
+AO2DMC5.root
+AO2DMC6.root
+AO2DMC7.root
+AO2DMC8.root
 .DS_Store
 aodmcs.txt
 log
