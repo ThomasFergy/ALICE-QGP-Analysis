@@ -32,7 +32,7 @@ void fit() {
   ////////////////
 
   int numOfSigmas = 5;
-  bool MC = true;
+  bool MC = false;
 
   double xLow;
   double xHigh;
@@ -41,14 +41,12 @@ void fit() {
     h1 = std::make_unique<TH1F>(
         *DataLoader::LoadHist("data/V0MC/AnalysisResults.root",
                               "strangeness_tutorial", "hMassK0Short"));
-
     xLow = 0.46;
     xHigh = 0.54;
   } else {
     h1 = std::make_unique<TH1F>(
         *DataLoader::LoadHist("data/V0/AnalysisResults.root",
                               "strangeness_tutorial", "hMassK0Short"));
-
     xLow = 0.45;
     xHigh = 0.54;
   }
@@ -126,13 +124,11 @@ void fit() {
     h2 = std::make_unique<TH1F>(
         *DataLoader::LoadHist("data/V0MC/AnalysisResults.root",
                               "strangeness_tutorial", "hMassLambda"));
-
     xLow = 1.08;
     xHigh = 1.15;
   } else {
     h2 = std::make_unique<TH1F>(*DataLoader::LoadHist(
         "data/V0/AnalysisResults.root", "strangeness_tutorial", "hMassLambda"));
-
     xLow = 1.085;
     xHigh = 1.145;
   }
@@ -199,37 +195,4 @@ void fit() {
   double significance_2 = S_2 / sqrt(B_2 + S_2);
 
   std::cout << "Significance: " << significance_2 << std::endl;
-
-  bool writeToFile = false;
-  if (writeToFile) {
-    std::ofstream myfile;
-    const auto now = std::chrono::system_clock::now();
-    const std::time_t t_c = std::chrono::system_clock::to_time_t(now);
-    // get time as string
-    std::string timeString = std::ctime(&t_c);
-    myfile.open("output/Results " + timeString + ".txt");
-    myfile << "K0Short:\n";
-    myfile << "   Cut Parameter:"
-           << "   N/A"
-           << "\n";
-    myfile << "   Cut Value: "
-           << "   N/A"
-           << "\n";
-    myfile << "   Significance: " << significance_1 << "\n";
-    myfile << "   S: " << S_1 << "\n";
-    myfile << "   B: " << B_1 << "\n";
-    myfile << "   S+B: " << SPlusB_1 << "\n";
-    myfile << "Lambda:\n";
-    myfile << "   Cut Parameter:"
-           << "   N/A"
-           << "\n";
-    myfile << "   Cut Value: "
-           << "   N/A"
-           << "\n";
-    myfile << "   Significance: " << significance_2 << "\n";
-    myfile << "   S: " << S_2 << "\n";
-    myfile << "   B: " << B_2 << "\n";
-    myfile << "   S+B: " << SPlusB_2 << "\n";
-    myfile.close();
-  }
 }
