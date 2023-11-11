@@ -20,5 +20,6 @@ log.txt
 locCCDB/
 dpl-config.json
 performanceMetrics.json
+.nfs*
 
 .gitignore
