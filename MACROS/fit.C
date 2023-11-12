@@ -54,9 +54,9 @@ void fit() {
   h1->Sumw2();
 
   std::unique_ptr<TF1> ff1 = std::make_unique<TF1>(
-      "fitDSCB", FittingFunctions::DSCBWithPolynomial, xLow, xHigh, 12);
+      "fitDSCB", FittingFunctions::DSCBWithPolynomial, xLow, xHigh, 10);
   ff1->SetParameters(1.2, 1.2, 1.4, 1.4, h1->GetMean(), h1->GetRMS(), 3000, 1,
-                     1, 1, 1);
+                     1, 1);
   ff1->SetParNames("alpha(low)", "alpha(high)", "n_(low)", "n_(high)", "mean",
                    "sigma", "norm");
   h1->Fit(ff1.get(), "R");
@@ -64,12 +64,12 @@ void fit() {
   h1->Draw();
 
   // draw pol4
-  std::unique_ptr<TF1> pol4_1 = std::make_unique<TF1>(
+  std::unique_ptr<TF1> pol2_1 = std::make_unique<TF1>(
       "pol4", FittingFunctions::Polynomial2, xLow, xHigh, 5);
-  pol4_1->SetParameters(ff1->GetParameter(7), ff1->GetParameter(8),
+  pol2_1->SetParameters(ff1->GetParameter(7), ff1->GetParameter(8),
                         ff1->GetParameter(9));
-  pol4_1->SetLineColor(kGreen);
-  pol4_1->Draw("same");
+  pol2_1->SetLineColor(kGreen);
+  pol2_1->Draw("same");
 
   // draw numOfSigmas sigma lines
   std::unique_ptr<TLine> l1_1 = std::make_unique<TLine>(
@@ -104,7 +104,7 @@ void fit() {
        i <=
        h1->FindBin(ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5));
        i++) {
-    B_1 += pol4_1->Eval(h1->GetBinCenter(i));
+    B_1 += pol2_1->Eval(h1->GetBinCenter(i));
   }
 
   double S_1 = SPlusB_1 - B_1;
@@ -136,9 +136,9 @@ void fit() {
   h2->SetAxisRange(xLow, xHigh);
 
   std::unique_ptr<TF1> ff2 = std::make_unique<TF1>(
-      "fitDSCB", FittingFunctions::DSCBWithPolynomial, xLow, xHigh, 12);
+      "fitDSCB", FittingFunctions::DSCBWithPolynomial, xLow, xHigh, 10);
   ff2->SetParameters(1, 1.6, 0.1, 0.1, h2->GetMean(), h2->GetRMS(), 3000, 1, 1,
-                     1, 1);
+                     1);
   ff2->SetParNames("alpha(low)", "alpha(high)", "n_(low)", "n_(high)", "mean",
                    "sigma", "norm");
   h2->Fit(ff2.get(), "R");
@@ -186,7 +186,7 @@ void fit() {
        i <=
        h2->FindBin(ff2->GetParameter(4) + numOfSigmas * ff2->GetParameter(5));
        i++) {
-    B_2 += pol4_2->Eval(h2->GetBinCenter(i));
+    B_2 += pol2_2->Eval(h2->GetBinCenter(i));
   }
 
   double S_2 = SPlusB_2 - B_2;
