@@ -10,6 +10,7 @@
 #include <fstream>
 #include <memory>
 #include <string>
+#include <vector>
 
 // clang-format off
 // for syntax highlighting
@@ -26,18 +27,20 @@ R__LOAD_LIBRARY(lib/FittingFunctions_cpp.so)
 #endif
 // clang-format on
 
-void SignificanceFit(bool isMC, double xLow, double xHigh, const char* filename,
-                     double* par, int numOfSigmas = 5) {
+void SignificanceFit(const bool isMC, const double xLow, const double xHigh,
+                     const char* filename, std::vector<double> fit_params,
+                     const int numOfSigmas = 5) {
   std::unique_ptr<TH1F> h1 = std::make_unique<TH1F>();
   h1 = std::make_unique<TH1F>(
-      *DataLoader::LoadHist("data/V0MC/AnalysisResults.root",
-                            "strangeness_tutorial", "hMassK0Short"));
+      *DataLoader::LoadHist(filename, "strangeness_tutorial", "hMassK0Short"));
   h1->SetAxisRange(xLow, xHigh);
   h1->Sumw2();
 
   std::unique_ptr<TF1> ff1 = std::make_unique<TF1>(
       "fitDSCB", FittingFunctions::DSCBWithPolynomial, xLow, xHigh, 12);
-  ff1->SetParameters(par);
+
+  double* fit_params_arr = &fit_params[0];
+  ff1->SetParameters(fit_params_arr);
   ff1->SetParNames("alpha(low)", "alpha(high)", "n_(low)", "n_(high)", "mean",
                    "sigma", "norm");
   h1->Fit(ff1.get(), "R");
@@ -54,8 +57,8 @@ void SignificanceFit(bool isMC, double xLow, double xHigh, const char* filename,
       h1->FindBin(ff1->GetParameter(4) - numOfSigmas * ff1->GetParameter(5)),
       h1->FindBin(ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5)));
 
-  // count cumulative number of Y value for pol4 in numOfSigmas sigma range for
-  // each bins
+  // count cumulative number of Y value for pol4 in
+  // numOfSigmas sigma range for each bins
   double B_1 = 0;
   for (int i = h1->FindBin(ff1->GetParameter(4) -
                            numOfSigmas * ff1->GetParameter(5));
@@ -70,4 +73,6 @@ void SignificanceFit(bool isMC, double xLow, double xHigh, const char* filename,
   double significance_1 = S_1 / sqrt(B_1 + S_1);
 
   std::cout << "Significance: " << significance_1 << std::endl;
+
+  c1->SaveAs("output/tmp/test.pdf");
 }

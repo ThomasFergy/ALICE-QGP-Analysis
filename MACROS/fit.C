@@ -39,13 +39,13 @@ void fit() {
   std::unique_ptr<TH1F> h1 = std::make_unique<TH1F>();
   if (MC) {
     h1 = std::make_unique<TH1F>(
-        *DataLoader::LoadHist("data/V0MC/AnalysisResults.root",
+        *DataLoader::LoadHist("output/V0MC/AnalysisResults_dcanegtopv_0.root",
                               "strangeness_tutorial", "hMassK0Short"));
     xLow = 0.46;
     xHigh = 0.54;
   } else {
     h1 = std::make_unique<TH1F>(
-        *DataLoader::LoadHist("data/V0/AnalysisResults.root",
+        *DataLoader::LoadHist("output/V0Data/AnalysisResults_dcanegtopv_0.root",
                               "strangeness_tutorial", "hMassK0Short"));
     xLow = 0.45;
     xHigh = 0.54;
@@ -65,10 +65,9 @@ void fit() {
 
   // draw pol4
   std::unique_ptr<TF1> pol4_1 = std::make_unique<TF1>(
-      "pol4", FittingFunctions::Polynomial4, xLow, xHigh, 5);
+      "pol4", FittingFunctions::Polynomial2, xLow, xHigh, 5);
   pol4_1->SetParameters(ff1->GetParameter(7), ff1->GetParameter(8),
-                        ff1->GetParameter(9), ff1->GetParameter(10),
-                        ff1->GetParameter(11));
+                        ff1->GetParameter(9));
   pol4_1->SetLineColor(kGreen);
   pol4_1->Draw("same");
 
@@ -122,13 +121,14 @@ void fit() {
 
   if (MC) {
     h2 = std::make_unique<TH1F>(
-        *DataLoader::LoadHist("data/V0MC/AnalysisResults.root",
+        *DataLoader::LoadHist("output/V0MC/AnalysisResults_dcanegtopv_0.root",
                               "strangeness_tutorial", "hMassLambda"));
     xLow = 1.08;
     xHigh = 1.15;
   } else {
-    h2 = std::make_unique<TH1F>(*DataLoader::LoadHist(
-        "data/V0/AnalysisResults.root", "strangeness_tutorial", "hMassLambda"));
+    h2 = std::make_unique<TH1F>(
+        *DataLoader::LoadHist("output/V0Data/AnalysisResults_dcanegtopv_0.root",
+                              "strangeness_tutorial", "hMassLambda"));
     xLow = 1.085;
     xHigh = 1.145;
   }
@@ -146,13 +146,12 @@ void fit() {
   h2->Draw();
 
   // draw pol4
-  std::unique_ptr<TF1> pol4_2 = std::make_unique<TF1>(
-      "pol4", FittingFunctions::Polynomial4, xLow, xHigh, 5);
-  pol4_2->SetParameters(ff2->GetParameter(7), ff2->GetParameter(8),
-                        ff2->GetParameter(9), ff2->GetParameter(10),
-                        ff2->GetParameter(11));
-  pol4_2->SetLineColor(kGreen);
-  pol4_2->Draw("same");
+  std::unique_ptr<TF1> pol2_2 = std::make_unique<TF1>(
+      "pol4", FittingFunctions::Polynomial2, xLow, xHigh, 5);
+  pol2_2->SetParameters(ff2->GetParameter(7), ff2->GetParameter(8),
+                        ff2->GetParameter(9));
+  pol2_2->SetLineColor(kGreen);
+  pol2_2->Draw("same");
 
   // draw numOfSigmas sigma lines
   std::unique_ptr<TLine> l1_2 = std::make_unique<TLine>(

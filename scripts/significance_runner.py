@@ -15,11 +15,13 @@ import sys
 import json
 import subprocess
 
-isMC = True
+isMC = False
 
 if isMC:
+  cwd = "data/V0MC"
   output_dir = "output/V0MC"
 else:
+  cwd = "data/V0Data"
   output_dir = "output/V0Data"
 
 cut_parameters = ["dcanegtopv","dcapostopv", "v0cospa", "dcav0dau", "v0radius"]
@@ -49,10 +51,9 @@ if __name__ == "__main__":
   # 3 = dcav0dau
   # 4 = v0radius
   cuts, files = get_cut_values(output_dir, 0)
-  print(cuts)
-  print(files)
 
-  fit_params = "[1.2, 1.2, 1.4, 1.4, 0.49, 0.01, 3000, 1, 1, 1, 1]"
-  args = "{}, {}, {}, {}, {}".format(cpp_convert[isMC], str(0.46), str(0.54), '"'+str(files[0])+'"', fit_params)
-  print('root', '-l', '-b', '-q', 'MACROS/SignificanceFit.C({})'.format(args))
-  result = subprocess.run(['root', '-l', '-b', '-q', 'MACROS/SignificanceFit.C({})'.format(args)])
+
+  # not generalised at all yet
+  fit_params = "{1.2, 1.2, 60, 30, 0.49, 0.004, 3000, 1, 1, 1, 1}"
+  args = "{}, {}, {}, {}, {}".format(cpp_convert[isMC], str(0.46), str(0.54), '"'+str("{}/".format(output_dir)+files[0])+'"', fit_params)
+  result = subprocess.run(['root', '-l', '-b', '-q', "MACROS/SignificanceFit.C({})".format(args)]) # will want to pipe this probably
