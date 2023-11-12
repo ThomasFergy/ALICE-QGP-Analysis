@@ -1,11 +1,11 @@
 '''
-Script to calculate the significance of the V0s
+Script to batch apply cut values to V0s for further processing.
 --- (requires being in the alienv environment before running) ---
 
 Method:
   Step 1: Set the cut values to be used and on which parameter in the relevant json file
   Step 2: Run the run_step0(_MC).sh script to produce the output files
-  Step 3: Rename the output file to avoid overwriting
+  Step 3: Rename the output file to avoid overwriting and place into relevant output directory
   Step 4: go back to step 1 and repeat until you have applied all the cuts you want
 '''
 

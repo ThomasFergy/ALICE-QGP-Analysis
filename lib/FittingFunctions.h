@@ -10,7 +10,7 @@ class FittingFunctions {
   /**
    * Crystalball function.
    */
-  static double Polynomial4(double* x, double* par);
+  static double Polynomial2(double* x, double* par);
 
   static double DoubleSidedCrystalballFunction(double* x, double* par);
 

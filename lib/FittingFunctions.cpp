@@ -40,10 +40,8 @@ double FittingFunctions::Gaussian(double* x, double* par) {
   return N * result;
 };
 
-double FittingFunctions::Polynomial4(double* x, double* par) {
-  double result = par[0] + par[1] * x[0] + par[2] * x[0] * x[0] +
-                  par[3] * x[0] * x[0] * x[0] +
-                  par[4] * x[0] * x[0] * x[0] * x[0];
+double FittingFunctions::Polynomial2(double* x, double* par) {
+  double result = par[0] + par[1] * x[0] + par[2] * x[0] * x[0];
   return result;
 };
 
@@ -72,6 +70,10 @@ double FittingFunctions::DSCBWithPolynomial(double* x, double* par) {
     result = exp(-0.5 * alpha_h * alpha_h) *
              pow(fact1THihgerAlphaH * fact2THigherAlphaH, -n_h);
   }
-  double polyPars[5] = {par[7], par[8], par[9], par[10], par[11]};
-  return N * result + Polynomial4(x, polyPars);
+  double polyPars[3] = {
+      par[7],
+      par[8],
+      par[9],
+  };
+  return N * result + Polynomial2(x, polyPars);
 };
