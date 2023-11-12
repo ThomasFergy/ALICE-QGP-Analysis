@@ -24,7 +24,6 @@ def set_cut_value(json_file, cut_name_index, cut_value):
     with open(json_file, 'r') as f:
         data = json.load(f)
     data['lambdakzero-builder'][cut_parameters[cut_name_index]] = str(cut_value)
-    print(data['lambdakzero-builder'][cut_parameters[cut_name_index]])
     with open(json_file, 'w') as f:
         json.dump(data, f, indent=2)
 
@@ -47,6 +46,11 @@ if __name__ == "__main__":
 
   for cut_value in cut_values:
     set_cut_value('data/V0MC/json_strangenesstutorialMC_sig.json', par_index, cut_value)
+
+    # check if output file has already been produced
+    if os.path.isfile("output/V0MC/AnalysisResults_{}_{}.root".format(cut_parameters[par_index], cut_value)):
+      print("Output file already exists for cut {} = {}".format(cut_parameters[par_index], cut_value))
+      continue
 
     # Apply the cut (requires being in the alienv environment before running)
     os.chdir("data/V0MC")

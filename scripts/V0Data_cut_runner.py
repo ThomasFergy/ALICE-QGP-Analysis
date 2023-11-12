@@ -46,6 +46,11 @@ if __name__ == "__main__":
 
   for cut_value in cut_values:
     set_cut_value('data/V0Data/json_strangenesstutorial.json', par_index, cut_value)
+
+    # check if output file has already been produced
+    if os.path.isfile("output/V0Data/AnalysisResults_{}_{}.root".format(cut_parameters[par_index], cut_value)):
+      print("Output file already exists for cut {} = {}".format(cut_parameters[par_index], cut_value))
+      continue
   
     # Apply the cut (requires being in the alienv environment before running)
     os.chdir("data/V0Data")
