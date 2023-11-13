@@ -28,3 +28,9 @@ Contains any scripts used for batch tasks.
 
 ### output
 Ideally all code that produce usefull data should store it here in a sensible subfolder.
+
+
+### Useful eprexa commands
+Type cc7
+Start enviroment of O2 Physics software:
+alienv enter O2Physics/latest-master-o2
