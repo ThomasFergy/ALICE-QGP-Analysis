@@ -50,7 +50,7 @@
   "lambdakzero-builder": {
     "createV0CovMats": "-1",
     "d_UseAutodetectMode": "false",
-    "dcanegtopv": "0",
+    "dcanegtopv": "0.08",
     "dcapostopv": "0.0",
     "v0cospa": "0.9",
     "dcav0dau": "1",
