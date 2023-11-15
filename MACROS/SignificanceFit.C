@@ -27,6 +27,9 @@ R__LOAD_LIBRARY(lib/FittingFunctions_cpp.so)
 #endif
 // clang-format on
 
+/**
+ * @brief Fit the histogram with DSCB and pol2, and calculate significance
+ */
 void SignificanceFit(const bool isMC, const double xLow, const double xHigh,
                      const char* filename, const char* outputname,
                      std::vector<double> fit_params,
@@ -58,40 +61,35 @@ void SignificanceFit(const bool isMC, const double xLow, const double xHigh,
   std::unique_ptr<TCanvas> c1 = std::make_unique<TCanvas>("c1", "c1", 800, 600);
   h1->Draw();
 
-  std::unique_ptr<TF1> pol2_1 = std::make_unique<TF1>(
-      "pol2", FittingFunctions::Polynomial2, xLow, xHigh, 3);
-  pol2_1->SetParameters(ff1->GetParameter(7), ff1->GetParameter(8),
-                        ff1->GetParameter(9));
-
   // draw pol2
   std::unique_ptr<TF1> pol2 = std::make_unique<TF1>(
       "pol2", FittingFunctions::Polynomial2, xLow, xHigh, 3);
-  pol2_1->SetParameters(ff1->GetParameter(7), ff1->GetParameter(8),
-                        ff1->GetParameter(9));
-  pol2_1->SetLineColor(kGreen);
-  pol2_1->Draw("same");
+  pol2->SetParameters(ff1->GetParameter(7), ff1->GetParameter(8),
+                      ff1->GetParameter(9));
+  pol2->SetLineColor(kGreen);
+  pol2->Draw("same");
 
   // count number of entries in numOfSigmas sigma range
-  double SPlusB_1 = h1->Integral(
+  double SPlusB = h1->Integral(
       h1->FindBin(ff1->GetParameter(4) - numOfSigmas * ff1->GetParameter(5)),
       h1->FindBin(ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5)));
 
   // count cumulative number of Y value for pol4 in
   // numOfSigmas sigma range for each bins
-  double B_1 = 0;
+  double B = 0;
   for (int i = h1->FindBin(ff1->GetParameter(4) -
                            numOfSigmas * ff1->GetParameter(5));
        i <=
        h1->FindBin(ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5));
        i++) {
-    B_1 += pol2_1->Eval(h1->GetBinCenter(i));
+    B += pol2->Eval(h1->GetBinCenter(i));
   }
 
-  double S_1 = SPlusB_1 - B_1;
+  double S = SPlusB - B;
 
-  double significance_1 = S_1 / sqrt(B_1 + S_1);
+  double significance = S / sqrt(B + S);
 
-  std::cout << "$$$" << significance_1 << "$$$" << std::endl;
+  std::cout << "$$$" << significance << "$$$" << std::endl;
 
   // stdout signif
 

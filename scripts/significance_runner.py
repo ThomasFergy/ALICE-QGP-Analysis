@@ -11,7 +11,6 @@ Method:
 
 
 import os
-import sys
 import json
 import subprocess
 import matplotlib.pyplot as plt
@@ -27,6 +26,7 @@ else:
 
 cut_parameters = ["dcanegtopv", "dcapostopv", "v0cospa", "dcav0dau", "v0radius"]
 
+V0_names = ["K0", "Lambda"]
 
 cpp_convert = {True: "true", False: "false"}
 
@@ -52,12 +52,11 @@ if __name__ == "__main__":
     # 4 = v0radius
     cut_index = 0
 
-    # i = 0  # need loop later
-
-    V0_names = ["K0", "Lambda"]
+    # 0 = K0
+    # 1 = Lambda
     V0_index = 0  # will also need to loop over these later
 
-    # load the json files
+    # make file if it doesn't exist
     if not os.path.exists("output/significance.json"):
         content = {
             "K0": {
@@ -78,14 +77,15 @@ if __name__ == "__main__":
         with open("output/significance.json", "w") as f:
             json.dump(content, f, indent=2)
 
+    # load json file
     with open("output/significance.json", "r") as f:
         results = json.load(f)
 
     cuts, files = get_cut_values(output_dir, cut_index)
 
     # loop through all cuts for the parameter
-
     for i in range(len(cuts)):
+        print()
         # check if key exists
         if str(cuts[i]) in results[V0_names[V0_index]][cut_parameters[cut_index]]:
             print(
@@ -95,15 +95,23 @@ if __name__ == "__main__":
             )
             continue
 
+        print(
+            "----- Running cut {} = {}... -----".format(
+                cut_parameters[cut_index], cuts[i]
+            )
+        )
+        print()
         figure_outputname = (
             V0_names[V0_index] + "_" + cut_parameters[0] + "_" + str(cuts[i]) + ".pdf"
         )
 
-        # not generalised at all yet
         if V0_index == 0:
             fit_params = "{1.2, 1.2, 1.4, 1.4, 0.49, 0.004, 3000, 1, 1, 1}"
         else:
+            fit_params = "{1.0, 1.6, 0.1, 0.1, 1.12, 0.004, 3000, 1, 1, 1}"
             pass
+
+        # TODO: Not tested on lamdas yet
         args = "{}, {}, {}, {}, {}, {}".format(
             cpp_convert[isMC],
             str(0.45),
@@ -118,21 +126,16 @@ if __name__ == "__main__":
             stdout=subprocess.PIPE,
         )
 
-        # print(result.stdout.decode("utf-8"))
-
         significance = float(result.stdout.decode("utf-8").split("$$$")[1])
 
-        # save to json file
+        # save to results dict
         results[V0_names[V0_index]][cut_parameters[cut_index]][cuts[i]] = significance
 
-        # print("Significance: {}".format(significance))
-
-        # save to json file
-
+    # save to json file
     with open("output/significance.json", "w") as f:
         json.dump(results, f, indent=2)
 
-    ### THIS WILL BE REPLACED WITH A ROOT MACRO LATER ###
+    ### TODO: THIS WILL BE REPLACED WITH A ROOT MACRO LATER ###
     # plot significance vs cut value
     significance_values = []
     for i in range(len(cuts)):
@@ -146,3 +149,5 @@ if __name__ == "__main__":
     plt.savefig(
         "output/figures/significance_vs_{}.pdf".format(cut_parameters[cut_index])
     )
+
+    print("Script finished successfully")
