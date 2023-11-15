@@ -13,8 +13,9 @@ import os
 import sys
 import json
 import subprocess
+import numpy as np
 
-isMC = True
+isMC = False
 
 if isMC:
     cwd = "data/V0MC"
@@ -55,7 +56,8 @@ if __name__ == "__main__":
     # 4 = v0radius
 
     par_index = 0
-    cut_values = [0, 0.02, 0.04, 0.06, 0.08]
+    # cut_values = [0, 0.02, 0.04, 0.06, 0.08]
+    cut_values = np.linspace(0, 0.1, 11)
 
     for cut_value in cut_values:
         set_cut_value(json_file, par_index, cut_value)

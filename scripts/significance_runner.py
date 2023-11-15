@@ -106,8 +106,8 @@ if __name__ == "__main__":
         significance_values.append(significance)
 
 # plot significance vs cut value
-plt.plot(cuts, significance_values)
-plt.xlabel(cut_parameters[0])
+plt.plot(cuts, significance_values, "o")
+plt.xlabel(cut_parameters[cut_index])
 plt.ylabel("Significance")
 plt.title(V0_names[V0_index])
-plt.savefig("output/figures/significance_vs_{}.pdf".format(cut_parameters[0]))
+plt.savefig("output/figures/significance_vs_{}.pdf".format(cut_parameters[cut_index]))
