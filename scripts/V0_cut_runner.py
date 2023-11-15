@@ -15,7 +15,7 @@ import json
 import subprocess
 import numpy as np
 
-isMC = False
+isMC = True
 
 if isMC:
     cwd = "data/V0MC"
