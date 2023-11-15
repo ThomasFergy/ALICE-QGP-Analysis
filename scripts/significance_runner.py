@@ -52,7 +52,7 @@ if __name__ == "__main__":
     # 2 = v0cospa
     # 3 = dcav0dau
     # 4 = v0radius
-    cut_index = 0
+    cut_index = 1
 
     # 0 = K0
     # 1 = Lambda
