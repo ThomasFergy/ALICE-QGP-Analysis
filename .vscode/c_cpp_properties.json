@@ -4,7 +4,8 @@
             "name": "Mac",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/opt/homebrew/Cellar/root/6.28.06/include/root"
+                "/opt/homebrew/Cellar/root/6.28.06/include/root",
+                "/usr/include/root"
             ],
             "defines": [],
             "macFrameworkPath": [

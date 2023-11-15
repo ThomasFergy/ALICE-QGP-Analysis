@@ -63,7 +63,7 @@ void fit() {
   std::unique_ptr<TCanvas> c1 = std::make_unique<TCanvas>("c1", "c1", 800, 600);
   h1->Draw();
 
-  // draw pol4
+  // draw pol2
   std::unique_ptr<TF1> pol2_1 = std::make_unique<TF1>(
       "pol4", FittingFunctions::Polynomial2, xLow, xHigh, 5);
   pol2_1->SetParameters(ff1->GetParameter(7), ff1->GetParameter(8),

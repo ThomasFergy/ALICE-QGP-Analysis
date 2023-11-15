@@ -14,6 +14,7 @@ import os
 import sys
 import json
 import subprocess
+import matplotlib.pyplot as plt
 
 isMC = False
 
@@ -63,17 +64,50 @@ if __name__ == "__main__":
     # 2 = v0cospa
     # 3 = dcav0dau
     # 4 = v0radius
-    cuts, files = get_cut_values(output_dir, 0)
+    cut_index = 0
 
-    # not generalised at all yet
-    fit_params = "{1.2, 1.2, 60, 30, 0.49, 0.004, 3000, 1, 1, 1, 1}"
-    args = "{}, {}, {}, {}, {}".format(
-        cpp_convert[isMC],
-        str(0.46),
-        str(0.54),
-        '"' + str("{}/".format(output_dir) + files[0]) + '"',
-        fit_params,
-    )
-    result = subprocess.run(
-        ["root", "-l", "-b", "-q", "MACROS/SignificanceFit.C({})".format(args)]
-    )  # will want to pipe this probably
+    # i = 0  # need loop later
+
+    V0_names = ["K0", "Lambda"]
+    V0_index = 0  # will also need to loop over these later
+
+    cuts, files = get_cut_values(output_dir, cut_index)
+
+    # loop through all cuts for the parameter
+
+    significance_values = []
+    for i in range(len(cuts)):
+        figure_outputname = (
+            V0_names[V0_index] + "_" + cut_parameters[0] + "_" + str(cuts[i]) + ".pdf"
+        )
+        print(figure_outputname)
+        # not generalised at all yet
+        if V0_index == 0:
+            fit_params = "{1.2, 1.2, 1.4, 1.4, 0.49, 0.004, 3000, 1, 1, 1}"
+        else:
+            pass
+        args = "{}, {}, {}, {}, {}, {}".format(
+            cpp_convert[isMC],
+            str(0.45),
+            str(0.54),
+            '"' + str("{}/".format(output_dir) + files[i]) + '"',
+            '"{}"'.format(figure_outputname),
+            fit_params,
+        )
+
+        result = subprocess.run(
+            ["root", "-l", "-b", "-q", "MACROS/SignificanceFit.C({})".format(args)],
+            stdout=subprocess.PIPE,
+        )
+
+        # print(result.stdout.decode("utf-8"))
+
+        significance = float(result.stdout.decode("utf-8").split("$$$")[1])
+        significance_values.append(significance)
+
+# plot significance vs cut value
+plt.plot(cuts, significance_values)
+plt.xlabel(cut_parameters[0])
+plt.ylabel("Significance")
+plt.title(V0_names[V0_index])
+plt.savefig("output/figures/significance_vs_{}.pdf".format(cut_parameters[0]))

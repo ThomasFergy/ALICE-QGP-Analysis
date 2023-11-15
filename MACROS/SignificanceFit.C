@@ -28,7 +28,8 @@ R__LOAD_LIBRARY(lib/FittingFunctions_cpp.so)
 // clang-format on
 
 void SignificanceFit(const bool isMC, const double xLow, const double xHigh,
-                     const char* filename, std::vector<double> fit_params,
+                     const char* filename, const char* outputname,
+                     std::vector<double> fit_params,
                      const int numOfSigmas = 5) {
   std::unique_ptr<TH1F> h1 = std::make_unique<TH1F>();
   h1 = std::make_unique<TH1F>(
@@ -37,10 +38,20 @@ void SignificanceFit(const bool isMC, const double xLow, const double xHigh,
   h1->Sumw2();
 
   std::unique_ptr<TF1> ff1 = std::make_unique<TF1>(
-      "fitDSCB", FittingFunctions::DSCBWithPolynomial, xLow, xHigh, 12);
+      "fitDSCB", FittingFunctions::DSCBWithPolynomial, xLow, xHigh, 10);
 
   double* fit_params_arr = &fit_params[0];
-  ff1->SetParameters(fit_params_arr);
+
+  // may as well use these values as initial guesses
+  fit_params_arr[4] = h1->GetMean();
+  fit_params_arr[5] = h1->GetRMS();
+
+  // set initial guesses
+  ff1->SetParameters(fit_params_arr[0], fit_params_arr[1], fit_params_arr[2],
+                     fit_params_arr[3], fit_params_arr[4], fit_params_arr[5],
+                     fit_params_arr[6], fit_params_arr[7], fit_params_arr[8],
+                     fit_params_arr[9]);
+
   ff1->SetParNames("alpha(low)", "alpha(high)", "n_(low)", "n_(high)", "mean",
                    "sigma", "norm");
   h1->Fit(ff1.get(), "R");
@@ -51,6 +62,14 @@ void SignificanceFit(const bool isMC, const double xLow, const double xHigh,
       "pol2", FittingFunctions::Polynomial2, xLow, xHigh, 3);
   pol2_1->SetParameters(ff1->GetParameter(7), ff1->GetParameter(8),
                         ff1->GetParameter(9));
+
+  // draw pol2
+  std::unique_ptr<TF1> pol2 = std::make_unique<TF1>(
+      "pol2", FittingFunctions::Polynomial2, xLow, xHigh, 3);
+  pol2_1->SetParameters(ff1->GetParameter(7), ff1->GetParameter(8),
+                        ff1->GetParameter(9));
+  pol2_1->SetLineColor(kGreen);
+  pol2_1->Draw("same");
 
   // count number of entries in numOfSigmas sigma range
   double SPlusB_1 = h1->Integral(
@@ -72,7 +91,13 @@ void SignificanceFit(const bool isMC, const double xLow, const double xHigh,
 
   double significance_1 = S_1 / sqrt(B_1 + S_1);
 
-  std::cout << "Significance: " << significance_1 << std::endl;
+  std::cout << "$$$" << significance_1 << "$$$" << std::endl;
 
-  c1->SaveAs("output/tmp/test.pdf");
+  // stdout signif
+
+  // combine two const char* into one
+  std::string outputdir = "output/figures/batch_significance_plots/";
+  std::string outputname_str = outputdir + outputname;
+
+  c1->SaveAs(outputname_str.c_str());
 }
