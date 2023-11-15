@@ -57,7 +57,7 @@ if __name__ == "__main__":
 
     par_index = 0
     # cut_values = [0, 0.02, 0.04, 0.06, 0.08]
-    cut_values = np.linspace(0, 0.1, 11)
+    cut_values = np.linspace(0, 0.2, 41)
 
     for cut_value in cut_values:
         set_cut_value(json_file, par_index, cut_value)

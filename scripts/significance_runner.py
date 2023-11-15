@@ -27,20 +27,6 @@ else:
 
 cut_parameters = ["dcanegtopv", "dcapostopv", "v0cospa", "dcav0dau", "v0radius"]
 
-K0_results = {
-    "dcanegtopv": {},
-    "dcapostopv": {},
-    "v0cospa": {},
-    "dcav0dau": {},
-    "v0radius": {},
-}
-lambda_results = {
-    "dcanegtopv": {},
-    "dcapostopv": {},
-    "v0cospa": {},
-    "dcav0dau": {},
-    "v0radius": {},
-}
 
 cpp_convert = {True: "true", False: "false"}
 
@@ -71,16 +57,48 @@ if __name__ == "__main__":
     V0_names = ["K0", "Lambda"]
     V0_index = 0  # will also need to loop over these later
 
+    # load the json files
+    if not os.path.exists("output/significance.json"):
+        content = {
+            "K0": {
+                "dcanegtopv": {},
+                "dcapostopv": {},
+                "v0cospa": {},
+                "dcav0dau": {},
+                "v0radius": {},
+            },
+            "Lambda": {
+                "dcanegtopv": {},
+                "dcapostopv": {},
+                "v0cospa": {},
+                "dcav0dau": {},
+                "v0radius": {},
+            },
+        }
+        with open("output/significance.json", "w") as f:
+            json.dump(content, f, indent=2)
+
+    with open("output/significance.json", "r") as f:
+        results = json.load(f)
+
     cuts, files = get_cut_values(output_dir, cut_index)
 
     # loop through all cuts for the parameter
 
-    significance_values = []
     for i in range(len(cuts)):
+        # check if key exists
+        if str(cuts[i]) in results[V0_names[V0_index]][cut_parameters[cut_index]]:
+            print(
+                "Skipping cut {} = {} as already cached in json".format(
+                    cut_parameters[cut_index], cuts[i]
+                )
+            )
+            continue
+
         figure_outputname = (
             V0_names[V0_index] + "_" + cut_parameters[0] + "_" + str(cuts[i]) + ".pdf"
         )
-        print(figure_outputname)
+
         # not generalised at all yet
         if V0_index == 0:
             fit_params = "{1.2, 1.2, 1.4, 1.4, 0.49, 0.004, 3000, 1, 1, 1}"
@@ -103,11 +121,28 @@ if __name__ == "__main__":
         # print(result.stdout.decode("utf-8"))
 
         significance = float(result.stdout.decode("utf-8").split("$$$")[1])
-        significance_values.append(significance)
 
-# plot significance vs cut value
-plt.plot(cuts, significance_values, "o")
-plt.xlabel(cut_parameters[cut_index])
-plt.ylabel("Significance")
-plt.title(V0_names[V0_index])
-plt.savefig("output/figures/significance_vs_{}.pdf".format(cut_parameters[cut_index]))
+        # save to json file
+        results[V0_names[V0_index]][cut_parameters[cut_index]][cuts[i]] = significance
+
+        # print("Significance: {}".format(significance))
+
+        # save to json file
+
+    with open("output/significance.json", "w") as f:
+        json.dump(results, f, indent=2)
+
+    ### THIS WILL BE REPLACED WITH A ROOT MACRO LATER ###
+    # plot significance vs cut value
+    significance_values = []
+    for i in range(len(cuts)):
+        significance_values.append(
+            results[V0_names[V0_index]][cut_parameters[cut_index]][str(cuts[i])]
+        )
+    plt.plot(cuts, significance_values, ".")
+    plt.xlabel(cut_parameters[cut_index])
+    plt.ylabel("Significance")
+    plt.title(V0_names[V0_index])
+    plt.savefig(
+        "output/figures/significance_vs_{}.pdf".format(cut_parameters[cut_index])
+    )
