@@ -30,13 +30,18 @@ R__LOAD_LIBRARY(lib/FittingFunctions_cpp.so)
 /**
  * @brief Fit the histogram with DSCB and pol2, and calculate significance
  */
-void SignificanceFit(const bool isMC, const double xLow, const double xHigh,
-                     const char* filename, const char* outputname,
-                     std::vector<double> fit_params,
+void SignificanceFit(const bool isMC, const bool isK0, const double xLow,
+                     const double xHigh, const char* filename,
+                     const char* outputname, std::vector<double> fit_params,
                      const int numOfSigmas = 5) {
   std::unique_ptr<TH1F> h1 = std::make_unique<TH1F>();
-  h1 = std::make_unique<TH1F>(
-      *DataLoader::LoadHist(filename, "strangeness_tutorial", "hMassK0Short"));
+  if (isK0) {
+    h1 = std::make_unique<TH1F>(*DataLoader::LoadHist(
+        filename, "strangeness_tutorial", "hMassK0Short"));
+  } else {
+    h1 = std::make_unique<TH1F>(
+        *DataLoader::LoadHist(filename, "strangeness_tutorial", "hMassLambda"));
+  }
   h1->SetAxisRange(xLow, xHigh);
   h1->Sumw2();
 

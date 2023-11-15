@@ -56,7 +56,9 @@ if __name__ == "__main__":
 
     # 0 = K0
     # 1 = Lambda
-    V0_index = 0  # will also need to loop over these later
+    V0_index = 1
+
+    isK0 = V0_index == 0
 
     # make file if it doesn't exist
     if not os.path.exists("output/significance.json"):
@@ -96,6 +98,8 @@ if __name__ == "__main__":
     # load json file
     with open("output/significance.json", "r") as f:
         results = json.load(f)
+
+    # loop through each cut parameter
     for cut_index in cut_indicies:
         cuts, files = get_cut_values(output_dir, cut_index)
 
@@ -139,15 +143,19 @@ if __name__ == "__main__":
 
             if V0_index == 0:
                 fit_params = "{1.2, 1.2, 1.4, 1.4, 0.49, 0.004, 3000, 1, 1, 1}"
+                xlow = 0.45
+                xhigh = 0.54
             else:
                 fit_params = "{1.0, 1.6, 0.1, 0.1, 1.12, 0.004, 3000, 1, 1, 1}"
-                pass
+                xlow = 1.085
+                xhigh = 1.145
 
             # TODO: Not tested on lamdas yet
-            args = "{}, {}, {}, {}, {}, {}".format(
+            args = "{}, {}, {}, {}, {}, {}, {}".format(
                 cpp_convert[isMC],
-                str(0.45),
-                str(0.54),
+                cpp_convert[isK0],
+                str(xlow),
+                str(xhigh),
                 '"' + str("{}/".format(output_dir) + files[i]) + '"',
                 '"{}"'.format(figure_outputname),
                 fit_params,
