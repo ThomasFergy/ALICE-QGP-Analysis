@@ -52,7 +52,7 @@ if __name__ == "__main__":
     # 2 = v0cospa
     # 3 = dcav0dau
     # 4 = v0radius
-    cut_index = 1
+    cut_indicies = [0, 1, 2, 3, 4]
 
     # 0 = K0
     # 1 = Lambda
@@ -96,124 +96,142 @@ if __name__ == "__main__":
     # load json file
     with open("output/significance.json", "r") as f:
         results = json.load(f)
+    for cut_index in cut_indicies:
+        cuts, files = get_cut_values(output_dir, cut_index)
 
-    cuts, files = get_cut_values(output_dir, cut_index)
-
-    # loop through all cuts for the parameter
-    for i in range(len(cuts)):
-        print()
-        # check if key exists
-        if str(cuts[i]) in results[V0_names[V0_index]][cut_parameters[cut_index]]:
+        if len(files) == 0:
+            err_count += 1
             print(
-                "Skipping cut {} = {} as already cached in json".format(
-                    cut_parameters[cut_index], cuts[i]
+                "WARN: No files found for cut parameter {}".format(
+                    cut_parameters[cut_index]
                 )
             )
             continue
 
-        print(
-            "----- Running cut {} = {}... -----".format(
-                cut_parameters[cut_index], cuts[i]
+        ######### RUN SIGNIFICANCE FIT MACRO #########
+
+        # loop through all cuts for the parameter
+        for i in range(len(cuts)):
+            print()
+            # check if key exists
+            if str(cuts[i]) in results[V0_names[V0_index]][cut_parameters[cut_index]]:
+                print(
+                    "Skipping cut {} = {} as already cached in json".format(
+                        cut_parameters[cut_index], cuts[i]
+                    )
+                )
+                continue
+
+            print(
+                "----- Running cut {} = {}... -----".format(
+                    cut_parameters[cut_index], cuts[i]
+                )
             )
-        )
-        print()
-        figure_outputname = (
-            V0_names[V0_index] + "_" + cut_parameters[0] + "_" + str(cuts[i]) + ".pdf"
+            print()
+            figure_outputname = (
+                V0_names[V0_index]
+                + "_"
+                + cut_parameters[cut_index]
+                + "_"
+                + str(cuts[i])
+                + ".pdf"
+            )
+
+            if V0_index == 0:
+                fit_params = "{1.2, 1.2, 1.4, 1.4, 0.49, 0.004, 3000, 1, 1, 1}"
+            else:
+                fit_params = "{1.0, 1.6, 0.1, 0.1, 1.12, 0.004, 3000, 1, 1, 1}"
+                pass
+
+            # TODO: Not tested on lamdas yet
+            args = "{}, {}, {}, {}, {}, {}".format(
+                cpp_convert[isMC],
+                str(0.45),
+                str(0.54),
+                '"' + str("{}/".format(output_dir) + files[i]) + '"',
+                '"{}"'.format(figure_outputname),
+                fit_params,
+            )
+
+            result = subprocess.run(
+                ["root", "-l", "-b", "-q", "MACROS/SignificanceFit.C({})".format(args)],
+                stdout=subprocess.PIPE,
+            )
+
+            err_count += result.returncode
+
+            # warn if error
+            if result.returncode != 0:
+                print(
+                    "WARN: Error running MACROS/SignificanceFit.C for cut {} = {}".format(
+                        cut_parameters[cut_index], cuts[i]
+                    )
+                )
+
+            significance = float(result.stdout.decode("utf-8").split("$$$")[1])
+
+            # save to results dict
+            results[V0_names[V0_index]][cut_parameters[cut_index]][
+                cuts[i]
+            ] = significance
+
+        # save to json file
+        with open("output/significance.json", "w") as f:
+            json.dump(results, f, indent=2)
+
+        ######### RUN SIGNIFICANCE PLOT MACRO #########
+
+        filepath = "output/figures/{}_significance_{}.pdf".format(
+            V0_names[V0_index], cut_parameters[cut_index]
         )
 
-        if V0_index == 0:
-            fit_params = "{1.2, 1.2, 1.4, 1.4, 0.49, 0.004, 3000, 1, 1, 1}"
-        else:
-            fit_params = "{1.0, 1.6, 0.1, 0.1, 1.12, 0.004, 3000, 1, 1, 1}"
-            pass
+        # load all significance values from json file
+        with open("output/significance.json", "r") as f:
+            results = json.load(f)
 
-        # TODO: Not tested on lamdas yet
+        significance_values = []
+        cuts = []
+        for cut in results[V0_names[V0_index]][cut_parameters[cut_index]]:
+            cuts.append(cut)
+            significance_values.append(
+                results[V0_names[V0_index]][cut_parameters[cut_index]][cut]
+            )
+
+        # convert significance values to string
+        significance_values = str(significance_values)
+        # make square brackets curly
+        significance_values = significance_values.replace("[", "{")
+        significance_values = significance_values.replace("]", "}")
+
+        # convert cuts to string
+        cuts = [float(cut) for cut in cuts]
+        cuts = str(cuts)
+        # make square brackets curly
+        cuts = cuts.replace("[", "{")
+        cuts = cuts.replace("]", "}")
+
+        Title = "Significance vs {}".format(cut_parameters[cut_index])
+        xLabel = cut_parameters[cut_index]
+        yLabel = "Significance"
+
         args = "{}, {}, {}, {}, {}, {}".format(
-            cpp_convert[isMC],
-            str(0.45),
-            str(0.54),
-            '"' + str("{}/".format(output_dir) + files[i]) + '"',
-            '"{}"'.format(figure_outputname),
-            fit_params,
+            '"' + filepath + '"',
+            '"' + Title + '"',
+            '"' + xLabel + '"',
+            '"' + yLabel + '"',
+            significance_values,
+            cuts,
         )
 
         result = subprocess.run(
-            ["root", "-l", "-b", "-q", "MACROS/SignificanceFit.C({})".format(args)],
+            ["root", "-l", "-b", "-q", "MACROS/SignificancePlot.C({})".format(args)],
             stdout=subprocess.PIPE,
         )
-
         err_count += result.returncode
 
         # warn if error
         if result.returncode != 0:
-            print(
-                "WARN: Error running MACROS/SignificanceFit.C for cut {} = {}".format(
-                    cut_parameters[cut_index], cuts[i]
-                )
-            )
-
-        significance = float(result.stdout.decode("utf-8").split("$$$")[1])
-
-        # save to results dict
-        results[V0_names[V0_index]][cut_parameters[cut_index]][cuts[i]] = significance
-
-    # save to json file
-    with open("output/significance.json", "w") as f:
-        json.dump(results, f, indent=2)
-
-    ######### RUN SIGNIFICANCE PLOT MACRO #########
-
-    filepath = "output/figures/{}_significance_{}.pdf".format(
-        V0_names[V0_index], cut_parameters[cut_index]
-    )
-
-    # load all significance values from json file
-    with open("output/significance.json", "r") as f:
-        results = json.load(f)
-
-    significance_values = []
-    cuts = []
-    for cut in results[V0_names[V0_index]][cut_parameters[cut_index]]:
-        cuts.append(cut)
-        significance_values.append(
-            results[V0_names[V0_index]][cut_parameters[cut_index]][cut]
-        )
-
-    # convert significance values to string
-    significance_values = str(significance_values)
-    # make square brackets curly
-    significance_values = significance_values.replace("[", "{")
-    significance_values = significance_values.replace("]", "}")
-
-    # convert cuts to string
-    cuts = [float(cut) for cut in cuts]
-    cuts = str(cuts)
-    # make square brackets curly
-    cuts = cuts.replace("[", "{")
-    cuts = cuts.replace("]", "}")
-
-    Title = "Significance vs {}".format(cut_parameters[cut_index])
-    xLabel = cut_parameters[cut_index]
-    yLabel = "Significance"
-
-    args = "{}, {}, {}, {}, {}, {}".format(
-        '"' + filepath + '"',
-        '"' + Title + '"',
-        '"' + xLabel + '"',
-        '"' + yLabel + '"',
-        significance_values,
-        cuts,
-    )
-
-    result = subprocess.run(
-        ["root", "-l", "-b", "-q", "MACROS/SignificancePlot.C({})".format(args)],
-        stdout=subprocess.PIPE,
-    )
-    err_count += result.returncode
-
-    # warn if error
-    if result.returncode != 0:
-        print("WARN: Error running MACROS/SignificancePlot.C")
+            print("WARN: Error running MACROS/SignificancePlot.C")
 
     if err_count != 0:
         print("Script finished with {} error(s)".format(err_count))

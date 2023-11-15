@@ -39,14 +39,14 @@ void fit() {
   std::unique_ptr<TH1F> h1 = std::make_unique<TH1F>();
   if (MC) {
     h1 = std::make_unique<TH1F>(
-        *DataLoader::LoadHist("output/V0MC/AnalysisResults_dcanegtopv_0.root",
+        *DataLoader::LoadHist("output/V0MC/AnalysisResults_dcanegtopv_0.0.root",
                               "strangeness_tutorial", "hMassK0Short"));
     xLow = 0.46;
     xHigh = 0.54;
   } else {
-    h1 = std::make_unique<TH1F>(
-        *DataLoader::LoadHist("output/V0Data/AnalysisResults_dcanegtopv_0.root",
-                              "strangeness_tutorial", "hMassK0Short"));
+    h1 = std::make_unique<TH1F>(*DataLoader::LoadHist(
+        "output/V0Data/AnalysisResults_dcanegtopv_0.0.root",
+        "strangeness_tutorial", "hMassK0Short"));
     xLow = 0.45;
     xHigh = 0.54;
   }
@@ -121,14 +121,14 @@ void fit() {
 
   if (MC) {
     h2 = std::make_unique<TH1F>(
-        *DataLoader::LoadHist("output/V0MC/AnalysisResults_dcanegtopv_0.root",
+        *DataLoader::LoadHist("output/V0MC/AnalysisResults_dcanegtopv_0.0.root",
                               "strangeness_tutorial", "hMassLambda"));
     xLow = 1.08;
     xHigh = 1.15;
   } else {
-    h2 = std::make_unique<TH1F>(
-        *DataLoader::LoadHist("output/V0Data/AnalysisResults_dcanegtopv_0.root",
-                              "strangeness_tutorial", "hMassLambda"));
+    h2 = std::make_unique<TH1F>(*DataLoader::LoadHist(
+        "output/V0Data/AnalysisResults_dcanegtopv_0.0.root",
+        "strangeness_tutorial", "hMassLambda"));
     xLow = 1.085;
     xHigh = 1.145;
   }
