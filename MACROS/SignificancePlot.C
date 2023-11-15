@@ -1,43 +1,33 @@
-// clang-format off
-// for syntax highlighting
-#include "../lib/DataLoader.h" 
-#include "../lib/FittingFunctions.h"
-// MACROS for including libs for CLING
-R__ADD_INCLUDE_PATH(lib)
-#ifdef _WIN32
-R__LOAD_LIBRARY(lib/DataLoader_cpp.dll)
-R__LOAD_LIBRARY(lib/FittingFunctions_cpp.dll)
-#else
-R__LOAD_LIBRARY(lib/DataLoader_cpp.so)
-R__LOAD_LIBRARY(lib/FittingFunctions_cpp.so)
-#endif
-// clang-format on
-
 #include <vector>
 
 #include "TCanvas.h"
 #include "TGraph.h"
+#include "TH1.h"
 
 /**
  * @brief Plots the significance vs. cut value
  */
-void SignificancePlot(const char* filepath,
+void SignificancePlot(const char* filepath, const char* Title,
+                      const char* xlable, const char* ylable,
                       const std::vector<double> significanceVector,
                       std::vector<double> cutVector) {
   // plot the significance vs. cut value
+  // do not connect the points
   TCanvas* c1 =
       new TCanvas("c1", "Significance vs. Cut Value", 200, 10, 700, 500);
   c1->SetGrid();
   TGraph* gr = new TGraph(significanceVector.size(), &cutVector[0],
                           &significanceVector[0]);
-  gr->SetTitle("Significance vs. Cut Value");
-  gr->GetXaxis()->SetTitle("Cut Value");
-  gr->GetYaxis()->SetTitle("Significance");
+  // do not connect the points
+  gr->SetLineWidth(0);
+  gr->SetTitle(Title);
+  gr->GetXaxis()->SetTitle(xlable);
+  gr->GetYaxis()->SetTitle(ylable);
   gr->SetMarkerColor(4);
-  gr->SetMarkerStyle(21);
+  // circle
+  gr->SetMarkerStyle(8);
   gr->Draw("ALP");
   c1->Update();
   c1->SaveAs(filepath);
-
   return;
 }

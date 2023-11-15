@@ -44,6 +44,7 @@ def set_cut_value(json_file, cut_name_index, cut_value):
 
 
 if __name__ == "__main__":
+    err_count = 0
     # set default cut values
     for i in range(len(cut_parameters)):
         set_cut_value(json_file, i, default_cut_values[i])
@@ -77,7 +78,11 @@ if __name__ == "__main__":
             print()
             continue
 
-        print("Running cut {} = {}".format(cut_parameters[par_index], cut_value))
+        print(
+            "----- Running cut {} = {}... -----".format(
+                cut_parameters[par_index], cut_value
+            )
+        )
         print()
 
         # Apply the cut (requires being in the alienv environment before running)
@@ -86,18 +91,25 @@ if __name__ == "__main__":
         else:
             bash_script = "./run_step0.sh"
 
-        # log the command to be run in a temp file in case of error
         result = subprocess.run([bash_script], cwd=cwd)
-        if result.returncode != 0:
-            print("Error running bash script: {}".format(bash_script))
-            print("Exiting...")
-            sys.exit(1)
+        err_count += result.returncode
 
-        # Rename the output file to avoid overwriting
+        # warn if error
+        if result.returncode != 0:
+            print(
+                "WARN: Error running MACROS/SignificanceFit.C for cut {} = {}".format(
+                    cut_parameters[par_index], cut_value
+                )
+            )
+
+        # Rename the output file to avoid overwriting and move to output directory
         os.system(
             "mv {}/AnalysisResults.root {}/AnalysisResults_{}_{}.root".format(
                 cwd, output_dir, cut_parameters[par_index], cut_value
             )
         )
 
-    print("Script finished successfully")
+    if err_count != 0:
+        print("Script finished with {} error(s)".format(err_count))
+    else:
+        print("Script finished successfully")

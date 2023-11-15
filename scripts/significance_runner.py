@@ -1,12 +1,12 @@
 """
 Script to calculate the significance of the V0s
---- (requires being in the alienv environment before running) ---
 --- (may require running the V0_cut_runner.py script first if no data exists yet) ---
 
 Method:
   Step 1: Extract the cut values for the desired parameter from the output files in the output directory
   Step 2: For each parameter .root file in the output directory, run the SignificanceFit.C root script
   Step 3: save the data in a database for later use.
+  Step 4: Run the SignificancePlot.C root script to plot the significance vs the cut value
 """
 
 
@@ -26,7 +26,7 @@ else:
 
 cut_parameters = ["dcanegtopv", "dcapostopv", "v0cospa", "dcav0dau", "v0radius"]
 
-V0_names = ["K0", "Lambda"]
+V0_names = ["K0Data", "LambdaData", "K0MC", "LambdaMC"]
 
 cpp_convert = {True: "true", False: "false"}
 
@@ -45,6 +45,8 @@ def get_cut_values(dir, cut_parameter_index):
 
 
 if __name__ == "__main__":
+    err_count = 0
+
     # 0 = dcanegtopv
     # 1 = dcapostopv
     # 2 = v0cospa
@@ -59,14 +61,28 @@ if __name__ == "__main__":
     # make file if it doesn't exist
     if not os.path.exists("output/significance.json"):
         content = {
-            "K0": {
+            "K0Data": {
                 "dcanegtopv": {},
                 "dcapostopv": {},
                 "v0cospa": {},
                 "dcav0dau": {},
                 "v0radius": {},
             },
-            "Lambda": {
+            "LambdaData": {
+                "dcanegtopv": {},
+                "dcapostopv": {},
+                "v0cospa": {},
+                "dcav0dau": {},
+                "v0radius": {},
+            },
+            "K0MC": {
+                "dcanegtopv": {},
+                "dcapostopv": {},
+                "v0cospa": {},
+                "dcav0dau": {},
+                "v0radius": {},
+            },
+            "LambdaMC": {
                 "dcanegtopv": {},
                 "dcapostopv": {},
                 "v0cospa": {},
@@ -126,6 +142,16 @@ if __name__ == "__main__":
             stdout=subprocess.PIPE,
         )
 
+        err_count += result.returncode
+
+        # warn if error
+        if result.returncode != 0:
+            print(
+                "WARN: Error running MACROS/SignificanceFit.C for cut {} = {}".format(
+                    cut_parameters[cut_index], cuts[i]
+                )
+            )
+
         significance = float(result.stdout.decode("utf-8").split("$$$")[1])
 
         # save to results dict
@@ -135,9 +161,11 @@ if __name__ == "__main__":
     with open("output/significance.json", "w") as f:
         json.dump(results, f, indent=2)
 
-    ### TODO: THIS WILL BE REPLACED WITH A ROOT MACRO LATER ###
+    ######### RUN SIGNIFICANCE PLOT MACRO #########
 
-    filepath = "output/figures/significance_{}.pdf".format(V0_names[V0_index])
+    filepath = "output/figures/{}_significance_{}.pdf".format(
+        V0_names[V0_index], cut_parameters[cut_index]
+    )
 
     # load all significance values from json file
     with open("output/significance.json", "r") as f:
@@ -164,15 +192,30 @@ if __name__ == "__main__":
     cuts = cuts.replace("[", "{")
     cuts = cuts.replace("]", "}")
 
-    args = "{}, {}, {}".format(
+    Title = "Significance vs {}".format(cut_parameters[cut_index])
+    xLabel = cut_parameters[cut_index]
+    yLabel = "Significance"
+
+    args = "{}, {}, {}, {}, {}, {}".format(
         '"' + filepath + '"',
+        '"' + Title + '"',
+        '"' + xLabel + '"',
+        '"' + yLabel + '"',
         significance_values,
         cuts,
     )
-
-    print(["root", "-l", "-b", "-q", "MACROS/SignificancePlot.C({})".format(args)])
 
     result = subprocess.run(
         ["root", "-l", "-b", "-q", "MACROS/SignificancePlot.C({})".format(args)],
         stdout=subprocess.PIPE,
     )
+    err_count += result.returncode
+
+    # warn if error
+    if result.returncode != 0:
+        print("WARN: Error running MACROS/SignificancePlot.C")
+
+    if err_count != 0:
+        print("Script finished with {} error(s)".format(err_count))
+    else:
+        print("Script finished successfully")

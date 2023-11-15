@@ -94,7 +94,7 @@ void SignificanceFit(const bool isMC, const double xLow, const double xHigh,
   // stdout signif
 
   // combine two const char* into one
-  std::string outputdir = "output/figures/batch_significance_plots/";
+  std::string outputdir = "output/figures/batch_mass_plots/";
   std::string outputname_str = outputdir + outputname;
 
   c1->SaveAs(outputname_str.c_str());
