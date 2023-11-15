@@ -136,18 +136,43 @@ if __name__ == "__main__":
         json.dump(results, f, indent=2)
 
     ### TODO: THIS WILL BE REPLACED WITH A ROOT MACRO LATER ###
-    # plot significance vs cut value
+
+    filepath = "output/figures/significance_{}.pdf".format(V0_names[V0_index])
+
+    # load all significance values from json file
+    with open("output/significance.json", "r") as f:
+        results = json.load(f)
+
     significance_values = []
-    for i in range(len(cuts)):
+    cuts = []
+    for cut in results[V0_names[V0_index]][cut_parameters[cut_index]]:
+        cuts.append(cut)
         significance_values.append(
-            results[V0_names[V0_index]][cut_parameters[cut_index]][str(cuts[i])]
+            results[V0_names[V0_index]][cut_parameters[cut_index]][cut]
         )
-    plt.plot(cuts, significance_values, ".")
-    plt.xlabel(cut_parameters[cut_index])
-    plt.ylabel("Significance")
-    plt.title(V0_names[V0_index])
-    plt.savefig(
-        "output/figures/significance_vs_{}.pdf".format(cut_parameters[cut_index])
+
+    # convert significance values to string
+    significance_values = str(significance_values)
+    # make square brackets curly
+    significance_values = significance_values.replace("[", "{")
+    significance_values = significance_values.replace("]", "}")
+
+    # convert cuts to string
+    cuts = [float(cut) for cut in cuts]
+    cuts = str(cuts)
+    # make square brackets curly
+    cuts = cuts.replace("[", "{")
+    cuts = cuts.replace("]", "}")
+
+    args = "{}, {}, {}".format(
+        '"' + filepath + '"',
+        significance_values,
+        cuts,
     )
 
-    print("Script finished successfully")
+    print(["root", "-l", "-b", "-q", "MACROS/SignificancePlot.C({})".format(args)])
+
+    result = subprocess.run(
+        ["root", "-l", "-b", "-q", "MACROS/SignificancePlot.C({})".format(args)],
+        stdout=subprocess.PIPE,
+    )
