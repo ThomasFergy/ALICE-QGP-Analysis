@@ -79,7 +79,7 @@ void SignificanceFit(const bool isMC, const bool isK0, const double xLow,
       h1->FindBin(ff1->GetParameter(4) - numOfSigmas * ff1->GetParameter(5)),
       h1->FindBin(ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5)));
 
-  // count cumulative number of Y value for pol4 in
+  // count cumulative number of Y value for pol2 in
   // numOfSigmas sigma range for each bins
   double B = 0;
   for (int i = h1->FindBin(ff1->GetParameter(4) -
@@ -96,9 +96,6 @@ void SignificanceFit(const bool isMC, const bool isK0, const double xLow,
 
   std::cout << "$$$" << significance << "$$$" << std::endl;
 
-  // stdout signif
-
-  // combine two const char* into one
   std::string outputdir = "output/figures/batch_mass_plots/";
   std::string outputname_str = outputdir + outputname;
 
