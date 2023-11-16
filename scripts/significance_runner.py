@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
     # 0 = K0
     # 1 = Lambda
-    V0_index = 1
+    V0_index = 0
 
     isK0 = V0_index == 0
 
