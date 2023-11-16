@@ -109,6 +109,10 @@ if __name__ == "__main__":
             )
         )
 
+    # reset default cut values
+    for i in range(len(cut_parameters)):
+        set_cut_value(json_file, i, default_cut_values[i])
+
     if err_count != 0:
         print("Script finished with {} error(s)".format(err_count))
     else:
