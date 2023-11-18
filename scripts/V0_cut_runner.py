@@ -15,7 +15,7 @@ import json
 import subprocess
 import numpy as np
 
-isMC = False
+isMC = True
 
 if isMC:
     cwd = "data/V0MC"
@@ -56,7 +56,7 @@ if __name__ == "__main__":
     # 3 = dcav0dau
     # 4 = v0radius
 
-    par_index = 0
+    par_index = 1
     # cut_values = [0, 0.02, 0.04, 0.06, 0.08]
     cut_values = np.linspace(0, 0.2, 41)
 

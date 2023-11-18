@@ -99,12 +99,16 @@ void fit() {
   // count cumulative number of Y value for pol4 in numOfSigmas sigma range for
   // each bins
   double B_1 = 0;
+  double SBinErr = 0;
   for (int i = h1->FindBin(ff1->GetParameter(4) -
                            numOfSigmas * ff1->GetParameter(5));
        i <=
        h1->FindBin(ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5));
        i++) {
     B_1 += pol2_1->Eval(h1->GetBinCenter(i));
+
+    std::cout << h1->GetBinError(i) << std::endl;
+    SBinErr += h1->GetBinError(i) * h1->GetBinError(i);
   }
 
   double S_1 = SPlusB_1 - B_1;
@@ -112,6 +116,13 @@ void fit() {
   double significance_1 = S_1 / sqrt(B_1 + S_1);
 
   std::cout << "Significance: " << significance_1 << std::endl;
+
+  double Serr = sqrt(SBinErr);
+
+  double SignificanceErr = 0.5 * (1 / sqrt(S_1)) * Serr;
+
+  std::cout << "$$$" << SignificanceErr << "$$$" << std::endl;
+  std::cout << "$$$" << Serr << "$$$" << std::endl;
 
   /////////////////////////////////////////////////////////////////////////////
   // Load histogram for hmassLambda and fit with DoubleSidedCrystalball

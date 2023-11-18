@@ -82,12 +82,15 @@ void SignificanceFit(const bool isMC, const bool isK0, const double xLow,
   // count cumulative number of Y value for pol2 in
   // numOfSigmas sigma range for each bins
   double B = 0;
+  double SBinErr = 0;
   for (int i = h1->FindBin(ff1->GetParameter(4) -
                            numOfSigmas * ff1->GetParameter(5));
        i <=
        h1->FindBin(ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5));
        i++) {
     B += pol2->Eval(h1->GetBinCenter(i));
+    // count bin error for S
+    SBinErr += h1->GetBinError(i) * h1->GetBinError(i);
   }
 
   double S = SPlusB - B;
@@ -95,6 +98,12 @@ void SignificanceFit(const bool isMC, const bool isK0, const double xLow,
   double significance = S / sqrt(B + S);
 
   std::cout << "$$$" << significance << "$$$" << std::endl;
+
+  double Serr = sqrt(SBinErr);
+
+  double SignificanceErr = 0.5 * (1 / sqrt(S)) * Serr;
+
+  std::cout << "$$$" << SignificanceErr << "$$$" << std::endl;
 
   std::string outputdir = "output/figures/batch_mass_plots/";
   std::string outputname_str = outputdir + outputname;

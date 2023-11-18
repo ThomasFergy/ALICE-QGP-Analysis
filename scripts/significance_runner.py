@@ -178,10 +178,17 @@ if __name__ == "__main__":
 
             significance = float(result.stdout.decode("utf-8").split("$$$")[1])
 
+            significance_error = float(result.stdout.decode("utf-8").split("$$$")[3])
+
             # save to results dict
+            fit_results = {
+                "significance": significance,
+                "significance_error": significance_error,
+            }
+
             results[V0_names[V0_index]][cut_parameters[cut_index]][
                 cuts[i]
-            ] = significance
+            ] = fit_results
 
         # save to json file
         with open("output/significance.json", "w") as f:
@@ -198,18 +205,29 @@ if __name__ == "__main__":
             results = json.load(f)
 
         significance_values = []
+        significance_errors = []
         cuts = []
         for cut in results[V0_names[V0_index]][cut_parameters[cut_index]]:
             cuts.append(cut)
             significance_values.append(
-                results[V0_names[V0_index]][cut_parameters[cut_index]][cut]
+                results[V0_names[V0_index]][cut_parameters[cut_index]][cut][
+                    "significance"
+                ]
+            )
+            significance_errors.append(
+                results[V0_names[V0_index]][cut_parameters[cut_index]][cut][
+                    "significance_error"
+                ]
             )
 
         # convert significance values to string
         significance_values = str(significance_values)
+        significance_errors = str(significance_errors)
         # make square brackets curly
         significance_values = significance_values.replace("[", "{")
         significance_values = significance_values.replace("]", "}")
+        significance_errors = significance_errors.replace("[", "{")
+        significance_errors = significance_errors.replace("]", "}")
 
         # convert cuts to string
         cuts = [float(cut) for cut in cuts]
@@ -222,13 +240,14 @@ if __name__ == "__main__":
         xLabel = cut_parameters[cut_index]
         yLabel = "Significance"
 
-        args = "{}, {}, {}, {}, {}, {}".format(
+        args = "{}, {}, {}, {}, {}, {}, {}".format(
             '"' + filepath + '"',
             '"' + Title + '"',
             '"' + xLabel + '"',
             '"' + yLabel + '"',
             significance_values,
             cuts,
+            significance_errors,
         )
 
         result = subprocess.run(
