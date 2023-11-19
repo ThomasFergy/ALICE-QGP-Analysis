@@ -14,7 +14,7 @@ import subprocess
 
 ########################################
 # Which data to use:
-isMC = True
+isMC = False
 ########################################
 # which V0 to use:
 # 0 = K0

@@ -15,7 +15,7 @@ import numpy as np
 
 ########################################
 # Which data to use:
-isMC = True
+isMC = False
 ########################################
 # Set the cut value in the json file
 # 0 = dcanegtopv
