@@ -33,6 +33,7 @@ cut_parameters = ["dcanegtopv", "dcapostopv", "v0cospa", "dcav0dau", "v0radius"]
 
 V0_names = ["K0Data", "LambdaData", "K0MC", "LambdaMC"]
 
+isK0 = V0_index == 0
 if isMC:
     V0_index += 2
 
@@ -61,8 +62,6 @@ if __name__ == "__main__":
     # 3 = dcav0dau
     # 4 = v0radius
     cut_indicies = [0, 1, 2, 3, 4]
-
-    isK0 = V0_index == 0
 
     # make file if it doesn't exist
     if not os.path.exists("output/significance.json"):
@@ -146,22 +145,23 @@ if __name__ == "__main__":
             )
 
             if V0_index == 0:
-                fit_params = "{1.2, 1.2, 1.4, 1.4, 0.49, 0.004, 3000, 1, 1, 1}"
+                # fit_params = "{1.2, 1.2, 1.4, 1.4, 0.49, 0.004, 3000, 1, 1, 1}"
+                # MACRO = "SignificanceFitDSCB.C"
                 xlow = 0.45
                 xhigh = 0.54
-                MACRO = "SignificanceFit.C"
+                MACRO = "SignificanceFitGaussPoly.C"
+                fit_params = "{1, 0.0049, 3000, 1, 1, 1}"
             elif V0_index == 1:
-                # not supported yet so exit
-                print("ERROR: Lambda DATA not supported yet")
-                exit()
+                xlow = 1.08
+                xhigh = 1.15
+                MACRO = "SignificanceFitGaussPoly.C"
+                fit_params = "{1.15, 0.002, 1600, 1, 1, 1}"
             elif V0_index == 2:
-                # not supported yet so exit
-                print("ERROR: K0 MC not supported yet")
-                exit()
+                print("K0 MC not implemented yet")
+                exit(1)
             elif V0_index == 3:
-                # not supported yet so exit
-                print("ERROR: Lambda MC not supported yet")
-                exit()
+                print("Lambda MC not implemented yet")
+                exit(1)
 
             # TODO: Not tested on lamdas or MC yet
             args = "{}, {}, {}, {}, {}, {}, {}".format(
@@ -179,6 +179,8 @@ if __name__ == "__main__":
                 stdout=subprocess.PIPE,
             )
 
+            print(result.stdout.decode("utf-8"))
+
             err_count += result.returncode
 
             # warn if error
@@ -193,10 +195,16 @@ if __name__ == "__main__":
 
             significance_error = float(result.stdout.decode("utf-8").split("$$$")[3])
 
+            signal = float(result.stdout.decode("utf-8").split("$$$")[5])
+
+            signal_error = float(result.stdout.decode("utf-8").split("$$$")[7])
+
             # save to results dict
             fit_results = {
                 "significance": significance,
                 "significance_error": significance_error,
+                "signal": signal,
+                "signal_error": signal_error,
             }
 
             results[V0_names[V0_index]][cut_parameters[cut_index]][

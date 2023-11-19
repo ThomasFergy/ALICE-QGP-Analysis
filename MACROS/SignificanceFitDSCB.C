@@ -30,10 +30,10 @@ R__LOAD_LIBRARY(lib/FittingFunctions_cpp.so)
 /**
  * @brief Fit the histogram with DSCB and pol2, and calculate significance
  */
-void SignificanceFit(const bool isMC, const bool isK0, const double xLow,
-                     const double xHigh, const char* filename,
-                     const char* outputname, std::vector<double> fit_params,
-                     const int numOfSigmas = 5) {
+void SignificanceFitDSCB(const bool isMC, const bool isK0, const double xLow,
+                         const double xHigh, const char* filename,
+                         const char* outputname, std::vector<double> fit_params,
+                         const int numOfSigmas = 5) {
   std::unique_ptr<TH1F> h1 = std::make_unique<TH1F>();
   if (isK0) {
     h1 = std::make_unique<TH1F>(*DataLoader::LoadHist(
@@ -97,13 +97,15 @@ void SignificanceFit(const bool isMC, const bool isK0, const double xLow,
 
   double significance = S / sqrt(B + S);
 
-  std::cout << "$$$" << significance << "$$$" << std::endl;
+  std::cout << "Significance: "
+            << "$$$" << significance << "$$$" << std::endl;
 
   double Serr = sqrt(SBinErr);
 
   double SignificanceErr = 0.5 * (1 / sqrt(S)) * Serr;
 
-  std::cout << "$$$" << SignificanceErr << "$$$" << std::endl;
+  std::cout << "Error: "
+            << "$$$" << SignificanceErr << "$$$" << std::endl;
 
   std::string outputdir = "output/figures/batch_mass_plots/";
   std::string outputname_str = outputdir + outputname;
