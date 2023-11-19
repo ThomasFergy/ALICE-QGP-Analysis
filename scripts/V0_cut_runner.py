@@ -26,7 +26,7 @@ isMC = False
 par_index = 1
 ########################################
 # Choose the cut values to use
-cut_values = np.linspace(0, 0.2, 41)
+cut_values = np.arange(0, 0.4, 0.005)
 ########################################
 
 if isMC:

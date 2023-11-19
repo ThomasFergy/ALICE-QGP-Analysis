@@ -16,9 +16,9 @@ In this example we will go from nothing to having a significance plot for dcapos
 1. First we will need to apply the cuts over the range that we want and on the files we want. The script `V0_cut_runner.py` allows us to do this. At the top of this file you will find three variables which make these selections for you.
    1. `isMC`: Boolean to choose Data or MC.
    2. `par_index`: 0 = dcanegtopv, 1 = dcapostopv, 2 = v0cospa, 3 = dcav0dau, 4 = v0radius.
-   3. `cut_values`: array of floats. I would use np.linspace(...) here.
+   3. `cut_values`: array of floats. I would use np.arrange(...) here.
    
-   For this example we could choose `isMC=False`, `par_index = 1`, `cut_values = np.linspace(0, 0.2, 41)`. Make sure you save these changes before step 2.
+   For this example we could choose `isMC=False`, `par_index = 1`, `cut_values = np.arange(0, 0.2, 0.005)`. Make sure you save these changes before step 2.
 
 2. From the root directory of this repo run `python3 scripts/V0_cut_runner.py` (IMPORTANT: Must be in alienv O2Physics environment). This will populate `output/V0Data/` with files of the form `AnalysisResults_dcanegtopv_0.05.root`, which contain the parameter and cut value. (This is quite slow)
 
