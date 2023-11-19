@@ -33,6 +33,9 @@ cut_parameters = ["dcanegtopv", "dcapostopv", "v0cospa", "dcav0dau", "v0radius"]
 
 V0_names = ["K0Data", "LambdaData", "K0MC", "LambdaMC"]
 
+if isMC:
+    V0_index += 2
+
 cpp_convert = {True: "true", False: "false"}
 
 
@@ -146,12 +149,21 @@ if __name__ == "__main__":
                 fit_params = "{1.2, 1.2, 1.4, 1.4, 0.49, 0.004, 3000, 1, 1, 1}"
                 xlow = 0.45
                 xhigh = 0.54
-            else:
-                fit_params = "{1.0, 1.6, 0.1, 0.1, 1.12, 0.004, 3000, 1, 1, 1}"
-                xlow = 1.085
-                xhigh = 1.145
+                MACRO = "SignificanceFit.C"
+            elif V0_index == 1:
+                # not supported yet so exit
+                print("ERROR: Lambda DATA not supported yet")
+                exit()
+            elif V0_index == 2:
+                # not supported yet so exit
+                print("ERROR: K0 MC not supported yet")
+                exit()
+            elif V0_index == 3:
+                # not supported yet so exit
+                print("ERROR: Lambda MC not supported yet")
+                exit()
 
-            # TODO: Not tested on lamdas yet
+            # TODO: Not tested on lamdas or MC yet
             args = "{}, {}, {}, {}, {}, {}, {}".format(
                 cpp_convert[isMC],
                 cpp_convert[isK0],
@@ -163,7 +175,7 @@ if __name__ == "__main__":
             )
 
             result = subprocess.run(
-                ["root", "-l", "-b", "-q", "MACROS/SignificanceFit.C({})".format(args)],
+                ["root", "-l", "-b", "-q", "MACROS/{}({})".format(MACRO, args)],
                 stdout=subprocess.PIPE,
             )
 
