@@ -501,8 +501,502 @@
     "v0radius": {}
   },
   "LambdaData": {
-    "dcanegtopv": {},
-    "dcapostopv": {},
+    "dcanegtopv": {
+      "0.0": {
+        "significance": 112.387,
+        "significance_error": 0.707487,
+        "signal": 25288.8,
+        "signal_error": 225.016
+      },
+      "0.005": {
+        "significance": 112.52,
+        "significance_error": 0.706543,
+        "signal": 25281.3,
+        "signal_error": 224.682
+      },
+      "0.01": {
+        "significance": 112.875,
+        "significance_error": 0.704427,
+        "signal": 25288.8,
+        "signal_error": 224.042
+      },
+      "0.015": {
+        "significance": 113.253,
+        "significance_error": 0.701894,
+        "signal": 25275.8,
+        "signal_error": 223.179
+      },
+      "0.02": {
+        "significance": 113.652,
+        "significance_error": 0.699473,
+        "signal": 25278.9,
+        "signal_error": 222.423
+      },
+      "0.025": {
+        "significance": 114.08,
+        "significance_error": 0.697313,
+        "signal": 25312.3,
+        "signal_error": 221.883
+      },
+      "0.03": {
+        "significance": 114.28,
+        "significance_error": 0.69582,
+        "signal": 25292.5,
+        "signal_error": 221.321
+      },
+      "0.035": {
+        "significance": 114.122,
+        "significance_error": 0.697529,
+        "signal": 25347.0,
+        "signal_error": 222.104
+      },
+      "0.04": {
+        "significance": 114.217,
+        "significance_error": 0.69664,
+        "signal": 25324.2,
+        "signal_error": 221.721
+      },
+      "0.045": {
+        "significance": 114.367,
+        "significance_error": 0.695619,
+        "signal": 25316.4,
+        "signal_error": 221.362
+      },
+      "0.05": {
+        "significance": 114.398,
+        "significance_error": 0.69502,
+        "signal": 25286.6,
+        "signal_error": 221.041
+      },
+      "0.055": {
+        "significance": 114.382,
+        "significance_error": 0.694605,
+        "signal": 25249.4,
+        "signal_error": 220.746
+      },
+      "0.06": {
+        "significance": 114.487,
+        "significance_error": 0.693954,
+        "signal": 25248.5,
+        "signal_error": 220.536
+      },
+      "0.065": {
+        "significance": 114.626,
+        "significance_error": 0.693121,
+        "signal": 25248.9,
+        "signal_error": 220.273
+      },
+      "0.07": {
+        "significance": 114.727,
+        "significance_error": 0.692402,
+        "signal": 25240.9,
+        "signal_error": 220.009
+      },
+      "0.075": {
+        "significance": 114.818,
+        "significance_error": 0.691682,
+        "signal": 25228.6,
+        "signal_error": 219.727
+      },
+      "0.08": {
+        "significance": 115.218,
+        "significance_error": 0.688181,
+        "signal": 25148.2,
+        "signal_error": 218.266
+      },
+      "0.085": {
+        "significance": 114.96,
+        "significance_error": 0.690269,
+        "signal": 25187.8,
+        "signal_error": 219.1
+      },
+      "0.09": {
+        "significance": 115.034,
+        "significance_error": 0.689582,
+        "signal": 25170.2,
+        "signal_error": 218.806
+      },
+      "0.095": {
+        "significance": 115.097,
+        "significance_error": 0.688835,
+        "signal": 25143.1,
+        "signal_error": 218.451
+      },
+      "0.1": {
+        "significance": 115.404,
+        "significance_error": 0.685555,
+        "signal": 25037.4,
+        "signal_error": 216.954
+      },
+      "0.105": {
+        "significance": 115.135,
+        "significance_error": 0.687473,
+        "signal": 25060.3,
+        "signal_error": 217.66
+      },
+      "0.11": {
+        "significance": 115.2,
+        "significance_error": 0.686707,
+        "signal": 25032.5,
+        "signal_error": 217.297
+      },
+      "0.115": {
+        "significance": 115.278,
+        "significance_error": 0.68584,
+        "signal": 25003.4,
+        "signal_error": 216.896
+      },
+      "0.12": {
+        "significance": 115.312,
+        "significance_error": 0.685122,
+        "signal": 24965.8,
+        "signal_error": 216.506
+      },
+      "0.125": {
+        "significance": 115.706,
+        "significance_error": 0.681645,
+        "signal": 24882.1,
+        "signal_error": 215.047
+      },
+      "0.13": {
+        "significance": 115.666,
+        "significance_error": 0.681168,
+        "signal": 24830.3,
+        "signal_error": 214.672
+      },
+      "0.135": {
+        "significance": 115.626,
+        "significance_error": 0.680758,
+        "signal": 24783.1,
+        "signal_error": 214.339
+      },
+      "0.14": {
+        "significance": 115.721,
+        "significance_error": 0.679999,
+        "signal": 24768.7,
+        "signal_error": 214.037
+      },
+      "0.145": {
+        "significance": 115.775,
+        "significance_error": 0.679311,
+        "signal": 24741.4,
+        "signal_error": 213.703
+      },
+      "0.15": {
+        "significance": 115.784,
+        "significance_error": 0.678663,
+        "signal": 24698.0,
+        "signal_error": 213.312
+      },
+      "0.155": {
+        "significance": 115.887,
+        "significance_error": 0.67783,
+        "signal": 24681.5,
+        "signal_error": 212.979
+      },
+      "0.16": {
+        "significance": 115.891,
+        "significance_error": 0.677242,
+        "signal": 24640.4,
+        "signal_error": 212.617
+      },
+      "0.165": {
+        "significance": 115.942,
+        "significance_error": 0.676545,
+        "signal": 24611.5,
+        "signal_error": 212.273
+      },
+      "0.17": {
+        "significance": 116.036,
+        "significance_error": 0.675706,
+        "signal": 24590.0,
+        "signal_error": 211.917
+      },
+      "0.17500000000000002": {
+        "significance": 116.044,
+        "significance_error": 0.675057,
+        "signal": 24546.2,
+        "signal_error": 211.525
+      },
+      "0.18": {
+        "significance": 116.041,
+        "significance_error": 0.674506,
+        "signal": 24505.0,
+        "signal_error": 211.175
+      },
+      "0.185": {
+        "significance": 115.812,
+        "significance_error": 0.67637,
+        "signal": 24543.3,
+        "signal_error": 211.925
+      },
+      "0.19": {
+        "significance": 115.958,
+        "significance_error": 0.673557,
+        "signal": 24401.1,
+        "signal_error": 210.431
+      },
+      "0.195": {
+        "significance": 115.946,
+        "significance_error": 0.673028,
+        "signal": 24357.7,
+        "signal_error": 210.079
+      },
+      "0.2": {
+        "significance": 115.963,
+        "significance_error": 0.672394,
+        "signal": 24319.1,
+        "signal_error": 209.714
+      }
+    },
+    "dcapostopv": {
+      "0.0": {
+        "significance": 112.387,
+        "significance_error": 0.707487,
+        "signal": 25288.8,
+        "signal_error": 225.016
+      },
+      "0.005": {
+        "significance": 113.264,
+        "significance_error": 0.701574,
+        "signal": 25257.7,
+        "signal_error": 222.998
+      },
+      "0.01": {
+        "significance": 114.139,
+        "significance_error": 0.695148,
+        "signal": 25181.6,
+        "signal_error": 220.622
+      },
+      "0.015": {
+        "significance": 114.624,
+        "significance_error": 0.690859,
+        "signal": 25083.5,
+        "signal_error": 218.833
+      },
+      "0.02": {
+        "significance": 115.013,
+        "significance_error": 0.687631,
+        "signal": 25018.7,
+        "signal_error": 217.529
+      },
+      "0.025": {
+        "significance": 115.128,
+        "significance_error": 0.685577,
+        "signal": 24919.4,
+        "signal_error": 216.449
+      },
+      "0.03": {
+        "significance": 115.365,
+        "significance_error": 0.683189,
+        "signal": 24848.0,
+        "signal_error": 215.386
+      },
+      "0.035": {
+        "significance": 115.302,
+        "significance_error": 0.681837,
+        "signal": 24722.5,
+        "signal_error": 214.415
+      },
+      "0.04": {
+        "significance": 115.373,
+        "significance_error": 0.680074,
+        "signal": 24625.4,
+        "signal_error": 213.441
+      },
+      "0.045": {
+        "significance": 115.322,
+        "significance_error": 0.678719,
+        "signal": 24505.6,
+        "signal_error": 212.497
+      },
+      "0.05": {
+        "significance": 115.384,
+        "significance_error": 0.677047,
+        "signal": 24411.4,
+        "signal_error": 211.566
+      },
+      "0.055": {
+        "significance": 115.469,
+        "significance_error": 0.675243,
+        "signal": 24317.2,
+        "signal_error": 210.594
+      },
+      "0.06": {
+        "significance": 115.42,
+        "significance_error": 0.673797,
+        "signal": 24192.6,
+        "signal_error": 209.604
+      },
+      "0.065": {
+        "significance": 115.058,
+        "significance_error": 0.673038,
+        "signal": 23986.7,
+        "signal_error": 208.475
+      },
+      "0.07": {
+        "significance": 114.683,
+        "significance_error": 0.674227,
+        "signal": 23914.8,
+        "signal_error": 208.531
+      },
+      "0.075": {
+        "significance": 114.693,
+        "significance_error": 0.670725,
+        "signal": 23671.2,
+        "signal_error": 206.388
+      },
+      "0.08": {
+        "significance": 114.39,
+        "significance_error": 0.669747,
+        "signal": 23477.9,
+        "signal_error": 205.244
+      },
+      "0.085": {
+        "significance": 113.886,
+        "significance_error": 0.670876,
+        "signal": 23350.0,
+        "signal_error": 205.029
+      },
+      "0.09": {
+        "significance": 113.742,
+        "significance_error": 0.669263,
+        "signal": 23179.2,
+        "signal_error": 203.787
+      },
+      "0.095": {
+        "significance": 113.221,
+        "significance_error": 0.66865,
+        "signal": 22925.3,
+        "signal_error": 202.482
+      },
+      "0.1": {
+        "significance": 112.855,
+        "significance_error": 0.66568,
+        "signal": 22575.2,
+        "signal_error": 200.037
+      },
+      "0.105": {
+        "significance": 112.493,
+        "significance_error": 0.664557,
+        "signal": 22355.0,
+        "signal_error": 198.723
+      },
+      "0.11": {
+        "significance": 112.027,
+        "significance_error": 0.663704,
+        "signal": 22113.4,
+        "signal_error": 197.393
+      },
+      "0.115": {
+        "significance": 111.645,
+        "significance_error": 0.662644,
+        "signal": 21892.6,
+        "signal_error": 196.092
+      },
+      "0.12": {
+        "significance": 111.319,
+        "significance_error": 0.66148,
+        "signal": 21688.7,
+        "signal_error": 194.833
+      },
+      "0.125": {
+        "significance": 110.781,
+        "significance_error": 0.660917,
+        "signal": 21442.9,
+        "signal_error": 193.561
+      },
+      "0.13": {
+        "significance": 110.366,
+        "significance_error": 0.660035,
+        "signal": 21225.9,
+        "signal_error": 192.323
+      },
+      "0.135": {
+        "significance": 109.583,
+        "significance_error": 0.661705,
+        "signal": 21031.6,
+        "signal_error": 191.924
+      },
+      "0.14": {
+        "significance": 109.235,
+        "significance_error": 0.660764,
+        "signal": 20839.0,
+        "signal_error": 190.772
+      },
+      "0.145": {
+        "significance": 108.502,
+        "significance_error": 0.660661,
+        "signal": 20554.0,
+        "signal_error": 189.433
+      },
+      "0.15": {
+        "significance": 107.774,
+        "significance_error": 0.660616,
+        "signal": 20276.1,
+        "signal_error": 188.136
+      },
+      "0.155": {
+        "significance": 107.15,
+        "significance_error": 0.660472,
+        "signal": 20033.3,
+        "signal_error": 186.965
+      },
+      "0.16": {
+        "significance": 106.78,
+        "significance_error": 0.659684,
+        "signal": 19848.0,
+        "signal_error": 185.876
+      },
+      "0.165": {
+        "significance": 106.224,
+        "significance_error": 0.659472,
+        "signal": 19629.1,
+        "signal_error": 184.789
+      },
+      "0.17": {
+        "significance": 105.655,
+        "significance_error": 0.659219,
+        "signal": 19404.3,
+        "signal_error": 183.657
+      },
+      "0.17500000000000002": {
+        "significance": 105.316,
+        "significance_error": 0.658486,
+        "signal": 19237.0,
+        "signal_error": 182.661
+      },
+      "0.18": {
+        "significance": 104.763,
+        "significance_error": 0.658202,
+        "signal": 19019.3,
+        "signal_error": 181.546
+      },
+      "0.185": {
+        "significance": 104.354,
+        "significance_error": 0.657661,
+        "signal": 18840.2,
+        "signal_error": 180.541
+      },
+      "0.19": {
+        "significance": 103.726,
+        "significance_error": 0.657607,
+        "signal": 18610.9,
+        "signal_error": 179.424
+      },
+      "0.195": {
+        "significance": 103.05,
+        "significance_error": 0.657656,
+        "signal": 18371.8,
+        "signal_error": 178.281
+      },
+      "0.2": {
+        "significance": 102.386,
+        "significance_error": 0.657804,
+        "signal": 18144.0,
+        "signal_error": 177.212
+      }
+    },
     "v0cospa": {},
     "dcav0dau": {},
     "v0radius": {}
