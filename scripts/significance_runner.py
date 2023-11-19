@@ -155,7 +155,7 @@ if __name__ == "__main__":
                 xlow = 1.08
                 xhigh = 1.15
                 MACRO = "SignificanceFitGaussPoly.C"
-                fit_params = "{1.15, 0.002, 1600, 1, 1, 1}"
+                fit_params = "{1.115, 0.002, 1200, 1, 1, 1}"
             elif V0_index == 2:
                 print("K0 MC not implemented yet")
                 exit(1)
