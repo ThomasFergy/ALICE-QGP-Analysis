@@ -21,5 +21,6 @@ locCCDB/
 dpl-config.json
 performanceMetrics.json
 .nfs*
+.vscode/
 
 .gitignore

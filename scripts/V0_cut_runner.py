@@ -8,14 +8,26 @@ Method:
   Step 3: Rename the output file to avoid overwriting and place into relevant output directory
   Step 4: go back to step 1 and repeat until you have applied all the cuts you want
 """
-
 import os
-import sys
 import json
 import subprocess
 import numpy as np
 
+########################################
+# Which data to use:
 isMC = True
+########################################
+# Set the cut value in the json file
+# 0 = dcanegtopv
+# 1 = dcapostopv
+# 2 = v0cospa
+# 3 = dcav0dau
+# 4 = v0radius
+par_index = 1
+########################################
+# Choose the cut values to use
+cut_values = np.linspace(0, 0.2, 41)
+########################################
 
 if isMC:
     cwd = "data/V0MC"
@@ -48,17 +60,6 @@ if __name__ == "__main__":
     # set default cut values
     for i in range(len(cut_parameters)):
         set_cut_value(json_file, i, default_cut_values[i])
-
-    # Set the cut value in the json file
-    # 0 = dcanegtopv
-    # 1 = dcapostopv
-    # 2 = v0cospa
-    # 3 = dcav0dau
-    # 4 = v0radius
-
-    par_index = 1
-    # cut_values = [0, 0.02, 0.04, 0.06, 0.08]
-    cut_values = np.linspace(0, 0.2, 41)
 
     for cut_value in cut_values:
         set_cut_value(json_file, par_index, cut_value)

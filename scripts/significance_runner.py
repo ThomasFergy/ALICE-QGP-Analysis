@@ -8,14 +8,19 @@ Method:
   Step 3: save the data in a database for later use.
   Step 4: Run the SignificancePlot.C root script to plot the significance vs the cut value
 """
-
-
 import os
 import json
 import subprocess
-import matplotlib.pyplot as plt
 
-isMC = False
+########################################
+# Which data to use:
+isMC = True
+########################################
+# which V0 to use:
+# 0 = K0
+# 1 = Lambda
+V0_index = 0
+########################################
 
 if isMC:
     cwd = "data/V0MC"
@@ -53,10 +58,6 @@ if __name__ == "__main__":
     # 3 = dcav0dau
     # 4 = v0radius
     cut_indicies = [0, 1, 2, 3, 4]
-
-    # 0 = K0
-    # 1 = Lambda
-    V0_index = 0
 
     isK0 = V0_index == 0
 
