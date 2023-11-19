@@ -23,7 +23,7 @@ isMC = False
 # 2 = v0cospa
 # 3 = dcav0dau
 # 4 = v0radius
-par_index = 1
+par_indices = [0, 1]
 ########################################
 # Choose the cut values to use
 cut_values = np.arange(0, 0.4, 0.005)
@@ -57,58 +57,65 @@ def set_cut_value(json_file, cut_name_index, cut_value):
 
 if __name__ == "__main__":
     err_count = 0
-    # set default cut values
-    for i in range(len(cut_parameters)):
-        set_cut_value(json_file, i, default_cut_values[i])
-
-    for cut_value in cut_values:
-        set_cut_value(json_file, par_index, cut_value)
-
-        # check if output file has already been produced
-        if os.path.isfile(
-            "{}/AnalysisResults_{}_{}.root".format(
-                output_dir, cut_parameters[par_index], cut_value
-            )
-        ):
-            print(
-                "Output file already exists for cut {} = {}".format(
-                    cut_parameters[par_index], cut_value
-                )
-            )
-            print("Skipping...")
-            print()
-            continue
-
+    for par_index in par_indices:
         print(
-            "----- Running cut {} = {}... -----".format(
-                cut_parameters[par_index], cut_value
+            "---------- Applying cuts to {} ----------".format(
+                cut_parameters[par_index]
             )
         )
         print()
+        # set default cut values
+        for i in range(len(cut_parameters)):
+            set_cut_value(json_file, i, default_cut_values[i])
 
-        # Apply the cut (requires being in the alienv environment before running)
-        if isMC:
-            bash_script = "./run_step0_MC.sh"
-        else:
-            bash_script = "./run_step0.sh"
+        for cut_value in cut_values:
+            set_cut_value(json_file, par_index, cut_value)
 
-        result = subprocess.run([bash_script], cwd=cwd)
-        err_count += result.returncode
+            # check if output file has already been produced
+            if os.path.isfile(
+                "{}/AnalysisResults_{}_{}.root".format(
+                    output_dir, cut_parameters[par_index], cut_value
+                )
+            ):
+                print(
+                    "Output file already exists for cut {} = {}".format(
+                        cut_parameters[par_index], cut_value
+                    )
+                )
+                print("Skipping...")
+                print()
+                continue
 
-        # warn if error
-        if result.returncode != 0:
             print(
-                "WARN: Error running MACROS/SignificanceFit.C for cut {} = {}".format(
+                "----- Running cut {} = {}... -----".format(
                     cut_parameters[par_index], cut_value
                 )
             )
+            print()
 
-        # Rename the output file to avoid overwriting and move to output directory
-        os.system(
-            "mv {}/AnalysisResults.root {}/AnalysisResults_{}_{}.root".format(
-                cwd, output_dir, cut_parameters[par_index], cut_value
+            # Apply the cut (requires being in the alienv environment before running)
+            if isMC:
+                bash_script = "./run_step0_MC.sh"
+            else:
+                bash_script = "./run_step0.sh"
+
+            result = subprocess.run([bash_script], cwd=cwd)
+            err_count += result.returncode
+
+            # warn if error
+            if result.returncode != 0:
+                print(
+                    "WARN: Error running MACROS/SignificanceFit.C for cut {} = {}".format(
+                        cut_parameters[par_index], cut_value
+                    )
+                )
+
+            # Rename the output file to avoid overwriting and move to output directory
+            os.system(
+                "mv {}/AnalysisResults.root {}/AnalysisResults_{}_{}.root".format(
+                    cwd, output_dir, cut_parameters[par_index], cut_value
+                )
             )
-        )
 
     # reset default cut values
     for i in range(len(cut_parameters)):
