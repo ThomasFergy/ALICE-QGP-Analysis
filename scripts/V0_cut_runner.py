@@ -26,7 +26,9 @@ isMC = False
 par_indices = [0, 1]
 ########################################
 # Choose the cut values to use
-cut_values = np.arange(0, 0.4, 0.005)
+cut_range = [0.0, 0.4]
+step = 0.005
+cut_values = np.arange(cut_range[0], cut_range[1] + step, step)
 ########################################
 
 if isMC:
