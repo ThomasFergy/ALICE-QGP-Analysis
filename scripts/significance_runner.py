@@ -150,18 +150,37 @@ if __name__ == "__main__":
                 xlow = 0.45
                 xhigh = 0.54
                 MACRO = "SignificanceFitGaussPoly.C"
-                fit_params = "{1, 0.0049, 3000, 1, 1, 1}"
+                fit_params = "{0.5, 0.0049, 3000, 1, 1, 1}"
             elif V0_index == 1:
                 xlow = 1.08
                 xhigh = 1.15
                 MACRO = "SignificanceFitGaussPoly.C"
                 fit_params = "{1.115, 0.002, 1200, 1, 1, 1}"
             elif V0_index == 2:
-                print("K0 MC not implemented yet")
-                exit(1)
+                xlow = 0.45
+                xhigh = 0.54
+                MACRO = "SignificanceFitGaussPoly.C"
+                fit_params = "{0.5, 0.0039, 62, -80, 360, -380}"
             elif V0_index == 3:
-                print("Lambda MC not implemented yet")
-                exit(1)
+                xlow = 1.08
+                xhigh = 1.15
+                MACRO = "SignificanceFitGaussPoly.C"
+                fit_params = "{1.115, 0.0015, 31.89, 2400, -4400, 2000}"
+
+            if i > 0:
+                # if not first cut, use previous cut's fit params as starting values
+                prev_fit_params = results[V0_names[V0_index]][
+                    cut_parameters[cut_index]
+                ][cuts[i - 1]]["fit_params"]
+                # turn dict into list
+                prev_fit_params_values = []
+                for key in prev_fit_params:
+                    prev_fit_params_values.append(prev_fit_params[key])
+                # convert to string format required by root
+                prev_fit_params_values = str(prev_fit_params_values)
+                prev_fit_params_values = prev_fit_params_values.replace("[", "{")
+                prev_fit_params_values = prev_fit_params_values.replace("]", "}")
+                fit_params = prev_fit_params_values
 
             # TODO: Not tested on lamdas or MC yet
             args = "{}, {}, {}, {}, {}, {}, {}".format(
@@ -199,12 +218,28 @@ if __name__ == "__main__":
 
             signal_error = float(result.stdout.decode("utf-8").split("$$$")[7])
 
+            fit_params = [
+                result.stdout.decode("utf-8").split("$$$")[x]
+                for x in range(9, len(result.stdout.decode("utf-8").split("$$$")))
+            ]
+
+            # fit_params_names are every 3rd element in fit_params
+            fit_params_names = [fit_params[x] for x in range(0, len(fit_params), 3)]
+            fit_params_values = [
+                float(fit_params[x]) for x in range(1, len(fit_params), 3)
+            ]
+            # add fit parameters to dict
+            fit_params_dict = {}
+            for j in range(len(fit_params_names)):
+                fit_params_dict[fit_params_names[j]] = fit_params_values[j]
+
             # save to results dict
             fit_results = {
                 "significance": significance,
                 "significance_error": significance_error,
                 "signal": signal,
                 "signal_error": signal_error,
+                "fit_params": fit_params_dict,
             }
 
             results[V0_names[V0_index]][cut_parameters[cut_index]][

@@ -106,6 +106,13 @@ void SignificanceFitGaussPoly(const bool isMC, const bool isK0,
 
   std::cout << "$$$" << Serr << "$$$" << std::endl;
 
+  // stdout all fit parameters
+  std::cout << "Fit parameters: " << std::endl;
+  for (int i = 0; i < 6; i++) {
+    std::cout << "$$$" << ff1->GetParName(i) << "$$$" << ff1->GetParameter(i)
+              << "$$$" << std::endl;
+  }
+
   std::string outputdir = "output/figures/batch_mass_plots/";
   std::string outputname_str = outputdir + outputname;
 

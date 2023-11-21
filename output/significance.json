@@ -5,487 +5,1135 @@
         "significance": 230.349,
         "significance_error": 0.632079,
         "signal": 84795.9,
-        "signal_error": 368.12
+        "signal_error": 368.12,
+        "fit_params": {
+          "mean": 0.495159,
+          "sigma": 0.00489088,
+          "N": 3395.97,
+          "pol2_0": -20667.5,
+          "pol2_1": 87790.4,
+          "pol2_2": -90837.0
+        }
       },
       "0.005": {
-        "significance": 231.33,
-        "significance_error": 0.629654,
-        "signal": 84864.5,
-        "signal_error": 366.856
+        "significance": 231.234,
+        "significance_error": 0.629784,
+        "signal": 84829.5,
+        "signal_error": 366.856,
+        "fit_params": {
+          "mean": 0.495157,
+          "sigma": 0.00489454,
+          "N": 3394.96,
+          "pol2_0": -20680.0,
+          "pol2_1": 87784.1,
+          "pol2_2": -90813.1
+        }
       },
       "0.01": {
-        "significance": 232.154,
-        "significance_error": 0.627494,
-        "signal": 84885.3,
-        "signal_error": 365.642
+        "significance": 232.073,
+        "significance_error": 0.627604,
+        "signal": 84855.6,
+        "signal_error": 365.642,
+        "fit_params": {
+          "mean": 0.495154,
+          "sigma": 0.00489615,
+          "N": 3394.04,
+          "pol2_0": -20697.1,
+          "pol2_1": 87778.3,
+          "pol2_2": -90769.7
+        }
       },
       "0.015": {
-        "significance": 232.669,
-        "significance_error": 0.626059,
-        "signal": 84872.5,
-        "signal_error": 364.778
+        "significance": 232.57,
+        "significance_error": 0.626191,
+        "signal": 84836.6,
+        "signal_error": 364.778,
+        "fit_params": {
+          "mean": 0.495154,
+          "sigma": 0.00489648,
+          "N": 3392.54,
+          "pol2_0": -20710.0,
+          "pol2_1": 87774.5,
+          "pol2_2": -90734.4
+        }
       },
       "0.02": {
-        "significance": 232.971,
-        "significance_error": 0.62513,
-        "signal": 84840.3,
-        "signal_error": 364.168
+        "significance": 232.951,
+        "significance_error": 0.625156,
+        "signal": 84833.2,
+        "signal_error": 364.168,
+        "fit_params": {
+          "mean": 0.495156,
+          "sigma": 0.00489999,
+          "N": 3389.14,
+          "pol2_0": -20718.6,
+          "pol2_1": 87771.8,
+          "pol2_2": -90711.9
+        }
       },
       "0.025": {
-        "significance": 233.249,
-        "significance_error": 0.624323,
-        "signal": 84823.7,
-        "signal_error": 363.662
+        "significance": 233.173,
+        "significance_error": 0.624424,
+        "signal": 84796.1,
+        "signal_error": 363.662,
+        "fit_params": {
+          "mean": 0.495156,
+          "sigma": 0.00490117,
+          "N": 3387.07,
+          "pol2_0": -20724.1,
+          "pol2_1": 87769.6,
+          "pol2_2": -90699.0
+        }
       },
       "0.03": {
-        "significance": 233.462,
-        "significance_error": 0.623627,
-        "signal": 84789.9,
-        "signal_error": 363.185
+        "significance": 233.376,
+        "significance_error": 0.623743,
+        "signal": 84758.6,
+        "signal_error": 363.185,
+        "fit_params": {
+          "mean": 0.495156,
+          "sigma": 0.00490029,
+          "N": 3386.19,
+          "pol2_0": -20729.2,
+          "pol2_1": 87767.6,
+          "pol2_2": -90687.0
+        }
       },
       "0.035": {
-        "significance": 233.655,
-        "significance_error": 0.622941,
-        "signal": 84743.1,
-        "signal_error": 362.684
+        "significance": 233.542,
+        "significance_error": 0.623092,
+        "signal": 84702.1,
+        "signal_error": 362.684,
+        "fit_params": {
+          "mean": 0.495157,
+          "sigma": 0.00490033,
+          "N": 3384.25,
+          "pol2_0": -20733.5,
+          "pol2_1": 87765.6,
+          "pol2_2": -90677.7
+        }
       },
       "0.04": {
         "significance": 233.832,
         "significance_error": 0.622304,
-        "signal": 84697.8,
-        "signal_error": 362.217
+        "signal": 84697.7,
+        "signal_error": 362.217,
+        "fit_params": {
+          "mean": 0.495158,
+          "sigma": 0.00490178,
+          "N": 3382.26,
+          "pol2_0": -20587.9,
+          "pol2_1": 87161.0,
+          "pol2_2": -90065.1
+        }
       },
       "0.045": {
-        "significance": 234.051,
-        "significance_error": 0.621619,
-        "signal": 84669.8,
-        "signal_error": 361.758
+        "significance": 234.058,
+        "significance_error": 0.621609,
+        "signal": 84672.4,
+        "signal_error": 361.758,
+        "fit_params": {
+          "mean": 0.495159,
+          "sigma": 0.00490285,
+          "N": 3380.43,
+          "pol2_0": -20593.5,
+          "pol2_1": 87159.1,
+          "pol2_2": -90050.9
+        }
       },
       "0.05": {
-        "significance": 234.192,
-        "significance_error": 0.620993,
-        "signal": 84601.8,
-        "signal_error": 361.249
+        "significance": 234.221,
+        "significance_error": 0.620955,
+        "signal": 84612.3,
+        "signal_error": 361.249,
+        "fit_params": {
+          "mean": 0.495158,
+          "sigma": 0.00490177,
+          "N": 3378.94,
+          "pol2_0": -20597.8,
+          "pol2_1": 87157.1,
+          "pol2_2": -90042.3
+        }
       },
       "0.055": {
-        "significance": 234.345,
-        "significance_error": 0.620316,
-        "signal": 84527.0,
-        "signal_error": 360.695
+        "significance": 234.248,
+        "significance_error": 0.620444,
+        "signal": 84492.0,
+        "signal_error": 360.695,
+        "fit_params": {
+          "mean": 0.495158,
+          "sigma": 0.00489926,
+          "N": 3376.63,
+          "pol2_0": -20602.5,
+          "pol2_1": 87155.3,
+          "pol2_2": -90031.0
+        }
       },
       "0.06": {
-        "significance": 234.412,
-        "significance_error": 0.619785,
-        "signal": 84430.9,
-        "signal_error": 360.182
+        "significance": 234.349,
+        "significance_error": 0.619868,
+        "signal": 84408.2,
+        "signal_error": 360.182,
+        "fit_params": {
+          "mean": 0.495157,
+          "sigma": 0.00489985,
+          "N": 3372.82,
+          "pol2_0": -20607.2,
+          "pol2_1": 87153.5,
+          "pol2_2": -90019.7
+        }
       },
       "0.065": {
-        "significance": 234.471,
-        "significance_error": 0.619193,
-        "signal": 84312.0,
-        "signal_error": 359.584
+        "significance": 234.396,
+        "significance_error": 0.619292,
+        "signal": 84285.2,
+        "signal_error": 359.584,
+        "fit_params": {
+          "mean": 0.495158,
+          "sigma": 0.0048984,
+          "N": 3369.07,
+          "pol2_0": -20613.2,
+          "pol2_1": 87151.6,
+          "pol2_2": -90004.1
+        }
       },
       "0.07": {
-        "significance": 234.646,
+        "significance": 234.647,
         "significance_error": 0.618493,
         "signal": 84247.6,
-        "signal_error": 359.04
+        "signal_error": 359.04,
+        "fit_params": {
+          "mean": 0.495156,
+          "sigma": 0.00490001,
+          "N": 3365.55,
+          "pol2_0": -20424.4,
+          "pol2_1": 86358.3,
+          "pol2_2": -89187.4
+        }
       },
       "0.075": {
-        "significance": 234.719,
-        "significance_error": 0.617878,
-        "signal": 84132.3,
-        "signal_error": 358.438
+        "significance": 234.634,
+        "significance_error": 0.61799,
+        "signal": 84101.8,
+        "signal_error": 358.438,
+        "fit_params": {
+          "mean": 0.495155,
+          "sigma": 0.00490174,
+          "N": 3359.03,
+          "pol2_0": -20430.6,
+          "pol2_1": 86356.5,
+          "pol2_2": -89170.3
+        }
       },
       "0.08": {
-        "significance": 234.867,
-        "significance_error": 0.617157,
-        "signal": 84041.7,
-        "signal_error": 357.827
+        "significance": 234.753,
+        "significance_error": 0.617307,
+        "signal": 84000.9,
+        "signal_error": 357.827,
+        "fit_params": {
+          "mean": 0.495155,
+          "sigma": 0.00490211,
+          "N": 3354.56,
+          "pol2_0": -20436.3,
+          "pol2_1": 86354.3,
+          "pol2_2": -89156.5
+        }
       },
       "0.085": {
         "significance": 235.103,
         "significance_error": 0.616319,
         "signal": 83982.6,
-        "signal_error": 357.216
+        "signal_error": 357.216,
+        "fit_params": {
+          "mean": 0.495154,
+          "sigma": 0.00490611,
+          "N": 3350.15,
+          "pol2_0": -20110.6,
+          "pol2_1": 85010.3,
+          "pol2_2": -87789.0
+        }
       },
       "0.09": {
-        "significance": 234.992,
-        "significance_error": 0.615917,
-        "signal": 83793.7,
-        "signal_error": 356.581
+        "significance": 235.042,
+        "significance_error": 0.615852,
+        "signal": 83811.6,
+        "signal_error": 356.581,
+        "fit_params": {
+          "mean": 0.495152,
+          "sigma": 0.00490224,
+          "N": 3345.75,
+          "pol2_0": -20114.6,
+          "pol2_1": 85008.5,
+          "pol2_2": -87780.8
+        }
       },
       "0.095": {
-        "significance": 235.08,
-        "significance_error": 0.615166,
-        "signal": 83652.3,
-        "signal_error": 355.845
+        "significance": 234.974,
+        "significance_error": 0.615305,
+        "signal": 83614.5,
+        "signal_error": 355.845,
+        "fit_params": {
+          "mean": 0.495152,
+          "sigma": 0.00490258,
+          "N": 3338.44,
+          "pol2_0": -20120.2,
+          "pol2_1": 85006.4,
+          "pol2_2": -87766.9
+        }
       },
       "0.1": {
         "significance": 235.153,
         "significance_error": 0.614425,
         "signal": 83502.6,
-        "signal_error": 355.099
+        "signal_error": 355.099,
+        "fit_params": {
+          "mean": 0.49515,
+          "sigma": 0.00490615,
+          "N": 3330.56,
+          "pol2_0": -19894.7,
+          "pol2_1": 84074.7,
+          "pol2_2": -86823.1
+        }
       },
       "0.105": {
         "significance": 235.191,
         "significance_error": 0.613642,
-        "signal": 83316.9,
-        "signal_error": 354.251
+        "signal": 83316.8,
+        "signal_error": 354.251,
+        "fit_params": {
+          "mean": 0.495148,
+          "sigma": 0.00490397,
+          "N": 3324.68,
+          "pol2_0": -19733.1,
+          "pol2_1": 83395.1,
+          "pol2_2": -86127.6
+        }
       },
       "0.11": {
         "significance": 235.197,
         "significance_error": 0.612951,
-        "signal": 83133.5,
-        "signal_error": 353.463
+        "signal": 83133.6,
+        "signal_error": 353.463,
+        "fit_params": {
+          "mean": 0.495147,
+          "sigma": 0.00490509,
+          "N": 3316.38,
+          "pol2_0": -19597.4,
+          "pol2_1": 82810.7,
+          "pol2_2": -85516.8
+        }
       },
       "0.115": {
-        "significance": 235.154,
-        "significance_error": 0.612339,
-        "signal": 82937.0,
-        "signal_error": 352.693
+        "significance": 235.047,
+        "significance_error": 0.612478,
+        "signal": 82899.3,
+        "signal_error": 352.693,
+        "fit_params": {
+          "mean": 0.495146,
+          "sigma": 0.00490186,
+          "N": 3309.52,
+          "pol2_0": -19604.0,
+          "pol2_1": 82808.8,
+          "pol2_2": -85498.7
+        }
       },
       "0.12": {
         "significance": 235.126,
         "significance_error": 0.611714,
         "signal": 82748.5,
-        "signal_error": 351.932
+        "signal_error": 351.932,
+        "fit_params": {
+          "mean": 0.495143,
+          "sigma": 0.0049063,
+          "N": 3299.49,
+          "pol2_0": -19391.9,
+          "pol2_1": 81922.3,
+          "pol2_2": -84590.1
+        }
       },
       "0.125": {
-        "significance": 234.992,
-        "significance_error": 0.611237,
-        "signal": 82525.1,
-        "signal_error": 351.182
+        "significance": 235.002,
+        "significance_error": 0.611224,
+        "signal": 82528.5,
+        "signal_error": 351.182,
+        "fit_params": {
+          "mean": 0.49514,
+          "sigma": 0.00490467,
+          "N": 3291.76,
+          "pol2_0": -19399.4,
+          "pol2_1": 81920.5,
+          "pol2_2": -84568.5
+        }
       },
       "0.13": {
-        "significance": 234.83,
-        "significance_error": 0.610845,
-        "signal": 82305.5,
-        "signal_error": 350.49
+        "significance": 234.841,
+        "significance_error": 0.610831,
+        "signal": 82309.2,
+        "signal_error": 350.49,
+        "fit_params": {
+          "mean": 0.495138,
+          "sigma": 0.00490216,
+          "N": 3284.48,
+          "pol2_0": -19403.3,
+          "pol2_1": 81918.8,
+          "pol2_2": -84560.0
+        }
       },
       "0.135": {
         "significance": 234.834,
         "significance_error": 0.610181,
         "signal": 82130.0,
-        "signal_error": 349.736
+        "signal_error": 349.736,
+        "fit_params": {
+          "mean": 0.495137,
+          "sigma": 0.00490439,
+          "N": 3275.63,
+          "pol2_0": -19231.7,
+          "pol2_1": 81208.5,
+          "pol2_2": -83840.5
+        }
       },
       "0.14": {
-        "significance": 234.548,
-        "significance_error": 0.609888,
-        "signal": 81850.8,
-        "signal_error": 348.973
+        "significance": 234.566,
+        "significance_error": 0.609864,
+        "signal": 81857.3,
+        "signal_error": 348.973,
+        "fit_params": {
+          "mean": 0.495137,
+          "sigma": 0.00490151,
+          "N": 3266.89,
+          "pol2_0": -19236.7,
+          "pol2_1": 81206.9,
+          "pol2_2": -83827.5
+        }
       },
       "0.145": {
         "significance": 234.567,
         "significance_error": 0.609239,
         "signal": 81690.5,
-        "signal_error": 348.26
+        "signal_error": 348.26,
+        "fit_params": {
+          "mean": 0.495138,
+          "sigma": 0.00490425,
+          "N": 3258.68,
+          "pol2_0": -19103.5,
+          "pol2_1": 80645.9,
+          "pol2_2": -83252.0
+        }
       },
       "0.15": {
-        "significance": 234.416,
-        "significance_error": 0.608836,
-        "signal": 81476.9,
-        "signal_error": 347.574
+        "significance": 234.348,
+        "significance_error": 0.608924,
+        "signal": 81453.5,
+        "signal_error": 347.574,
+        "fit_params": {
+          "mean": 0.495135,
+          "sigma": 0.00490367,
+          "N": 3249.73,
+          "pol2_0": -19109.0,
+          "pol2_1": 80644.4,
+          "pol2_2": -83236.3
+        }
       },
       "0.155": {
         "significance": 234.262,
         "significance_error": 0.608391,
         "signal": 81251.1,
-        "signal_error": 346.839
+        "signal_error": 346.839,
+        "fit_params": {
+          "mean": 0.495136,
+          "sigma": 0.00490356,
+          "N": 3241.38,
+          "pol2_0": -18962.9,
+          "pol2_1": 80028.2,
+          "pol2_2": -82601.3
+        }
       },
       "0.16": {
-        "significance": 233.993,
-        "significance_error": 0.60817,
-        "signal": 81005.9,
-        "signal_error": 346.189
+        "significance": 234.065,
+        "significance_error": 0.608077,
+        "signal": 81030.9,
+        "signal_error": 346.189,
+        "fit_params": {
+          "mean": 0.495134,
+          "sigma": 0.00490253,
+          "N": 3232.59,
+          "pol2_0": -18967.1,
+          "pol2_1": 80026.8,
+          "pol2_2": -82590.6
+        }
       },
       "0.165": {
-        "significance": 233.891,
-        "significance_error": 0.60766,
-        "signal": 80799.4,
-        "signal_error": 345.458
+        "significance": 233.833,
+        "significance_error": 0.607736,
+        "signal": 80779.3,
+        "signal_error": 345.458,
+        "fit_params": {
+          "mean": 0.495133,
+          "sigma": 0.00490193,
+          "N": 3223.21,
+          "pol2_0": -18969.9,
+          "pol2_1": 80025.1,
+          "pol2_2": -82586.2
+        }
       },
       "0.17": {
-        "significance": 233.691,
-        "significance_error": 0.607362,
-        "signal": 80582.0,
-        "signal_error": 344.823
+        "significance": 233.657,
+        "significance_error": 0.607405,
+        "signal": 80570.4,
+        "signal_error": 344.823,
+        "fit_params": {
+          "mean": 0.495131,
+          "sigma": 0.00490062,
+          "N": 3214.87,
+          "pol2_0": -18973.8,
+          "pol2_1": 80023.6,
+          "pol2_2": -82577.0
+        }
       },
       "0.17500000000000002": {
         "significance": 233.574,
         "significance_error": 0.606931,
         "signal": 80387.0,
-        "signal_error": 344.161
+        "signal_error": 344.161,
+        "fit_params": {
+          "mean": 0.495131,
+          "sigma": 0.00490193,
+          "N": 3206.16,
+          "pol2_0": -18825.1,
+          "pol2_1": 79401.9,
+          "pol2_2": -81939.5
+        }
       },
       "0.18": {
         "significance": 233.56,
         "significance_error": 0.60635,
         "signal": 80224.1,
-        "signal_error": 343.484
+        "signal_error": 343.484,
+        "fit_params": {
+          "mean": 0.495132,
+          "sigma": 0.00490579,
+          "N": 3197.37,
+          "pol2_0": -18601.1,
+          "pol2_1": 78479.2,
+          "pol2_2": -81002.7
+        }
       },
       "0.185": {
-        "significance": 233.428,
-        "significance_error": 0.605942,
-        "signal": 80025.8,
-        "signal_error": 342.828
+        "significance": 233.326,
+        "significance_error": 0.606075,
+        "signal": 79990.7,
+        "signal_error": 342.828,
+        "fit_params": {
+          "mean": 0.49513,
+          "sigma": 0.00490536,
+          "N": 3188.4,
+          "pol2_0": -18605.2,
+          "pol2_1": 78477.8,
+          "pol2_2": -80992.3
+        }
       },
       "0.19": {
-        "significance": 233.346,
+        "significance": 233.347,
         "significance_error": 0.605488,
-        "signal": 79849.8,
-        "signal_error": 342.194
+        "signal": 79849.9,
+        "signal_error": 342.194,
+        "fit_params": {
+          "mean": 0.495129,
+          "sigma": 0.00490726,
+          "N": 3181.0,
+          "pol2_0": -18403.9,
+          "pol2_1": 77646.3,
+          "pol2_2": -80147.1
+        }
       },
       "0.195": {
-        "significance": 233.251,
-        "significance_error": 0.605019,
-        "signal": 79661.0,
-        "signal_error": 341.525
+        "significance": 233.163,
+        "significance_error": 0.605133,
+        "signal": 79631.0,
+        "signal_error": 341.525,
+        "fit_params": {
+          "mean": 0.495129,
+          "sigma": 0.00490625,
+          "N": 3173.12,
+          "pol2_0": -18410.3,
+          "pol2_1": 77644.9,
+          "pol2_2": -80127.7
+        }
       },
       "0.2": {
         "significance": 233.104,
         "significance_error": 0.604657,
         "signal": 79465.2,
-        "signal_error": 340.9
+        "signal_error": 340.9,
+        "fit_params": {
+          "mean": 0.495127,
+          "sigma": 0.00490802,
+          "N": 3164.76,
+          "pol2_0": -18242.6,
+          "pol2_1": 76949.8,
+          "pol2_2": -79419.1
+        }
       },
       "0.20500000000000002": {
-        "significance": 232.925,
-        "significance_error": 0.604321,
-        "signal": 79255.1,
-        "signal_error": 340.26
+        "significance": 232.86,
+        "significance_error": 0.604406,
+        "signal": 79232.8,
+        "signal_error": 340.26,
+        "fit_params": {
+          "mean": 0.495126,
+          "sigma": 0.00490725,
+          "N": 3156.27,
+          "pol2_0": -18247.1,
+          "pol2_1": 76948.5,
+          "pol2_2": -79406.8
+        }
       },
       "0.21": {
-        "significance": 232.673,
-        "significance_error": 0.604079,
-        "signal": 79020.5,
-        "signal_error": 339.62
+        "significance": 232.607,
+        "significance_error": 0.604165,
+        "signal": 78998.1,
+        "signal_error": 339.62,
+        "fit_params": {
+          "mean": 0.495125,
+          "sigma": 0.00490545,
+          "N": 3147.91,
+          "pol2_0": -18251.6,
+          "pol2_1": 76947.3,
+          "pol2_2": -79394.2
+        }
       },
       "0.215": {
         "significance": 232.427,
         "significance_error": 0.603817,
         "signal": 78784.8,
-        "signal_error": 338.966
+        "signal_error": 338.966,
+        "fit_params": {
+          "mean": 0.495125,
+          "sigma": 0.0049073,
+          "N": 3138.59,
+          "pol2_0": -18124.7,
+          "pol2_1": 76419.6,
+          "pol2_2": -78855.9
+        }
       },
       "0.22": {
-        "significance": 232.082,
-        "significance_error": 0.603681,
-        "signal": 78515.7,
-        "signal_error": 338.311
+        "significance": 232.057,
+        "significance_error": 0.603713,
+        "signal": 78507.2,
+        "signal_error": 338.311,
+        "fit_params": {
+          "mean": 0.495124,
+          "sigma": 0.00490564,
+          "N": 3128.8,
+          "pol2_0": -18128.0,
+          "pol2_1": 76418.5,
+          "pol2_2": -78847.3
+        }
       },
       "0.225": {
         "significance": 232.007,
-        "significance_error": 0.603224,
+        "significance_error": 0.603223,
         "signal": 78346.2,
-        "signal_error": 337.689
+        "signal_error": 337.689,
+        "fit_params": {
+          "mean": 0.495122,
+          "sigma": 0.00490828,
+          "N": 3120.86,
+          "pol2_0": -17940.5,
+          "pol2_1": 75641.3,
+          "pol2_2": -78053.7
+        }
       },
       "0.23": {
-        "significance": 231.793,
-        "significance_error": 0.602936,
-        "signal": 78127.2,
-        "signal_error": 337.056
+        "significance": 231.74,
+        "significance_error": 0.603005,
+        "signal": 78109.4,
+        "signal_error": 337.056,
+        "fit_params": {
+          "mean": 0.495119,
+          "sigma": 0.00490717,
+          "N": 3112.49,
+          "pol2_0": -17945.3,
+          "pol2_1": 75640.2,
+          "pol2_2": -78039.6
+        }
       },
       "0.23500000000000001": {
         "significance": 231.622,
         "significance_error": 0.60261,
         "signal": 77927.5,
-        "signal_error": 336.443
+        "signal_error": 336.443,
+        "fit_params": {
+          "mean": 0.495118,
+          "sigma": 0.00490768,
+          "N": 3104.34,
+          "pol2_0": -17810.4,
+          "pol2_1": 75077.5,
+          "pol2_2": -77463.7
+        }
       },
       "0.24": {
-        "significance": 231.338,
-        "significance_error": 0.602463,
-        "signal": 77699.0,
-        "signal_error": 335.868
+        "significance": 231.323,
+        "significance_error": 0.602482,
+        "signal": 77694.0,
+        "signal_error": 335.868,
+        "fit_params": {
+          "mean": 0.495118,
+          "sigma": 0.00490559,
+          "N": 3096.81,
+          "pol2_0": -17812.7,
+          "pol2_1": 75076.5,
+          "pol2_2": -77458.5
+        }
       },
       "0.245": {
         "significance": 231.139,
-        "significance_error": 0.602129,
+        "significance_error": 0.602128,
         "signal": 77479.2,
-        "signal_error": 335.206
+        "signal_error": 335.206,
+        "fit_params": {
+          "mean": 0.495119,
+          "sigma": 0.00490673,
+          "N": 3087.06,
+          "pol2_0": -17680.5,
+          "pol2_1": 74520.7,
+          "pol2_2": -76885.3
+        }
       },
       "0.25": {
         "significance": 230.951,
         "significance_error": 0.601768,
         "signal": 77260.7,
-        "signal_error": 334.533
+        "signal_error": 334.533,
+        "fit_params": {
+          "mean": 0.495118,
+          "sigma": 0.00490928,
+          "N": 3076.65,
+          "pol2_0": -17488.8,
+          "pol2_1": 73725.4,
+          "pol2_2": -76071.2
+        }
       },
       "0.255": {
-        "significance": 230.67,
-        "significance_error": 0.601556,
-        "signal": 77018.2,
-        "signal_error": 333.889
+        "significance": 230.647,
+        "significance_error": 0.601585,
+        "signal": 77010.6,
+        "signal_error": 333.889,
+        "fit_params": {
+          "mean": 0.495118,
+          "sigma": 0.00490929,
+          "N": 3066.76,
+          "pol2_0": -17492.2,
+          "pol2_1": 73724.3,
+          "pol2_2": -76062.4
+        }
       },
       "0.26": {
         "significance": 230.44,
         "significance_error": 0.60129,
         "signal": 76797.1,
-        "signal_error": 333.263
+        "signal_error": 333.263,
+        "fit_params": {
+          "mean": 0.495119,
+          "sigma": 0.00490872,
+          "N": 3058.23,
+          "pol2_0": -17356.7,
+          "pol2_1": 73158.0,
+          "pol2_2": -75480.3
+        }
       },
       "0.265": {
-        "significance": 230.215,
-        "significance_error": 0.601026,
-        "signal": 76580.1,
-        "signal_error": 332.645
+        "significance": 230.145,
+        "significance_error": 0.601118,
+        "signal": 76556.7,
+        "signal_error": 332.645,
+        "fit_params": {
+          "mean": 0.495115,
+          "sigma": 0.00491042,
+          "N": 3047.72,
+          "pol2_0": -17360.4,
+          "pol2_1": 73156.9,
+          "pol2_2": -75470.2
+        }
       },
       "0.27": {
         "significance": 229.97,
         "significance_error": 0.60078,
-        "signal": 76354.0,
-        "signal_error": 332.018
+        "signal": 76354.1,
+        "signal_error": 332.018,
+        "fit_params": {
+          "mean": 0.495114,
+          "sigma": 0.0049103,
+          "N": 3039.33,
+          "pol2_0": -17203.9,
+          "pol2_1": 72501.2,
+          "pol2_2": -74793.4
+        }
       },
       "0.275": {
-        "significance": 229.649,
-        "significance_error": 0.600599,
-        "signal": 76095.2,
-        "signal_error": 331.355
+        "significance": 229.616,
+        "significance_error": 0.600642,
+        "signal": 76084.3,
+        "signal_error": 331.355,
+        "fit_params": {
+          "mean": 0.495113,
+          "sigma": 0.0049084,
+          "N": 3030.51,
+          "pol2_0": -17208.2,
+          "pol2_1": 72500.2,
+          "pol2_2": -74780.8
+        }
       },
       "0.28": {
         "significance": 229.363,
         "significance_error": 0.60039,
         "signal": 75853.4,
-        "signal_error": 330.713
+        "signal_error": 330.713,
+        "fit_params": {
+          "mean": 0.495114,
+          "sigma": 0.00490825,
+          "N": 3021.6,
+          "pol2_0": -17042.0,
+          "pol2_1": 71817.8,
+          "pol2_2": -74089.2
+        }
       },
       "0.28500000000000003": {
         "significance": 229.119,
         "significance_error": 0.600113,
         "signal": 75622.1,
-        "signal_error": 330.056
+        "signal_error": 330.056,
+        "fit_params": {
+          "mean": 0.495112,
+          "sigma": 0.00490886,
+          "N": 3011.74,
+          "pol2_0": -16906.1,
+          "pol2_1": 71246.8,
+          "pol2_2": -73499.1
+        }
       },
       "0.29": {
-        "significance": 228.812,
-        "significance_error": 0.599943,
-        "signal": 75376.9,
-        "signal_error": 329.427
+        "significance": 228.78,
+        "significance_error": 0.599985,
+        "signal": 75366.3,
+        "signal_error": 329.427,
+        "fit_params": {
+          "mean": 0.49511,
+          "sigma": 0.00490487,
+          "N": 3004.08,
+          "pol2_0": -16910.0,
+          "pol2_1": 71245.8,
+          "pol2_2": -73488.1
+        }
       },
       "0.295": {
-        "significance": 228.546,
-        "significance_error": 0.599725,
-        "signal": 75146.8,
-        "signal_error": 328.804
+        "significance": 228.489,
+        "significance_error": 0.599798,
+        "signal": 75128.2,
+        "signal_error": 328.804,
+        "fit_params": {
+          "mean": 0.495107,
+          "sigma": 0.00490327,
+          "N": 2995.52,
+          "pol2_0": -16915.6,
+          "pol2_1": 71244.8,
+          "pol2_2": -73470.3
+        }
       },
       "0.3": {
-        "significance": 228.182,
-        "significance_error": 0.599626,
-        "signal": 74882.9,
-        "signal_error": 328.172
+        "significance": 228.082,
+        "significance_error": 0.599757,
+        "signal": 74850.2,
+        "signal_error": 328.172,
+        "fit_params": {
+          "mean": 0.495107,
+          "sigma": 0.00490012,
+          "N": 2986.22,
+          "pol2_0": -16919.1,
+          "pol2_1": 71244.0,
+          "pol2_2": -73460.0
+        }
       },
       "0.305": {
         "significance": 227.948,
         "significance_error": 0.599359,
         "signal": 74662.9,
-        "signal_error": 327.544
+        "signal_error": 327.544,
+        "fit_params": {
+          "mean": 0.495106,
+          "sigma": 0.00490084,
+          "N": 2977.66,
+          "pol2_0": -16711.1,
+          "pol2_1": 70386.7,
+          "pol2_2": -72587.0
+        }
       },
       "0.31": {
         "significance": 227.73,
         "significance_error": 0.599038,
         "signal": 74440.6,
-        "signal_error": 326.881
+        "signal_error": 326.881,
+        "fit_params": {
+          "mean": 0.495106,
+          "sigma": 0.00490308,
+          "N": 2967.56,
+          "pol2_0": -16577.5,
+          "pol2_1": 69833.1,
+          "pol2_2": -72022.8
+        }
       },
       "0.315": {
-        "significance": 227.55,
-        "significance_error": 0.598713,
-        "signal": 74242.4,
-        "signal_error": 326.268
+        "significance": 227.447,
+        "significance_error": 0.598849,
+        "signal": 74208.8,
+        "signal_error": 326.268,
+        "fit_params": {
+          "mean": 0.495106,
+          "sigma": 0.00490247,
+          "N": 2958.93,
+          "pol2_0": -16582.7,
+          "pol2_1": 69832.1,
+          "pol2_2": -72006.8
+        }
       },
       "0.32": {
-        "significance": 227.224,
-        "significance_error": 0.598602,
-        "signal": 74002.1,
-        "signal_error": 325.679
+        "significance": 227.127,
+        "significance_error": 0.598729,
+        "signal": 73970.6,
+        "signal_error": 325.679,
+        "fit_params": {
+          "mean": 0.495107,
+          "sigma": 0.00489966,
+          "N": 2950.83,
+          "pol2_0": -16586.1,
+          "pol2_1": 69831.2,
+          "pol2_2": -71997.2
+        }
       },
       "0.325": {
         "significance": 226.925,
         "significance_error": 0.598412,
         "signal": 73760.8,
-        "signal_error": 325.045
+        "signal_error": 325.045,
+        "fit_params": {
+          "mean": 0.495108,
+          "sigma": 0.00490148,
+          "N": 2941.09,
+          "pol2_0": -16432.2,
+          "pol2_1": 69193.0,
+          "pol2_2": -71344.7
+        }
       },
       "0.33": {
-        "significance": 226.477,
-        "significance_error": 0.598418,
-        "signal": 73471.6,
-        "signal_error": 324.41
+        "significance": 226.496,
+        "significance_error": 0.598394,
+        "signal": 73477.5,
+        "signal_error": 324.41,
+        "fit_params": {
+          "mean": 0.495105,
+          "sigma": 0.00489939,
+          "N": 2931.25,
+          "pol2_0": -16434.3,
+          "pol2_1": 69192.2,
+          "pol2_2": -71339.7
+        }
       },
       "0.335": {
-        "significance": 226.14,
-        "significance_error": 0.598289,
-        "signal": 73221.1,
-        "signal_error": 323.787
+        "significance": 226.102,
+        "significance_error": 0.598339,
+        "signal": 73208.8,
+        "signal_error": 323.787,
+        "fit_params": {
+          "mean": 0.495106,
+          "sigma": 0.00489852,
+          "N": 2921.29,
+          "pol2_0": -16437.1,
+          "pol2_1": 69191.3,
+          "pol2_2": -71332.2
+        }
       },
       "0.34": {
         "significance": 225.848,
         "significance_error": 0.598137,
-        "signal": 72994.9,
-        "signal_error": 323.204
+        "signal": 72995.0,
+        "signal_error": 323.204,
+        "fit_params": {
+          "mean": 0.495106,
+          "sigma": 0.0048989,
+          "N": 2912.62,
+          "pol2_0": -16323.1,
+          "pol2_1": 68718.6,
+          "pol2_2": -70849.6
+        }
       },
       "0.34500000000000003": {
-        "significance": 225.551,
-        "significance_error": 0.597999,
-        "signal": 72769.9,
-        "signal_error": 322.631
+        "significance": 225.48,
+        "significance_error": 0.598094,
+        "signal": 72746.9,
+        "signal_error": 322.631,
+        "fit_params": {
+          "mean": 0.495107,
+          "sigma": 0.00489817,
+          "N": 2903.35,
+          "pol2_0": -16325.8,
+          "pol2_1": 68717.8,
+          "pol2_2": -70842.3
+        }
       },
       "0.35000000000000003": {
         "significance": 225.23,
         "significance_error": 0.597894,
         "signal": 72537.4,
-        "signal_error": 322.059
+        "signal_error": 322.059,
+        "fit_params": {
+          "mean": 0.495106,
+          "sigma": 0.00489843,
+          "N": 2894.22,
+          "pol2_0": -16200.3,
+          "pol2_1": 68202.5,
+          "pol2_2": -70320.2
+        }
       },
       "0.355": {
-        "significance": 224.943,
-        "significance_error": 0.597735,
-        "signal": 72313.7,
-        "signal_error": 321.476
+        "significance": 224.859,
+        "significance_error": 0.597846,
+        "signal": 72286.9,
+        "signal_error": 321.476,
+        "fit_params": {
+          "mean": 0.495103,
+          "sigma": 0.00489684,
+          "N": 2885.48,
+          "pol2_0": -16202.3,
+          "pol2_1": 68201.7,
+          "pol2_2": -70315.6
+        }
       },
       "0.36": {
         "significance": 224.554,
         "significance_error": 0.597631,
         "signal": 72039.2,
-        "signal_error": 320.81
+        "signal_error": 320.81,
+        "fit_params": {
+          "mean": 0.495101,
+          "sigma": 0.00489771,
+          "N": 2874.74,
+          "pol2_0": -16006.8,
+          "pol2_1": 67401.8,
+          "pol2_2": -69505.8
+        }
       },
       "0.365": {
         "significance": 224.292,
         "significance_error": 0.597458,
-        "signal": 71829.5,
-        "signal_error": 320.25
+        "signal": 71829.6,
+        "signal_error": 320.25,
+        "fit_params": {
+          "mean": 0.495101,
+          "sigma": 0.00489943,
+          "N": 2865.5,
+          "pol2_0": -15911.1,
+          "pol2_1": 67010.4,
+          "pol2_2": -69112.0
+        }
       },
       "0.37": {
         "significance": 223.963,
         "significance_error": 0.597351,
         "signal": 71593.4,
-        "signal_error": 319.665
+        "signal_error": 319.665,
+        "fit_params": {
+          "mean": 0.495101,
+          "sigma": 0.00489994,
+          "N": 2855.5,
+          "pol2_0": -15814.7,
+          "pol2_1": 66615.6,
+          "pol2_2": -68714.1
+        }
       },
       "0.375": {
-        "significance": 223.614,
-        "significance_error": 0.597264,
-        "signal": 71349.8,
-        "signal_error": 319.075
+        "significance": 223.562,
+        "significance_error": 0.597334,
+        "signal": 71333.1,
+        "signal_error": 319.075,
+        "fit_params": {
+          "mean": 0.495103,
+          "sigma": 0.00489883,
+          "N": 2845.76,
+          "pol2_0": -15817.0,
+          "pol2_1": 66614.9,
+          "pol2_2": -68707.8
+        }
       },
       "0.38": {
-        "significance": 223.272,
-        "significance_error": 0.597192,
-        "signal": 71114.1,
-        "signal_error": 318.509
+        "significance": 223.182,
+        "significance_error": 0.597312,
+        "signal": 71085.5,
+        "signal_error": 318.509,
+        "fit_params": {
+          "mean": 0.495103,
+          "sigma": 0.00489909,
+          "N": 2835.81,
+          "pol2_0": -15820.4,
+          "pol2_1": 66614.2,
+          "pol2_2": -68697.3
+        }
       },
       "0.385": {
         "significance": 222.798,
         "significance_error": 0.597203,
         "signal": 70815.0,
-        "signal_error": 317.844
+        "signal_error": 317.844,
+        "fit_params": {
+          "mean": 0.495107,
+          "sigma": 0.00489767,
+          "N": 2825.44,
+          "pol2_0": -15690.2,
+          "pol2_1": 66077.6,
+          "pol2_2": -68151.6
+        }
       },
       "0.39": {
-        "significance": 222.462,
-        "significance_error": 0.59705,
-        "signal": 70565.7,
-        "signal_error": 317.203
+        "significance": 222.402,
+        "significance_error": 0.597131,
+        "signal": 70546.6,
+        "signal_error": 317.203,
+        "fit_params": {
+          "mean": 0.495111,
+          "sigma": 0.00489691,
+          "N": 2815.89,
+          "pol2_0": -15693.0,
+          "pol2_1": 66076.8,
+          "pol2_2": -68144.1
+        }
       },
       "0.395": {
         "significance": 222.154,
         "significance_error": 0.596937,
         "signal": 70344.1,
-        "signal_error": 316.645
+        "signal_error": 316.645,
+        "fit_params": {
+          "mean": 0.495113,
+          "sigma": 0.00489825,
+          "N": 2806.98,
+          "pol2_0": -15521.9,
+          "pol2_1": 65370.7,
+          "pol2_2": -67422.6
+        }
       },
       "0.4": {
-        "significance": 221.861,
-        "significance_error": 0.59674,
-        "signal": 70111.9,
-        "signal_error": 316.017
+        "significance": 221.769,
+        "significance_error": 0.596864,
+        "signal": 70082.8,
+        "signal_error": 316.017,
+        "fit_params": {
+          "mean": 0.495114,
+          "sigma": 0.00489471,
+          "N": 2798.58,
+          "pol2_0": -15524.2,
+          "pol2_1": 65369.8,
+          "pol2_2": -67417.0
+        }
       }
     },
     "dcapostopv": {
@@ -493,487 +1141,1135 @@
         "significance": 230.349,
         "significance_error": 0.632079,
         "signal": 84795.9,
-        "signal_error": 368.12
+        "signal_error": 368.12,
+        "fit_params": {
+          "mean": 0.495159,
+          "sigma": 0.00489088,
+          "N": 3395.97,
+          "pol2_0": -20667.5,
+          "pol2_1": 87790.4,
+          "pol2_2": -90837.0
+        }
       },
       "0.005": {
-        "significance": 231.333,
-        "significance_error": 0.629739,
-        "signal": 84890.2,
-        "signal_error": 366.96
+        "significance": 231.43,
+        "significance_error": 0.629608,
+        "signal": 84925.5,
+        "signal_error": 366.96,
+        "fit_params": {
+          "mean": 0.495155,
+          "sigma": 0.00489603,
+          "N": 3395.59,
+          "pol2_0": -20679.4,
+          "pol2_1": 87784.0,
+          "pol2_2": -90816.2
+        }
       },
       "0.01": {
-        "significance": 232.31,
-        "significance_error": 0.62738,
-        "signal": 84968.8,
-        "signal_error": 365.755
+        "significance": 232.229,
+        "significance_error": 0.627491,
+        "signal": 84938.9,
+        "signal_error": 365.755,
+        "fit_params": {
+          "mean": 0.495155,
+          "sigma": 0.00489954,
+          "N": 3393.75,
+          "pol2_0": -20696.4,
+          "pol2_1": 87778.4,
+          "pol2_2": -90772.6
+        }
       },
       "0.015": {
-        "significance": 232.696,
-        "significance_error": 0.626088,
-        "signal": 84900.3,
-        "signal_error": 364.855
+        "significance": 232.682,
+        "significance_error": 0.626107,
+        "signal": 84895.1,
+        "signal_error": 364.855,
+        "fit_params": {
+          "mean": 0.495154,
+          "sigma": 0.00489858,
+          "N": 3392.06,
+          "pol2_0": -20711.8,
+          "pol2_1": 87774.7,
+          "pol2_2": -90727.5
+        }
       },
       "0.02": {
-        "significance": 233.148,
-        "significance_error": 0.624891,
-        "signal": 84904.6,
-        "signal_error": 364.166
+        "significance": 233.057,
+        "significance_error": 0.625012,
+        "signal": 84871.6,
+        "signal_error": 364.166,
+        "fit_params": {
+          "mean": 0.495153,
+          "sigma": 0.00489999,
+          "N": 3389.82,
+          "pol2_0": -20719.7,
+          "pol2_1": 87771.6,
+          "pol2_2": -90708.7
+        }
       },
       "0.025": {
-        "significance": 233.472,
-        "significance_error": 0.623972,
-        "signal": 84890.9,
-        "signal_error": 363.601
+        "significance": 233.381,
+        "significance_error": 0.624094,
+        "signal": 84857.8,
+        "signal_error": 363.601,
+        "fit_params": {
+          "mean": 0.495152,
+          "sigma": 0.00490149,
+          "N": 3388.31,
+          "pol2_0": -20729.8,
+          "pol2_1": 87769.2,
+          "pol2_2": -90679.0
+        }
       },
       "0.03": {
-        "significance": 233.769,
-        "significance_error": 0.623126,
-        "signal": 84876.3,
-        "signal_error": 363.077
+        "significance": 233.77,
+        "significance_error": 0.623125,
+        "signal": 84876.5,
+        "signal_error": 363.077,
+        "fit_params": {
+          "mean": 0.495152,
+          "sigma": 0.00490387,
+          "N": 3386.62,
+          "pol2_0": -20585.4,
+          "pol2_1": 87151.3,
+          "pol2_2": -90037.5
+        }
       },
       "0.035": {
-        "significance": 233.873,
-        "significance_error": 0.622579,
-        "signal": 84802.3,
-        "signal_error": 362.6
+        "significance": 233.984,
+        "significance_error": 0.622431,
+        "signal": 84842.5,
+        "signal_error": 362.6,
+        "fit_params": {
+          "mean": 0.495151,
+          "sigma": 0.00490447,
+          "N": 3384.29,
+          "pol2_0": -20591.1,
+          "pol2_1": 87149.4,
+          "pol2_2": -90023.2
+        }
       },
       "0.04": {
-        "significance": 234.028,
-        "significance_error": 0.621938,
-        "signal": 84740.0,
-        "signal_error": 362.094
+        "significance": 234.149,
+        "significance_error": 0.621777,
+        "signal": 84783.8,
+        "signal_error": 362.094,
+        "fit_params": {
+          "mean": 0.49515,
+          "sigma": 0.00490422,
+          "N": 3382.22,
+          "pol2_0": -20599.6,
+          "pol2_1": 87147.7,
+          "pol2_2": -89997.6
+        }
       },
       "0.045": {
-        "significance": 234.188,
-        "significance_error": 0.621265,
-        "signal": 84672.4,
-        "signal_error": 361.558
+        "significance": 234.288,
+        "significance_error": 0.621132,
+        "signal": 84708.6,
+        "signal_error": 361.558,
+        "fit_params": {
+          "mean": 0.495151,
+          "sigma": 0.00490298,
+          "N": 3380.38,
+          "pol2_0": -20606.1,
+          "pol2_1": 87145.8,
+          "pol2_2": -89980.4
+        }
       },
       "0.05": {
         "significance": 234.616,
         "significance_error": 0.620226,
         "signal": 84698.2,
-        "signal_error": 361.008
+        "signal_error": 361.008,
+        "fit_params": {
+          "mean": 0.495149,
+          "sigma": 0.00490496,
+          "N": 3379.0,
+          "pol2_0": -20422.3,
+          "pol2_1": 86378.6,
+          "pol2_2": -89197.2
+        }
       },
       "0.055": {
-        "significance": 234.74,
-        "significance_error": 0.619626,
-        "signal": 84624.0,
-        "signal_error": 360.501
+        "significance": 234.754,
+        "significance_error": 0.619608,
+        "signal": 84628.9,
+        "signal_error": 360.501,
+        "fit_params": {
+          "mean": 0.49515,
+          "sigma": 0.00490548,
+          "N": 3375.94,
+          "pol2_0": -20427.8,
+          "pol2_1": 86376.8,
+          "pol2_2": -89183.2
+        }
       },
       "0.06": {
         "significance": 234.984,
-        "significance_error": 0.618844,
+        "significance_error": 0.618845,
         "signal": 84585.9,
-        "signal_error": 359.965
+        "signal_error": 359.965,
+        "fit_params": {
+          "mean": 0.495147,
+          "sigma": 0.00490647,
+          "N": 3373.48,
+          "pol2_0": -20250.4,
+          "pol2_1": 85636.5,
+          "pol2_2": -88426.3
+        }
       },
       "0.065": {
-        "significance": 235.141,
-        "significance_error": 0.618176,
-        "signal": 84516.4,
-        "signal_error": 359.429
+        "significance": 235.089,
+        "significance_error": 0.618244,
+        "signal": 84497.8,
+        "signal_error": 359.429,
+        "fit_params": {
+          "mean": 0.495148,
+          "sigma": 0.00490674,
+          "N": 3370.15,
+          "pol2_0": -20254.4,
+          "pol2_1": 85634.5,
+          "pol2_2": -88418.6
+        }
       },
       "0.07": {
         "significance": 235.257,
         "significance_error": 0.617579,
         "signal": 84436.7,
-        "signal_error": 358.912
+        "signal_error": 358.912,
+        "fit_params": {
+          "mean": 0.495148,
+          "sigma": 0.00490758,
+          "N": 3366.63,
+          "pol2_0": -20117.2,
+          "pol2_1": 85056.5,
+          "pol2_2": -87824.2
+        }
       },
       "0.075": {
-        "significance": 235.269,
-        "significance_error": 0.617054,
-        "signal": 84301.6,
-        "signal_error": 358.32
+        "significance": 235.255,
+        "significance_error": 0.617072,
+        "signal": 84296.4,
+        "signal_error": 358.32,
+        "fit_params": {
+          "mean": 0.495148,
+          "sigma": 0.00490529,
+          "N": 3362.47,
+          "pol2_0": -20119.5,
+          "pol2_1": 85054.6,
+          "pol2_2": -87822.7
+        }
       },
       "0.08": {
         "significance": 235.378,
         "significance_error": 0.616388,
         "signal": 84197.4,
-        "signal_error": 357.712
+        "signal_error": 357.712,
+        "fit_params": {
+          "mean": 0.495144,
+          "sigma": 0.00490595,
+          "N": 3357.79,
+          "pol2_0": -19955.7,
+          "pol2_1": 84366.0,
+          "pol2_2": -87114.3
+        }
       },
       "0.085": {
-        "significance": 235.405,
-        "significance_error": 0.615818,
-        "signal": 84061.3,
-        "signal_error": 357.092
+        "significance": 235.38,
+        "significance_error": 0.615851,
+        "signal": 84052.4,
+        "signal_error": 357.092,
+        "fit_params": {
+          "mean": 0.495144,
+          "sigma": 0.00490581,
+          "N": 3351.98,
+          "pol2_0": -19960.6,
+          "pol2_1": 84364.1,
+          "pol2_2": -87102.9
+        }
       },
       "0.09": {
-        "significance": 235.425,
-        "significance_error": 0.615187,
-        "signal": 83903.6,
-        "signal_error": 356.392
+        "significance": 235.345,
+        "significance_error": 0.615292,
+        "signal": 83875.1,
+        "signal_error": 356.392,
+        "fit_params": {
+          "mean": 0.495146,
+          "sigma": 0.0049033,
+          "N": 3346.94,
+          "pol2_0": -19964.6,
+          "pol2_1": 84362.0,
+          "pol2_2": -87095.4
+        }
       },
       "0.095": {
         "significance": 235.596,
         "significance_error": 0.614396,
-        "signal": 83809.2,
-        "signal_error": 355.733
+        "signal": 83809.1,
+        "signal_error": 355.733,
+        "fit_params": {
+          "mean": 0.495141,
+          "sigma": 0.00490429,
+          "N": 3342.74,
+          "pol2_0": -19797.1,
+          "pol2_1": 83660.1,
+          "pol2_2": -86378.4
+        }
       },
       "0.1": {
-        "significance": 235.562,
-        "significance_error": 0.613754,
-        "signal": 83610.2,
-        "signal_error": 354.939
+        "significance": 235.534,
+        "significance_error": 0.61379,
+        "signal": 83600.4,
+        "signal_error": 354.939,
+        "fit_params": {
+          "mean": 0.495138,
+          "sigma": 0.00490462,
+          "N": 3333.87,
+          "pol2_0": -19802.3,
+          "pol2_1": 83657.8,
+          "pol2_2": -86367.2
+        }
       },
       "0.105": {
         "significance": 235.623,
         "significance_error": 0.613041,
-        "signal": 83459.6,
-        "signal_error": 354.208
+        "signal": 83459.5,
+        "signal_error": 354.208,
+        "fit_params": {
+          "mean": 0.495138,
+          "sigma": 0.00490374,
+          "N": 3328.78,
+          "pol2_0": -19648.6,
+          "pol2_1": 83008.4,
+          "pol2_2": -85698.7
+        }
       },
       "0.11": {
-        "significance": 235.558,
-        "significance_error": 0.612486,
-        "signal": 83262.5,
-        "signal_error": 353.469
+        "significance": 235.529,
+        "significance_error": 0.612523,
+        "signal": 83252.3,
+        "signal_error": 353.469,
+        "fit_params": {
+          "mean": 0.495137,
+          "sigma": 0.00490191,
+          "N": 3321.78,
+          "pol2_0": -19657.4,
+          "pol2_1": 83006.5,
+          "pol2_2": -85672.0
+        }
       },
       "0.115": {
-        "significance": 235.504,
-        "significance_error": 0.611893,
-        "signal": 83062.7,
-        "signal_error": 352.702
+        "significance": 235.387,
+        "significance_error": 0.612045,
+        "signal": 83021.5,
+        "signal_error": 352.702,
+        "fit_params": {
+          "mean": 0.495134,
+          "sigma": 0.00490046,
+          "N": 3313.63,
+          "pol2_0": -19662.6,
+          "pol2_1": 83004.5,
+          "pol2_2": -85659.7
+        }
       },
       "0.12": {
         "significance": 235.471,
         "significance_error": 0.611288,
         "signal": 82875.3,
-        "signal_error": 351.956
+        "signal_error": 351.956,
+        "fit_params": {
+          "mean": 0.495134,
+          "sigma": 0.00489991,
+          "N": 3307.91,
+          "pol2_0": -19392.2,
+          "pol2_1": 81884.2,
+          "pol2_2": -84516.7
+        }
       },
       "0.125": {
         "significance": 235.471,
         "significance_error": 0.610556,
         "signal": 82677.1,
-        "signal_error": 351.114
+        "signal_error": 351.114,
+        "fit_params": {
+          "mean": 0.495128,
+          "sigma": 0.00490073,
+          "N": 3300.23,
+          "pol2_0": -19120.6,
+          "pol2_1": 80756.5,
+          "pol2_2": -83364.0
+        }
       },
       "0.13": {
-        "significance": 235.46,
-        "significance_error": 0.609995,
-        "signal": 82517.4,
-        "signal_error": 350.453
+        "significance": 235.413,
+        "significance_error": 0.610055,
+        "signal": 82501.1,
+        "signal_error": 350.453,
+        "fit_params": {
+          "mean": 0.495126,
+          "sigma": 0.00490073,
+          "N": 3293.55,
+          "pol2_0": -19126.1,
+          "pol2_1": 80754.7,
+          "pol2_2": -83349.7
+        }
       },
       "0.135": {
-        "significance": 235.289,
-        "significance_error": 0.609598,
-        "signal": 82290.7,
-        "signal_error": 349.743
+        "significance": 235.216,
+        "significance_error": 0.609693,
+        "signal": 82264.9,
+        "signal_error": 349.743,
+        "fit_params": {
+          "mean": 0.495125,
+          "sigma": 0.00489868,
+          "N": 3285.68,
+          "pol2_0": -19132.5,
+          "pol2_1": 80753.1,
+          "pol2_2": -83331.1
+        }
       },
       "0.14": {
         "significance": 235.152,
         "significance_error": 0.609166,
         "signal": 82078.6,
-        "signal_error": 349.044
+        "signal_error": 349.044,
+        "fit_params": {
+          "mean": 0.495124,
+          "sigma": 0.00489783,
+          "N": 3278.37,
+          "pol2_0": -18975.8,
+          "pol2_1": 80099.0,
+          "pol2_2": -82662.1
+        }
       },
       "0.145": {
-        "significance": 235.079,
-        "significance_error": 0.608646,
-        "signal": 81887.6,
-        "signal_error": 348.34
+        "significance": 234.988,
+        "significance_error": 0.608764,
+        "signal": 81855.7,
+        "signal_error": 348.34,
+        "fit_params": {
+          "mean": 0.495119,
+          "sigma": 0.00489696,
+          "N": 3270.31,
+          "pol2_0": -18979.8,
+          "pol2_1": 80097.2,
+          "pol2_2": -82653.3
+        }
       },
       "0.15": {
         "significance": 234.963,
         "significance_error": 0.608219,
         "signal": 81691.8,
-        "signal_error": 347.679
+        "signal_error": 347.679,
+        "fit_params": {
+          "mean": 0.495117,
+          "sigma": 0.00489752,
+          "N": 3262.99,
+          "pol2_0": -18859.2,
+          "pol2_1": 79592.2,
+          "pol2_2": -82137.9
+        }
       },
       "0.155": {
         "significance": 234.911,
         "significance_error": 0.607703,
         "signal": 81517.1,
-        "signal_error": 347.013
+        "signal_error": 347.013,
+        "fit_params": {
+          "mean": 0.495118,
+          "sigma": 0.00489731,
+          "N": 3256.04,
+          "pol2_0": -18740.9,
+          "pol2_1": 79091.0,
+          "pol2_2": -81620.8
+        }
       },
       "0.16": {
-        "significance": 234.733,
-        "significance_error": 0.607307,
-        "signal": 81287.4,
-        "signal_error": 346.298
+        "significance": 234.633,
+        "significance_error": 0.607435,
+        "signal": 81252.9,
+        "signal_error": 346.298,
+        "fit_params": {
+          "mean": 0.495116,
+          "sigma": 0.00489697,
+          "N": 3246.62,
+          "pol2_0": -18745.1,
+          "pol2_1": 79089.5,
+          "pol2_2": -81610.2
+        }
       },
       "0.165": {
         "significance": 234.583,
         "significance_error": 0.606897,
         "signal": 81074.6,
-        "signal_error": 345.611
+        "signal_error": 345.611,
+        "fit_params": {
+          "mean": 0.495112,
+          "sigma": 0.00490142,
+          "N": 3236.03,
+          "pol2_0": -18553.8,
+          "pol2_1": 78290.4,
+          "pol2_2": -80789.3
+        }
       },
       "0.17": {
-        "significance": 234.422,
-        "significance_error": 0.606531,
-        "signal": 80865.4,
-        "signal_error": 344.957
+        "significance": 234.314,
+        "significance_error": 0.606671,
+        "signal": 80828.1,
+        "signal_error": 344.957,
+        "fit_params": {
+          "mean": 0.49511,
+          "sigma": 0.00490044,
+          "N": 3227.53,
+          "pol2_0": -18558.9,
+          "pol2_1": 78289.1,
+          "pol2_2": -80774.3
+        }
       },
       "0.17500000000000002": {
         "significance": 234.176,
         "significance_error": 0.606252,
-        "signal": 80621.4,
-        "signal_error": 344.278
+        "signal": 80621.5,
+        "signal_error": 344.278,
+        "fit_params": {
+          "mean": 0.495105,
+          "sigma": 0.00489884,
+          "N": 3219.4,
+          "pol2_0": -18356.8,
+          "pol2_1": 77456.8,
+          "pol2_2": -79929.2
+        }
       },
       "0.18": {
-        "significance": 233.962,
-        "significance_error": 0.605931,
-        "signal": 80389.0,
-        "signal_error": 343.599
+        "significance": 233.903,
+        "significance_error": 0.606007,
+        "signal": 80368.8,
+        "signal_error": 343.599,
+        "fit_params": {
+          "mean": 0.495104,
+          "sigma": 0.00489684,
+          "N": 3211.15,
+          "pol2_0": -18360.0,
+          "pol2_1": 77455.4,
+          "pol2_2": -79922.2
+        }
       },
       "0.185": {
         "significance": 233.692,
         "significance_error": 0.605671,
         "signal": 80134.9,
-        "signal_error": 342.908
+        "signal_error": 342.908,
+        "fit_params": {
+          "mean": 0.495104,
+          "sigma": 0.00489515,
+          "N": 3202.77,
+          "pol2_0": -18211.7,
+          "pol2_1": 76837.0,
+          "pol2_2": -79288.9
+        }
       },
       "0.19": {
-        "significance": 233.527,
-        "significance_error": 0.605319,
-        "signal": 79928.8,
-        "signal_error": 342.267
+        "significance": 233.478,
+        "significance_error": 0.605382,
+        "signal": 79912.0,
+        "signal_error": 342.267,
+        "fit_params": {
+          "mean": 0.495103,
+          "sigma": 0.00489478,
+          "N": 3194.16,
+          "pol2_0": -18215.7,
+          "pol2_1": 76835.7,
+          "pol2_2": -79278.6
+        }
       },
       "0.195": {
-        "significance": 233.368,
-        "significance_error": 0.604977,
-        "signal": 79729.4,
-        "signal_error": 341.647
+        "significance": 233.275,
+        "significance_error": 0.605097,
+        "signal": 79697.7,
+        "signal_error": 341.647,
+        "fit_params": {
+          "mean": 0.495101,
+          "sigma": 0.00489336,
+          "N": 3186.45,
+          "pol2_0": -18219.4,
+          "pol2_1": 76834.3,
+          "pol2_2": -79269.3
+        }
       },
       "0.2": {
         "significance": 233.245,
         "significance_error": 0.604604,
-        "signal": 79547.4,
-        "signal_error": 341.047
+        "signal": 79547.3,
+        "signal_error": 341.047,
+        "fit_params": {
+          "mean": 0.495098,
+          "sigma": 0.00489622,
+          "N": 3177.75,
+          "pol2_0": -18093.2,
+          "pol2_1": 76302.8,
+          "pol2_2": -78721.6
+        }
       },
       "0.20500000000000002": {
-        "significance": 233.121,
-        "significance_error": 0.604229,
-        "signal": 79364.2,
-        "signal_error": 340.442
+        "significance": 233.083,
+        "significance_error": 0.604278,
+        "signal": 79351.3,
+        "signal_error": 340.442,
+        "fit_params": {
+          "mean": 0.495094,
+          "sigma": 0.00489673,
+          "N": 3169.87,
+          "pol2_0": -18096.2,
+          "pol2_1": 76301.4,
+          "pol2_2": -78715.8
+        }
       },
       "0.21": {
         "significance": 232.893,
         "significance_error": 0.603887,
         "signal": 79119.5,
-        "signal_error": 339.725
+        "signal_error": 339.725,
+        "fit_params": {
+          "mean": 0.495093,
+          "sigma": 0.00489664,
+          "N": 3160.62,
+          "pol2_0": -17938.6,
+          "pol2_1": 75642.7,
+          "pol2_2": -78039.3
+        }
       },
       "0.215": {
-        "significance": 232.634,
-        "significance_error": 0.603636,
-        "signal": 78878.0,
-        "signal_error": 339.065
+        "significance": 232.633,
+        "significance_error": 0.603637,
+        "signal": 78877.7,
+        "signal_error": 339.065,
+        "fit_params": {
+          "mean": 0.495091,
+          "sigma": 0.00489465,
+          "N": 3152.34,
+          "pol2_0": -17942.4,
+          "pol2_1": 75641.4,
+          "pol2_2": -78029.9
+        }
       },
       "0.22": {
-        "significance": 232.501,
+        "significance": 232.5,
         "significance_error": 0.603247,
-        "signal": 78686.3,
-        "signal_error": 338.435
+        "signal": 78686.2,
+        "signal_error": 338.435,
+        "fit_params": {
+          "mean": 0.495089,
+          "sigma": 0.00489545,
+          "N": 3143.63,
+          "pol2_0": -17790.9,
+          "pol2_1": 75014.5,
+          "pol2_2": -77391.8
+        }
       },
       "0.225": {
         "significance": 232.371,
         "significance_error": 0.602805,
-        "signal": 78483.3,
-        "signal_error": 337.75
+        "signal": 78483.1,
+        "signal_error": 337.75,
+        "fit_params": {
+          "mean": 0.495085,
+          "sigma": 0.00489727,
+          "N": 3134.66,
+          "pol2_0": -17574.4,
+          "pol2_1": 74122.9,
+          "pol2_2": -76485.6
+        }
       },
       "0.23": {
-        "significance": 232.108,
-        "significance_error": 0.602528,
-        "signal": 78233.8,
-        "signal_error": 337.058
+        "significance": 232.028,
+        "significance_error": 0.602631,
+        "signal": 78207.0,
+        "signal_error": 337.058,
+        "fit_params": {
+          "mean": 0.495082,
+          "sigma": 0.00489482,
+          "N": 3125.66,
+          "pol2_0": -17578.5,
+          "pol2_1": 74121.7,
+          "pol2_2": -76474.4
+        }
       },
       "0.23500000000000001": {
         "significance": 231.906,
         "significance_error": 0.602206,
-        "signal": 78014.1,
-        "signal_error": 336.405
+        "signal": 78014.2,
+        "signal_error": 336.405,
+        "fit_params": {
+          "mean": 0.495081,
+          "sigma": 0.00489724,
+          "N": 3116.33,
+          "pol2_0": -17424.0,
+          "pol2_1": 73481.1,
+          "pol2_2": -75821.7
+        }
       },
       "0.24": {
         "significance": 231.729,
         "significance_error": 0.601863,
         "signal": 77806.4,
-        "signal_error": 335.765
+        "signal_error": 335.765,
+        "fit_params": {
+          "mean": 0.495079,
+          "sigma": 0.00489861,
+          "N": 3107.41,
+          "pol2_0": -17275.2,
+          "pol2_1": 72868.6,
+          "pol2_2": -75201.2
+        }
       },
       "0.245": {
-        "significance": 231.39,
-        "significance_error": 0.60179,
-        "signal": 77560.1,
-        "signal_error": 335.192
+        "significance": 231.435,
+        "significance_error": 0.601731,
+        "signal": 77575.4,
+        "signal_error": 335.192,
+        "fit_params": {
+          "mean": 0.495079,
+          "sigma": 0.00489656,
+          "N": 3098.93,
+          "pol2_0": -17278.3,
+          "pol2_1": 72867.7,
+          "pol2_2": -75193.0
+        }
       },
       "0.25": {
-        "significance": 231.124,
-        "significance_error": 0.601561,
-        "signal": 77322.9,
-        "signal_error": 334.552
+        "significance": 231.081,
+        "significance_error": 0.601617,
+        "signal": 77308.5,
+        "signal_error": 334.552,
+        "fit_params": {
+          "mean": 0.495076,
+          "sigma": 0.0048949,
+          "N": 3089.68,
+          "pol2_0": -17282.0,
+          "pol2_1": 72866.7,
+          "pol2_2": -75182.4
+        }
       },
       "0.255": {
-        "significance": 230.883,
+        "significance": 230.884,
         "significance_error": 0.601291,
-        "signal": 77092.8,
-        "signal_error": 333.904
+        "signal": 77093.0,
+        "signal_error": 333.904,
+        "fit_params": {
+          "mean": 0.495074,
+          "sigma": 0.00489432,
+          "N": 3081.18,
+          "pol2_0": -17108.8,
+          "pol2_1": 72150.1,
+          "pol2_2": -74451.3
+        }
       },
       "0.26": {
-        "significance": 230.618,
-        "significance_error": 0.601074,
-        "signal": 76860.1,
-        "signal_error": 333.279
+        "significance": 230.547,
+        "significance_error": 0.601165,
+        "signal": 76836.7,
+        "signal_error": 333.279,
+        "fit_params": {
+          "mean": 0.495075,
+          "sigma": 0.0048966,
+          "N": 3069.38,
+          "pol2_0": -17111.4,
+          "pol2_1": 72149.1,
+          "pol2_2": -74445.2
+        }
       },
       "0.265": {
         "significance": 230.424,
         "significance_error": 0.600788,
-        "signal": 76658.2,
-        "signal_error": 332.683
+        "signal": 76658.1,
+        "signal_error": 332.683,
+        "fit_params": {
+          "mean": 0.495076,
+          "sigma": 0.00489676,
+          "N": 3062.05,
+          "pol2_0": -16966.4,
+          "pol2_1": 71544.8,
+          "pol2_2": -73826.0
+        }
       },
       "0.27": {
         "significance": 230.223,
         "significance_error": 0.600476,
         "signal": 76445.3,
-        "signal_error": 332.048
+        "signal_error": 332.048,
+        "fit_params": {
+          "mean": 0.495073,
+          "sigma": 0.00489748,
+          "N": 3053.11,
+          "pol2_0": -16836.6,
+          "pol2_1": 71001.9,
+          "pol2_2": -73267.9
+        }
       },
       "0.275": {
-        "significance": 229.993,
-        "significance_error": 0.600204,
-        "signal": 76223.1,
-        "signal_error": 331.415
+        "significance": 229.983,
+        "significance_error": 0.600217,
+        "signal": 76219.8,
+        "signal_error": 331.415,
+        "fit_params": {
+          "mean": 0.495071,
+          "sigma": 0.00489809,
+          "N": 3043.76,
+          "pol2_0": -16840.1,
+          "pol2_1": 71000.7,
+          "pol2_2": -73259.4
+        }
       },
       "0.28": {
-        "significance": 229.699,
-        "significance_error": 0.600043,
-        "signal": 75987.7,
-        "signal_error": 330.814
+        "significance": 229.723,
+        "significance_error": 0.600012,
+        "signal": 75995.6,
+        "signal_error": 330.814,
+        "fit_params": {
+          "mean": 0.495069,
+          "sigma": 0.00489557,
+          "N": 3035.94,
+          "pol2_0": -16845.1,
+          "pol2_1": 70999.7,
+          "pol2_2": -73244.1
+        }
       },
       "0.28500000000000003": {
-        "significance": 229.415,
-        "significance_error": 0.599847,
-        "signal": 75750.4,
-        "signal_error": 330.189
+        "significance": 229.346,
+        "significance_error": 0.599937,
+        "signal": 75727.7,
+        "signal_error": 330.189,
+        "fit_params": {
+          "mean": 0.495069,
+          "sigma": 0.00489433,
+          "N": 3026.46,
+          "pol2_0": -16847.9,
+          "pol2_1": 70998.8,
+          "pol2_2": -73236.8
+        }
       },
       "0.29": {
         "significance": 229.114,
         "significance_error": 0.599634,
         "signal": 75498.2,
-        "signal_error": 329.522
+        "signal_error": 329.522,
+        "fit_params": {
+          "mean": 0.495068,
+          "sigma": 0.00489443,
+          "N": 3016.95,
+          "pol2_0": -16666.5,
+          "pol2_1": 70251.2,
+          "pol2_2": -72476.1
+        }
       },
       "0.295": {
-        "significance": 228.857,
-        "significance_error": 0.599436,
-        "signal": 75279.0,
-        "signal_error": 328.935
+        "significance": 228.833,
+        "significance_error": 0.599467,
+        "signal": 75271.2,
+        "signal_error": 328.935,
+        "fit_params": {
+          "mean": 0.495066,
+          "sigma": 0.00489223,
+          "N": 3009.55,
+          "pol2_0": -16667.5,
+          "pol2_1": 70250.1,
+          "pol2_2": -72476.6
+        }
       },
       "0.3": {
         "significance": 228.651,
         "significance_error": 0.599159,
-        "signal": 75074.3,
-        "signal_error": 328.335
+        "signal": 75074.2,
+        "signal_error": 328.335,
+        "fit_params": {
+          "mean": 0.495063,
+          "sigma": 0.00489152,
+          "N": 3002.01,
+          "pol2_0": -16538.1,
+          "pol2_1": 69710.9,
+          "pol2_2": -71923.8
+        }
       },
       "0.305": {
-        "significance": 228.406,
-        "significance_error": 0.598902,
-        "signal": 74849.3,
-        "signal_error": 327.703
+        "significance": 228.316,
+        "significance_error": 0.599021,
+        "signal": 74819.7,
+        "signal_error": 327.703,
+        "fit_params": {
+          "mean": 0.495063,
+          "sigma": 0.00489092,
+          "N": 2992.29,
+          "pol2_0": -16542.4,
+          "pol2_1": 69709.9,
+          "pol2_2": -71911.1
+        }
       },
       "0.31": {
         "significance": 228.176,
         "significance_error": 0.598629,
         "signal": 74630.2,
-        "signal_error": 327.073
+        "signal_error": 327.073,
+        "fit_params": {
+          "mean": 0.495059,
+          "sigma": 0.00489315,
+          "N": 2982.62,
+          "pol2_0": -16349.7,
+          "pol2_1": 68913.1,
+          "pol2_2": -71097.5
+        }
       },
       "0.315": {
         "significance": 227.919,
         "significance_error": 0.598439,
         "signal": 74415.2,
-        "signal_error": 326.498
+        "signal_error": 326.498,
+        "fit_params": {
+          "mean": 0.495057,
+          "sigma": 0.00489423,
+          "N": 2973.28,
+          "pol2_0": -16243.8,
+          "pol2_1": 68477.0,
+          "pol2_2": -70655.7
+        }
       },
       "0.32": {
-        "significance": 227.656,
-        "significance_error": 0.598188,
-        "signal": 74181.3,
-        "signal_error": 325.848
+        "significance": 227.56,
+        "significance_error": 0.598314,
+        "signal": 74150.1,
+        "signal_error": 325.848,
+        "fit_params": {
+          "mean": 0.495058,
+          "sigma": 0.00489268,
+          "N": 2964.28,
+          "pol2_0": -16246.3,
+          "pol2_1": 68476.0,
+          "pol2_2": -70650.0
+        }
       },
       "0.325": {
         "significance": 227.373,
         "significance_error": 0.598009,
-        "signal": 73952.4,
-        "signal_error": 325.248
+        "signal": 73952.5,
+        "signal_error": 325.248,
+        "fit_params": {
+          "mean": 0.495056,
+          "sigma": 0.00489414,
+          "N": 2954.77,
+          "pol2_0": -16094.3,
+          "pol2_1": 67844.8,
+          "pol2_2": -70003.7
+        }
       },
       "0.33": {
-        "significance": 227.017,
-        "significance_error": 0.597961,
-        "signal": 73709.2,
-        "signal_error": 324.686
+        "significance": 227.12,
+        "significance_error": 0.597825,
+        "signal": 73742.7,
+        "signal_error": 324.686,
+        "fit_params": {
+          "mean": 0.495057,
+          "sigma": 0.0048946,
+          "N": 2945.84,
+          "pol2_0": -16097.9,
+          "pol2_1": 67843.9,
+          "pol2_2": -69993.5
+        }
       },
       "0.335": {
-        "significance": 226.799,
-        "significance_error": 0.597765,
-        "signal": 73519.6,
-        "signal_error": 324.162
+        "significance": 226.867,
+        "significance_error": 0.597675,
+        "signal": 73541.8,
+        "signal_error": 324.162,
+        "fit_params": {
+          "mean": 0.495056,
+          "sigma": 0.00489474,
+          "N": 2937.41,
+          "pol2_0": -16101.1,
+          "pol2_1": 67843.1,
+          "pol2_2": -69984.8
+        }
       },
       "0.34": {
         "significance": 226.379,
         "significance_error": 0.597765,
         "signal": 73247.4,
-        "signal_error": 323.561
+        "signal_error": 323.561,
+        "fit_params": {
+          "mean": 0.495056,
+          "sigma": 0.00489093,
+          "N": 2928.02,
+          "pol2_0": -16212.2,
+          "pol2_1": 68279.1,
+          "pol2_2": -70415.8
+        }
       },
       "0.34500000000000003": {
-        "significance": 226.063,
-        "significance_error": 0.597652,
-        "signal": 73015.4,
-        "signal_error": 322.988
+        "significance": 226.374,
+        "significance_error": 0.596943,
+        "signal": 73043.2,
+        "signal_error": 322.665,
+        "fit_params": {
+          "mean": 0.495056,
+          "sigma": 0.00488872,
+          "N": 2919.6,
+          "pol2_0": -16215.3,
+          "pol2_1": 68278.4,
+          "pol2_2": -70406.6
+        }
       },
       "0.35000000000000003": {
         "significance": 225.745,
         "significance_error": 0.597461,
         "signal": 72763.8,
-        "signal_error": 322.327
+        "signal_error": 322.327,
+        "fit_params": {
+          "mean": 0.495056,
+          "sigma": 0.00488977,
+          "N": 2909.42,
+          "pol2_0": -16054.2,
+          "pol2_1": 67615.8,
+          "pol2_2": -69733.7
+        }
       },
       "0.355": {
-        "significance": 225.518,
-        "significance_error": 0.597209,
-        "signal": 72556.1,
-        "signal_error": 321.731
+        "significance": 225.774,
+        "significance_error": 0.596572,
+        "signal": 72566.4,
+        "signal_error": 321.411,
+        "fit_params": {
+          "mean": 0.495051,
+          "sigma": 0.00488847,
+          "N": 2900.97,
+          "pol2_0": -16056.6,
+          "pol2_1": 67614.8,
+          "pol2_2": -69728.2
+        }
       },
       "0.36": {
         "significance": 225.579,
         "significance_error": 0.596243,
         "signal": 72361.1,
-        "signal_error": 320.779
+        "signal_error": 320.779,
+        "fit_params": {
+          "mean": 0.495049,
+          "sigma": 0.00488698,
+          "N": 2893.2,
+          "pol2_0": -15834.2,
+          "pol2_1": 66698.8,
+          "pol2_2": -68794.3
+        }
       },
       "0.365": {
-        "significance": 225.25,
-        "significance_error": 0.59611,
-        "signal": 72117.5,
-        "signal_error": 320.167
+        "significance": 225.221,
+        "significance_error": 0.596148,
+        "signal": 72108.3,
+        "signal_error": 320.167,
+        "fit_params": {
+          "mean": 0.495047,
+          "sigma": 0.00488546,
+          "N": 2884.42,
+          "pol2_0": -15837.2,
+          "pol2_1": 66697.9,
+          "pol2_2": -68786.2
+        }
       },
       "0.37": {
-        "significance": 224.935,
-        "significance_error": 0.596004,
-        "signal": 71890.4,
-        "signal_error": 319.606
+        "significance": 224.894,
+        "significance_error": 0.596059,
+        "signal": 71877.3,
+        "signal_error": 319.606,
+        "fit_params": {
+          "mean": 0.495045,
+          "sigma": 0.00488441,
+          "N": 2875.83,
+          "pol2_0": -15840.6,
+          "pol2_1": 66697.2,
+          "pol2_2": -68775.9
+        }
       },
       "0.375": {
         "significance": 224.7,
         "significance_error": 0.59573,
         "signal": 71674.3,
-        "signal_error": 318.978
+        "signal_error": 318.978,
+        "fit_params": {
+          "mean": 0.495044,
+          "sigma": 0.0048861,
+          "N": 2866.83,
+          "pol2_0": -15628.1,
+          "pol2_1": 65828.4,
+          "pol2_2": -67897.0
+        }
       },
       "0.38": {
-        "significance": 224.348,
-        "significance_error": 0.595611,
-        "signal": 71421.7,
-        "signal_error": 318.352
+        "significance": 224.276,
+        "significance_error": 0.595706,
+        "signal": 71398.8,
+        "signal_error": 318.352,
+        "fit_params": {
+          "mean": 0.495045,
+          "sigma": 0.00488532,
+          "N": 2856.81,
+          "pol2_0": -15630.6,
+          "pol2_1": 65827.6,
+          "pol2_2": -67890.3
+        }
       },
       "0.385": {
         "significance": 224.047,
         "significance_error": 0.595434,
         "signal": 71187.7,
-        "signal_error": 317.736
+        "signal_error": 317.736,
+        "fit_params": {
+          "mean": 0.495044,
+          "sigma": 0.00488571,
+          "N": 2847.7,
+          "pol2_0": -15474.7,
+          "pol2_1": 65187.8,
+          "pol2_2": -67242.2
+        }
       },
       "0.39": {
-        "significance": 223.708,
-        "significance_error": 0.595321,
-        "signal": 70945.9,
-        "signal_error": 317.136
+        "significance": 223.671,
+        "significance_error": 0.595372,
+        "signal": 70933.9,
+        "signal_error": 317.136,
+        "fit_params": {
+          "mean": 0.495044,
+          "sigma": 0.0048829,
+          "N": 2839.66,
+          "pol2_0": -15478.4,
+          "pol2_1": 65187.0,
+          "pol2_2": -67230.9
+        }
       },
       "0.395": {
-        "significance": 223.472,
-        "significance_error": 0.595135,
-        "signal": 70751.8,
-        "signal_error": 316.602
+        "significance": 223.388,
+        "significance_error": 0.595247,
+        "signal": 70725.1,
+        "signal_error": 316.602,
+        "fit_params": {
+          "mean": 0.495041,
+          "sigma": 0.00488099,
+          "N": 2832.41,
+          "pol2_0": -15481.1,
+          "pol2_1": 65186.2,
+          "pol2_2": -67223.7
+        }
       },
       "0.4": {
         "significance": 223.242,
         "significance_error": 0.594889,
         "signal": 70547.6,
-        "signal_error": 316.014
+        "signal_error": 316.014,
+        "fit_params": {
+          "mean": 0.495035,
+          "sigma": 0.00488381,
+          "N": 2823.29,
+          "pol2_0": -15331.0,
+          "pol2_1": 64567.0,
+          "pol2_2": -66593.9
+        }
       }
     },
     "v0cospa": {},
@@ -981,989 +2277,2285 @@
     "v0radius": {}
   },
   "LambdaData": {
-    "dcanegtopv": {
-      "0.0": {
-        "significance": 112.387,
-        "significance_error": 0.707487,
-        "signal": 25288.8,
-        "signal_error": 225.016
-      },
-      "0.005": {
-        "significance": 112.52,
-        "significance_error": 0.706543,
-        "signal": 25281.3,
-        "signal_error": 224.682
-      },
-      "0.01": {
-        "significance": 112.875,
-        "significance_error": 0.704427,
-        "signal": 25288.8,
-        "signal_error": 224.042
-      },
-      "0.015": {
-        "significance": 113.253,
-        "significance_error": 0.701894,
-        "signal": 25275.8,
-        "signal_error": 223.179
-      },
-      "0.02": {
-        "significance": 113.652,
-        "significance_error": 0.699473,
-        "signal": 25278.9,
-        "signal_error": 222.423
-      },
-      "0.025": {
-        "significance": 114.08,
-        "significance_error": 0.697313,
-        "signal": 25312.3,
-        "signal_error": 221.883
-      },
-      "0.03": {
-        "significance": 114.28,
-        "significance_error": 0.69582,
-        "signal": 25292.5,
-        "signal_error": 221.321
-      },
-      "0.035": {
-        "significance": 114.122,
-        "significance_error": 0.697529,
-        "signal": 25347.0,
-        "signal_error": 222.104
-      },
-      "0.04": {
-        "significance": 114.217,
-        "significance_error": 0.69664,
-        "signal": 25324.2,
-        "signal_error": 221.721
-      },
-      "0.045": {
-        "significance": 114.367,
-        "significance_error": 0.695619,
-        "signal": 25316.4,
-        "signal_error": 221.362
-      },
-      "0.05": {
-        "significance": 114.398,
-        "significance_error": 0.69502,
-        "signal": 25286.6,
-        "signal_error": 221.041
-      },
-      "0.055": {
-        "significance": 114.382,
-        "significance_error": 0.694605,
-        "signal": 25249.4,
-        "signal_error": 220.746
-      },
-      "0.06": {
-        "significance": 114.487,
-        "significance_error": 0.693954,
-        "signal": 25248.5,
-        "signal_error": 220.536
-      },
-      "0.065": {
-        "significance": 114.626,
-        "significance_error": 0.693121,
-        "signal": 25248.9,
-        "signal_error": 220.273
-      },
-      "0.07": {
-        "significance": 114.727,
-        "significance_error": 0.692402,
-        "signal": 25240.9,
-        "signal_error": 220.009
-      },
-      "0.075": {
-        "significance": 114.818,
-        "significance_error": 0.691682,
-        "signal": 25228.6,
-        "signal_error": 219.727
-      },
-      "0.08": {
-        "significance": 115.218,
-        "significance_error": 0.688181,
-        "signal": 25148.2,
-        "signal_error": 218.266
-      },
-      "0.085": {
-        "significance": 114.96,
-        "significance_error": 0.690269,
-        "signal": 25187.8,
-        "signal_error": 219.1
-      },
-      "0.09": {
-        "significance": 115.034,
-        "significance_error": 0.689582,
-        "signal": 25170.2,
-        "signal_error": 218.806
-      },
-      "0.095": {
-        "significance": 115.097,
-        "significance_error": 0.688835,
-        "signal": 25143.1,
-        "signal_error": 218.451
-      },
-      "0.1": {
-        "significance": 115.404,
-        "significance_error": 0.685555,
-        "signal": 25037.4,
-        "signal_error": 216.954
-      },
-      "0.105": {
-        "significance": 115.135,
-        "significance_error": 0.687473,
-        "signal": 25060.3,
-        "signal_error": 217.66
-      },
-      "0.11": {
-        "significance": 115.2,
-        "significance_error": 0.686707,
-        "signal": 25032.5,
-        "signal_error": 217.297
-      },
-      "0.115": {
-        "significance": 115.278,
-        "significance_error": 0.68584,
-        "signal": 25003.4,
-        "signal_error": 216.896
-      },
-      "0.12": {
-        "significance": 115.312,
-        "significance_error": 0.685122,
-        "signal": 24965.8,
-        "signal_error": 216.506
-      },
-      "0.125": {
-        "significance": 115.706,
-        "significance_error": 0.681645,
-        "signal": 24882.1,
-        "signal_error": 215.047
-      },
-      "0.13": {
-        "significance": 115.666,
-        "significance_error": 0.681168,
-        "signal": 24830.3,
-        "signal_error": 214.672
-      },
-      "0.135": {
-        "significance": 115.626,
-        "significance_error": 0.680758,
-        "signal": 24783.1,
-        "signal_error": 214.339
-      },
-      "0.14": {
-        "significance": 115.721,
-        "significance_error": 0.679999,
-        "signal": 24768.7,
-        "signal_error": 214.037
-      },
-      "0.145": {
-        "significance": 115.775,
-        "significance_error": 0.679311,
-        "signal": 24741.4,
-        "signal_error": 213.703
-      },
-      "0.15": {
-        "significance": 115.784,
-        "significance_error": 0.678663,
-        "signal": 24698.0,
-        "signal_error": 213.312
-      },
-      "0.155": {
-        "significance": 115.887,
-        "significance_error": 0.67783,
-        "signal": 24681.5,
-        "signal_error": 212.979
-      },
-      "0.16": {
-        "significance": 115.891,
-        "significance_error": 0.677242,
-        "signal": 24640.4,
-        "signal_error": 212.617
-      },
-      "0.165": {
-        "significance": 115.942,
-        "significance_error": 0.676545,
-        "signal": 24611.5,
-        "signal_error": 212.273
-      },
-      "0.17": {
-        "significance": 116.036,
-        "significance_error": 0.675706,
-        "signal": 24590.0,
-        "signal_error": 211.917
-      },
-      "0.17500000000000002": {
-        "significance": 116.044,
-        "significance_error": 0.675057,
-        "signal": 24546.2,
-        "signal_error": 211.525
-      },
-      "0.18": {
-        "significance": 116.041,
-        "significance_error": 0.674506,
-        "signal": 24505.0,
-        "signal_error": 211.175
-      },
-      "0.185": {
-        "significance": 115.812,
-        "significance_error": 0.67637,
-        "signal": 24543.3,
-        "signal_error": 211.925
-      },
-      "0.19": {
-        "significance": 115.958,
-        "significance_error": 0.673557,
-        "signal": 24401.1,
-        "signal_error": 210.431
-      },
-      "0.195": {
-        "significance": 115.946,
-        "significance_error": 0.673028,
-        "signal": 24357.7,
-        "signal_error": 210.079
-      },
-      "0.2": {
-        "significance": 115.963,
-        "significance_error": 0.672394,
-        "signal": 24319.1,
-        "signal_error": 209.714
-      },
-      "0.20500000000000002": {
-        "significance": 115.892,
-        "significance_error": 0.672003,
-        "signal": 24261.1,
-        "signal_error": 209.342
-      },
-      "0.21": {
-        "significance": 115.858,
-        "significance_error": 0.671498,
-        "signal": 24210.5,
-        "signal_error": 208.967
-      },
-      "0.215": {
-        "significance": 115.848,
-        "significance_error": 0.670963,
-        "signal": 24167.5,
-        "signal_error": 208.614
-      },
-      "0.22": {
-        "significance": 115.786,
-        "significance_error": 0.670608,
-        "signal": 24116.4,
-        "signal_error": 208.283
-      },
-      "0.225": {
-        "significance": 115.787,
-        "significance_error": 0.670097,
-        "signal": 24079.7,
-        "signal_error": 207.966
-      },
-      "0.23": {
-        "significance": 115.788,
-        "significance_error": 0.669561,
-        "signal": 24041.8,
-        "signal_error": 207.637
-      },
-      "0.23500000000000001": {
-        "significance": 115.723,
-        "significance_error": 0.669144,
-        "signal": 23984.8,
-        "signal_error": 207.261
-      },
-      "0.24": {
-        "significance": 115.68,
-        "significance_error": 0.668765,
-        "signal": 23939.8,
-        "signal_error": 206.949
-      },
-      "0.245": {
-        "significance": 115.653,
-        "significance_error": 0.668385,
-        "signal": 23901.6,
-        "signal_error": 206.666
-      },
-      "0.25": {
-        "significance": 115.643,
-        "significance_error": 0.667918,
-        "signal": 23863.9,
-        "signal_error": 206.359
-      },
-      "0.255": {
-        "significance": 115.596,
-        "significance_error": 0.667436,
-        "signal": 23810.2,
-        "signal_error": 205.978
-      },
-      "0.26": {
-        "significance": 115.55,
-        "significance_error": 0.667029,
-        "signal": 23762.3,
-        "signal_error": 205.645
-      },
-      "0.265": {
-        "significance": 115.479,
-        "significance_error": 0.666711,
-        "signal": 23710.7,
-        "signal_error": 205.324
-      },
-      "0.27": {
-        "significance": 115.391,
-        "significance_error": 0.666379,
-        "signal": 23651.0,
-        "signal_error": 204.963
-      },
-      "0.275": {
-        "significance": 115.323,
-        "significance_error": 0.666064,
-        "signal": 23600.7,
-        "signal_error": 204.648
-      },
-      "0.28": {
-        "significance": 115.237,
-        "significance_error": 0.665824,
-        "signal": 23548.4,
-        "signal_error": 204.348
-      },
-      "0.28500000000000003": {
-        "significance": 115.162,
-        "significance_error": 0.66554,
-        "signal": 23497.9,
-        "signal_error": 204.042
-      },
-      "0.29": {
-        "significance": 115.071,
-        "significance_error": 0.665271,
-        "signal": 23441.8,
-        "signal_error": 203.715
-      },
-      "0.295": {
-        "significance": 114.998,
-        "significance_error": 0.664909,
-        "signal": 23386.5,
-        "signal_error": 203.364
-      },
-      "0.3": {
-        "significance": 114.935,
-        "significance_error": 0.664564,
-        "signal": 23336.6,
-        "signal_error": 203.042
-      },
-      "0.305": {
-        "significance": 114.77,
-        "significance_error": 0.66445,
-        "signal": 23261.9,
-        "signal_error": 202.682
-      },
-      "0.31": {
-        "significance": 114.67,
-        "significance_error": 0.664106,
-        "signal": 23197.0,
-        "signal_error": 202.294
-      },
-      "0.315": {
-        "significance": 114.634,
-        "significance_error": 0.663683,
-        "signal": 23152.9,
-        "signal_error": 201.973
-      },
-      "0.32": {
-        "significance": 114.613,
-        "significance_error": 0.66324,
-        "signal": 23113.9,
-        "signal_error": 201.668
-      },
-      "0.325": {
-        "significance": 114.556,
-        "significance_error": 0.662862,
-        "signal": 23064.5,
-        "signal_error": 201.338
-      },
-      "0.33": {
-        "significance": 114.541,
-        "significance_error": 0.662429,
-        "signal": 23028.1,
-        "signal_error": 201.047
-      },
-      "0.335": {
-        "significance": 114.432,
-        "significance_error": 0.662244,
-        "signal": 22971.4,
-        "signal_error": 200.744
-      },
-      "0.34": {
-        "significance": 114.382,
-        "significance_error": 0.661934,
-        "signal": 22930.1,
-        "signal_error": 200.469
-      },
-      "0.34500000000000003": {
-        "significance": 114.243,
-        "significance_error": 0.661748,
-        "signal": 22861.4,
-        "signal_error": 200.112
-      },
-      "0.35000000000000003": {
-        "significance": 114.224,
-        "significance_error": 0.661365,
-        "signal": 22827.3,
-        "signal_error": 199.847
-      },
-      "0.355": {
-        "significance": 114.198,
-        "significance_error": 0.660954,
-        "signal": 22788.8,
-        "signal_error": 199.555
-      },
-      "0.36": {
-        "significance": 114.015,
-        "significance_error": 0.660882,
-        "signal": 22710.8,
-        "signal_error": 199.191
-      },
-      "0.365": {
-        "significance": 113.956,
-        "significance_error": 0.660504,
-        "signal": 22661.1,
-        "signal_error": 198.859
-      },
-      "0.37": {
-        "significance": 113.852,
-        "significance_error": 0.660307,
-        "signal": 22606.4,
-        "signal_error": 198.56
-      },
-      "0.375": {
-        "significance": 113.708,
-        "significance_error": 0.660191,
-        "signal": 22541.5,
-        "signal_error": 198.24
-      },
-      "0.38": {
-        "significance": 113.608,
-        "significance_error": 0.659974,
-        "signal": 22486.9,
-        "signal_error": 197.934
-      },
-      "0.385": {
-        "significance": 113.703,
-        "significance_error": 0.659263,
-        "signal": 22476.1,
-        "signal_error": 197.674
-      },
-      "0.39": {
-        "significance": 113.599,
-        "significance_error": 0.658953,
-        "signal": 22413.8,
-        "signal_error": 197.307
-      },
-      "0.395": {
-        "significance": 113.456,
-        "significance_error": 0.658766,
-        "signal": 22344.7,
-        "signal_error": 196.947
-      },
-      "0.4": {
-        "significance": 113.295,
-        "significance_error": 0.658719,
-        "signal": 22278.2,
-        "signal_error": 196.639
-      }
-    },
-    "dcapostopv": {
-      "0.0": {
-        "significance": 112.387,
-        "significance_error": 0.707487,
-        "signal": 25288.8,
-        "signal_error": 225.016
-      },
-      "0.005": {
-        "significance": 113.264,
-        "significance_error": 0.701574,
-        "signal": 25257.7,
-        "signal_error": 222.998
-      },
-      "0.01": {
-        "significance": 114.139,
-        "significance_error": 0.695148,
-        "signal": 25181.6,
-        "signal_error": 220.622
-      },
-      "0.015": {
-        "significance": 114.624,
-        "significance_error": 0.690859,
-        "signal": 25083.5,
-        "signal_error": 218.833
-      },
-      "0.02": {
-        "significance": 115.013,
-        "significance_error": 0.687631,
-        "signal": 25018.7,
-        "signal_error": 217.529
-      },
-      "0.025": {
-        "significance": 115.128,
-        "significance_error": 0.685577,
-        "signal": 24919.4,
-        "signal_error": 216.449
-      },
-      "0.03": {
-        "significance": 115.365,
-        "significance_error": 0.683189,
-        "signal": 24848.0,
-        "signal_error": 215.386
-      },
-      "0.035": {
-        "significance": 115.302,
-        "significance_error": 0.681837,
-        "signal": 24722.5,
-        "signal_error": 214.415
-      },
-      "0.04": {
-        "significance": 115.373,
-        "significance_error": 0.680074,
-        "signal": 24625.4,
-        "signal_error": 213.441
-      },
-      "0.045": {
-        "significance": 115.322,
-        "significance_error": 0.678719,
-        "signal": 24505.6,
-        "signal_error": 212.497
-      },
-      "0.05": {
-        "significance": 115.384,
-        "significance_error": 0.677047,
-        "signal": 24411.4,
-        "signal_error": 211.566
-      },
-      "0.055": {
-        "significance": 115.469,
-        "significance_error": 0.675243,
-        "signal": 24317.2,
-        "signal_error": 210.594
-      },
-      "0.06": {
-        "significance": 115.42,
-        "significance_error": 0.673797,
-        "signal": 24192.6,
-        "signal_error": 209.604
-      },
-      "0.065": {
-        "significance": 115.058,
-        "significance_error": 0.673038,
-        "signal": 23986.7,
-        "signal_error": 208.475
-      },
-      "0.07": {
-        "significance": 114.683,
-        "significance_error": 0.674227,
-        "signal": 23914.8,
-        "signal_error": 208.531
-      },
-      "0.075": {
-        "significance": 114.693,
-        "significance_error": 0.670725,
-        "signal": 23671.2,
-        "signal_error": 206.388
-      },
-      "0.08": {
-        "significance": 114.39,
-        "significance_error": 0.669747,
-        "signal": 23477.9,
-        "signal_error": 205.244
-      },
-      "0.085": {
-        "significance": 113.886,
-        "significance_error": 0.670876,
-        "signal": 23350.0,
-        "signal_error": 205.029
-      },
-      "0.09": {
-        "significance": 113.742,
-        "significance_error": 0.669263,
-        "signal": 23179.2,
-        "signal_error": 203.787
-      },
-      "0.095": {
-        "significance": 113.221,
-        "significance_error": 0.66865,
-        "signal": 22925.3,
-        "signal_error": 202.482
-      },
-      "0.1": {
-        "significance": 112.855,
-        "significance_error": 0.66568,
-        "signal": 22575.2,
-        "signal_error": 200.037
-      },
-      "0.105": {
-        "significance": 112.493,
-        "significance_error": 0.664557,
-        "signal": 22355.0,
-        "signal_error": 198.723
-      },
-      "0.11": {
-        "significance": 112.027,
-        "significance_error": 0.663704,
-        "signal": 22113.4,
-        "signal_error": 197.393
-      },
-      "0.115": {
-        "significance": 111.645,
-        "significance_error": 0.662644,
-        "signal": 21892.6,
-        "signal_error": 196.092
-      },
-      "0.12": {
-        "significance": 111.319,
-        "significance_error": 0.66148,
-        "signal": 21688.7,
-        "signal_error": 194.833
-      },
-      "0.125": {
-        "significance": 110.781,
-        "significance_error": 0.660917,
-        "signal": 21442.9,
-        "signal_error": 193.561
-      },
-      "0.13": {
-        "significance": 110.366,
-        "significance_error": 0.660035,
-        "signal": 21225.9,
-        "signal_error": 192.323
-      },
-      "0.135": {
-        "significance": 109.583,
-        "significance_error": 0.661705,
-        "signal": 21031.6,
-        "signal_error": 191.924
-      },
-      "0.14": {
-        "significance": 109.235,
-        "significance_error": 0.660764,
-        "signal": 20839.0,
-        "signal_error": 190.772
-      },
-      "0.145": {
-        "significance": 108.502,
-        "significance_error": 0.660661,
-        "signal": 20554.0,
-        "signal_error": 189.433
-      },
-      "0.15": {
-        "significance": 107.774,
-        "significance_error": 0.660616,
-        "signal": 20276.1,
-        "signal_error": 188.136
-      },
-      "0.155": {
-        "significance": 107.15,
-        "significance_error": 0.660472,
-        "signal": 20033.3,
-        "signal_error": 186.965
-      },
-      "0.16": {
-        "significance": 106.78,
-        "significance_error": 0.659684,
-        "signal": 19848.0,
-        "signal_error": 185.876
-      },
-      "0.165": {
-        "significance": 106.224,
-        "significance_error": 0.659472,
-        "signal": 19629.1,
-        "signal_error": 184.789
-      },
-      "0.17": {
-        "significance": 105.655,
-        "significance_error": 0.659219,
-        "signal": 19404.3,
-        "signal_error": 183.657
-      },
-      "0.17500000000000002": {
-        "significance": 105.316,
-        "significance_error": 0.658486,
-        "signal": 19237.0,
-        "signal_error": 182.661
-      },
-      "0.18": {
-        "significance": 104.763,
-        "significance_error": 0.658202,
-        "signal": 19019.3,
-        "signal_error": 181.546
-      },
-      "0.185": {
-        "significance": 104.354,
-        "significance_error": 0.657661,
-        "signal": 18840.2,
-        "signal_error": 180.541
-      },
-      "0.19": {
-        "significance": 103.726,
-        "significance_error": 0.657607,
-        "signal": 18610.9,
-        "signal_error": 179.424
-      },
-      "0.195": {
-        "significance": 103.05,
-        "significance_error": 0.657656,
-        "signal": 18371.8,
-        "signal_error": 178.281
-      },
-      "0.2": {
-        "significance": 102.386,
-        "significance_error": 0.657804,
-        "signal": 18144.0,
-        "signal_error": 177.212
-      },
-      "0.20500000000000002": {
-        "significance": 101.887,
-        "significance_error": 0.657609,
-        "signal": 17957.0,
-        "signal_error": 176.244
-      },
-      "0.21": {
-        "significance": 101.299,
-        "significance_error": 0.657542,
-        "signal": 17746.7,
-        "signal_error": 175.191
-      },
-      "0.215": {
-        "significance": 100.778,
-        "significance_error": 0.657402,
-        "signal": 17557.0,
-        "signal_error": 174.215
-      },
-      "0.22": {
-        "significance": 100.213,
-        "significance_error": 0.657492,
-        "signal": 17365.4,
-        "signal_error": 173.286
-      },
-      "0.225": {
-        "significance": 99.5475,
-        "significance_error": 0.657748,
-        "signal": 17149.1,
-        "signal_error": 172.27
-      },
-      "0.23": {
-        "significance": 99.005,
-        "significance_error": 0.657617,
-        "signal": 16955.9,
-        "signal_error": 171.263
-      },
-      "0.23500000000000001": {
-        "significance": 98.5152,
-        "significance_error": 0.657388,
-        "signal": 16776.8,
-        "signal_error": 170.297
-      },
-      "0.24": {
-        "significance": 98.0611,
-        "significance_error": 0.657054,
-        "signal": 16605.6,
-        "signal_error": 169.34
-      },
-      "0.245": {
-        "significance": 97.4672,
-        "significance_error": 0.657212,
-        "signal": 16413.0,
-        "signal_error": 168.395
-      },
-      "0.25": {
-        "significance": 96.9313,
-        "significance_error": 0.657224,
-        "signal": 16233.6,
-        "signal_error": 167.475
-      },
-      "0.255": {
-        "significance": 96.3841,
-        "significance_error": 0.657389,
-        "signal": 16058.9,
-        "signal_error": 166.613
-      },
-      "0.26": {
-        "significance": 96.1146,
-        "significance_error": 0.655187,
-        "signal": 15862.4,
-        "signal_error": 165.036
-      },
-      "0.265": {
-        "significance": 95.5223,
-        "significance_error": 0.655422,
-        "signal": 15678.8,
-        "signal_error": 164.137
-      },
-      "0.27": {
-        "significance": 95.1679,
-        "significance_error": 0.654965,
-        "signal": 15541.0,
-        "signal_error": 163.3
-      },
-      "0.275": {
-        "significance": 94.733,
-        "significance_error": 0.654743,
-        "signal": 15388.8,
-        "signal_error": 162.444
-      },
-      "0.28": {
-        "significance": 94.3666,
-        "significance_error": 0.654328,
-        "signal": 15250.7,
-        "signal_error": 161.611
-      },
-      "0.28500000000000003": {
-        "significance": 93.897,
-        "significance_error": 0.654311,
-        "signal": 15098.4,
-        "signal_error": 160.798
-      },
-      "0.29": {
-        "significance": 93.3486,
-        "significance_error": 0.654517,
-        "signal": 14932.0,
-        "signal_error": 159.959
-      },
-      "0.295": {
-        "significance": 92.9718,
-        "significance_error": 0.654066,
-        "signal": 14791.3,
-        "signal_error": 159.094
-      },
-      "0.3": {
-        "significance": 92.4619,
-        "significance_error": 0.654183,
-        "signal": 14634.7,
-        "signal_error": 158.278
-      },
-      "0.305": {
-        "significance": 92.0768,
-        "significance_error": 0.653815,
-        "signal": 14496.8,
-        "signal_error": 157.442
-      },
-      "0.31": {
-        "significance": 91.52,
-        "significance_error": 0.654122,
-        "signal": 14335.4,
-        "signal_error": 156.637
-      },
-      "0.315": {
-        "significance": 90.9465,
-        "significance_error": 0.654435,
-        "signal": 14169.9,
-        "signal_error": 155.804
-      },
-      "0.32": {
-        "significance": 90.3496,
-        "significance_error": 0.654719,
-        "signal": 13996.6,
-        "signal_error": 154.916
-      },
-      "0.325": {
-        "significance": 89.7918,
-        "significance_error": 0.655095,
-        "signal": 13840.2,
-        "signal_error": 154.136
-      },
-      "0.33": {
-        "significance": 89.3922,
-        "significance_error": 0.654858,
-        "signal": 13707.4,
-        "signal_error": 153.339
-      },
-      "0.335": {
-        "significance": 88.7308,
-        "significance_error": 0.655512,
-        "signal": 13532.2,
-        "signal_error": 152.509
-      },
-      "0.34": {
-        "significance": 88.1636,
-        "significance_error": 0.655935,
-        "signal": 13377.1,
-        "signal_error": 151.73
-      },
-      "0.34500000000000003": {
-        "significance": 87.7221,
-        "significance_error": 0.656,
-        "signal": 13246.0,
-        "signal_error": 151.0
-      },
-      "0.35000000000000003": {
-        "significance": 87.1967,
-        "significance_error": 0.656439,
-        "signal": 13105.3,
-        "signal_error": 150.296
-      },
-      "0.355": {
-        "significance": 86.7343,
-        "significance_error": 0.656504,
-        "signal": 12969.3,
-        "signal_error": 149.529
-      },
-      "0.36": {
-        "significance": 86.3092,
-        "significance_error": 0.656502,
-        "signal": 12842.4,
-        "signal_error": 148.795
-      },
-      "0.365": {
-        "significance": 85.6298,
-        "significance_error": 0.658788,
-        "signal": 12729.2,
-        "signal_error": 148.654
-      },
-      "0.37": {
-        "significance": 85.3438,
-        "significance_error": 0.658393,
-        "signal": 12629.2,
-        "signal_error": 147.98
-      },
-      "0.375": {
-        "significance": 84.9764,
-        "significance_error": 0.658174,
-        "signal": 12512.3,
-        "signal_error": 147.245
-      },
-      "0.38": {
-        "significance": 84.7511,
-        "significance_error": 0.657569,
-        "signal": 12423.2,
-        "signal_error": 146.584
-      },
-      "0.385": {
-        "significance": 84.4532,
-        "significance_error": 0.655617,
-        "signal": 12262.9,
-        "signal_error": 145.203
-      },
-      "0.39": {
-        "significance": 83.6615,
-        "significance_error": 0.658446,
-        "signal": 12138.1,
-        "signal_error": 145.086
-      },
-      "0.395": {
-        "significance": 83.1749,
-        "significance_error": 0.65859,
-        "signal": 12002.6,
-        "signal_error": 144.305
-      },
-      "0.4": {
-        "significance": 82.6274,
-        "significance_error": 0.65892,
-        "signal": 11857.0,
-        "signal_error": 143.499
-      }
-    },
+    "dcanegtopv": {},
+    "dcapostopv": {},
     "v0cospa": {},
     "dcav0dau": {},
     "v0radius": {}
   },
   "K0MC": {
-    "dcanegtopv": {},
-    "dcapostopv": {},
+    "dcanegtopv": {
+      "0.0": {
+        "significance": 37.3813,
+        "significance_error": 0.541619,
+        "signal": 1639.67,
+        "signal_error": 43.8634,
+        "fit_params": {
+          "mean": 0.495715,
+          "sigma": 0.00403829,
+          "N": 72.3477,
+          "pol2_0": 21.1195,
+          "pol2_1": -50.78,
+          "pol2_2": 30.7636
+        }
+      },
+      "0.005": {
+        "significance": 37.5315,
+        "significance_error": 0.539477,
+        "signal": 1639.83,
+        "signal_error": 43.6921,
+        "fit_params": {
+          "mean": 0.495728,
+          "sigma": 0.00402305,
+          "N": 72.563,
+          "pol2_0": 37.663,
+          "pol2_1": -121.092,
+          "pol2_2": 104.477
+        }
+      },
+      "0.01": {
+        "significance": 37.5285,
+        "significance_error": 0.538579,
+        "signal": 1634.1,
+        "signal_error": 43.5431,
+        "fit_params": {
+          "mean": 0.49573,
+          "sigma": 0.00401246,
+          "N": 72.5736,
+          "pol2_0": 4.85737,
+          "pol2_1": 10.5666,
+          "pol2_2": -27.9072
+        }
+      },
+      "0.015": {
+        "significance": 37.5346,
+        "significance_error": 0.538322,
+        "signal": 1633.08,
+        "signal_error": 43.5086,
+        "fit_params": {
+          "mean": 0.495726,
+          "sigma": 0.00401208,
+          "N": 72.5512,
+          "pol2_0": -8.96333,
+          "pol2_1": 67.7484,
+          "pol2_2": -87.0826
+        }
+      },
+      "0.02": {
+        "significance": 37.5384,
+        "significance_error": 0.538223,
+        "signal": 1632.81,
+        "signal_error": 43.4971,
+        "fit_params": {
+          "mean": 0.495724,
+          "sigma": 0.00401138,
+          "N": 72.5732,
+          "pol2_0": -9.03922,
+          "pol2_1": 67.7447,
+          "pol2_2": -86.8035
+        }
+      },
+      "0.025": {
+        "significance": 37.5668,
+        "significance_error": 0.537949,
+        "signal": 1633.61,
+        "signal_error": 43.4856,
+        "fit_params": {
+          "mean": 0.49572,
+          "sigma": 0.00401679,
+          "N": 72.4964,
+          "pol2_0": 6.70808,
+          "pol2_1": 2.70299,
+          "pol2_2": -19.8064
+        }
+      },
+      "0.03": {
+        "significance": 37.5289,
+        "significance_error": 0.538006,
+        "signal": 1630.67,
+        "signal_error": 43.4511,
+        "fit_params": {
+          "mean": 0.495715,
+          "sigma": 0.0040212,
+          "N": 72.2923,
+          "pol2_0": 6.70465,
+          "pol2_1": 2.702,
+          "pol2_2": -19.7935
+        }
+      },
+      "0.035": {
+        "significance": 37.5093,
+        "significance_error": 0.538005,
+        "signal": 1628.96,
+        "signal_error": 43.4281,
+        "fit_params": {
+          "mean": 0.495713,
+          "sigma": 0.00402191,
+          "N": 72.2578,
+          "pol2_0": 6.71319,
+          "pol2_1": 2.69823,
+          "pol2_2": -19.8347
+        }
+      },
+      "0.04": {
+        "significance": 37.4968,
+        "significance_error": 0.53788,
+        "signal": 1627.12,
+        "signal_error": 43.3935,
+        "fit_params": {
+          "mean": 0.495709,
+          "sigma": 0.00402272,
+          "N": 72.2173,
+          "pol2_0": 6.72693,
+          "pol2_1": 2.6868,
+          "pol2_2": -19.926
+        }
+      },
+      "0.045": {
+        "significance": 37.5052,
+        "significance_error": 0.537677,
+        "signal": 1626.62,
+        "signal_error": 43.3705,
+        "fit_params": {
+          "mean": 0.495709,
+          "sigma": 0.00402245,
+          "N": 72.163,
+          "pol2_0": 6.59294,
+          "pol2_1": 2.67941,
+          "pol2_2": -19.4415
+        }
+      },
+      "0.05": {
+        "significance": 37.4689,
+        "significance_error": 0.537723,
+        "signal": 1623.75,
+        "signal_error": 43.3359,
+        "fit_params": {
+          "mean": 0.495718,
+          "sigma": 0.00401442,
+          "N": 72.2006,
+          "pol2_0": 6.57591,
+          "pol2_1": 2.68411,
+          "pol2_2": -19.3882
+        }
+      },
+      "0.055": {
+        "significance": 37.1339,
+        "significance_error": 0.539927,
+        "signal": 1607.94,
+        "signal_error": 43.3013,
+        "fit_params": {
+          "mean": 0.495725,
+          "sigma": 0.00398266,
+          "N": 72.2401,
+          "pol2_0": -23.9251,
+          "pol2_1": 127.719,
+          "pol2_2": -146.783
+        }
+      },
+      "0.06": {
+        "significance": 37.0935,
+        "significance_error": 0.539933,
+        "signal": 1604.48,
+        "signal_error": 43.2551,
+        "fit_params": {
+          "mean": 0.495711,
+          "sigma": 0.00397004,
+          "N": 72.1893,
+          "pol2_0": -23.847,
+          "pol2_1": 127.713,
+          "pol2_2": -147.116
+        }
+      },
+      "0.065": {
+        "significance": 36.8947,
+        "significance_error": 0.54037,
+        "signal": 1589.9,
+        "signal_error": 43.0929,
+        "fit_params": {
+          "mean": 0.495707,
+          "sigma": 0.00394596,
+          "N": 72.3413,
+          "pol2_0": -54.8027,
+          "pol2_1": 250.648,
+          "pol2_2": -268.894
+        }
+      },
+      "0.07": {
+        "significance": 36.8949,
+        "significance_error": 0.540077,
+        "signal": 1588.2,
+        "signal_error": 43.0465,
+        "fit_params": {
+          "mean": 0.495708,
+          "sigma": 0.0039476,
+          "N": 72.2483,
+          "pol2_0": -54.7317,
+          "pol2_1": 250.626,
+          "pol2_2": -269.256
+        }
+      },
+      "0.075": {
+        "significance": 36.887,
+        "significance_error": 0.539478,
+        "signal": 1584.0,
+        "signal_error": 42.9418,
+        "fit_params": {
+          "mean": 0.495701,
+          "sigma": 0.00393775,
+          "N": 72.1799,
+          "pol2_0": -54.8217,
+          "pol2_1": 250.62,
+          "pol2_2": -268.94
+        }
+      },
+      "0.08": {
+        "significance": 37.0568,
+        "significance_error": 0.538094,
+        "signal": 1590.43,
+        "signal_error": 42.9185,
+        "fit_params": {
+          "mean": 0.495681,
+          "sigma": 0.00390046,
+          "N": 72.8132,
+          "pol2_0": -41.653,
+          "pol2_1": 198.488,
+          "pol2_2": -217.826
+        }
+      },
+      "0.085": {
+        "significance": 37.0503,
+        "significance_error": 0.537849,
+        "signal": 1588.42,
+        "signal_error": 42.8719,
+        "fit_params": {
+          "mean": 0.495694,
+          "sigma": 0.00389421,
+          "N": 72.865,
+          "pol2_0": -41.4485,
+          "pol2_1": 198.467,
+          "pol2_2": -218.716
+        }
+      },
+      "0.09": {
+        "significance": 37.0355,
+        "significance_error": 0.53759,
+        "signal": 1585.62,
+        "signal_error": 42.8135,
+        "fit_params": {
+          "mean": 0.495691,
+          "sigma": 0.00389682,
+          "N": 72.7383,
+          "pol2_0": -41.6461,
+          "pol2_1": 198.452,
+          "pol2_2": -217.998
+        }
+      },
+      "0.095": {
+        "significance": 37.0009,
+        "significance_error": 0.537548,
+        "signal": 1582.41,
+        "signal_error": 42.7668,
+        "fit_params": {
+          "mean": 0.49569,
+          "sigma": 0.00389935,
+          "N": 72.5533,
+          "pol2_0": -41.6984,
+          "pol2_1": 198.444,
+          "pol2_2": -217.81
+        }
+      },
+      "0.1": {
+        "significance": 37.1176,
+        "significance_error": 0.536188,
+        "signal": 1584.36,
+        "signal_error": 42.6849,
+        "fit_params": {
+          "mean": 0.495688,
+          "sigma": 0.00391385,
+          "N": 72.3237,
+          "pol2_0": -28.8994,
+          "pol2_1": 146.534,
+          "pol2_2": -165.665
+        }
+      },
+      "0.105": {
+        "significance": 37.0256,
+        "significance_error": 0.536485,
+        "signal": 1578.26,
+        "signal_error": 42.6263,
+        "fit_params": {
+          "mean": 0.495706,
+          "sigma": 0.00390195,
+          "N": 72.2392,
+          "pol2_0": -45.6619,
+          "pol2_1": 215.697,
+          "pol2_2": -236.879
+        }
+      },
+      "0.11": {
+        "significance": 36.9609,
+        "significance_error": 0.536436,
+        "signal": 1572.47,
+        "signal_error": 42.5441,
+        "fit_params": {
+          "mean": 0.495698,
+          "sigma": 0.00390372,
+          "N": 71.93,
+          "pol2_0": -45.7448,
+          "pol2_1": 215.688,
+          "pol2_2": -236.585
+        }
+      },
+      "0.115": {
+        "significance": 36.967,
+        "significance_error": 0.536244,
+        "signal": 1571.86,
+        "signal_error": 42.5206,
+        "fit_params": {
+          "mean": 0.4957,
+          "sigma": 0.00390169,
+          "N": 71.9436,
+          "pol2_0": -57.0116,
+          "pol2_1": 258.698,
+          "pol2_2": -277.55
+        }
+      },
+      "0.12": {
+        "significance": 36.9054,
+        "significance_error": 0.53632,
+        "signal": 1567.07,
+        "signal_error": 42.4617,
+        "fit_params": {
+          "mean": 0.495702,
+          "sigma": 0.00389975,
+          "N": 71.7692,
+          "pol2_0": -57.0397,
+          "pol2_1": 258.698,
+          "pol2_2": -277.445
+        }
+      },
+      "0.125": {
+        "significance": 36.8398,
+        "significance_error": 0.53635,
+        "signal": 1561.68,
+        "signal_error": 42.391,
+        "fit_params": {
+          "mean": 0.495699,
+          "sigma": 0.0039062,
+          "N": 71.4462,
+          "pol2_0": -57.0935,
+          "pol2_1": 258.694,
+          "pol2_2": -277.25
+        }
+      },
+      "0.13": {
+        "significance": 36.8189,
+        "significance_error": 0.536204,
+        "signal": 1559.05,
+        "signal_error": 42.3438,
+        "fit_params": {
+          "mean": 0.495693,
+          "sigma": 0.00390949,
+          "N": 71.3017,
+          "pol2_0": -57.0787,
+          "pol2_1": 258.685,
+          "pol2_2": -277.362
+        }
+      },
+      "0.135": {
+        "significance": 36.7848,
+        "significance_error": 0.536078,
+        "signal": 1555.44,
+        "signal_error": 42.2847,
+        "fit_params": {
+          "mean": 0.495672,
+          "sigma": 0.00390729,
+          "N": 71.0643,
+          "pol2_0": -57.1316,
+          "pol2_1": 258.677,
+          "pol2_2": -277.204
+        }
+      },
+      "0.14": {
+        "significance": 36.7919,
+        "significance_error": 0.535876,
+        "signal": 1554.87,
+        "signal_error": 42.2611,
+        "fit_params": {
+          "mean": 0.495671,
+          "sigma": 0.00391187,
+          "N": 70.945,
+          "pol2_0": -57.2276,
+          "pol2_1": 258.671,
+          "pol2_2": -276.875
+        }
+      },
+      "0.145": {
+        "significance": 36.7097,
+        "significance_error": 0.53625,
+        "signal": 1550.09,
+        "signal_error": 42.2256,
+        "fit_params": {
+          "mean": 0.495672,
+          "sigma": 0.00390234,
+          "N": 70.9265,
+          "pol2_0": -64.7882,
+          "pol2_1": 289.25,
+          "pol2_2": -307.685
+        }
+      },
+      "0.15": {
+        "significance": 36.6532,
+        "significance_error": 0.53606,
+        "signal": 1544.23,
+        "signal_error": 42.1307,
+        "fit_params": {
+          "mean": 0.495653,
+          "sigma": 0.00389156,
+          "N": 70.7509,
+          "pol2_0": -64.6003,
+          "pol2_1": 289.225,
+          "pol2_2": -308.51
+        }
+      },
+      "0.155": {
+        "significance": 36.6054,
+        "significance_error": 0.536108,
+        "signal": 1540.47,
+        "signal_error": 42.0833,
+        "fit_params": {
+          "mean": 0.495644,
+          "sigma": 0.00389453,
+          "N": 70.5047,
+          "pol2_0": -64.5752,
+          "pol2_1": 289.222,
+          "pol2_2": -308.618
+        }
+      },
+      "0.16": {
+        "significance": 36.6076,
+        "significance_error": 0.535637,
+        "signal": 1537.95,
+        "signal_error": 42.0119,
+        "fit_params": {
+          "mean": 0.495645,
+          "sigma": 0.00390873,
+          "N": 70.1907,
+          "pol2_0": -36.5624,
+          "pol2_1": 177.96,
+          "pol2_2": -198.405
+        }
+      },
+      "0.165": {
+        "significance": 36.4969,
+        "significance_error": 0.53584,
+        "signal": 1529.82,
+        "signal_error": 41.9166,
+        "fit_params": {
+          "mean": 0.495653,
+          "sigma": 0.00389925,
+          "N": 69.9327,
+          "pol2_0": -36.5537,
+          "pol2_1": 177.961,
+          "pol2_2": -198.436
+        }
+      },
+      "0.17": {
+        "significance": 36.4894,
+        "significance_error": 0.535589,
+        "signal": 1527.77,
+        "signal_error": 41.8688,
+        "fit_params": {
+          "mean": 0.495648,
+          "sigma": 0.00390593,
+          "N": 69.7531,
+          "pol2_0": -25.0532,
+          "pol2_1": 130.606,
+          "pol2_2": -149.833
+        }
+      },
+      "0.17500000000000002": {
+        "significance": 36.4092,
+        "significance_error": 0.53572,
+        "signal": 1521.8,
+        "signal_error": 41.7971,
+        "fit_params": {
+          "mean": 0.495646,
+          "sigma": 0.00390758,
+          "N": 69.4832,
+          "pol2_0": -25.0546,
+          "pol2_1": 130.605,
+          "pol2_2": -149.828
+        }
+      },
+      "0.18": {
+        "significance": 36.3771,
+        "significance_error": 0.535572,
+        "signal": 1518.28,
+        "signal_error": 41.7373,
+        "fit_params": {
+          "mean": 0.495654,
+          "sigma": 0.0039066,
+          "N": 69.4098,
+          "pol2_0": 6.52196,
+          "pol2_1": 4.6924,
+          "pol2_2": -24.4669
+        }
+      },
+      "0.185": {
+        "significance": 36.4671,
+        "significance_error": 0.534604,
+        "signal": 1520.29,
+        "signal_error": 41.6893,
+        "fit_params": {
+          "mean": 0.495659,
+          "sigma": 0.00390587,
+          "N": 69.4617,
+          "pol2_0": 20.6573,
+          "pol2_1": -51.9832,
+          "pol2_2": 32.0019
+        }
+      },
+      "0.19": {
+        "significance": 36.5576,
+        "significance_error": 0.533711,
+        "signal": 1522.75,
+        "signal_error": 41.6533,
+        "fit_params": {
+          "mean": 0.495654,
+          "sigma": 0.00391807,
+          "N": 69.3605,
+          "pol2_0": 35.0605,
+          "pol2_1": -110.061,
+          "pol2_2": 90.2375
+        }
+      },
+      "0.195": {
+        "significance": 36.4717,
+        "significance_error": 0.53349,
+        "signal": 1514.34,
+        "signal_error": 41.5211,
+        "fit_params": {
+          "mean": 0.495653,
+          "sigma": 0.00393287,
+          "N": 68.8935,
+          "pol2_0": 35.0864,
+          "pol2_1": -110.112,
+          "pol2_2": 89.9436
+        }
+      },
+      "0.2": {
+        "significance": 36.4674,
+        "significance_error": 0.533289,
+        "signal": 1512.85,
+        "signal_error": 41.4849,
+        "fit_params": {
+          "mean": 0.495656,
+          "sigma": 0.00394096,
+          "N": 68.6227,
+          "pol2_0": 35.2405,
+          "pol2_1": -110.131,
+          "pol2_2": 89.2781
+        }
+      },
+      "0.20500000000000002": {
+        "significance": 36.4384,
+        "significance_error": 0.533113,
+        "signal": 1509.45,
+        "signal_error": 41.4246,
+        "fit_params": {
+          "mean": 0.495657,
+          "sigma": 0.00394871,
+          "N": 68.3621,
+          "pol2_0": 35.3845,
+          "pol2_1": -110.152,
+          "pol2_2": 88.6513
+        }
+      },
+      "0.21": {
+        "significance": 36.4047,
+        "significance_error": 0.532738,
+        "signal": 1504.53,
+        "signal_error": 41.328,
+        "fit_params": {
+          "mean": 0.495648,
+          "sigma": 0.00392843,
+          "N": 68.2256,
+          "pol2_0": 35.3659,
+          "pol2_1": -110.154,
+          "pol2_2": 88.7298
+        }
+      },
+      "0.215": {
+        "significance": 36.3393,
+        "significance_error": 0.532905,
+        "signal": 1500.07,
+        "signal_error": 41.2795,
+        "fit_params": {
+          "mean": 0.495618,
+          "sigma": 0.00389265,
+          "N": 68.2909,
+          "pol2_0": 35.3789,
+          "pol2_1": -110.15,
+          "pol2_2": 88.6921
+        }
+      },
+      "0.22": {
+        "significance": 36.2465,
+        "significance_error": 0.533037,
+        "signal": 1493.16,
+        "signal_error": 41.1947,
+        "fit_params": {
+          "mean": 0.495616,
+          "sigma": 0.0038906,
+          "N": 68.0477,
+          "pol2_0": 35.3711,
+          "pol2_1": -110.15,
+          "pol2_2": 88.7204
+        }
+      },
+      "0.225": {
+        "significance": 36.2093,
+        "significance_error": 0.532996,
+        "signal": 1489.87,
+        "signal_error": 41.1461,
+        "fit_params": {
+          "mean": 0.495613,
+          "sigma": 0.0038904,
+          "N": 67.9337,
+          "pol2_0": 35.2776,
+          "pol2_1": -110.149,
+          "pol2_2": 89.0616
+        }
+      },
+      "0.23": {
+        "significance": 36.0873,
+        "significance_error": 0.533107,
+        "signal": 1480.46,
+        "signal_error": 41.0244,
+        "fit_params": {
+          "mean": 0.495615,
+          "sigma": 0.00387068,
+          "N": 67.8111,
+          "pol2_0": 28.0046,
+          "pol2_1": -80.7973,
+          "pol2_2": 59.5455
+        }
+      },
+      "0.23500000000000001": {
+        "significance": 35.9795,
+        "significance_error": 0.533269,
+        "signal": 1472.52,
+        "signal_error": 40.9268,
+        "fit_params": {
+          "mean": 0.495636,
+          "sigma": 0.00386616,
+          "N": 67.4333,
+          "pol2_0": 28.0166,
+          "pol2_1": -80.7986,
+          "pol2_2": 59.4959
+        }
+      },
+      "0.24": {
+        "significance": 35.8866,
+        "significance_error": 0.53356,
+        "signal": 1466.53,
+        "signal_error": 40.8656,
+        "fit_params": {
+          "mean": 0.495632,
+          "sigma": 0.00387618,
+          "N": 66.9341,
+          "pol2_0": 27.9504,
+          "pol2_1": -80.8086,
+          "pol2_2": 59.7242
+        }
+      },
+      "0.245": {
+        "significance": 35.8202,
+        "significance_error": 0.533654,
+        "signal": 1461.62,
+        "signal_error": 40.8044,
+        "fit_params": {
+          "mean": 0.495639,
+          "sigma": 0.00387533,
+          "N": 66.7014,
+          "pol2_0": 27.9425,
+          "pol2_1": -80.8092,
+          "pol2_2": 59.7528
+        }
+      },
+      "0.25": {
+        "significance": 35.7432,
+        "significance_error": 0.533424,
+        "signal": 1454.09,
+        "signal_error": 40.6817,
+        "fit_params": {
+          "mean": 0.495653,
+          "sigma": 0.00384872,
+          "N": 66.9028,
+          "pol2_0": 27.8919,
+          "pol2_1": -80.811,
+          "pol2_2": 59.9464
+        }
+      },
+      "0.255": {
+        "significance": 35.6718,
+        "significance_error": 0.533473,
+        "signal": 1448.56,
+        "signal_error": 40.6079,
+        "fit_params": {
+          "mean": 0.495645,
+          "sigma": 0.00385979,
+          "N": 66.409,
+          "pol2_0": 27.839,
+          "pol2_1": -80.8137,
+          "pol2_2": 60.1431
+        }
+      },
+      "0.26": {
+        "significance": 35.6229,
+        "significance_error": 0.533515,
+        "signal": 1444.82,
+        "signal_error": 40.5586,
+        "fit_params": {
+          "mean": 0.495642,
+          "sigma": 0.00385807,
+          "N": 66.3541,
+          "pol2_0": 27.8213,
+          "pol2_1": -80.8194,
+          "pol2_2": 60.2132
+        }
+      },
+      "0.265": {
+        "significance": 35.5653,
+        "significance_error": 0.533541,
+        "signal": 1440.28,
+        "signal_error": 40.4969,
+        "fit_params": {
+          "mean": 0.495643,
+          "sigma": 0.00386279,
+          "N": 66.1185,
+          "pol2_0": 27.8795,
+          "pol2_1": -80.826,
+          "pol2_2": 59.9652
+        }
+      },
+      "0.27": {
+        "significance": 35.6804,
+        "significance_error": 0.532679,
+        "signal": 1444.95,
+        "signal_error": 40.4969,
+        "fit_params": {
+          "mean": 0.495648,
+          "sigma": 0.0038758,
+          "N": 65.9561,
+          "pol2_0": 43.5814,
+          "pol2_1": -145.209,
+          "pol2_2": 125.56
+        }
+      },
+      "0.275": {
+        "significance": 35.4618,
+        "significance_error": 0.533584,
+        "signal": 1432.15,
+        "signal_error": 40.3856,
+        "fit_params": {
+          "mean": 0.495653,
+          "sigma": 0.00386024,
+          "N": 65.9068,
+          "pol2_0": 31.8967,
+          "pol2_1": -95.953,
+          "pol2_2": 74.0795
+        }
+      },
+      "0.28": {
+        "significance": 35.4064,
+        "significance_error": 0.533674,
+        "signal": 1428.15,
+        "signal_error": 40.3361,
+        "fit_params": {
+          "mean": 0.495643,
+          "sigma": 0.00385215,
+          "N": 65.772,
+          "pol2_0": 31.8886,
+          "pol2_1": -95.9527,
+          "pol2_2": 74.1115
+        }
+      },
+      "0.28500000000000003": {
+        "significance": 35.2909,
+        "significance_error": 0.533806,
+        "signal": 1419.55,
+        "signal_error": 40.2244,
+        "fit_params": {
+          "mean": 0.495656,
+          "sigma": 0.00383123,
+          "N": 65.6437,
+          "pol2_0": 31.8317,
+          "pol2_1": -95.9544,
+          "pol2_2": 74.3256
+        }
+      },
+      "0.29": {
+        "significance": 35.2632,
+        "significance_error": 0.53385,
+        "signal": 1417.56,
+        "signal_error": 40.1995,
+        "fit_params": {
+          "mean": 0.495652,
+          "sigma": 0.00383282,
+          "N": 65.5286,
+          "pol2_0": 31.8302,
+          "pol2_1": -95.9556,
+          "pol2_2": 74.3338
+        }
+      },
+      "0.295": {
+        "significance": 35.2018,
+        "significance_error": 0.533487,
+        "signal": 1410.71,
+        "signal_error": 40.0749,
+        "fit_params": {
+          "mean": 0.495648,
+          "sigma": 0.0038228,
+          "N": 65.4765,
+          "pol2_0": 31.8174,
+          "pol2_1": -95.9569,
+          "pol2_2": 74.3803
+        }
+      },
+      "0.3": {
+        "significance": 35.1293,
+        "significance_error": 0.533538,
+        "signal": 1405.17,
+        "signal_error": 40.0,
+        "fit_params": {
+          "mean": 0.495655,
+          "sigma": 0.00381725,
+          "N": 65.3303,
+          "pol2_0": 31.8748,
+          "pol2_1": -95.9628,
+          "pol2_2": 74.1342
+        }
+      },
+      "0.305": {
+        "significance": 35.0368,
+        "significance_error": 0.533824,
+        "signal": 1399.28,
+        "signal_error": 39.9375,
+        "fit_params": {
+          "mean": 0.495636,
+          "sigma": 0.00381785,
+          "N": 65.0055,
+          "pol2_0": 16.1748,
+          "pol2_1": -33.815,
+          "pol2_2": 12.7327
+        }
+      },
+      "0.31": {
+        "significance": 34.8321,
+        "significance_error": 0.534802,
+        "signal": 1388.05,
+        "signal_error": 39.8497,
+        "fit_params": {
+          "mean": 0.49564,
+          "sigma": 0.00381087,
+          "N": 64.7756,
+          "pol2_0": 0.652136,
+          "pol2_1": 28.5069,
+          "pol2_2": -49.5653
+        }
+      },
+      "0.315": {
+        "significance": 34.7739,
+        "significance_error": 0.534827,
+        "signal": 1383.55,
+        "signal_error": 39.7869,
+        "fit_params": {
+          "mean": 0.495641,
+          "sigma": 0.00380849,
+          "N": 64.656,
+          "pol2_0": 0.684276,
+          "pol2_1": 28.5003,
+          "pol2_2": -49.7089
+        }
+      },
+      "0.32": {
+        "significance": 34.733,
+        "significance_error": 0.534634,
+        "signal": 1379.3,
+        "signal_error": 39.7115,
+        "fit_params": {
+          "mean": 0.495599,
+          "sigma": 0.0037636,
+          "N": 64.7441,
+          "pol2_0": 0.700637,
+          "pol2_1": 28.5042,
+          "pol2_2": -49.7603
+        }
+      },
+      "0.325": {
+        "significance": 34.662,
+        "significance_error": 0.534757,
+        "signal": 1374.29,
+        "signal_error": 39.6485,
+        "fit_params": {
+          "mean": 0.495596,
+          "sigma": 0.00376611,
+          "N": 64.4621,
+          "pol2_0": 0.698913,
+          "pol2_1": 28.5062,
+          "pol2_2": -49.7571
+        }
+      },
+      "0.33": {
+        "significance": 34.6462,
+        "significance_error": 0.534624,
+        "signal": 1372.36,
+        "signal_error": 39.6106,
+        "fit_params": {
+          "mean": 0.495602,
+          "sigma": 0.00377272,
+          "N": 64.2019,
+          "pol2_0": 0.858568,
+          "pol2_1": 28.4948,
+          "pol2_2": -50.441
+        }
+      },
+      "0.335": {
+        "significance": 34.5988,
+        "significance_error": 0.534819,
+        "signal": 1369.61,
+        "signal_error": 39.5854,
+        "fit_params": {
+          "mean": 0.49561,
+          "sigma": 0.0037714,
+          "N": 64.0394,
+          "pol2_0": 0.704127,
+          "pol2_1": 28.509,
+          "pol2_2": -49.8005
+        }
+      },
+      "0.34": {
+        "significance": 34.5341,
+        "significance_error": 0.534721,
+        "signal": 1363.99,
+        "signal_error": 39.4968,
+        "fit_params": {
+          "mean": 0.49561,
+          "sigma": 0.00376503,
+          "N": 63.9129,
+          "pol2_0": 0.643492,
+          "pol2_1": 28.5001,
+          "pol2_2": -49.6097
+        }
+      },
+      "0.34500000000000003": {
+        "significance": 34.4795,
+        "significance_error": 0.5348,
+        "signal": 1360.09,
+        "signal_error": 39.4462,
+        "fit_params": {
+          "mean": 0.495607,
+          "sigma": 0.00377289,
+          "N": 63.6403,
+          "pol2_0": 0.638558,
+          "pol2_1": 28.502,
+          "pol2_2": -49.5989
+        }
+      },
+      "0.35000000000000003": {
+        "significance": 34.3728,
+        "significance_error": 0.535286,
+        "signal": 1354.13,
+        "signal_error": 39.3954,
+        "fit_params": {
+          "mean": 0.495603,
+          "sigma": 0.00377995,
+          "N": 63.3825,
+          "pol2_0": 0.637342,
+          "pol2_1": 28.5004,
+          "pol2_2": -49.6019
+        }
+      },
+      "0.355": {
+        "significance": 34.3652,
+        "significance_error": 0.534913,
+        "signal": 1351.65,
+        "signal_error": 39.3319,
+        "fit_params": {
+          "mean": 0.495609,
+          "sigma": 0.00376991,
+          "N": 63.3625,
+          "pol2_0": 0.696002,
+          "pol2_1": 28.4959,
+          "pol2_2": -49.8505
+        }
+      },
+      "0.36": {
+        "significance": 34.3302,
+        "significance_error": 0.53484,
+        "signal": 1348.52,
+        "signal_error": 39.281,
+        "fit_params": {
+          "mean": 0.49561,
+          "sigma": 0.00377362,
+          "N": 63.1119,
+          "pol2_0": 0.608256,
+          "pol2_1": 28.4904,
+          "pol2_2": -49.5291
+        }
+      },
+      "0.365": {
+        "significance": 34.2738,
+        "significance_error": 0.534932,
+        "signal": 1344.56,
+        "signal_error": 39.2301,
+        "fit_params": {
+          "mean": 0.495613,
+          "sigma": 0.00377647,
+          "N": 62.8835,
+          "pol2_0": 0.610319,
+          "pol2_1": 28.4873,
+          "pol2_2": -49.5333
+        }
+      },
+      "0.37": {
+        "significance": 34.2355,
+        "significance_error": 0.534883,
+        "signal": 1341.32,
+        "signal_error": 39.1791,
+        "fit_params": {
+          "mean": 0.495605,
+          "sigma": 0.00377394,
+          "N": 62.8234,
+          "pol2_0": 0.559117,
+          "pol2_1": 28.4814,
+          "pol2_2": -49.3533
+        }
+      },
+      "0.375": {
+        "significance": 34.146,
+        "significance_error": 0.535147,
+        "signal": 1335.63,
+        "signal_error": 39.1152,
+        "fit_params": {
+          "mean": 0.49561,
+          "sigma": 0.00376493,
+          "N": 62.7941,
+          "pol2_0": -10.2803,
+          "pol2_1": 72.5453,
+          "pol2_2": -94.0738
+        }
+      },
+      "0.38": {
+        "significance": 34.087,
+        "significance_error": 0.535084,
+        "signal": 1330.7,
+        "signal_error": 39.0384,
+        "fit_params": {
+          "mean": 0.49561,
+          "sigma": 0.00375511,
+          "N": 62.8532,
+          "pol2_0": -10.3751,
+          "pol2_1": 72.5369,
+          "pol2_2": -93.7287
+        }
+      },
+      "0.385": {
+        "significance": 34.005,
+        "significance_error": 0.535024,
+        "signal": 1324.01,
+        "signal_error": 38.9358,
+        "fit_params": {
+          "mean": 0.495616,
+          "sigma": 0.0037596,
+          "N": 62.4716,
+          "pol2_0": -5.2531,
+          "pol2_1": 51.7547,
+          "pol2_2": -72.7292
+        }
+      },
+      "0.39": {
+        "significance": 34.0273,
+        "significance_error": 0.534142,
+        "signal": 1321.38,
+        "signal_error": 38.833,
+        "fit_params": {
+          "mean": 0.495599,
+          "sigma": 0.00377636,
+          "N": 62.1023,
+          "pol2_0": -5.59739,
+          "pol2_1": 51.7165,
+          "pol2_2": -71.538
+        }
+      },
+      "0.395": {
+        "significance": 33.9812,
+        "significance_error": 0.53406,
+        "signal": 1317.4,
+        "signal_error": 38.7685,
+        "fit_params": {
+          "mean": 0.495603,
+          "sigma": 0.0037779,
+          "N": 61.947,
+          "pol2_0": -1.27844,
+          "pol2_1": 34.2361,
+          "pol2_2": -53.9141
+        }
+      },
+      "0.4": {
+        "significance": 33.8798,
+        "significance_error": 0.534235,
+        "signal": 1310.41,
+        "signal_error": 38.6782,
+        "fit_params": {
+          "mean": 0.495613,
+          "sigma": 0.00377374,
+          "N": 61.7768,
+          "pol2_0": -1.28038,
+          "pol2_1": 34.2362,
+          "pol2_2": -53.9065
+        }
+      }
+    },
+    "dcapostopv": {
+      "0.0": {
+        "significance": 37.3813,
+        "significance_error": 0.541619,
+        "signal": 1639.67,
+        "signal_error": 43.8634,
+        "fit_params": {
+          "mean": 0.495715,
+          "sigma": 0.00403829,
+          "N": 72.3477,
+          "pol2_0": 21.1195,
+          "pol2_1": -50.78,
+          "pol2_2": 30.7636
+        }
+      },
+      "0.005": {
+        "significance": 37.2941,
+        "significance_error": 0.541546,
+        "signal": 1631.59,
+        "signal_error": 43.7493,
+        "fit_params": {
+          "mean": 0.495717,
+          "sigma": 0.00404352,
+          "N": 72.1982,
+          "pol2_0": -15.8504,
+          "pol2_1": 96.8809,
+          "pol2_2": -116.869
+        }
+      },
+      "0.01": {
+        "significance": 37.2776,
+        "significance_error": 0.540815,
+        "signal": 1625.75,
+        "signal_error": 43.6119,
+        "fit_params": {
+          "mean": 0.49572,
+          "sigma": 0.0040298,
+          "N": 72.1723,
+          "pol2_0": -84.1196,
+          "pol2_1": 373.063,
+          "pol2_2": -396.153
+        }
+      },
+      "0.015": {
+        "significance": 37.245,
+        "significance_error": 0.540838,
+        "signal": 1623.05,
+        "signal_error": 43.5775,
+        "fit_params": {
+          "mean": 0.495717,
+          "sigma": 0.00402422,
+          "N": 72.2309,
+          "pol2_0": -84.123,
+          "pol2_1": 373.059,
+          "pol2_2": -396.147
+        }
+      },
+      "0.02": {
+        "significance": 37.2088,
+        "significance_error": 0.540602,
+        "signal": 1618.47,
+        "signal_error": 43.4971,
+        "fit_params": {
+          "mean": 0.49572,
+          "sigma": 0.0040236,
+          "N": 72.1807,
+          "pol2_0": -83.8958,
+          "pol2_1": 373.034,
+          "pol2_2": -397.141
+        }
+      },
+      "0.025": {
+        "significance": 37.1466,
+        "significance_error": 0.540839,
+        "signal": 1614.49,
+        "signal_error": 43.4626,
+        "fit_params": {
+          "mean": 0.495701,
+          "sigma": 0.00399801,
+          "N": 72.3624,
+          "pol2_0": -94.2922,
+          "pol2_1": 414.501,
+          "pol2_2": -438.412
+        }
+      },
+      "0.03": {
+        "significance": 37.1217,
+        "significance_error": 0.540806,
+        "signal": 1612.13,
+        "signal_error": 43.4281,
+        "fit_params": {
+          "mean": 0.495699,
+          "sigma": 0.00400054,
+          "N": 72.2241,
+          "pol2_0": -94.3293,
+          "pol2_1": 414.497,
+          "pol2_2": -438.286
+        }
+      },
+      "0.035": {
+        "significance": 37.0501,
+        "significance_error": 0.540897,
+        "signal": 1606.46,
+        "signal_error": 43.359,
+        "fit_params": {
+          "mean": 0.495694,
+          "sigma": 0.00399481,
+          "N": 72.1096,
+          "pol2_0": -94.303,
+          "pol2_1": 414.493,
+          "pol2_2": -438.401
+        }
+      },
+      "0.04": {
+        "significance": 37.0657,
+        "significance_error": 0.540568,
+        "signal": 1605.85,
+        "signal_error": 43.3244,
+        "fit_params": {
+          "mean": 0.49568,
+          "sigma": 0.00398937,
+          "N": 72.0851,
+          "pol2_0": -94.2457,
+          "pol2_1": 414.471,
+          "pol2_2": -438.71
+        }
+      },
+      "0.045": {
+        "significance": 37.0779,
+        "significance_error": 0.540407,
+        "signal": 1605.95,
+        "signal_error": 43.3128,
+        "fit_params": {
+          "mean": 0.495679,
+          "sigma": 0.00398796,
+          "N": 72.1282,
+          "pol2_0": -94.1981,
+          "pol2_1": 414.457,
+          "pol2_2": -438.931
+        }
+      },
+      "0.05": {
+        "significance": 37.0324,
+        "significance_error": 0.540378,
+        "signal": 1601.84,
+        "signal_error": 43.2551,
+        "fit_params": {
+          "mean": 0.49568,
+          "sigma": 0.00397631,
+          "N": 72.2112,
+          "pol2_0": -94.1274,
+          "pol2_1": 414.443,
+          "pol2_2": -439.235
+        }
+      },
+      "0.055": {
+        "significance": 36.9917,
+        "significance_error": 0.540386,
+        "signal": 1598.37,
+        "signal_error": 43.2088,
+        "fit_params": {
+          "mean": 0.49568,
+          "sigma": 0.00396847,
+          "N": 72.2175,
+          "pol2_0": -94.0694,
+          "pol2_1": 414.433,
+          "pol2_2": -439.477
+        }
+      },
+      "0.06": {
+        "significance": 37.0631,
+        "significance_error": 0.539576,
+        "signal": 1599.74,
+        "signal_error": 43.1625,
+        "fit_params": {
+          "mean": 0.49568,
+          "sigma": 0.00398172,
+          "N": 72.0603,
+          "pol2_0": -93.7818,
+          "pol2_1": 414.371,
+          "pol2_2": -440.791
+        }
+      },
+      "0.065": {
+        "significance": 37.059,
+        "significance_error": 0.539533,
+        "signal": 1599.13,
+        "signal_error": 43.1509,
+        "fit_params": {
+          "mean": 0.495681,
+          "sigma": 0.00398372,
+          "N": 72.0024,
+          "pol2_0": -93.7295,
+          "pol2_1": 414.363,
+          "pol2_2": -441.006
+        }
+      },
+      "0.07": {
+        "significance": 37.0567,
+        "significance_error": 0.539332,
+        "signal": 1597.74,
+        "signal_error": 43.1161,
+        "fit_params": {
+          "mean": 0.495676,
+          "sigma": 0.00398513,
+          "N": 71.8898,
+          "pol2_0": -88.1403,
+          "pol2_1": 391.704,
+          "pol2_2": -418.136
+        }
+      },
+      "0.075": {
+        "significance": 37.039,
+        "significance_error": 0.539098,
+        "signal": 1594.83,
+        "signal_error": 43.0581,
+        "fit_params": {
+          "mean": 0.495661,
+          "sigma": 0.00398801,
+          "N": 71.5978,
+          "pol2_0": -88.0321,
+          "pol2_1": 391.679,
+          "pol2_2": -418.631
+        }
+      },
+      "0.08": {
+        "significance": 37.0153,
+        "significance_error": 0.539125,
+        "signal": 1592.95,
+        "signal_error": 43.0349,
+        "fit_params": {
+          "mean": 0.495664,
+          "sigma": 0.00398368,
+          "N": 71.6368,
+          "pol2_0": -88.0472,
+          "pol2_1": 391.674,
+          "pol2_2": -418.565
+        }
+      },
+      "0.085": {
+        "significance": 37.0114,
+        "significance_error": 0.538789,
+        "signal": 1590.63,
+        "signal_error": 42.9767,
+        "fit_params": {
+          "mean": 0.49567,
+          "sigma": 0.00398542,
+          "N": 71.5193,
+          "pol2_0": -88.0005,
+          "pol2_1": 391.645,
+          "pol2_2": -418.832
+        }
+      },
+      "0.09": {
+        "significance": 37.0093,
+        "significance_error": 0.538586,
+        "signal": 1589.25,
+        "signal_error": 42.9418,
+        "fit_params": {
+          "mean": 0.495664,
+          "sigma": 0.0039805,
+          "N": 71.5179,
+          "pol2_0": -88.1669,
+          "pol2_1": 391.636,
+          "pol2_2": -418.218
+        }
+      },
+      "0.095": {
+        "significance": 36.9554,
+        "significance_error": 0.538613,
+        "signal": 1584.78,
+        "signal_error": 42.8836,
+        "fit_params": {
+          "mean": 0.495659,
+          "sigma": 0.00397892,
+          "N": 71.4123,
+          "pol2_0": -88.1311,
+          "pol2_1": 391.627,
+          "pol2_2": -418.371
+        }
+      },
+      "0.1": {
+        "significance": 36.9666,
+        "significance_error": 0.537945,
+        "signal": 1581.81,
+        "signal_error": 42.7902,
+        "fit_params": {
+          "mean": 0.495666,
+          "sigma": 0.00397558,
+          "N": 71.2877,
+          "pol2_0": -75.2521,
+          "pol2_1": 339.683,
+          "pol2_2": -366.277
+        }
+      },
+      "0.105": {
+        "significance": 36.9348,
+        "significance_error": 0.537661,
+        "signal": 1577.42,
+        "signal_error": 42.7083,
+        "fit_params": {
+          "mean": 0.495655,
+          "sigma": 0.00397666,
+          "N": 70.9706,
+          "pol2_0": -75.0129,
+          "pol2_1": 339.651,
+          "pol2_2": -367.316
+        }
+      },
+      "0.11": {
+        "significance": 36.8973,
+        "significance_error": 0.537639,
+        "signal": 1574.09,
+        "signal_error": 42.6615,
+        "fit_params": {
+          "mean": 0.495646,
+          "sigma": 0.00397959,
+          "N": 70.7224,
+          "pol2_0": -75.0467,
+          "pol2_1": 339.648,
+          "pol2_2": -367.208
+        }
+      },
+      "0.115": {
+        "significance": 36.8887,
+        "significance_error": 0.537183,
+        "signal": 1570.7,
+        "signal_error": 42.5793,
+        "fit_params": {
+          "mean": 0.495647,
+          "sigma": 0.00397694,
+          "N": 70.6411,
+          "pol2_0": -75.4416,
+          "pol2_1": 339.64,
+          "pol2_2": -365.766
+        }
+      },
+      "0.12": {
+        "significance": 36.7731,
+        "significance_error": 0.537508,
+        "signal": 1562.75,
+        "signal_error": 42.4971,
+        "fit_params": {
+          "mean": 0.495631,
+          "sigma": 0.00395789,
+          "N": 70.6606,
+          "pol2_0": -89.1126,
+          "pol2_1": 394.718,
+          "pol2_2": -421.037
+        }
+      },
+      "0.125": {
+        "significance": 36.7428,
+        "significance_error": 0.537505,
+        "signal": 1560.16,
+        "signal_error": 42.4617,
+        "fit_params": {
+          "mean": 0.495627,
+          "sigma": 0.0039629,
+          "N": 70.4714,
+          "pol2_0": -89.1562,
+          "pol2_1": 394.716,
+          "pol2_2": -420.879
+        }
+      },
+      "0.13": {
+        "significance": 36.6614,
+        "significance_error": 0.537504,
+        "signal": 1553.25,
+        "signal_error": 42.3674,
+        "fit_params": {
+          "mean": 0.495624,
+          "sigma": 0.0039636,
+          "N": 70.307,
+          "pol2_0": -89.187,
+          "pol2_1": 394.705,
+          "pol2_2": -420.786
+        }
+      },
+      "0.135": {
+        "significance": 36.6642,
+        "significance_error": 0.537334,
+        "signal": 1552.5,
+        "signal_error": 42.3438,
+        "fit_params": {
+          "mean": 0.495616,
+          "sigma": 0.0039512,
+          "N": 70.4738,
+          "pol2_0": -89.2935,
+          "pol2_1": 394.695,
+          "pol2_2": -420.396
+        }
+      },
+      "0.14": {
+        "significance": 36.7422,
+        "significance_error": 0.536539,
+        "signal": 1554.5,
+        "signal_error": 42.3084,
+        "fit_params": {
+          "mean": 0.495616,
+          "sigma": 0.00395858,
+          "N": 70.3654,
+          "pol2_0": -89.3553,
+          "pol2_1": 394.651,
+          "pol2_2": -420.31
+        }
+      },
+      "0.145": {
+        "significance": 36.7285,
+        "significance_error": 0.536263,
+        "signal": 1551.75,
+        "signal_error": 42.2493,
+        "fit_params": {
+          "mean": 0.495614,
+          "sigma": 0.00396474,
+          "N": 70.1344,
+          "pol2_0": -89.5895,
+          "pol2_1": 394.64,
+          "pol2_2": -419.448
+        }
+      },
+      "0.15": {
+        "significance": 36.7789,
+        "significance_error": 0.53552,
+        "signal": 1551.7,
+        "signal_error": 42.19,
+        "fit_params": {
+          "mean": 0.495625,
+          "sigma": 0.00397401,
+          "N": 69.8796,
+          "pol2_0": -78.1232,
+          "pol2_1": 347.604,
+          "pol2_2": -371.503
+        }
+      },
+      "0.155": {
+        "significance": 36.7056,
+        "significance_error": 0.535602,
+        "signal": 1546.0,
+        "signal_error": 42.1189,
+        "fit_params": {
+          "mean": 0.495622,
+          "sigma": 0.0039756,
+          "N": 69.6276,
+          "pol2_0": -78.151,
+          "pol2_1": 347.603,
+          "pol2_2": -371.401
+        }
+      },
+      "0.16": {
+        "significance": 36.5855,
+        "significance_error": 0.535723,
+        "signal": 1536.59,
+        "signal_error": 42.0,
+        "fit_params": {
+          "mean": 0.49561,
+          "sigma": 0.00397166,
+          "N": 69.2418,
+          "pol2_0": -78.2216,
+          "pol2_1": 347.601,
+          "pol2_2": -371.141
+        }
+      },
+      "0.165": {
+        "significance": 36.6239,
+        "significance_error": 0.534834,
+        "signal": 1534.71,
+        "signal_error": 41.9047,
+        "fit_params": {
+          "mean": 0.495623,
+          "sigma": 0.00396443,
+          "N": 69.2133,
+          "pol2_0": -62.2198,
+          "pol2_1": 282.326,
+          "pol2_2": -304.928
+        }
+      },
+      "0.17": {
+        "significance": 36.5528,
+        "significance_error": 0.534896,
+        "signal": 1529.11,
+        "signal_error": 41.833,
+        "fit_params": {
+          "mean": 0.495633,
+          "sigma": 0.00395534,
+          "N": 69.1114,
+          "pol2_0": -62.274,
+          "pol2_1": 282.327,
+          "pol2_2": -304.729
+        }
+      },
+      "0.17500000000000002": {
+        "significance": 36.5388,
+        "significance_error": 0.534922,
+        "signal": 1528.09,
+        "signal_error": 41.821,
+        "fit_params": {
+          "mean": 0.495636,
+          "sigma": 0.00395466,
+          "N": 69.0719,
+          "pol2_0": -62.2736,
+          "pol2_1": 282.332,
+          "pol2_2": -304.741
+        }
+      },
+      "0.18": {
+        "significance": 36.5812,
+        "significance_error": 0.534229,
+        "signal": 1527.68,
+        "signal_error": 41.7612,
+        "fit_params": {
+          "mean": 0.49563,
+          "sigma": 0.00395331,
+          "N": 69.0283,
+          "pol2_0": -53.2029,
+          "pol2_1": 245.899,
+          "pol2_2": -268.41
+        }
+      },
+      "0.185": {
+        "significance": 36.5501,
+        "significance_error": 0.534227,
+        "signal": 1525.06,
+        "signal_error": 41.7253,
+        "fit_params": {
+          "mean": 0.495624,
+          "sigma": 0.00395247,
+          "N": 68.948,
+          "pol2_0": -53.1725,
+          "pol2_1": 245.894,
+          "pol2_2": -268.544
+        }
+      },
+      "0.19": {
+        "significance": 36.5138,
+        "significance_error": 0.534262,
+        "signal": 1522.24,
+        "signal_error": 41.6893,
+        "fit_params": {
+          "mean": 0.495624,
+          "sigma": 0.00395259,
+          "N": 68.9085,
+          "pol2_0": -53.1668,
+          "pol2_1": 245.892,
+          "pol2_2": -268.571
+        }
+      },
+      "0.195": {
+        "significance": 36.4578,
+        "significance_error": 0.534364,
+        "signal": 1518.15,
+        "signal_error": 41.6413,
+        "fit_params": {
+          "mean": 0.495611,
+          "sigma": 0.00394526,
+          "N": 68.8589,
+          "pol2_0": -53.1654,
+          "pol2_1": 245.891,
+          "pol2_2": -268.572
+        }
+      },
+      "0.2": {
+        "significance": 36.419,
+        "significance_error": 0.534417,
+        "signal": 1515.22,
+        "signal_error": 41.6053,
+        "fit_params": {
+          "mean": 0.495609,
+          "sigma": 0.00394316,
+          "N": 68.7103,
+          "pol2_0": -53.1814,
+          "pol2_1": 245.892,
+          "pol2_2": -268.511
+        }
+      },
+      "0.20500000000000002": {
+        "significance": 36.3517,
+        "significance_error": 0.534525,
+        "signal": 1510.24,
+        "signal_error": 41.5452,
+        "fit_params": {
+          "mean": 0.495609,
+          "sigma": 0.00394407,
+          "N": 68.5104,
+          "pol2_0": -53.1813,
+          "pol2_1": 245.892,
+          "pol2_2": -268.513
+        }
+      },
+      "0.21": {
+        "significance": 36.2428,
+        "significance_error": 0.534861,
+        "signal": 1503.1,
+        "signal_error": 41.4729,
+        "fit_params": {
+          "mean": 0.495612,
+          "sigma": 0.00395099,
+          "N": 68.0826,
+          "pol2_0": -53.2754,
+          "pol2_1": 245.907,
+          "pol2_2": -268.103
+        }
+      },
+      "0.215": {
+        "significance": 36.219,
+        "significance_error": 0.534804,
+        "signal": 1500.8,
+        "signal_error": 41.4367,
+        "fit_params": {
+          "mean": 0.49561,
+          "sigma": 0.0039535,
+          "N": 67.9129,
+          "pol2_0": -53.3657,
+          "pol2_1": 245.909,
+          "pol2_2": -267.773
+        }
+      },
+      "0.22": {
+        "significance": 36.1398,
+        "significance_error": 0.535233,
+        "signal": 1496.64,
+        "signal_error": 41.4126,
+        "fit_params": {
+          "mean": 0.495617,
+          "sigma": 0.00394897,
+          "N": 67.7973,
+          "pol2_0": -61.513,
+          "pol2_1": 278.835,
+          "pol2_2": -300.912
+        }
+      },
+      "0.225": {
+        "significance": 36.1148,
+        "significance_error": 0.535184,
+        "signal": 1494.3,
+        "signal_error": 41.3763,
+        "fit_params": {
+          "mean": 0.49561,
+          "sigma": 0.0039499,
+          "N": 67.699,
+          "pol2_0": -61.5033,
+          "pol2_1": 278.828,
+          "pol2_2": -300.971
+        }
+      },
+      "0.23": {
+        "significance": 36.0642,
+        "significance_error": 0.535247,
+        "signal": 1490.46,
+        "signal_error": 41.328,
+        "fit_params": {
+          "mean": 0.495611,
+          "sigma": 0.00394572,
+          "N": 67.6426,
+          "pol2_0": -61.5265,
+          "pol2_1": 278.827,
+          "pol2_2": -300.884
+        }
+      },
+      "0.23500000000000001": {
+        "significance": 36.0423,
+        "significance_error": 0.535252,
+        "signal": 1488.68,
+        "signal_error": 41.3038,
+        "fit_params": {
+          "mean": 0.495608,
+          "sigma": 0.00394855,
+          "N": 67.5385,
+          "pol2_0": -61.5509,
+          "pol2_1": 278.826,
+          "pol2_2": -300.794
+        }
+      },
+      "0.24": {
+        "significance": 36.0423,
+        "significance_error": 0.535252,
+        "signal": 1488.68,
+        "signal_error": 41.3038,
+        "fit_params": {
+          "mean": 0.495608,
+          "sigma": 0.00394856,
+          "N": 67.5378,
+          "pol2_0": -61.5509,
+          "pol2_1": 278.826,
+          "pol2_2": -300.794
+        }
+      },
+      "0.245": {
+        "significance": 35.9288,
+        "significance_error": 0.535388,
+        "signal": 1480.08,
+        "signal_error": 41.1947,
+        "fit_params": {
+          "mean": 0.495597,
+          "sigma": 0.00394678,
+          "N": 67.2865,
+          "pol2_0": -61.5843,
+          "pol2_1": 278.825,
+          "pol2_2": -300.674
+        }
+      },
+      "0.25": {
+        "significance": 35.868,
+        "significance_error": 0.535289,
+        "signal": 1474.52,
+        "signal_error": 41.1096,
+        "fit_params": {
+          "mean": 0.495595,
+          "sigma": 0.00390587,
+          "N": 67.4366,
+          "pol2_0": -66.8436,
+          "pol2_1": 300.028,
+          "pol2_2": -321.954
+        }
+      },
+      "0.255": {
+        "significance": 35.8484,
+        "significance_error": 0.53488,
+        "signal": 1470.66,
+        "signal_error": 41.0244,
+        "fit_params": {
+          "mean": 0.495602,
+          "sigma": 0.00389652,
+          "N": 67.4424,
+          "pol2_0": -67.1571,
+          "pol2_1": 300.016,
+          "pol2_2": -320.815
+        }
+      },
+      "0.26": {
+        "significance": 35.7322,
+        "significance_error": 0.53535,
+        "signal": 1463.71,
+        "signal_error": 40.9634,
+        "fit_params": {
+          "mean": 0.495602,
+          "sigma": 0.00388329,
+          "N": 67.237,
+          "pol2_0": -74.6149,
+          "pol2_1": 330.093,
+          "pol2_2": -351.024
+        }
+      },
+      "0.265": {
+        "significance": 35.6744,
+        "significance_error": 0.535384,
+        "signal": 1459.17,
+        "signal_error": 40.9023,
+        "fit_params": {
+          "mean": 0.495596,
+          "sigma": 0.00388536,
+          "N": 67.0598,
+          "pol2_0": -74.6269,
+          "pol2_1": 330.088,
+          "pol2_2": -350.988
+        }
+      },
+      "0.27": {
+        "significance": 35.5396,
+        "significance_error": 0.535353,
+        "signal": 1448.0,
+        "signal_error": 40.7431,
+        "fit_params": {
+          "mean": 0.49559,
+          "sigma": 0.00387976,
+          "N": 66.743,
+          "pol2_0": -74.7376,
+          "pol2_1": 330.093,
+          "pol2_2": -350.525
+        }
+      },
+      "0.275": {
+        "significance": 35.4811,
+        "significance_error": 0.535472,
+        "signal": 1443.87,
+        "signal_error": 40.694,
+        "fit_params": {
+          "mean": 0.495588,
+          "sigma": 0.00388474,
+          "N": 66.4693,
+          "pol2_0": -74.9834,
+          "pol2_1": 330.082,
+          "pol2_2": -349.614
+        }
+      },
+      "0.28": {
+        "significance": 35.432,
+        "significance_error": 0.535113,
+        "signal": 1437.95,
+        "signal_error": 40.5832,
+        "fit_params": {
+          "mean": 0.495594,
+          "sigma": 0.00387408,
+          "N": 66.4726,
+          "pol2_0": -75.067,
+          "pol2_1": 330.076,
+          "pol2_2": -349.303
+        }
+      },
+      "0.28500000000000003": {
+        "significance": 35.3536,
+        "significance_error": 0.535055,
+        "signal": 1431.27,
+        "signal_error": 40.4846,
+        "fit_params": {
+          "mean": 0.495589,
+          "sigma": 0.00386053,
+          "N": 66.5442,
+          "pol2_0": -75.1629,
+          "pol2_1": 330.067,
+          "pol2_2": -348.965
+        }
+      },
+      "0.29": {
+        "significance": 35.2997,
+        "significance_error": 0.535136,
+        "signal": 1427.35,
+        "signal_error": 40.4351,
+        "fit_params": {
+          "mean": 0.495588,
+          "sigma": 0.00384908,
+          "N": 66.5465,
+          "pol2_0": -75.1797,
+          "pol2_1": 330.067,
+          "pol2_2": -348.901
+        }
+      },
+      "0.295": {
+        "significance": 35.2196,
+        "significance_error": 0.535251,
+        "signal": 1421.5,
+        "signal_error": 40.3609,
+        "fit_params": {
+          "mean": 0.495584,
+          "sigma": 0.00385627,
+          "N": 66.2116,
+          "pol2_0": -75.1867,
+          "pol2_1": 330.066,
+          "pol2_2": -348.878
+        }
+      },
+      "0.3": {
+        "significance": 35.2863,
+        "significance_error": 0.534499,
+        "signal": 1422.87,
+        "signal_error": 40.3237,
+        "fit_params": {
+          "mean": 0.495582,
+          "sigma": 0.00386013,
+          "N": 66.1298,
+          "pol2_0": -66.8275,
+          "pol2_1": 295.426,
+          "pol2_2": -313.262
+        }
+      },
+      "0.305": {
+        "significance": 35.2379,
+        "significance_error": 0.534455,
+        "signal": 1418.73,
+        "signal_error": 40.2616,
+        "fit_params": {
+          "mean": 0.495579,
+          "sigma": 0.00386892,
+          "N": 65.8241,
+          "pol2_0": -66.9084,
+          "pol2_1": 295.422,
+          "pol2_2": -312.97
+        }
+      },
+      "0.31": {
+        "significance": 35.1768,
+        "significance_error": 0.53434,
+        "signal": 1413.22,
+        "signal_error": 40.1746,
+        "fit_params": {
+          "mean": 0.495592,
+          "sigma": 0.00387704,
+          "N": 65.3513,
+          "pol2_0": -66.8286,
+          "pol2_1": 295.404,
+          "pol2_2": -313.335
+        }
+      },
+      "0.315": {
+        "significance": 35.2052,
+        "significance_error": 0.53429,
+        "signal": 1415.23,
+        "signal_error": 40.1995,
+        "fit_params": {
+          "mean": 0.495591,
+          "sigma": 0.00388286,
+          "N": 65.2971,
+          "pol2_0": -66.6611,
+          "pol2_1": 295.38,
+          "pol2_2": -314.082
+        }
+      },
+      "0.32": {
+        "significance": 35.1273,
+        "significance_error": 0.53397,
+        "signal": 1407.28,
+        "signal_error": 40.0625,
+        "fit_params": {
+          "mean": 0.495593,
+          "sigma": 0.0038783,
+          "N": 65.0772,
+          "pol2_0": -66.7416,
+          "pol2_1": 295.374,
+          "pol2_2": -313.79
+        }
+      },
+      "0.325": {
+        "significance": 35.0743,
+        "significance_error": 0.534206,
+        "signal": 1404.29,
+        "signal_error": 40.0375,
+        "fit_params": {
+          "mean": 0.495594,
+          "sigma": 0.00388593,
+          "N": 64.8091,
+          "pol2_0": -66.7653,
+          "pol2_1": 295.363,
+          "pol2_2": -313.73
+        }
+      },
+      "0.33": {
+        "significance": 35.0466,
+        "significance_error": 0.53425,
+        "signal": 1402.3,
+        "signal_error": 40.0125,
+        "fit_params": {
+          "mean": 0.495593,
+          "sigma": 0.00388959,
+          "N": 64.6734,
+          "pol2_0": -66.878,
+          "pol2_1": 295.364,
+          "pol2_2": -313.274
+        }
+      },
+      "0.335": {
+        "significance": 34.7836,
+        "significance_error": 0.535258,
+        "signal": 1386.55,
+        "signal_error": 39.8623,
+        "fit_params": {
+          "mean": 0.4956,
+          "sigma": 0.0038782,
+          "N": 64.2478,
+          "pol2_0": -87.962,
+          "pol2_1": 380.45,
+          "pol2_2": -398.765
+        }
+      },
+      "0.34": {
+        "significance": 34.7031,
+        "significance_error": 0.535372,
+        "signal": 1380.73,
+        "signal_error": 39.7869,
+        "fit_params": {
+          "mean": 0.495601,
+          "sigma": 0.00386985,
+          "N": 64.1378,
+          "pol2_0": -87.9738,
+          "pol2_1": 380.447,
+          "pol2_2": -398.72
+        }
+      },
+      "0.34500000000000003": {
+        "significance": 34.6244,
+        "significance_error": 0.535557,
+        "signal": 1375.42,
+        "signal_error": 39.724,
+        "fit_params": {
+          "mean": 0.495602,
+          "sigma": 0.00386621,
+          "N": 63.9982,
+          "pol2_0": -88.062,
+          "pol2_1": 380.45,
+          "pol2_2": -398.35
+        }
+      },
+      "0.35000000000000003": {
+        "significance": 34.577,
+        "significance_error": 0.535584,
+        "signal": 1371.8,
+        "signal_error": 39.6737,
+        "fit_params": {
+          "mean": 0.4956,
+          "sigma": 0.00387131,
+          "N": 63.6537,
+          "pol2_0": -88.0818,
+          "pol2_1": 380.444,
+          "pol2_2": -398.279
+        }
+      },
+      "0.355": {
+        "significance": 34.5085,
+        "significance_error": 0.535689,
+        "signal": 1366.9,
+        "signal_error": 39.6106,
+        "fit_params": {
+          "mean": 0.495582,
+          "sigma": 0.0038649,
+          "N": 63.5121,
+          "pol2_0": -88.11,
+          "pol2_1": 380.442,
+          "pol2_2": -398.165
+        }
+      },
+      "0.36": {
+        "significance": 34.4718,
+        "significance_error": 0.535718,
+        "signal": 1364.14,
+        "signal_error": 39.5727,
+        "fit_params": {
+          "mean": 0.495583,
+          "sigma": 0.00386138,
+          "N": 63.4573,
+          "pol2_0": -88.1511,
+          "pol2_1": 380.441,
+          "pol2_2": -398.007
+        }
+      },
+      "0.365": {
+        "significance": 34.3256,
+        "significance_error": 0.535912,
+        "signal": 1353.58,
+        "signal_error": 39.4335,
+        "fit_params": {
+          "mean": 0.495588,
+          "sigma": 0.00386739,
+          "N": 62.9311,
+          "pol2_0": -88.1813,
+          "pol2_1": 380.436,
+          "pol2_2": -397.898
+        }
+      },
+      "0.37": {
+        "significance": 34.2722,
+        "significance_error": 0.535812,
+        "signal": 1348.86,
+        "signal_error": 39.3573,
+        "fit_params": {
+          "mean": 0.495589,
+          "sigma": 0.00387662,
+          "N": 62.5772,
+          "pol2_0": -83.5601,
+          "pol2_1": 361.712,
+          "pol2_2": -379.009
+        }
+      },
+      "0.375": {
+        "significance": 34.33,
+        "significance_error": 0.535274,
+        "signal": 1350.7,
+        "signal_error": 39.3446,
+        "fit_params": {
+          "mean": 0.495581,
+          "sigma": 0.00389079,
+          "N": 62.379,
+          "pol2_0": -73.1199,
+          "pol2_1": 318.669,
+          "pol2_2": -334.946
+        }
+      },
+      "0.38": {
+        "significance": 34.2873,
+        "significance_error": 0.535348,
+        "signal": 1347.71,
+        "signal_error": 39.3065,
+        "fit_params": {
+          "mean": 0.495583,
+          "sigma": 0.00389067,
+          "N": 62.303,
+          "pol2_0": -73.121,
+          "pol2_1": 318.669,
+          "pol2_2": -334.942
+        }
+      },
+      "0.385": {
+        "significance": 34.2294,
+        "significance_error": 0.535453,
+        "signal": 1343.69,
+        "signal_error": 39.2556,
+        "fit_params": {
+          "mean": 0.495573,
+          "sigma": 0.00388724,
+          "N": 62.2051,
+          "pol2_0": -73.127,
+          "pol2_1": 318.669,
+          "pol2_2": -334.918
+        }
+      },
+      "0.39": {
+        "significance": 34.1598,
+        "significance_error": 0.535563,
+        "signal": 1338.78,
+        "signal_error": 39.1918,
+        "fit_params": {
+          "mean": 0.495576,
+          "sigma": 0.00388667,
+          "N": 61.9914,
+          "pol2_0": -73.1428,
+          "pol2_1": 318.671,
+          "pol2_2": -334.862
+        }
+      },
+      "0.395": {
+        "significance": 34.0515,
+        "significance_error": 0.535626,
+        "signal": 1330.63,
+        "signal_error": 39.0768,
+        "fit_params": {
+          "mean": 0.495571,
+          "sigma": 0.00388461,
+          "N": 61.8361,
+          "pol2_0": -83.2717,
+          "pol2_1": 360.187,
+          "pol2_2": -377.304
+        }
+      },
+      "0.4": {
+        "significance": 34.0292,
+        "significance_error": 0.535977,
+        "signal": 1330.62,
+        "signal_error": 39.1024,
+        "fit_params": {
+          "mean": 0.495573,
+          "sigma": 0.00388625,
+          "N": 61.762,
+          "pol2_0": -83.2854,
+          "pol2_1": 360.186,
+          "pol2_2": -377.253
+        }
+      }
+    },
     "v0cospa": {},
     "dcav0dau": {},
     "v0radius": {}
