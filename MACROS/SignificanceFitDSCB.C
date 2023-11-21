@@ -79,33 +79,42 @@ void SignificanceFitDSCB(const bool isMC, const bool isK0, const double xLow,
       h1->FindBin(ff1->GetParameter(4) - numOfSigmas * ff1->GetParameter(5)),
       h1->FindBin(ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5)));
 
-  // count cumulative number of Y value for pol2 in
-  // numOfSigmas sigma range for each bins
-  double B = 0;
-  double SBinErr = 0;
+  double B = pol2->Integral(
+                 ff1->GetParameter(4) - numOfSigmas * ff1->GetParameter(5),
+                 ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5)) /
+             h1->GetBinWidth(0);
+  double SPlusBBinErr = 0;
   for (int i = h1->FindBin(ff1->GetParameter(4) -
                            numOfSigmas * ff1->GetParameter(5));
        i <=
        h1->FindBin(ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5));
        i++) {
-    B += pol2->Eval(h1->GetBinCenter(i));
     // count bin error for S
-    SBinErr += h1->GetBinError(i) * h1->GetBinError(i);
+    SPlusBBinErr += h1->GetBinError(i) * h1->GetBinError(i);
   }
 
   double S = SPlusB - B;
 
   double significance = S / sqrt(B + S);
 
-  std::cout << "Significance: "
-            << "$$$" << significance << "$$$" << std::endl;
+  std::cout << "$$$" << significance << "$$$" << std::endl;
 
-  double Serr = sqrt(SBinErr);
+  double Serr = sqrt(SPlusBBinErr);
 
   double SignificanceErr = 0.5 * (1 / sqrt(S)) * Serr;
 
-  std::cout << "Error: "
-            << "$$$" << SignificanceErr << "$$$" << std::endl;
+  std::cout << "$$$" << SignificanceErr << "$$$" << std::endl;
+
+  std::cout << "$$$" << S << "$$$" << std::endl;
+
+  std::cout << "$$$" << Serr << "$$$" << std::endl;
+
+  // stdout all fit parameters
+  std::cout << "Fit parameters: " << std::endl;
+  for (int i = 0; i < 10; i++) {
+    std::cout << "$$$" << ff1->GetParName(i) << "$$$" << ff1->GetParameter(i)
+              << "$$$" << std::endl;
+  }
 
   std::string outputdir = "output/figures/batch_mass_plots/";
   std::string outputname_str = outputdir + outputname;

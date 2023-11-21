@@ -76,18 +76,18 @@ void SignificanceFitGaussPoly(const bool isMC, const bool isK0,
       h1->FindBin(ff1->GetParameter(0) - numOfSigmas * ff1->GetParameter(1)),
       h1->FindBin(ff1->GetParameter(0) + numOfSigmas * ff1->GetParameter(1)));
 
-  // count cumulative number of Y value for pol2 in
-  // numOfSigmas sigma range for each bins
-  double B = 0;
-  double SBinErr = 0;
+  double B = pol2->Integral(
+                 ff1->GetParameter(0) - numOfSigmas * ff1->GetParameter(1),
+                 ff1->GetParameter(0) + numOfSigmas * ff1->GetParameter(1)) /
+             h1->GetBinWidth(0);
+  double SPlusBBinErr = 0;
   for (int i = h1->FindBin(ff1->GetParameter(0) -
                            numOfSigmas * ff1->GetParameter(1));
        i <=
        h1->FindBin(ff1->GetParameter(0) + numOfSigmas * ff1->GetParameter(1));
        i++) {
-    B += pol2->Eval(h1->GetBinCenter(i));
     // count bin error for S
-    SBinErr += h1->GetBinError(i) * h1->GetBinError(i);
+    SPlusBBinErr += h1->GetBinError(i) * h1->GetBinError(i);
   }
 
   double S = SPlusB - B;
@@ -96,7 +96,7 @@ void SignificanceFitGaussPoly(const bool isMC, const bool isK0,
 
   std::cout << "$$$" << significance << "$$$" << std::endl;
 
-  double Serr = sqrt(SBinErr);
+  double Serr = sqrt(SPlusBBinErr);
 
   double SignificanceErr = 0.5 * (1 / sqrt(S)) * Serr;
 
