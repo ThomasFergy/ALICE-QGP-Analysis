@@ -480,6 +480,12 @@
         "significance_error": 0.596937,
         "signal": 70344.1,
         "signal_error": 316.645
+      },
+      "0.4": {
+        "significance": 221.861,
+        "significance_error": 0.59674,
+        "signal": 70111.9,
+        "signal_error": 316.017
       }
     },
     "dcapostopv": {
@@ -962,6 +968,12 @@
         "significance_error": 0.595135,
         "signal": 70751.8,
         "signal_error": 316.602
+      },
+      "0.4": {
+        "significance": 223.242,
+        "significance_error": 0.594889,
+        "signal": 70547.6,
+        "signal_error": 316.014
       }
     },
     "v0cospa": {},
@@ -1449,6 +1461,12 @@
         "significance_error": 0.658766,
         "signal": 22344.7,
         "signal_error": 196.947
+      },
+      "0.4": {
+        "significance": 113.295,
+        "significance_error": 0.658719,
+        "signal": 22278.2,
+        "signal_error": 196.639
       }
     },
     "dcapostopv": {
@@ -1931,6 +1949,12 @@
         "significance_error": 0.65859,
         "signal": 12002.6,
         "signal_error": 144.305
+      },
+      "0.4": {
+        "significance": 82.6274,
+        "significance_error": 0.65892,
+        "signal": 11857.0,
+        "signal_error": 143.499
       }
     },
     "v0cospa": {},
