@@ -106,6 +106,10 @@ void SignificanceFitGaussPoly(const bool isMC, const bool isK0,
 
   std::cout << "$$$" << Serr << "$$$" << std::endl;
 
+  std::cout << "$$$" << SPlusB << "$$$" << std::endl;
+
+  std::cout << "$$$" << Serr << "$$$" << std::endl;
+
   // stdout all fit parameters
   std::cout << "Fit parameters: " << std::endl;
   for (int i = 0; i < 6; i++) {

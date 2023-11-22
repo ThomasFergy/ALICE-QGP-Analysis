@@ -2,7 +2,8 @@
 
 #include "TCanvas.h"
 #include "TGraph.h"
-#include "TH1.h"
+#include "TGraphErrors.h"
+#include "TH1F.h"
 
 /**
  * @brief Plots the significance vs. cut value
