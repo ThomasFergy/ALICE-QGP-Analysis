@@ -19,7 +19,7 @@ isMC = False
 # which V0 to use:
 # 0 = K0
 # 1 = Lambda
-V0_index = 1
+V0_index = 0
 ########################################
 
 iterate_fit_params = True

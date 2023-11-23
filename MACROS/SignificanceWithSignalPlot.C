@@ -50,7 +50,6 @@ void SignificanceWithSignalPlot(const char* filepath, const char* Title,
   TGraph* gr2 = new TGraphErrors(DataSignalVector.size(), &cutVector[0],
                                  &DataSignalVector[0], 0, 0);
 
-  gr2->SetMarkerColor(2);
   gr2->SetMarkerStyle(20);
   // make size smaller
   gr2->SetMarkerSize(0.5);
@@ -58,7 +57,7 @@ void SignificanceWithSignalPlot(const char* filepath, const char* Title,
   TGraph* gr3 = new TGraphErrors(MCSignalVector.size(), &cutVector[0],
                                  &MCSignalVector[0], 0, 0);
 
-  gr3->SetMarkerColor(4);
+  gr3->SetMarkerColor(2);
   gr3->SetMarkerStyle(20);
   // make size smaller
   gr3->SetMarkerSize(0.5);

@@ -34,7 +34,6 @@ void SignificancePlot(const char* filepath, const char* Title,
 
   // set x range
   gr->GetXaxis()->SetRangeUser(-0.1, 2.1);
-  gr->SetMarkerColor(4);
   gr->SetMarkerStyle(20);
   gr->SetTitle(Title);
   gr->GetXaxis()->SetTitle(xlable);
