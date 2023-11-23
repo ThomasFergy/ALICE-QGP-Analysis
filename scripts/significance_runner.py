@@ -11,7 +11,6 @@ Method:
 import os
 import json
 import subprocess
-from significance_plot import make_plot
 
 ########################################
 # Which data to use:
