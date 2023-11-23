@@ -125,3 +125,9 @@ def make_plot(V0_index, cut_index):
         ],
         stdout=subprocess.PIPE,
     )
+
+
+if __name__ == "__main__":
+    V0_index = 0
+    cut_index = 0
+    make_plot(V0_index, cut_index)
