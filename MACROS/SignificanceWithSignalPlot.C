@@ -29,6 +29,7 @@ void SignificanceWithSignalPlot(const char* filepath, const char* Title,
                                 &significanceVector[0], 0, &errorVector[0]);
 
   gr->SetMarkerStyle(20);
+  gr->SetMarkerSize(0.5);
   gr->Draw("AP");
 
   // change signal data to be signal left
@@ -51,12 +52,16 @@ void SignificanceWithSignalPlot(const char* filepath, const char* Title,
 
   gr2->SetMarkerColor(2);
   gr2->SetMarkerStyle(20);
+  // make size smaller
+  gr2->SetMarkerSize(0.5);
 
   TGraph* gr3 = new TGraphErrors(MCSignalVector.size(), &cutVector[0],
                                  &MCSignalVector[0], 0, 0);
 
   gr3->SetMarkerColor(4);
   gr3->SetMarkerStyle(20);
+  // make size smaller
+  gr3->SetMarkerSize(0.5);
 
   // draw the graphs on the second pad simultaneously
   gr2->Draw("AP");
