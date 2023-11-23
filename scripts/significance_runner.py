@@ -20,8 +20,10 @@ isMC = False
 # which V0 to use:
 # 0 = K0
 # 1 = Lambda
-V0_index = 0
+V0_index = 1
 ########################################
+
+iterate_fit_params = True
 
 if isMC:
     cwd = "data/V0MC"
@@ -168,7 +170,7 @@ if __name__ == "__main__":
                 MACRO = "SignificanceFitGaussPoly.C"
                 fit_params = "{1.115, 0.0015, 31.89, 2400, -4400, 2000}"
 
-            if i > 0:
+            if i > 0 and iterate_fit_params:
                 # if not first cut, use previous cut's fit params as starting values
                 prev_fit_params = results[V0_names[V0_index]][
                     cut_parameters[cut_index]
@@ -262,88 +264,78 @@ if __name__ == "__main__":
             json.dump(results, f, indent=2)
 
         ######### RUN SIGNIFICANCE PLOT MACRO #########
-        try:
-            make_plot(V0_index=V0_index, cut_index=cut_index)
-        except:
-            print(
-                "WARN: Error plotting with signal fraction plot. MC data may not be available"
+
+        filepath = "output/figures/{}_significance_{}.pdf".format(
+            V0_names[V0_index], cut_parameters[cut_index]
+        )
+
+        # load all significance values from json file
+        with open("output/significance.json", "r") as f:
+            results = json.load(f)
+
+        significance_values = []
+        significance_errors = []
+        cuts = []
+        for cut in results[V0_names[V0_index]][cut_parameters[cut_index]]:
+            cuts.append(cut)
+            significance_values.append(
+                results[V0_names[V0_index]][cut_parameters[cut_index]][cut][
+                    "significance"
+                ]
             )
-            print(
-                "Attempting to plot significance vs {} only".format(
-                    cut_parameters[cut_index]
-                )
-            )
-            filepath = "output/figures/{}_significance_{}.pdf".format(
-                V0_names[V0_index], cut_parameters[cut_index]
-            )
-
-            # load all significance values from json file
-            with open("output/significance.json", "r") as f:
-                results = json.load(f)
-
-            significance_values = []
-            significance_errors = []
-            cuts = []
-            for cut in results[V0_names[V0_index]][cut_parameters[cut_index]]:
-                cuts.append(cut)
-                significance_values.append(
-                    results[V0_names[V0_index]][cut_parameters[cut_index]][cut][
-                        "significance"
-                    ]
-                )
-                significance_errors.append(
-                    results[V0_names[V0_index]][cut_parameters[cut_index]][cut][
-                        "significance_error"
-                    ]
-                )
-
-            # convert significance values to string
-            significance_values = str(significance_values)
-            significance_errors = str(significance_errors)
-            # make square brackets curly
-            significance_values = significance_values.replace("[", "{")
-            significance_values = significance_values.replace("]", "}")
-            significance_errors = significance_errors.replace("[", "{")
-            significance_errors = significance_errors.replace("]", "}")
-
-            # convert cuts to string
-            cuts = [float(cut) for cut in cuts]
-            cuts = str(cuts)
-            # make square brackets curly
-            cuts = cuts.replace("[", "{")
-            cuts = cuts.replace("]", "}")
-
-            Title = "Significance vs {}".format(cut_parameters[cut_index])
-            xLabel = cut_parameters[cut_index]
-            yLabel = "Significance"
-
-            args = "{}, {}, {}, {}, {}, {}, {}".format(
-                '"' + filepath + '"',
-                '"' + Title + '"',
-                '"' + xLabel + '"',
-                '"' + yLabel + '"',
-                significance_values,
-                cuts,
-                significance_errors,
+            significance_errors.append(
+                results[V0_names[V0_index]][cut_parameters[cut_index]][cut][
+                    "significance_error"
+                ]
             )
 
-            result = subprocess.run(
-                [
-                    "root",
-                    "-l",
-                    "-b",
-                    "-q",
-                    "MACROS/SignificancePlot.C({})".format(args),
-                ],
-                stdout=subprocess.PIPE,
-            )
-            err_count += result.returncode
+        # convert significance values to string
+        significance_values = str(significance_values)
+        significance_errors = str(significance_errors)
+        # make square brackets curly
+        significance_values = significance_values.replace("[", "{")
+        significance_values = significance_values.replace("]", "}")
+        significance_errors = significance_errors.replace("[", "{")
+        significance_errors = significance_errors.replace("]", "}")
 
-            # warn if error
-            if result.returncode != 0:
-                print("WARN: Error running MACROS/SignificancePlot.C")
+        # convert cuts to string
+        cuts = [float(cut) for cut in cuts]
+        cuts = str(cuts)
+        # make square brackets curly
+        cuts = cuts.replace("[", "{")
+        cuts = cuts.replace("]", "}")
 
-        if err_count != 0:
-            print("Script finished with {} error(s)".format(err_count))
-        else:
-            print("Script finished successfully")
+        Title = "Significance vs {}".format(cut_parameters[cut_index])
+        xLabel = cut_parameters[cut_index]
+        yLabel = "Significance"
+
+        args = "{}, {}, {}, {}, {}, {}, {}".format(
+            '"' + filepath + '"',
+            '"' + Title + '"',
+            '"' + xLabel + '"',
+            '"' + yLabel + '"',
+            significance_values,
+            cuts,
+            significance_errors,
+        )
+
+        result = subprocess.run(
+            [
+                "root",
+                "-l",
+                "-b",
+                "-q",
+                "MACROS/SignificancePlot.C({})".format(args),
+            ],
+            stdout=subprocess.PIPE,
+        )
+        err_count += result.returncode
+
+        # warn if error
+        if result.returncode != 0:
+            print("WARN: Error running MACROS/SignificancePlot.C")
+
+    if err_count != 0:
+        print("Script finished with {} error(s)".format(err_count))
+    else:
+        print("Script finished successfully")
