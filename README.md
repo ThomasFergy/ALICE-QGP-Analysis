@@ -37,6 +37,7 @@ If a specific significance calculation has already been done before (meaning it 
 
 If the python scripts are failing to run the MACROS: `MACROS/SignificanceFit.C` and `MACROS/SignificancePlot.C` then you may not have compiled the c++ files in `lib/`. This is done by, from the root directory of this repo, running `python3 lib/lib_compile.py`
 
+Process for running MC cuts is a bit different but should be similar for significance. MC cuts are very very slow. For 80 cuts each for two parameters this takes many hours.
 
 
 ## File Structure:
