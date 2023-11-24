@@ -1,0 +1,10 @@
+1911 - only run 528531  -     OK 26320 k0s (run 2x - same reult)
+1118 - AO2DMC* + run 528531 - strange bckg 20661 k0s
+1132 - AO2DMC* only -         OK 3783 k0s  (run 2x - same result)
+1139 - AO2DMC* + run 528531 - strange bckg 22391 k0s
+1207- run 528531 + AO2DMC*  - OK 29001
+1230- run 528531 + AO2DMC*  - OK 28899
+1234- run 528531 + AO2DMC*  - OK 28990
+1525 - 528531+528534          ? 42371   (master)
+1534 - 528531+528534          ? 43402   (rl)
+1539 -        528534          ? 24475   (rl)
