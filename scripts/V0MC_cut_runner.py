@@ -139,10 +139,7 @@ def combine_root_files(aodmcs_files):
         print("root file combining ended with {} error(s)".format(err_count))
     else:
         print("root file combining ended successfully")
-        #result = subprocess.run(["hadd", "-f", file_name, "results/step3/{}/*.root".format(aodmcs_files[0][:-4])], cwd=cwd)
-
     
-
 
 if __name__ == "__main__":
     err_count = 0
