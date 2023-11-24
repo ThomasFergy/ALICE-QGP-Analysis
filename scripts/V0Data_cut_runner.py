@@ -14,9 +14,6 @@ import subprocess
 import numpy as np
 
 ########################################
-# Which data to use:
-isMC = False
-########################################
 # Set the cut value in the json file
 # 0 = dcanegtopv
 # 1 = dcapostopv
@@ -31,14 +28,10 @@ step = 0.005
 cut_values = np.arange(cut_range[0], cut_range[1] + step, step)
 ########################################
 
-if isMC:
-    cwd = "data/V0MC"
-    output_dir = "output/V0MC"
-    json_file = "{}/jsonConfigs/step3.json".format(cwd)
-else:
-    cwd = "data/V0Data"
-    output_dir = "output/V0Data"
-    json_file = "{}/json_strangenesstutorial.json".format(cwd)
+
+cwd = "data/V0Data"
+output_dir = "output/V0Data"
+json_file = "{}/json_strangenesstutorial.json".format(cwd)
 
 
 cut_parameters = ["dcanegtopv", "dcapostopv", "v0cospa", "dcav0dau", "v0radius"]
@@ -96,10 +89,7 @@ if __name__ == "__main__":
             print()
 
             # Apply the cut (requires being in the alienv environment before running)
-            if isMC:
-                bash_script = "./runStep3.sh"
-            else:
-                bash_script = "./run_step0.sh"
+            bash_script = "./run_step0.sh"
 
             result = subprocess.run([bash_script], cwd=cwd)
             err_count += result.returncode
@@ -113,18 +103,12 @@ if __name__ == "__main__":
                 )
 
             # Rename the output file to avoid overwriting and move to output directory
-            if isMC:
-                os.system(
-                    "mv {}/results/step3/AnalysisResults.root {}/AnalysisResults_{}_{}.root".format(
-                        cwd, output_dir, cut_parameters[par_index], cut_value
-                    )
+            
+            os.system(
+                "mv {}/AnalysisResults.root {}/AnalysisResults_{}_{}.root".format(
+                    cwd, output_dir, cut_parameters[par_index], cut_value
                 )
-            else:
-                os.system(
-                    "mv {}/AnalysisResults.root {}/AnalysisResults_{}_{}.root".format(
-                        cwd, output_dir, cut_parameters[par_index], cut_value
-                    )
-                )
+            )
 
     # reset default cut values
     for i in range(len(cut_parameters)):

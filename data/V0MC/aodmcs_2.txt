@@ -1,0 +1,8 @@
+/disk/moose/alice/rl/run3/data/AO2DMC8.root
+/disk/moose/alice/rl/run3/data/AO2DMC7.root
+/disk/moose/alice/rl/run3/data/AO2DMC6.root
+/disk/moose/alice/rl/run3/data/AO2DMC5.root
+/disk/moose/alice/rl/run3/data/AO2DMC4.root
+/disk/moose/alice/rl/run3/data/AO2DMC3.root
+/disk/moose/alice/rl/run3/data/AO2DMC2.root
+/disk/moose/alice/rl/run3/data/AO2DMC1.root
