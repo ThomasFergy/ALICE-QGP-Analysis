@@ -63,6 +63,8 @@ Type cc7
 
 Start enviroment of O2 Physics software (eprexa):
 alienv enter O2Physics/latest-master-o2
+or
+alienv enter O2Physics/latest-rl-o2
 
 if on personal server use: alienv enter O2Physics/latest-8621ff625d-o2
 

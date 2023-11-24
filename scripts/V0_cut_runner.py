@@ -34,7 +34,7 @@ cut_values = np.arange(cut_range[0], cut_range[1] + step, step)
 if isMC:
     cwd = "data/V0MC"
     output_dir = "output/V0MC"
-    json_file = "{}/json_strangenesstutorialMC_sig.json".format(cwd)
+    json_file = "{}/jsonConfigs/step3.json".format(cwd)
 else:
     cwd = "data/V0Data"
     output_dir = "output/V0Data"
@@ -97,7 +97,7 @@ if __name__ == "__main__":
 
             # Apply the cut (requires being in the alienv environment before running)
             if isMC:
-                bash_script = "./run_step0_MC.sh"
+                bash_script = "./runStep3.sh"
             else:
                 bash_script = "./run_step0.sh"
 
@@ -113,11 +113,18 @@ if __name__ == "__main__":
                 )
 
             # Rename the output file to avoid overwriting and move to output directory
-            os.system(
-                "mv {}/AnalysisResults.root {}/AnalysisResults_{}_{}.root".format(
-                    cwd, output_dir, cut_parameters[par_index], cut_value
+            if isMC:
+                os.system(
+                    "mv {}/results/step3/AnalysisResults.root {}/AnalysisResults_{}_{}.root".format(
+                        cwd, output_dir, cut_parameters[par_index], cut_value
+                    )
                 )
-            )
+            else:
+                os.system(
+                    "mv {}/AnalysisResults.root {}/AnalysisResults_{}_{}.root".format(
+                        cwd, output_dir, cut_parameters[par_index], cut_value
+                    )
+                )
 
     # reset default cut values
     for i in range(len(cut_parameters)):
