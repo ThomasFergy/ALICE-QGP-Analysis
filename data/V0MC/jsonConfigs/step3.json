@@ -7,7 +7,7 @@
     "start-value-enumeration": "0",
     "end-value-enumeration": "-1",
     "step-value-enumeration": "1",
-    "aod-file": "@aodmcs_2.txt"
+    "aod-file": "@aodmcs_0.txt"
   },
   "internal-dpl-aod-spawner": "",
   "bc-converter": "",
@@ -124,9 +124,9 @@
     "createV0CovMats": "-1",
     "d_UseAutodetectMode": "false",
     "downscaleFactor": "2",
-    "dcanegtopv": "0.0",
-    "dcapostopv": "0.0",
-    "v0cospa": "0.9",
+    "dcanegtopv": "0.035",
+    "dcapostopv": "0",
+    "v0cospa": "0.90000000000000002",
     "dcav0dau": "1",
     "v0radius": "0.899999976",
     "tpcrefit": "0",

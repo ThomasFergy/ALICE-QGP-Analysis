@@ -13,14 +13,13 @@ There is some extra set up beyond cloning this repo required to get everything u
 
 In this example we will go from nothing to having a significance plot for dcapostopv on the K0.
 
-1. First we will need to apply the cuts over the range that we want and on the files we want. The script `V0_cut_runner.py` allows us to do this. At the top of this file you will find three variables which make these selections for you.
-   1. `isMC`: Boolean to choose Data or MC.
+1. First we will need to apply the cuts over the range that we want and on the files we want. The script `V0Data_cut_runner.py` or `V0MC_cut_runner.py` allow us to do this. At the top of these files you will find three variables which make these selections for you.
    2. `par_indices = [...]`: 0 = dcanegtopv, 1 = dcapostopv, 2 = v0cospa, 3 = dcav0dau, 4 = v0radius.
    3. `cut_values`: array of floats. I would use np.arrange(...) here.
    
-   For this example we could choose `isMC=False`, `par_indices = [1]`, `cut_values = np.arange(0, 0.2, 0.005)`. Make sure you save these changes before step 2.
+   For this example we could choose to use `V0Data_cut_runner.py` with: `par_indices = [1]`, `cut_values = np.arange(0, 0.2+0.005, 0.005)`. Make sure you save these changes before step 2.
 
-2. From the root directory of this repo run `python3 scripts/V0_cut_runner.py` (IMPORTANT: Must be in alienv O2Physics environment). This will populate `output/V0Data/` with files of the form `AnalysisResults_dcanegtopv_0.05.root`, which contain the parameter and cut value. (This is quite slow)
+2. From the root directory of this repo run `python3 scripts/V0Data_cut_runner.py` (IMPORTANT: Must be in alienv O2Physics environment). This will populate `output/V0Data/` with files of the form `AnalysisResults_dcanegtopv_0.05.root`, which contain the parameter and cut value. (This is quite slow)
 
 3. To get to a significance plot for these cuts we need to fit each of the K0 mass plots in the `.root` files produced in step 2. The script `significance_runner.py` allows us to do this. In a similar way to the previous python script there are two variables to edit at the top of this file.
    1. `isMC`: Boolean to choose Data or MC.
@@ -59,13 +58,11 @@ Contains any scripts used for batch tasks.
 
 
 ## Useful server commands
-Type cc7
+Type cc7 (eprexa)
 
 Start enviroment of O2 Physics software (eprexa):
-alienv enter O2Physics/latest-master-o2
-or
-alienv enter O2Physics/latest-rl-o2
+- alienv enter O2Physics/latest-master-o2
+- alienv enter O2Physics/latest-rl-o2
 
-if on personal server use: alienv enter O2Physics/latest-8621ff625d-o2
-
-if on epldt003: alienv enter O2Physics/latest-d9ac9d44d3-o2
+if on epldt003:
+- alienv enter O2Physics/latest-d9ac9d44d3-o2
