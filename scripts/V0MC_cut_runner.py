@@ -215,8 +215,7 @@ if __name__ == "__main__":
                           cwd, aodmcs_output_dir, cut_parameters[par_index], cut_value
                       )
                   )
-                break
-            break
+
     # reset default cut values
     for i in range(len(cut_parameters)):
         set_cut_value(json_file, i, default_cut_values[i])
