@@ -81,13 +81,9 @@ def set_aodmcs_files():
 
     seperated_files_list = []
     for run_number in run_numbers:
-        seperated_files_list.append(
-            [f for f in root_files if str(run_number) in f]
-        )
+        seperated_files_list.append([f for f in root_files if str(run_number) in f])
     if AO2DMC_exists:
-        seperated_files_list.append(
-                [f for f in root_files if "AO2DMC" in f]
-            )
+        seperated_files_list.append([f for f in root_files if "AO2DMC" in f])
 
     # create aodmcs files
     aodmcs_files = []
@@ -98,6 +94,7 @@ def set_aodmcs_files():
         aodmcs_files.append("aodmcs_{}.txt".format(i))
 
     return aodmcs_files
+
 
 def set_aodcms_file_json(aodmcs_file):
     """
@@ -114,32 +111,44 @@ def combine_root_files(aodmcs_files):
     """
     Function to combine the root files
     """
+    print("---------- Combining root files ----------")
     err_count = 0
     # find what files exist in all the aodmcs directories
     file_names = []
     for aodmcs_file in aodmcs_files:
-        file_names.append(os.listdir(cwd+"/results/step3/{}/".format(aodmcs_file[:-4])))
+        file_names.append(
+            os.listdir(cwd + "/results/step3/{}/".format(aodmcs_file[:-4]))
+        )
     file_names = list(set.intersection(*map(set, file_names)))
-    print("Combining {} cut files...".format(len(file_names))) 
+    print("Combining {} cut files...".format(len(file_names)))
     for file_name in file_names:
         files_to_combine = []
         for aodmcs_file in aodmcs_files:
-            files_to_combine.append("results/step3/{}/{}".format(aodmcs_file[:-4], file_name))
-        result = subprocess.run(["hadd", "-f", "results/step3/{}".format(file_name), *files_to_combine], cwd=cwd)
+            files_to_combine.append(
+                "results/step3/{}/{}".format(aodmcs_file[:-4], file_name)
+            )
+
+        # if the file already exists in the output directory, skip it
+        if os.path.isfile("{}/{}".format(output_dir, file_name)):
+            print("Output file {} already exists".format(file_name))
+            print("Skipping...")
+            print()
+            continue
+
+        result = subprocess.run(
+            ["hadd", "-f", "results/step3/{}".format(file_name), *files_to_combine],
+            cwd=cwd,
+        )
         err_count += result.returncode
         if result.returncode == 0:
             # move the file to the output directory
-            os.system(
-                "mv {}/results/step3/{} {}/".format(
-                    cwd, file_name, output_dir
-                )
-            )
-    
+            os.system("mv {}/results/step3/{} {}/".format(cwd, file_name, output_dir))
+
     if err_count != 0:
         print("root file combining ended with {} error(s)".format(err_count))
     else:
         print("root file combining ended successfully")
-    
+
 
 if __name__ == "__main__":
     err_count = 0
@@ -147,11 +156,7 @@ if __name__ == "__main__":
 
     for aodmcs_file in aodmcs_files:
         set_aodcms_file_json(aodmcs_file)
-        print(
-            "---------- Applying cuts to {} ----------".format(
-                aodmcs_file
-            )
-        )
+        print("---------- Applying cuts to {} ----------".format(aodmcs_file))
         for par_index in par_indices:
             print(
                 "---------- Applying cuts to {} ----------".format(
@@ -165,11 +170,12 @@ if __name__ == "__main__":
 
             for cut_value in cut_values:
                 set_cut_value(json_file, par_index, cut_value)
+                aodmcs_output_dir = cwd + "/results/step3/{}".format(aodmcs_file[:-4])
 
                 # check if output file has already been produced
                 if os.path.isfile(
                     "{}/AnalysisResults_{}_{}.root".format(
-                        output_dir, cut_parameters[par_index], cut_value
+                        aodmcs_output_dir, cut_parameters[par_index], cut_value
                     )
                 ):
                     print(
@@ -204,14 +210,13 @@ if __name__ == "__main__":
 
                 # Rename the output file to avoid overwriting and move to output directory
 
-                aodmcs_output_dir = cwd + "/results/step3/{}".format(aodmcs_file[:-4])
                 if not os.path.isdir(aodmcs_output_dir):
                     os.mkdir(aodmcs_output_dir)
                 os.system(
-                      "mv {}/results/step3/AnalysisResults.root {}/AnalysisResults_{}_{}.root".format(
-                          cwd, aodmcs_output_dir, cut_parameters[par_index], cut_value
-                      )
-                  )
+                    "mv {}/results/step3/AnalysisResults.root {}/AnalysisResults_{}_{}.root".format(
+                        cwd, aodmcs_output_dir, cut_parameters[par_index], cut_value
+                    )
+                )
 
     # reset default cut values
     for i in range(len(cut_parameters)):
