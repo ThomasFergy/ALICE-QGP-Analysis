@@ -26,7 +26,7 @@ par_indices = [0, 1, 2]
 cut_value_list = [
     np.arange(0.0, 0.4 + 0.005, 0.005),  # dcanegtopv
     np.arange(0.0, 0.4 + 0.005, 0.005),  # dcapostopv
-    np.arange(0.95, 1 + 0.00125, 0.00125),  # v0cospa
+    np.arange(0.95, 1 - 0.00125, 0.00125),  # v0cospa
     # np.arange(1.0, 1.1 + 0.005, 0.005),  # dcav0dau
     # np.arange(0.9, 0.95 + 0.005, 0.005),  # v0radius
 ]
@@ -157,6 +157,14 @@ def combine_root_files(aodmcs_files):
             cwd=cwd,
         )
         err_count += result.returncode
+
+        # check if output directory exists
+        if not os.path.isdir(output_dir):
+            os.mkdir(output_dir)
+        # add .gitkeep file to output directory if it is empty
+        if not os.listdir(output_dir):
+            os.system("touch {}/.gitkeep".format(output_dir))
+
         if result.returncode == 0:
             # move the file to the output directory
             os.system("mv {}/results/step3/{} {}/".format(cwd, file_name, output_dir))
