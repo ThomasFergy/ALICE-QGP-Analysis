@@ -20,27 +20,37 @@ import numpy as np
 # 2 = v0cospa
 # 3 = dcav0dau
 # 4 = v0radius
-par_indices = [0, 1]
+par_indices = [0, 1, 2]
 ########################################
 # Choose the cut values to use
 cut_value_list = [
     np.arange(0.0, 0.4 + 0.005, 0.005),  # dcanegtopv
     np.arange(0.0, 0.4 + 0.005, 0.005),  # dcapostopv
-    # np.arange(0.9, 0.95 + 0.005, 0.005),  # v0cospa
+    np.arange(0.95, 1 + 0.00125, 0.00125),  # v0cospa
     # np.arange(1.0, 1.1 + 0.005, 0.005),  # dcav0dau
     # np.arange(0.9, 0.95 + 0.005, 0.005),  # v0radius
 ]
 ########################################
-
+# Default cut values
+default_cut_values = [0.0, 0.0, 0.9, 2, 0.75]
+########################################
 
 cwd = "data/V0Data"
 output_dir = "output/V0Data"
 json_file = "{}/json_strangenesstutorial.json".format(cwd)
 
-
 cut_parameters = ["dcanegtopv", "dcapostopv", "v0cospa", "dcav0dau", "v0radius"]
-
-default_cut_values = [0.0, 0.0, 0.9, 1, 0.899999976]
+cut_parameters_strangeness_tutorial = [
+    "v0setting_dcanegtopv",
+    "v0setting_dcapostopv",
+    "v0setting_cospa",
+    "v0setting_dcav0dau",
+    "v0setting_radius",
+    # "cascadesetting_cospa",
+    # "cascadesetting_cascradius",
+    # "NSigmaTPCPion",
+    # "NSigmaTPCProton",
+]
 
 
 def set_cut_value(json_file, cut_name_index, cut_value):
@@ -50,6 +60,9 @@ def set_cut_value(json_file, cut_name_index, cut_value):
     with open(json_file, "r") as f:
         data = json.load(f)
     data["lambdakzero-builder"][cut_parameters[cut_name_index]] = str(cut_value)
+    data["strangeness_tutorial"][
+        cut_parameters_strangeness_tutorial[cut_name_index]
+    ] = str(cut_value)
     with open(json_file, "w") as f:
         json.dump(data, f, indent=2)
 
@@ -68,7 +81,6 @@ if __name__ == "__main__":
             set_cut_value(json_file, i, default_cut_values[i])
 
         cut_values = cut_value_list[par_index]
-        print("Cut values to be used: {}".format(cut_values))
         for cut_value in cut_values:
             set_cut_value(json_file, par_index, cut_value)
 
@@ -108,8 +120,14 @@ if __name__ == "__main__":
                     )
                 )
 
-            # Rename the output file to avoid overwriting and move to output directory
+            # check if output directory exists
+            if not os.path.isdir(output_dir):
+                os.mkdir(output_dir)
+            # add .gitkeep file to output directory if it is empty
+            if not os.listdir(output_dir):
+                os.system("touch {}/.gitkeep".format(output_dir))
 
+            # Rename the output file to avoid overwriting and move to output directory
             os.system(
                 "mv {}/AnalysisResults.root {}/AnalysisResults_{}_{}.root".format(
                     cwd, output_dir, cut_parameters[par_index], cut_value
