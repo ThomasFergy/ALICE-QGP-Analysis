@@ -23,9 +23,13 @@ import numpy as np
 par_indices = [0, 1]
 ########################################
 # Choose the cut values to use
-cut_range = [0.0, 0.4]
-step = 0.005
-cut_values = np.arange(cut_range[0], cut_range[1] + step, step)
+cut_value_list = [
+    np.arange(0.0, 0.4 + 0.005, 0.005),  # dcanegtopv
+    np.arange(0.0, 0.4 + 0.005, 0.005),  # dcapostopv
+    # np.arange(0.9, 0.95 + 0.005, 0.005),  # v0cospa
+    # np.arange(1.0, 1.1 + 0.005, 0.005),  # dcav0dau
+    # np.arange(0.9, 0.95 + 0.005, 0.005),  # v0radius
+]
 ########################################
 
 
@@ -63,6 +67,8 @@ if __name__ == "__main__":
         for i in range(len(cut_parameters)):
             set_cut_value(json_file, i, default_cut_values[i])
 
+        cut_values = cut_value_list[par_index]
+        print("Cut values to be used: {}".format(cut_values))
         for cut_value in cut_values:
             set_cut_value(json_file, par_index, cut_value)
 
@@ -103,7 +109,7 @@ if __name__ == "__main__":
                 )
 
             # Rename the output file to avoid overwriting and move to output directory
-            
+
             os.system(
                 "mv {}/AnalysisResults.root {}/AnalysisResults_{}_{}.root".format(
                     cwd, output_dir, cut_parameters[par_index], cut_value
