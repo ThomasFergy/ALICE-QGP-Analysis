@@ -7,7 +7,7 @@ TH1F *DataLoader::LoadHist(const char *filename, const char *treename,
   f->cd(treename);
   TH1F *h1 = (TH1F *)gDirectory->Get(histname);
   if (!h1) {
-    std::cout << "h was not read\n";
+    std::cout << "histogram was not read\n";
     exit(1);
   }
   return h1;
@@ -26,12 +26,10 @@ TH1F *DataLoader::LoadHist(const char *filename, const char *treename1,
   TDirectoryFile *dir2 = (TDirectoryFile *)gDirectory->Get(treename2);
   // enter the TTree
   dir2->cd();
-  // show the content of the TDirectoryFile
-  gDirectory->ls();
 
   TH1F *h1 = (TH1F *)gDirectory->Get(histname);
   if (!h1) {
-    std::cout << "h was not read\n";
+    std::cout << "histogram was not read\n";
     exit(1);
   }
   return h1;
