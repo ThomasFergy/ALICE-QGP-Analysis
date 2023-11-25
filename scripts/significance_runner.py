@@ -162,12 +162,15 @@ if __name__ == "__main__":
                 xlow = 0.45
                 xhigh = 0.54
                 MACRO = "SignificanceFitGaussPoly.C"
-                fit_params = "{0.5, 0.0039, 62, -80, 360, -380}"
+                fit_params = "{0.5, 0.004, 950, -1000, 5000, -5000}"
             elif V0_index == 3:
                 xlow = 1.08
                 xhigh = 1.15
                 MACRO = "SignificanceFitGaussPoly.C"
                 fit_params = "{1.115, 0.0015, 31.89, 2400, -4400, 2000}"
+                # not tested yet so print and exit
+                print("Lambda MC not tested yet")
+                exit()
 
             if i > 0 and iterate_fit_params:
                 # if not first cut, use previous cut's fit params as starting values

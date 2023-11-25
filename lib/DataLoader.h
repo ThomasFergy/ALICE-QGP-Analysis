@@ -18,6 +18,9 @@ class DataLoader {
    */
   static TH1F *LoadHist(const char *filename, const char *treename,
                         const char *histname);
+
+  static TH1F *LoadHist(const char *filename, const char *treename1,
+                        const char *treename2, const char *histname);
 };
 
 #endif

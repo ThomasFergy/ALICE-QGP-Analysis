@@ -34,20 +34,32 @@ void SignificanceFitGaussPoly(const bool isMC, const bool isK0,
                               const double xLow, const double xHigh,
                               const char* filename, const char* outputname,
                               std::vector<double> fit_params,
-                              const int numOfSigmas = 5) {
+                              const int numOfSigmas = 3) {
   std::unique_ptr<TH1F> h1 = std::make_unique<TH1F>();
-  if (isK0) {
-    h1 = std::make_unique<TH1F>(*DataLoader::LoadHist(
-        filename, "strangeness_tutorial", "hMassK0Short"));
+  if (!isMC) {
+    if (isK0) {
+      h1 = std::make_unique<TH1F>(*DataLoader::LoadHist(
+          filename, "strangeness_tutorial", "hMassK0Short"));
+    } else {
+      h1 = std::make_unique<TH1F>(*DataLoader::LoadHist(
+          filename, "strangeness_tutorial", "hMassLambda"));
+    }
   } else {
-    h1 = std::make_unique<TH1F>(
-        *DataLoader::LoadHist(filename, "strangeness_tutorial", "hMassLambda"));
+    if (isK0) {
+      h1 = std::make_unique<TH1F>(
+          *DataLoader::LoadHist(filename, "strangeness_tutorial", "kzeroShort",
+                                "hMassK0ShortTrueRec"));
+    } else {
+      h1 = std::make_unique<TH1F>(*DataLoader::LoadHist(
+          filename, "strangeness_tutorial", "kLambda", "hMassLambdaTrueRec"));
+    }
   }
+
   h1->SetAxisRange(xLow, xHigh);
   h1->Sumw2();
 
   std::unique_ptr<TF1> ff1 = std::make_unique<TF1>(
-      "fitDSCB", FittingFunctions::GaussianWithPolynomial, xLow, xHigh, 6);
+      "fit", FittingFunctions::GaussianWithPolynomial, xLow, xHigh, 6);
 
   double* fit_params_arr = &fit_params[0];
 
