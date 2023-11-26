@@ -20,15 +20,15 @@ import numpy as np
 # 2 = v0cospa
 # 3 = dcav0dau
 # 4 = v0radius
-par_indices = [0, 1, 2]
+par_indices = [0, 1, 2, 3, 4]
 ########################################
 # Choose the cut values to use
 cut_value_list = [
-    np.arange(0.0, 0.4 + 0.005, 0.005),  # dcanegtopv
-    np.arange(0.0, 0.4 + 0.005, 0.005),  # dcapostopv
-    np.arange(0.95, 1 - 0.00125, 0.00125),  # v0cospa
-    # np.arange(1.0, 1.1 + 0.005, 0.005),  # dcav0dau
-    # np.arange(0.9, 0.95 + 0.005, 0.005),  # v0radius
+    np.arange(0.0, 0.4 + 0.05, 0.05),  # dcanegtopv > cut_value
+    np.arange(0.0, 0.4 + 0.05, 0.05),  # dcapostopv > cut_value
+    np.arange(0.95, 1 - 0.01, 0.01),  # v0cospa > cut_value
+    np.arange(0 + 0.1, 1.5 + 0.2, 0.2),  # dcav0dau < cut_value
+    np.arange(0.1, 2.1, 0.2),  # v0radius > cut_value
 ]
 ########################################
 # Default cut values
@@ -82,6 +82,8 @@ if __name__ == "__main__":
 
         cut_values = cut_value_list[par_index]
         for cut_value in cut_values:
+            # round the cut value to remove floating point errors and to prevent recreating the same file
+            cut_value = round(cut_value, 12)
             set_cut_value(json_file, par_index, cut_value)
 
             # check if output file has already been produced
