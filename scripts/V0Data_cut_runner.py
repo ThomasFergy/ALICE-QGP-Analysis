@@ -27,7 +27,9 @@ for cut in cut_parameters:
         par_indices.append(cut_parameters.index(cut))
 
 # Set default cut values and all cut values to be used
-default_cut_values = [cut_data["default_cuts"][cut] for cut in cut_parameters]
+default_cut_values = [
+    round(cut_data["default_cuts"][cut], 12) for cut in cut_parameters
+]
 cut_value_list = []
 for cut in cut_parameters:
     cut_value_list.append(
