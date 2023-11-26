@@ -45,7 +45,6 @@ cwd = "data/V0MC"
 output_dir = "output/V0MC"
 json_file = "{}/jsonConfigs/step3.json".format(cwd)
 
-cut_parameters = ["dcanegtopv", "dcapostopv", "v0cospa", "dcav0dau", "v0radius"]
 cut_parameters_strangeness_tutorial = [
     "v0setting_dcanegtopv",
     "v0setting_dcapostopv",
@@ -195,12 +194,14 @@ if __name__ == "__main__":
                 )
             )
             print()
-            # set default cut values
-            for i in range(len(cut_parameters)):
-                set_cut_value(json_file, i, default_cut_values[i])
 
             cut_values = cut_value_list[par_index]
             for cut_value in cut_values:
+                # set default cut values (required here as step3.json is overwritten by dpl-config.json)
+                # not important but stops git complaining about changes to step3.json
+                for i in range(len(cut_parameters)):
+                    set_cut_value(json_file, i, default_cut_values[i])
+
                 # round the cut value to remove floating point errors and to prevent recreating the same file
                 cut_value = round(cut_value, 12)
                 set_cut_value(json_file, par_index, cut_value)

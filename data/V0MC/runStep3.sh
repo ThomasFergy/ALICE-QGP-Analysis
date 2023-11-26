@@ -1,7 +1,6 @@
 #!/bin/bash
 # log file where the terminal output will be saved
 STEP="step3"
-LOGFILE="log-${STEP}.txt"
 
 # directory of this script
 DIR_THIS="$(dirname "$(realpath "$0")")"
@@ -23,12 +22,10 @@ o2-analysis-timestamp ${OPTION} \
 # report status
 rc=$?
 if [ $rc -eq 0 ]; then
-  echo "No problems!"
   mkdir -p "$DIR_THIS/results/$STEP"
   mv "AnalysisResults.root" "$DIR_THIS/results/$STEP/AnalysisResults.root"
   mv "dpl-config.json" "$DIR_THIS/jsonConfigs/$STEP.json"
 else
   echo "Error: Exit code $rc"
-  echo "Check the log file $LOGFILE"
   exit $rc
 fi
