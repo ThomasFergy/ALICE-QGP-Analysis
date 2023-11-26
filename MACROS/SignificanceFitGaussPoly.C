@@ -108,17 +108,13 @@ void SignificanceFitGaussPoly(const bool isMC, const bool isK0,
 
   std::cout << "$$$" << significance << "$$$" << std::endl;
 
-  double Serr = sqrt(SPlusBBinErr);
+  double Serr = sqrt(SPlusBBinErr);  // assume B is negligible
 
   double SignificanceErr = 0.5 * (1 / sqrt(S)) * Serr;
 
   std::cout << "$$$" << SignificanceErr << "$$$" << std::endl;
 
   std::cout << "$$$" << S << "$$$" << std::endl;
-
-  std::cout << "$$$" << Serr << "$$$" << std::endl;
-
-  std::cout << "$$$" << SPlusB << "$$$" << std::endl;
 
   std::cout << "$$$" << Serr << "$$$" << std::endl;
 
@@ -130,6 +126,13 @@ void SignificanceFitGaussPoly(const bool isMC, const bool isK0,
   }
 
   std::string outputdir = "output/figures/batch_mass_plots/";
+  // make output directory if it doesn't exist
+  std::string command = "mkdir -p " + outputdir;
+  system(command.c_str());
+  // add .gitingore to outputdir
+  std::string gitKeepPath = outputdir + ".gitkeep";
+  command = "touch " + gitKeepPath;
+  system(command.c_str());
   std::string outputname_str = outputdir + outputname;
 
   c1->SaveAs(outputname_str.c_str());

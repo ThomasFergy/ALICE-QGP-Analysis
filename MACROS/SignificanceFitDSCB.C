@@ -33,15 +33,27 @@ R__LOAD_LIBRARY(lib/FittingFunctions_cpp.so)
 void SignificanceFitDSCB(const bool isMC, const bool isK0, const double xLow,
                          const double xHigh, const char* filename,
                          const char* outputname, std::vector<double> fit_params,
-                         const int numOfSigmas = 5) {
+                         const int numOfSigmas = 3) {
   std::unique_ptr<TH1F> h1 = std::make_unique<TH1F>();
-  if (isK0) {
-    h1 = std::make_unique<TH1F>(*DataLoader::LoadHist(
-        filename, "strangeness_tutorial", "hMassK0Short"));
+  if (!isMC) {
+    if (isK0) {
+      h1 = std::make_unique<TH1F>(*DataLoader::LoadHist(
+          filename, "strangeness_tutorial", "hMassK0Short"));
+    } else {
+      h1 = std::make_unique<TH1F>(*DataLoader::LoadHist(
+          filename, "strangeness_tutorial", "hMassLambda"));
+    }
   } else {
-    h1 = std::make_unique<TH1F>(
-        *DataLoader::LoadHist(filename, "strangeness_tutorial", "hMassLambda"));
+    if (isK0) {
+      h1 = std::make_unique<TH1F>(
+          *DataLoader::LoadHist(filename, "strangeness_tutorial", "kzeroShort",
+                                "hMassK0ShortTrueRec"));
+    } else {
+      h1 = std::make_unique<TH1F>(*DataLoader::LoadHist(
+          filename, "strangeness_tutorial", "kLambda", "hMassLambdaTrueRec"));
+    }
   }
+
   h1->SetAxisRange(xLow, xHigh);
   h1->Sumw2();
 
@@ -52,7 +64,6 @@ void SignificanceFitDSCB(const bool isMC, const bool isK0, const double xLow,
 
   // may as well use these values as initial guesses
   fit_params_arr[4] = h1->GetMean();
-  fit_params_arr[5] = h1->GetRMS();
 
   // set initial guesses
   ff1->SetParameters(fit_params_arr[0], fit_params_arr[1], fit_params_arr[2],
@@ -99,7 +110,7 @@ void SignificanceFitDSCB(const bool isMC, const bool isK0, const double xLow,
 
   std::cout << "$$$" << significance << "$$$" << std::endl;
 
-  double Serr = sqrt(SPlusBBinErr);
+  double Serr = sqrt(SPlusBBinErr);  // assume B is negligible
 
   double SignificanceErr = 0.5 * (1 / sqrt(S)) * Serr;
 
@@ -117,6 +128,13 @@ void SignificanceFitDSCB(const bool isMC, const bool isK0, const double xLow,
   }
 
   std::string outputdir = "output/figures/batch_mass_plots/";
+  // make output directory if it doesn't exist
+  std::string command = "mkdir -p " + outputdir;
+  system(command.c_str());
+  // add .gitingore to outputdir
+  std::string gitKeepPath = outputdir + ".gitkeep";
+  command = "touch " + gitKeepPath;
+  system(command.c_str());
   std::string outputname_str = outputdir + outputname;
 
   c1->SaveAs(outputname_str.c_str());

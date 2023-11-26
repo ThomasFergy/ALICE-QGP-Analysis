@@ -32,7 +32,7 @@ cut_value_list = [
 ]
 ########################################
 # Default cut values
-default_cut_values = [0.0, 0.0, 0.9, 2, 0.75]
+default_cut_values = [0.0, 0.0, 0.9, 1.5, 0.9]
 ########################################
 
 cwd = "data/V0Data"

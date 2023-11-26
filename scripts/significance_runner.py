@@ -167,10 +167,7 @@ if __name__ == "__main__":
                 xlow = 1.08
                 xhigh = 1.15
                 MACRO = "SignificanceFitGaussPoly.C"
-                fit_params = "{1.115, 0.0015, 31.89, 2400, -4400, 2000}"
-                # not tested yet so print and exit
-                print("Lambda MC not tested yet")
-                exit()
+                fit_params = "{1.115, 0.0015, 200, 2400, -4400, 2000}"
 
             if i > 0 and iterate_fit_params:
                 # if not first cut, use previous cut's fit params as starting values
@@ -187,7 +184,6 @@ if __name__ == "__main__":
                 prev_fit_params_values = prev_fit_params_values.replace("]", "}")
                 fit_params = prev_fit_params_values
 
-            # TODO: Not tested on lamdas or MC yet
             args = "{}, {}, {}, {}, {}, {}, {}".format(
                 cpp_convert[isMC],
                 cpp_convert[isK0],
@@ -223,17 +219,9 @@ if __name__ == "__main__":
 
             signal_error = float(result.stdout.decode("utf-8").split("$$$")[7])
 
-            signal_plus_background = float(
-                result.stdout.decode("utf-8").split("$$$")[9]
-            )
-
-            signal_plus_background_error = float(
-                result.stdout.decode("utf-8").split("$$$")[11]
-            )
-
             fit_params = [
                 result.stdout.decode("utf-8").split("$$$")[x]
-                for x in range(13, len(result.stdout.decode("utf-8").split("$$$")))
+                for x in range(9, len(result.stdout.decode("utf-8").split("$$$")))
             ]
 
             # fit_params_names are every 3rd element in fit_params
@@ -252,8 +240,6 @@ if __name__ == "__main__":
                 "significance_error": significance_error,
                 "signal": signal,
                 "signal_error": signal_error,
-                "signal_plus_background": signal_plus_background,
-                "signal_plus_background_error": signal_plus_background_error,
                 "fit_params": fit_params_dict,
             }
 
