@@ -14,32 +14,35 @@ import subprocess
 import numpy as np
 
 ########################################
-# Set the cut value in the json file
-# 0 = dcanegtopv
-# 1 = dcapostopv
-# 2 = v0cospa
-# 3 = dcav0dau
-# 4 = v0radius
-par_indices = [0, 1, 2, 3, 4]
+# Set up using the cut_config.json file
 ########################################
-# Choose the cut values to use
-cut_value_list = [
-    np.arange(0.0, 0.4 + 0.05, 0.05),  # dcanegtopv > cut_value
-    np.arange(0.0, 0.4 + 0.05, 0.05),  # dcapostopv > cut_value
-    np.arange(0.95, 1 - 0.01, 0.01),  # v0cospa > cut_value
-    np.arange(0 + 0.1, 1.5 + 0.2, 0.2),  # dcav0dau < cut_value
-    np.arange(0.1, 2.1, 0.2),  # v0radius > cut_value
-]
-########################################
-# Default cut values
-default_cut_values = [0.0, 0.0, 0.9, 1.5, 0.9]
+cut_parameters = ["dcanegtopv", "dcapostopv", "v0cospa", "dcav0dau", "v0radius"]
+with open("scripts/cut_config.json", "r") as f:
+    cut_data = json.load(f)
+
+# Which cuts to apply
+par_indices = []
+for cut in cut_parameters:
+    if cut_data["cuts_to_apply"][cut]:
+        par_indices.append(cut_parameters.index(cut))
+
+# Set default cut values and all cut values to be used
+default_cut_values = [cut_data["default_cuts"][cut] for cut in cut_parameters]
+cut_value_list = []
+for cut in cut_parameters:
+    cut_value_list.append(
+        np.arange(
+            cut_data[cut]["LowerLimit"],
+            cut_data[cut]["UpperLimit"] + cut_data[cut]["step"],
+            cut_data[cut]["step"],
+        )
+    )
 ########################################
 
 cwd = "data/V0Data"
 output_dir = "output/V0Data"
 json_file = "{}/json_strangenesstutorial.json".format(cwd)
 
-cut_parameters = ["dcanegtopv", "dcapostopv", "v0cospa", "dcav0dau", "v0radius"]
 cut_parameters_strangeness_tutorial = [
     "v0setting_dcanegtopv",
     "v0setting_dcapostopv",

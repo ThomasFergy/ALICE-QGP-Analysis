@@ -1,0 +1,41 @@
+{
+  "cuts_to_apply": {
+    "dcanegtopv": true,
+    "dcapostopv": true,
+    "v0cospa": true,
+    "dcav0dau": true,
+    "v0radius": true
+  },
+  "default_cuts": {
+    "dcanegtopv": 0.0,
+    "dcapostopv": 0.0,
+    "v0cospa": 0.9,
+    "dcav0dau": 1.5,
+    "v0radius": 0.9
+  },
+  "dcanegtopv": {
+    "UpperLimit": 0.4,
+    "LowerLimit": 0.0,
+    "step": 0.005
+  },
+  "dcapostopv": {
+    "UpperLimit": 0.4,
+    "LowerLimit": 0.0,
+    "step": 0.005
+  },
+  "v0cospa": {
+    "UpperLimit": 0.99,
+    "LowerLimit": 0.95,
+    "step": 0.0005
+  },
+  "dcav0dau": {
+    "UpperLimit": 1.5,
+    "LowerLimit": 0.01,
+    "step": 0.02
+  },
+  "v0radius": {
+    "UpperLimit": 2.0,
+    "LowerLimit": 0.0,
+    "step": 0.025
+  }
+}

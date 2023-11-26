@@ -13,15 +13,25 @@ There is some extra set up beyond cloning this repo required to get everything u
 
 In this example we will go from nothing to having a significance plot for dcapostopv on the K0.
 
-1. First we will need to apply the cuts over the range that we want and on the files we want. The scripts `V0Data_cut_runner.py` or `V0MC_cut_runner.py` allow us to do this. At the top of these files you will find 2 variables which make these selections for you.
-   1. `par_indices = [...]`: 0 = dcanegtopv, 1 = dcapostopv, 2 = v0cospa, 3 = dcav0dau, 4 = v0radius.
-   2. `cut_value_list`: list of an array of floats. I would use `[np.arrange(...), np.arrange(...), etc.]` here.
+1. First we will need to apply the cuts over the range that we want and on the files we want. The scripts `V0Data_cut_runner.py` or `V0MC_cut_runner.py` allow us to do this. To configure the cuts and default cuts you must edit `scripts/cut_config.json`.
+   1. We could select: `"dcapostopv": {
+    "UpperLimit": 0.2,
+    "LowerLimit": 0.0,
+    "step": 0.005
+  }`.
+   2. and also select: `"cuts_to_apply": {
+    "dcanegtopv": false,
+    "dcapostopv": true,
+    "v0cospa": false,
+    "dcav0dau": false,
+    "v0radius": false
+  },`
    
-   For this example we could choose to use `V0Data_cut_runner.py` with: `par_indices = [1]`, `cut_values = [np.arange(0, 0.2+0.005, 0.005)]`. Make sure you save these changes before step 2.
+   Make sure you save these changes before step 2.
 
 2. From the root directory of this repo run `python3 scripts/V0Data_cut_runner.py` (IMPORTANT: Must be in alienv O2Physics environment). This will populate `output/V0Data/` with files of the form `AnalysisResults_dcanegtopv_0.05.root`, which contain the parameter and cut value. (This is quite slow)
 
-3. To get to a significance plot for these cuts we need to fit each of the K0 mass plots in the `.root` files produced in step 2. The script `significance_runner.py` allows us to do this. In a similar way to the previous python script there are two variables to edit at the top of this file.
+3. To get to a significance plot for these cuts we need to fit each of the K0 mass plots in the `.root` files produced in step 2. The script `significance_runner.py` allows us to do this. There are two variables to edit at the top of this file.
    1. `isMC`: Boolean to choose Data or MC.
    2. `V0_index`: 0 = K0, 1 = Lambda.
    
