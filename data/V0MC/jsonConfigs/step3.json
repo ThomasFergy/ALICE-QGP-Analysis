@@ -128,7 +128,7 @@
     "dcapostopv": "0.0",
     "v0cospa": "0.9",
     "dcav0dau": "1.5",
-    "v0radius": "0.225",
+    "v0radius": "0.9",
     "tpcrefit": "0",
     "d_bz": "-999",
     "d_UseAbsDCA": "true",
@@ -283,7 +283,7 @@
     "v0setting_dcapostopv": "0.0",
     "v0setting_dcanegtopv": "0.0",
     "v0setting_cospa": "0.9",
-    "v0setting_radius": "0.225",
+    "v0setting_radius": "0.9",
     "NSigmaTPCPion": "4",
     "processRecMC": "true",
     "processGenMC": "true"
