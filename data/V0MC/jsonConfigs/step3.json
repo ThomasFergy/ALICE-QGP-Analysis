@@ -127,7 +127,7 @@
     "dcanegtopv": "0.0",
     "dcapostopv": "0.0",
     "v0cospa": "0.9",
-    "dcav0dau": "0.27",
+    "dcav0dau": "0.91",
     "v0radius": "0.9",
     "tpcrefit": "0",
     "d_bz": "-999",
@@ -279,7 +279,7 @@
   "strangeness_tutorial": {
     "nBins": "100",
     "cutzvertex": "10",
-    "v0setting_dcav0dau": "0.27",
+    "v0setting_dcav0dau": "0.91",
     "v0setting_dcapostopv": "0.0",
     "v0setting_dcanegtopv": "0.0",
     "v0setting_cospa": "0.9",
