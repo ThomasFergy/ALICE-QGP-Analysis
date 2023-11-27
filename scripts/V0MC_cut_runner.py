@@ -184,19 +184,19 @@ if __name__ == "__main__":
     err_count = 0
     aodmcs_files = set_aodmcs_files()
 
-    for aodmcs_file in aodmcs_files:
-        set_aodcms_file_json(aodmcs_file)
-        print("---------- Applying cuts to {} ----------".format(aodmcs_file))
-        for par_index in par_indices:
-            print(
-                "---------- Applying cuts to {} ----------".format(
-                    cut_parameters[par_index]
-                )
+    for par_index in par_indices:
+        print(
+            "---------- Applying cuts to {} for all MC runs ----------".format(
+                cut_parameters[par_index]
             )
-            print()
+        )
+        print()
 
-            cut_values = cut_value_list[par_index]
-            for cut_value in cut_values:
+        cut_values = cut_value_list[par_index]
+        for cut_value in cut_values:
+            for aodmcs_file in aodmcs_files:
+                set_aodcms_file_json(aodmcs_file)
+                print("---------- Applying cuts to {} ----------".format(aodmcs_file))
                 # set default cut values (required here as step3.json is overwritten by dpl-config.json)
                 # not important but stops git complaining about changes to step3.json
                 for i in range(len(cut_parameters)):
@@ -252,12 +252,14 @@ if __name__ == "__main__":
                         cwd, aodmcs_output_dir, cut_parameters[par_index], cut_value
                     )
                 )
+            # Should be possible to combine some root files here
+            combine_root_files(aodmcs_files)
 
     # reset default cut values
     for i in range(len(cut_parameters)):
         set_cut_value(json_file, i, default_cut_values[i])
 
-    # combine the root files
+    # check root files are combined
     combine_root_files(aodmcs_files)
 
     if err_count != 0:
