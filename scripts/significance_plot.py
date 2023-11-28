@@ -7,6 +7,14 @@ cut_parameters = ["dcanegtopv", "dcapostopv", "v0cospa", "dcav0dau", "v0radius"]
 
 V0_names = ["K0Data", "LambdaData", "K0MC", "LambdaMC"]
 
+x_labels = [
+    "#bf{dcanegtopv cut values / cm}",
+    "#bf{dcapostopv cut values / cm}",
+    "#bf{v0cospa cut values}",
+    "#bf{dcav0dau cut values / #sigma}",
+    "#bf{v0radius cut values / cm}",
+]
+
 # min and max values for each cut parameter
 cut_ranges = {
     "K0Data": {
@@ -170,8 +178,8 @@ def make_plot(V0_index, cut_index):
         V0_names[V0_index], cut_parameters[cut_index]
     )
 
-    Title = "Significance vs {}".format(cut_parameters[cut_index])
-    xLabel = cut_parameters[cut_index]
+    Title = "#bf{{Significance vs {}}}".format(cut_parameters[cut_index])
+    xLabel = x_labels[cut_index]
     yLabel = "Significance"
 
     args = "{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}".format(
