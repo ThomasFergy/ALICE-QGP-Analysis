@@ -36,8 +36,35 @@ void SignificanceWithSignalPlot(const char* filepath, const char* Title,
   TGraph* gr1 = new TGraphErrors(significanceVector.size(), &cutVector[0],
                                  &significanceVector[0], 0, &errorVector[0]);
 
+  gStyle->SetTitleFontSize(0.1);
+  gStyle->SetTitleXSize(0.06);
+  gStyle->SetTitleYSize(0.06);
+
   gr1->SetMarkerStyle(20);
   gr1->SetMarkerSize(0.5);
+
+  // fit polynomial to gr1
+  TF1* pol = new TF1("pol", "pol5", 0, 1);
+  gr1->Fit(pol, "R");
+  // draw pol2
+  gr1->GetFunction("pol")->SetLineColor(kBlue);
+  gr1->GetFunction("pol")->SetLineWidth(2);
+  gr1->GetFunction("pol")->SetLineStyle(2);
+
+  // print x value at max value of polynomial
+  double xMax = gr1->GetFunction("pol")->GetMaximumX();
+  std::cout << "xMax: " << xMax << std::endl;
+
+  // draw vertical line at xMax over full y range
+  double yMin = gr1->GetYaxis()->GetXmin();
+  double yMax = gr1->GetYaxis()->GetXmax();
+  std::cout << "yMin: " << yMin << std::endl;
+  std::cout << "yMax: " << yMax << std::endl;
+  TLine* line = new TLine(xMax, yMin, xMax, yMax);
+  line->SetLineColor(kGreen);
+  line->SetLineWidth(2);
+  line->SetLineStyle(2);
+  gr1->GetListOfFunctions()->Add(line);
 
   double index0Value = DataSignalVector[0];
   double index0Error = DataSignalErrorVector[0];
@@ -61,7 +88,7 @@ void SignificanceWithSignalPlot(const char* filepath, const char* Title,
                        &DataSignalVector[0], 0, &DataSignalErrorVector[0]);
 
   gr2a->SetMarkerStyle(33);
-  gr2a->SetMarkerSize(0.8);
+  gr2a->SetMarkerSize(1);
 
   TGraph* gr2b =
       new TGraphErrors(MCSignalVector.size(), &cutVector[0], &MCSignalVector[0],
@@ -69,7 +96,17 @@ void SignificanceWithSignalPlot(const char* filepath, const char* Title,
 
   gr2b->SetMarkerColor(2);
   gr2b->SetMarkerStyle(33);
-  gr2b->SetMarkerSize(0.7);
+  gr2b->SetMarkerSize(0.9);
+
+  yMin = gr2a->GetYaxis()->GetXmin();
+  yMax = gr2a->GetYaxis()->GetXmax();
+  std::cout << "yMin: " << yMin << std::endl;
+  std::cout << "yMax: " << yMax << std::endl;
+  TLine* line2 = new TLine(xMax, yMin, xMax, yMax);
+  line2->SetLineColor(kGreen);
+  line2->SetLineWidth(2);
+  line2->SetLineStyle(2);
+  gr2a->GetListOfFunctions()->Add(line2);
 
   TCanvas* canvas = new TCanvas("canvas", "canvas", 800, 600);
 
@@ -81,8 +118,10 @@ void SignificanceWithSignalPlot(const char* filepath, const char* Title,
 
   // Draw the first graph on the top pad
   gr1->Draw("AP");
+  // make title bigger
   gr1->SetTitle(Title);
   gr1->GetYaxis()->SetTitle("#frac{S}{#sqrt{S+B}}");
+  gr1->GetYaxis()->SetTitleOffset(0.7);
 
   // Create a pad for the second graph (bottom)
   canvas->cd();
@@ -97,8 +136,10 @@ void SignificanceWithSignalPlot(const char* filepath, const char* Title,
   gr2a->SetTitle();
   gr2b->Draw("P");
   gr2b->SetTitle();
+  gr2a->GetXaxis()->SetTitleOffset(0.7);
+  gr2a->GetYaxis()->SetTitleOffset(0.7);
   gr2a->GetXaxis()->SetTitle(xlable);
-  gr2a->GetYaxis()->SetTitle("#bf{Fraction of Signal Left}");
+  gr2a->GetYaxis()->SetTitle("Fraction of Signal Left");
 
   // Legend for mc and data
   TLegend* legend = new TLegend(0.8, 0.83, 0.98, 1);

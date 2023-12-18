@@ -4,15 +4,22 @@ import json
 import subprocess
 
 cut_parameters = ["dcanegtopv", "dcapostopv", "v0cospa", "dcav0dau", "v0radius"]
+cut_parameters_labels = [
+    "DCANegToPV",
+    "DCAPosToPV",
+    "V0CosPA",
+    "DCAV0Dau",
+    "V0Radius",
+]
 
 V0_names = ["K0Data", "LambdaData", "K0MC", "LambdaMC"]
 
 x_labels = [
-    "#bf{dcanegtopv cut values / cm}",
-    "#bf{dcapostopv cut values / cm}",
-    "#bf{v0cospa cut values}",
-    "#bf{dcav0dau cut values / #sigma}",
-    "#bf{v0radius cut values / cm}",
+    "DCANegToPV cut value (cm)",
+    "DCAPosToPV cut value (cm)",
+    "V0CosPA cut value",
+    "DCAV0Dau cut value (#sigma)",
+    "V0Radius cut value (cm)",
 ]
 
 # min and max values for each cut parameter
@@ -89,7 +96,6 @@ def make_plot(V0_index, cut_index):
     MC_signal_values = np.array(MC_signal_values)
     MC_signal_errors = np.array(MC_signal_errors)
     cuts = np.array(cuts)
-    print(cuts)
     # filter using the cut ranges
     data_significance_values = data_significance_values[
         (cuts > cut_ranges[V0_names[V0_index]][cut_parameters[cut_index]][0])
@@ -127,7 +133,6 @@ def make_plot(V0_index, cut_index):
         (cuts > cut_ranges[V0_names[V0_index]][cut_parameters[cut_index]][0])
         & (cuts < cut_ranges[V0_names[V0_index]][cut_parameters[cut_index]][1])
     ]
-    print(cuts)
 
     # flip the arrays if cut_index is 3
     if cut_index == 3:
@@ -178,7 +183,7 @@ def make_plot(V0_index, cut_index):
         V0_names[V0_index], cut_parameters[cut_index]
     )
 
-    Title = "#bf{{Significance vs {}}}".format(cut_parameters[cut_index])
+    Title = "{}".format(cut_parameters_labels[cut_index])
     xLabel = x_labels[cut_index]
     yLabel = "Significance"
 
@@ -206,6 +211,7 @@ def make_plot(V0_index, cut_index):
         ],
         stdout=subprocess.PIPE,
     )
+    print(result.stdout.decode("utf-8"))
 
 
 if __name__ == "__main__":

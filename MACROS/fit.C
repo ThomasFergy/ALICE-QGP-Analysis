@@ -52,6 +52,24 @@ void fit() {
   }
   h1->SetAxisRange(xLow, xHigh);
   h1->Sumw2();
+  // set x and y axis title
+  h1->GetXaxis()->SetTitle("M_{K^{0}_{S}} (GeV/c^{2})");
+  // find bin width
+  double binWidth = h1->GetBinWidth(1) * 1000;
+  // remvove trailing zeros
+  std::string binWidthStr = std::to_string(binWidth);
+  binWidthStr.erase(binWidthStr.find_last_not_of('0') + 1, std::string::npos);
+  // set y axis title
+  h1->GetYaxis()->SetTitle(("Entries / " + binWidthStr + " MeV/c^{2}").c_str());
+  // h1->GetYaxis()->SetTitle("Entries");
+  // move y axis title down
+  h1->GetXaxis()->SetTitleOffset(1.2);
+
+  // change title
+  h1->SetTitle("K^{0}_{S} Invariant Mass Distribution");
+
+  // dont show stat box
+  h1->SetStats(0);
 
   std::unique_ptr<TF1> ff1 = std::make_unique<TF1>(
       "fitDSCB", FittingFunctions::DSCBWithPolynomial, xLow, xHigh, 10);
@@ -71,24 +89,10 @@ void fit() {
   pol2_1->SetLineColor(kGreen);
   pol2_1->Draw("same");
 
-  // draw numOfSigmas sigma lines
-  std::unique_ptr<TLine> l1_1 = std::make_unique<TLine>(
-      ff1->GetParameter(4) - numOfSigmas * ff1->GetParameter(5), 0,
-      ff1->GetParameter(4) - numOfSigmas * ff1->GetParameter(5),
-      1.1 * h1->GetMaximum());
-  l1_1->SetLineColor(kBlack);
-  l1_1->Draw("same");
-  std::unique_ptr<TLine> l2_1 = std::make_unique<TLine>(
-      ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5), 0,
-      ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5),
-      1.1 * h1->GetMaximum());
-  l2_1->SetLineColor(kBlack);
-  l2_1->Draw("same");
-
   if (MC) {
-    c1->SaveAs("output/figures/hMassK0ShortMC_fitDSCB.pdf");
+    c1->SaveAs("output/figures/hMassK0ShortMC_fitDSCB.png");
   } else {
-    c1->SaveAs("output/figures/hMassK0ShortDATA_fitDSCB.pdf");
+    c1->SaveAs("output/figures/hMassK0ShortDATA_fitDSCB.png");
   }
 
   // count number of entries in numOfSigmas sigma range
@@ -106,8 +110,6 @@ void fit() {
        h1->FindBin(ff1->GetParameter(4) + numOfSigmas * ff1->GetParameter(5));
        i++) {
     B_1 += pol2_1->Eval(h1->GetBinCenter(i));
-
-    std::cout << h1->GetBinError(i) << std::endl;
     SBinErr += h1->GetBinError(i) * h1->GetBinError(i);
   }
 
