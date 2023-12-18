@@ -1,10 +1,13 @@
+#include <iostream>
 #include <vector>
 
 #include "TCanvas.h"
+#include "TF1.h"
 #include "TGraph.h"
 #include "TGraphErrors.h"
 #include "TH1F.h"
 #include "TLegend.h"
+#include "TLine.h"
 #include "TMultiGraph.h"
 #include "TStyle.h"
 
