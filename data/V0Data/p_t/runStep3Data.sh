@@ -1,12 +1,11 @@
 #!/bin/bash
 # log file where the terminal output will be saved
 STEP="step3Data"
-LOGFILE="log-${STEP}.txt"
 
 # directory of this script
 DIR_THIS="$(dirname "$(realpath "$0")")"
 
-OPTION="-b --configuration json:/$DIR_THIS/jsonConfigs/$STEP.json --resources-monitoring 2 --aod-memory-rate-limit 1000000000 --shm-segment-size 6000000000"
+OPTION="-b --configuration json:/$DIR_THIS/$STEP.json --resources-monitoring 2 --aod-memory-rate-limit 1000000000 --shm-segment-size 6000000000"
 
 o2-analysis-timestamp ${OPTION} \
 | o2-analysis-event-selection ${OPTION} \
@@ -17,8 +16,7 @@ o2-analysis-timestamp ${OPTION} \
 | o2-analysis-pid-tpc-base ${OPTION} \
 | o2-analysis-pid-tpc-full ${OPTION} \
 | o2-analysis-lf-lambdakzerobuilder ${OPTION} \
-| o2-analysistutorial-lf-strangeness-step3 ${OPTION} \
-> "$LOGFILE" 2>&1
+| o2-analysistutorial-lf-strangeness-step3 ${OPTION}
 
 # report status
 rc=$?
