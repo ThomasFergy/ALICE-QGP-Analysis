@@ -33,8 +33,10 @@ cut_ranges = {
     },
 }
 
+cpp_convert = {True: "true", False: "false"}
 
-def make_plot(V0_index, cut_index):
+
+def make_plot(V0_index, cut_index, fit_and_plot_line=False):
     if V0_index > 1:
         return
     # get cut values
@@ -187,7 +189,7 @@ def make_plot(V0_index, cut_index):
     xLabel = x_labels[cut_index]
     yLabel = "Significance"
 
-    args = "{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}".format(
+    args = "{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}".format(
         '"' + filepath + '"',
         '"' + Title + '"',
         '"' + xLabel + '"',
@@ -199,6 +201,7 @@ def make_plot(V0_index, cut_index):
         MC_signal_values,
         data_signal_errors,
         MC_signal_errors,
+        cpp_convert[fit_and_plot_line],
     )
 
     result = subprocess.run(
@@ -217,4 +220,5 @@ def make_plot(V0_index, cut_index):
 if __name__ == "__main__":
     V0_index = 0
     cut_index = 0
-    make_plot(V0_index, cut_index)
+    fit_and_plot_line = True
+    make_plot(V0_index, cut_index, fit_and_plot_line)

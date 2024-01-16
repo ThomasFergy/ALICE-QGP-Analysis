@@ -27,15 +27,13 @@ double calculateRatioError(double A, double delta_A, double B, double delta_B) {
  * @brief Plots the significance vs. cut value as well as the frac left of
  * signal
  */
-void SignificanceWithSignalPlot(const char* filepath, const char* Title,
-                                const char* xlable, const char* ylable,
-                                const std::vector<double> significanceVector,
-                                std::vector<double> cutVector,
-                                std::vector<double> errorVector,
-                                std::vector<double> DataSignalVector,
-                                std::vector<double> MCSignalVector,
-                                std::vector<double> DataSignalErrorVector,
-                                std::vector<double> MCSignalErrorVector) {
+void SignificanceWithSignalPlot(
+    const char* filepath, const char* Title, const char* xlable,
+    const char* ylable, const std::vector<double> significanceVector,
+    std::vector<double> cutVector, std::vector<double> errorVector,
+    std::vector<double> DataSignalVector, std::vector<double> MCSignalVector,
+    std::vector<double> DataSignalErrorVector,
+    std::vector<double> MCSignalErrorVector, bool drawLine = false) {
   TGraph* gr1 = new TGraphErrors(significanceVector.size(), &cutVector[0],
                                  &significanceVector[0], 0, &errorVector[0]);
 
@@ -45,29 +43,6 @@ void SignificanceWithSignalPlot(const char* filepath, const char* Title,
 
   gr1->SetMarkerStyle(20);
   gr1->SetMarkerSize(0.5);
-
-  // fit polynomial to gr1
-  TF1* pol = new TF1("pol", "pol5", 0, 1);
-  gr1->Fit(pol, "R");
-  // draw pol2
-  gr1->GetFunction("pol")->SetLineColor(kBlue);
-  gr1->GetFunction("pol")->SetLineWidth(2);
-  gr1->GetFunction("pol")->SetLineStyle(2);
-
-  // print x value at max value of polynomial
-  double xMax = gr1->GetFunction("pol")->GetMaximumX();
-  std::cout << "xMax: " << xMax << std::endl;
-
-  // draw vertical line at xMax over full y range
-  double yMin = gr1->GetYaxis()->GetXmin();
-  double yMax = gr1->GetYaxis()->GetXmax();
-  std::cout << "yMin: " << yMin << std::endl;
-  std::cout << "yMax: " << yMax << std::endl;
-  TLine* line = new TLine(xMax, yMin, xMax, yMax);
-  line->SetLineColor(kGreen);
-  line->SetLineWidth(2);
-  line->SetLineStyle(2);
-  gr1->GetListOfFunctions()->Add(line);
 
   double index0Value = DataSignalVector[0];
   double index0Error = DataSignalErrorVector[0];
@@ -101,15 +76,41 @@ void SignificanceWithSignalPlot(const char* filepath, const char* Title,
   gr2b->SetMarkerStyle(33);
   gr2b->SetMarkerSize(0.9);
 
-  yMin = gr2a->GetYaxis()->GetXmin();
-  yMax = gr2a->GetYaxis()->GetXmax();
-  std::cout << "yMin: " << yMin << std::endl;
-  std::cout << "yMax: " << yMax << std::endl;
-  TLine* line2 = new TLine(xMax, yMin, xMax, yMax);
-  line2->SetLineColor(kGreen);
-  line2->SetLineWidth(2);
-  line2->SetLineStyle(2);
-  gr2a->GetListOfFunctions()->Add(line2);
+  if (drawLine) {
+    // fit polynomial to gr1
+    TF1* pol = new TF1("pol", "pol5");
+    pol->SetParameters(248, 46, 0, 0, 0);
+    gr1->Fit(pol, "Q");
+    // draw pol2
+    gr1->GetFunction("pol")->SetLineColor(kBlue);
+    gr1->GetFunction("pol")->SetLineWidth(2);
+    gr1->GetFunction("pol")->SetLineStyle(2);
+
+    // print x value at max value of polynomial
+    double xMax = gr1->GetFunction("pol")->GetMaximumX();
+    std::cout << "xMax: " << xMax << std::endl;
+
+    // draw vertical line at xMax over full y range
+    double yMin = gr1->GetYaxis()->GetXmin();
+    double yMax = gr1->GetYaxis()->GetXmax();
+    std::cout << "yMin: " << yMin << std::endl;
+    std::cout << "yMax: " << yMax << std::endl;
+    TLine* line = new TLine(xMax, yMin, xMax, yMax);
+    line->SetLineColor(kGreen);
+    line->SetLineWidth(2);
+    line->SetLineStyle(2);
+    gr1->GetListOfFunctions()->Add(line);
+
+    yMin = gr2a->GetYaxis()->GetXmin();
+    yMax = gr2a->GetYaxis()->GetXmax();
+    std::cout << "yMin: " << yMin << std::endl;
+    std::cout << "yMax: " << yMax << std::endl;
+    TLine* line2 = new TLine(xMax, yMin, xMax, yMax);
+    line2->SetLineColor(kGreen);
+    line2->SetLineWidth(2);
+    line2->SetLineStyle(2);
+    gr2a->GetListOfFunctions()->Add(line2);
+  }
 
   TCanvas* canvas = new TCanvas("canvas", "canvas", 800, 600);
 
