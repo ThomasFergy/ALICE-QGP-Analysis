@@ -50,8 +50,8 @@
   "lambdakzero-builder": {
     "createV0CovMats": "-1",
     "d_UseAutodetectMode": "false",
-    "dcanegtopv": "0.18",
-    "dcapostopv": "0.0807743",
+    "dcanegtopv": "0.0769489",
+    "dcapostopv": "0.04",
     "v0cospa": "0.989807",
     "dcav0dau": "0.215034",
     "v0radius": "0.500023",
@@ -119,8 +119,8 @@
   "strangeness_tutorial": {
     "nBins": "100",
     "v0setting_dcav0dau": "0.215034",
-    "v0setting_dcapostopv": "0.0807743",
-    "v0setting_dcanegtopv": "0.18",
+    "v0setting_dcapostopv": "0.04",
+    "v0setting_dcanegtopv": "0.0769489",
     "v0setting_cospa": "0.989807",
     "v0setting_radius": "0.500023",
     "cascadesetting_cospa": "0.98",
