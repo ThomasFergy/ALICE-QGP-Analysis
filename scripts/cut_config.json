@@ -7,35 +7,35 @@
     "v0radius": true
   },
   "default_cuts": {
-    "dcanegtopv": 0.0,
-    "dcapostopv": 0.0,
-    "v0cospa": 0.9,
-    "dcav0dau": 1.5,
-    "v0radius": 0.9
+    "dcanegtopv": 0.0769489,
+    "dcapostopv": 0.0807743,
+    "v0cospa": 0.989807,
+    "dcav0dau": 0.215034,
+    "v0radius": 0.500023
   },
   "dcanegtopv": {
     "UpperLimit": 0.4,
     "LowerLimit": 0.0,
-    "step": 0.005
+    "step": 0.02
   },
   "dcapostopv": {
     "UpperLimit": 0.4,
     "LowerLimit": 0.0,
-    "step": 0.005
+    "step": 0.02
   },
   "v0cospa": {
     "UpperLimit": 0.9995,
     "LowerLimit": 0.95,
-    "step": 0.0005
+    "step": 0.002
   },
   "dcav0dau": {
     "UpperLimit": 1.5,
     "LowerLimit": 0.01,
-    "step": 0.02
+    "step": 0.1
   },
   "v0radius": {
     "UpperLimit": 2.0,
     "LowerLimit": 0.0,
-    "step": 0.025
+    "step": 0.1
   }
 }
