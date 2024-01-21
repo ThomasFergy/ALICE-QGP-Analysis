@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <vector>
 
 #include "TCanvas.h"
@@ -10,6 +11,18 @@
 #include "TLine.h"
 #include "TMultiGraph.h"
 #include "TStyle.h"
+
+// clang-format off
+// for syntax highlighting
+#include "../lib/FittingFunctions.h"
+// MACROS for including libs for CLING
+R__ADD_INCLUDE_PATH(lib)
+#ifdef _WIN32
+R__LOAD_LIBRARY(lib/FittingFunctions_cpp.dll)
+#else
+R__LOAD_LIBRARY(lib/FittingFunctions_cpp.so)
+#endif
+
 
 double calculateRatioError(double A, double delta_A, double B, double delta_B) {
   double ratio = A / B;
@@ -27,13 +40,16 @@ double calculateRatioError(double A, double delta_A, double B, double delta_B) {
  * @brief Plots the significance vs. cut value as well as the frac left of
  * signal
  */
-void SignificanceWithSignalPlot(
-    const char* filepath, const char* Title, const char* xlable,
-    const char* ylable, const std::vector<double> significanceVector,
-    std::vector<double> cutVector, std::vector<double> errorVector,
-    std::vector<double> DataSignalVector, std::vector<double> MCSignalVector,
-    std::vector<double> DataSignalErrorVector,
-    std::vector<double> MCSignalErrorVector, bool drawLine = false) {
+void SignificanceWithSignalPlot(const char* filepath, const char* Title,
+                                const char* xlable, const char* ylable,
+                                const std::vector<double> significanceVector,
+                                std::vector<double> cutVector,
+                                std::vector<double> errorVector,
+                                std::vector<double> DataSignalVector,
+                                std::vector<double> MCSignalVector,
+                                std::vector<double> DataSignalErrorVector,
+                                std::vector<double> MCSignalErrorVector,
+                                int cutIndex, bool drawLine = false) {
   TGraph* gr1 = new TGraphErrors(significanceVector.size(), &cutVector[0],
                                  &significanceVector[0], 0, &errorVector[0]);
 
@@ -77,10 +93,33 @@ void SignificanceWithSignalPlot(
   gr2b->SetMarkerSize(0.9);
 
   if (drawLine) {
+    struct FitInfo {
+      std::string polDegree;
+      std::vector<double> parameters;
+    };
+
+    std::vector<FitInfo> fitInfoVector;
+
+    if (cutIndex < 4) {
+      fitInfoVector.push_back({"pol5", {248, 46, 0, 0, 0}});  // DCANegToPV
+      fitInfoVector.push_back({"pol5", {248, 46, 0, 0, 0}});  // DCAPosToPV
+      fitInfoVector.push_back({"pol2", {256, 0, 100}});       // V0CosPA
+      fitInfoVector.push_back({"pol5", {248, 46, 0, 0, 0}});  // DCAV0Dau
+      TF1* pol = new TF1("pol", fitInfoVector[cutIndex].polDegree.c_str());
+      pol->SetParameters(fitInfoVector[cutIndex].parameters.data());
+      gr1->Fit(pol);
+    } else {
+      // get xlow and xhigh from gr1
+      double xlow = gr1->GetXaxis()->GetXmin();
+      double xhigh = gr1->GetXaxis()->GetXmax();
+      TF1* pol = new TF1(
+      "pol", FittingFunctions::HorizontalLinePlusGenericLine, xlow, xhigh, 4);
+      pol->SetParameters(0.5, 257, 267, -22);
+      gr1->Fit(pol);
+
+    }
+
     // fit polynomial to gr1
-    TF1* pol = new TF1("pol", "pol5");
-    pol->SetParameters(248, 46, 0, 0, 0);
-    gr1->Fit(pol, "Q");
     // draw pol2
     gr1->GetFunction("pol")->SetLineColor(kBlue);
     gr1->GetFunction("pol")->SetLineWidth(2);

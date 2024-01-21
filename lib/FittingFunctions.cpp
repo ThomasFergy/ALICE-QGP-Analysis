@@ -91,3 +91,16 @@ double FittingFunctions::GaussianWithPolynomial(double* x, double* par) {
   };
   return N * result + Polynomial2(x, polyPars);
 };
+
+double FittingFunctions::HorizontalLinePlusGenericLine(double* x, double* par) {
+  double meetingPoint = par[0];
+  double line1Height = par[1];
+  double line2C = par[2];
+  double line2M = par[3];
+
+  if (x[0] < meetingPoint) {
+    return line1Height;
+  } else {
+    return line2C + line2M * x[0];
+  }
+};

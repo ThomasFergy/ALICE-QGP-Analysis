@@ -19,6 +19,8 @@ class FittingFunctions {
   static double DSCBWithPolynomial(double* x, double* par);
 
   static double GaussianWithPolynomial(double* x, double* par);
+
+  static double HorizontalLinePlusGenericLine(double* x, double* par);
 };
 
 #endif

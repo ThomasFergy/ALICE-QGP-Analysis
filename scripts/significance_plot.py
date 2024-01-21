@@ -22,21 +22,11 @@ x_labels = [
     "V0Radius cut value (cm)",
 ]
 
-# min and max values for each cut parameter
-cut_ranges = {
-    "K0Data": {
-        "dcanegtopv": [0, 0.25],
-        "dcapostopv": [0, 0.25],
-        "v0cospa": [0.985, 1],
-        "dcav0dau": [0, 1],
-        "v0radius": [0, 0.875],
-    },
-}
 
 cpp_convert = {True: "true", False: "false"}
 
 
-def make_plot(V0_index, cut_index, fit_and_plot_line=False):
+def make_plot(V0_index, cut_index, cut_ranges, fit_and_plot_line=False):
     if V0_index > 1:
         return
     # get cut values
@@ -189,7 +179,7 @@ def make_plot(V0_index, cut_index, fit_and_plot_line=False):
     xLabel = x_labels[cut_index]
     yLabel = "Significance"
 
-    args = "{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}".format(
+    args = "{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}".format(
         '"' + filepath + '"',
         '"' + Title + '"',
         '"' + xLabel + '"',
@@ -201,6 +191,7 @@ def make_plot(V0_index, cut_index, fit_and_plot_line=False):
         MC_signal_values,
         data_signal_errors,
         MC_signal_errors,
+        cut_index,
         cpp_convert[fit_and_plot_line],
     )
 
@@ -219,6 +210,17 @@ def make_plot(V0_index, cut_index, fit_and_plot_line=False):
 
 if __name__ == "__main__":
     V0_index = 0
-    cut_index = 0
+    cut_index = 4
     fit_and_plot_line = True
-    make_plot(V0_index, cut_index, fit_and_plot_line)
+    # min and max values for each cut parameter
+    cut_ranges = {
+        "K0Data": {
+            "dcanegtopv": [0, 0.25],
+            "dcapostopv": [0, 0.25],
+            # "v0cospa": [0.985, 1.0],
+            "v0cospa": [0.985, 0.996],
+            "dcav0dau": [0.1, 0.4],
+            "v0radius": [0, 0.875],
+        },
+    }
+    make_plot(V0_index, cut_index, cut_ranges, fit_and_plot_line)
