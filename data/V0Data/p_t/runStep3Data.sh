@@ -1,5 +1,8 @@
 #!/bin/bash
-# log file where the terminal output will be saved
+
+export IGNORE_VALIDITYCHECK_OF_CCDB_LOCALCACHE=1
+export ALICEO2_CCDB_LOCALCACHE=locCCDB
+
 STEP="step3Data"
 
 # directory of this script
@@ -17,16 +20,3 @@ o2-analysis-timestamp ${OPTION} \
 | o2-analysis-pid-tpc-full ${OPTION} \
 | o2-analysis-lf-lambdakzerobuilder ${OPTION} \
 | o2-analysistutorial-lf-strangeness-step3 ${OPTION}
-
-# report status
-rc=$?
-if [ $rc -eq 0 ]; then
-  echo "No problems!"
-  mkdir -p "$DIR_THIS/results/$STEP"
-  mv "AnalysisResults.root" "$DIR_THIS/results/$STEP/AnalysisResults.root"
-  mv "dpl-config.json" "$DIR_THIS/jsonConfigs/$STEP.json"
-else
-  echo "Error: Exit code $rc"
-  echo "Check the log file $LOGFILE"
-  exit $rc
-fi
