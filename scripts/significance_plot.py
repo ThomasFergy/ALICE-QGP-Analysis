@@ -210,8 +210,8 @@ def make_plot(V0_index, cut_index, cut_ranges, fit_and_plot_line=False):
 
 if __name__ == "__main__":
     V0_index = 0
-    cut_index = 4
-    fit_and_plot_line = True
+    cut_indices = [0, 1, 2, 3, 4]
+    fit_and_plot_line = False
     # min and max values for each cut parameter
     cut_ranges = {
         "K0Data": {
@@ -223,4 +223,6 @@ if __name__ == "__main__":
             "v0radius": [0, 0.875],
         },
     }
-    make_plot(V0_index, cut_index, cut_ranges, fit_and_plot_line)
+
+    for cut_index in cut_indices:
+        make_plot(V0_index, cut_index, cut_ranges, fit_and_plot_line)
