@@ -61,5 +61,3 @@ if __name__ == "__main__":
             cwd, output_dir
         )
     )
-
-    ##### CAN'T GET THIS TO WORK #####
