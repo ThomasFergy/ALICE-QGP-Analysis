@@ -8,6 +8,7 @@
 void eff() {
   gROOT->Reset();
 
+  double rebinFactor = 10;
   // MC with optimal cuts
   TFile* f = new TFile(
       "Results/K0_CUTS_1/"
@@ -19,6 +20,8 @@ void eff() {
     exit(1);
   }
   h1->Sumw2();
+  // rebin the histogram
+  h1->Rebin(rebinFactor);
   Double_t norm1 = h1->GetEntries();
   std::cout << norm1 << std::endl;
   f->cd("strangeness_tutorial/kzeroShort");
@@ -28,6 +31,8 @@ void eff() {
     exit(1);
   }
   h2->Sumw2();
+  // rebin the histogram
+  h2->Rebin(rebinFactor);
   Double_t norm2 = h2->GetEntries();
   std::cout << norm2 << std::endl;
   // Efficiency

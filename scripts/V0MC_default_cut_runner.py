@@ -3,6 +3,10 @@ import json
 import subprocess
 import numpy as np
 
+#################### p_t bins ####################
+p_t_bins = np.linspace(0.0, 10.0, 11)
+##################################################
+
 ########################################
 # Set up using the cut_config.json file
 ########################################
@@ -105,7 +109,21 @@ def set_aodcms_file_json(aodmcs_file):
         json.dump(data, f, indent=2)
 
 
+def set_p_t_bins(json_file, p_t_bins):
+    """
+    Function to set the p_t bins in the json file
+    """
+    with open(json_file, "r") as f:
+        data = json.load(f)
+    data["lambdakzero-builder"]["axisPtQA"]["values"] = p_t_bins
+    with open(json_file, "w") as f:
+        json.dump(data, f, indent=2)
+
+
 if __name__ == "__main__":
+    # set p_t bins
+    set_p_t_bins(json_file, p_t_bins.tolist())
+
     # set default cut values
     for i in range(len(cut_parameters)):
         set_cut_value(json_file, i, default_cut_values[i])
