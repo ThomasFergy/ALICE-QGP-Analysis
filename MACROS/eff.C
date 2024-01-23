@@ -1,9 +1,16 @@
+#include <TCanvas.h>
+#include <TFile.h>
+#include <TH1F.h>
+#include <TROOT.h>
+
+#include <iostream>
+
 void eff() {
   gROOT->Reset();
 
   // MC with optimal cuts
   TFile* f = new TFile(
-      "/home/user274/ALICE-QGP-Analysis/Results/K0_CUTS_1/"
+      "Results/K0_CUTS_1/"
       "AnalysisResults_optimal_cuts_MC.root");
   f->cd("strangeness_tutorial/genParticles");
   TH1F* h1 = (TH1F*)gDirectory->Get("hPtK0ShortGen");
