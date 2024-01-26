@@ -23,5 +23,7 @@ dpl-config.json
 performanceMetrics.json
 .nfs*
 .vscode/
+temp_dirs/
+logs/
 
 .gitignore

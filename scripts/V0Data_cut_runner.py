@@ -41,12 +41,13 @@ for cut in cut_parameters:
             cut_data[cut]["step"],
         )
     )
-print(cut_value_list)
 ########################################
 
 cwd = "data/V0Data"
 output_dir = "output/V0Data"
-json_file = "{}/json_strangenesstutorial.json".format(cwd)
+original_json_file = "{}/json_strangenesstutorial_multiprocessing.json".format(cwd)
+# set default cut values
+
 
 cut_parameters_strangeness_tutorial = [
     "v0setting_dcanegtopv",
@@ -75,21 +76,22 @@ def set_cut_value(json_file, cut_name_index, cut_value):
         json.dump(data, f, indent=2)
 
 
+for i in range(len(cut_parameters)):
+    set_cut_value(original_json_file, i, default_cut_values[i])
+
+
 def create_temp_cwd(cwd, name):
     """
     Function to create a temporary working directory
     """
-    if not os.path.isdir("{}/temp_dirs".format(cwd)):
-        os.mkdir("{}/temp_dirs".format(cwd))
     temp_cwd = "{}/temp_dirs/temp_{}".format(cwd, name)
     if not os.path.isdir(temp_cwd):
         os.mkdir(temp_cwd)
-    # copy all files from the original directory to the temporary directory
-    for file in os.listdir(cwd):
-        if os.path.isfile("{}/{}".format(cwd, file)):
-            os.system("cp {}/{} {}/{}".format(cwd, file, temp_cwd, file))
-        # elif os.path.isdir("{}/{}".format(cwd, file)):
-        #    os.system("cp -r {}/{} {}/{}".format(cwd, file, temp_cwd, file))
+    # copy json_strangenesstutorial.json and run_step0.sh to temp_cwd
+    os.system(
+        "cp {}/json_strangenesstutorial_multiprocessing.json {}".format(cwd, temp_cwd)
+    )
+    os.system("cp {}/run_step0_multiprocessing.sh {}".format(cwd, temp_cwd))
     return temp_cwd
 
 
@@ -100,8 +102,91 @@ def remove_temp_dir(temp_dir):
     os.system("rm -rf {}".format(temp_dir))
 
 
+def process_cut(par_index, cut_value):
+    # round the cut value to remove floating point errors and to prevent recreating the same file
+    cut_value = round(cut_value, 12)
+
+    # check if output file has already been produced
+    if os.path.isfile(
+        "{}/AnalysisResults_{}_{}.root".format(
+            output_dir, cut_parameters[par_index], cut_value
+        )
+    ):
+        print(
+            "Output file already exists for cut {} = {}\nSkipping...\n".format(
+                cut_parameters[par_index], cut_value
+            )
+        )
+        return 0
+
+    print(
+        "----- Running cut {} = {}... -----\n".format(
+            cut_parameters[par_index], cut_value
+        )
+    )
+
+    # create a temporary working directory
+    temp_cwd_name = str(cut_parameters[par_index]) + "_" + str(cut_value)
+    temp_cwd = create_temp_cwd(cwd, temp_cwd_name)
+
+    # set the cut value
+    json_file = "{}/json_strangenesstutorial_multiprocessing.json".format(temp_cwd)
+    set_cut_value(json_file, par_index, cut_value)
+
+    # Apply the cut (requires being in the alienv environment before running)
+    bash_script = "./run_step0_multiprocessing.sh"
+
+    result = subprocess.run([bash_script], cwd=temp_cwd)
+    err = result.returncode
+
+    # warn if error
+    if result.returncode != 0:
+        print(
+            "WARN: Error running ./run_step0_multiprocessing.sh for cut {} = {}".format(
+                cut_parameters[par_index], cut_value
+            )
+        )
+
+    # Rename the output file to avoid overwriting and move to output directory
+    os.system(
+        "mv {}/AnalysisResults.root {}/AnalysisResults_{}_{}.root".format(
+            temp_cwd, output_dir, cut_parameters[par_index], cut_value
+        )
+    )
+    # rename the log file and move to logs directory
+    os.system(
+        "mv {}/log.txt {}/logs/log_step_{}_{}.log".format(
+            temp_cwd, cwd, cut_parameters[par_index], cut_value
+        )
+    )
+
+    # remove the temporary working directory
+    remove_temp_dir(temp_cwd)
+    print(
+        "----- Finished running cut {} = {} -----\n".format(
+            cut_parameters[par_index], cut_value
+        )
+    )
+    return err
+
+
 if __name__ == "__main__":
     err_count = 0
+    # check if output directory exists
+    # add .gitkeep file to output directory if it is empty
+    if not os.path.isdir("{}/temp_dirs".format(cwd)):
+        os.mkdir("{}/temp_dirs".format(cwd))
+    if not os.path.isdir("{}/logs".format(cwd)):
+        os.mkdir("{}/logs".format(cwd))
+    if not os.path.isdir("output"):
+        os.mkdir("output")
+    if not os.listdir("output"):
+        os.system("touch {}/.gitkeep".format("output"))
+    if not os.path.isdir(output_dir):
+        os.mkdir(output_dir)
+    if not os.listdir(output_dir):
+        os.system("touch {}/.gitkeep".format(output_dir))
+
     for par_index in par_indices:
         print(
             "---------- Applying cuts to {} ----------".format(
@@ -109,84 +194,16 @@ if __name__ == "__main__":
             )
         )
         print()
-        # set default cut values
-        for i in range(len(cut_parameters)):
-            set_cut_value(json_file, i, default_cut_values[i])
 
         cut_values = cut_value_list[par_index]
-        for cut_value in cut_values:
-            # round the cut value to remove floating point errors and to prevent recreating the same file
-            cut_value = round(cut_value, 12)
 
-            # check if output file has already been produced
-            if os.path.isfile(
-                "{}/AnalysisResults_{}_{}.root".format(
-                    output_dir, cut_parameters[par_index], cut_value
-                )
+        # apply cuts in parallel
+        print("Applying cuts in parallel using {} processes...".format(mp.cpu_count()))
+        with mp.Pool(processes=mp.cpu_count()) as pool:
+            for result in pool.starmap(
+                process_cut, [(par_index, cut_value) for cut_value in cut_values]
             ):
-                print(
-                    "Output file already exists for cut {} = {}".format(
-                        cut_parameters[par_index], cut_value
-                    )
-                )
-                print("Skipping...")
-                print()
-                continue
-
-            print(
-                "----- Running cut {} = {}... -----".format(
-                    cut_parameters[par_index], cut_value
-                )
-            )
-            print()
-
-            # create a temporary working directory
-            temp_cwd_name = str(cut_parameters[par_index]) + "_" + str(cut_value)
-            temp_cwd = create_temp_cwd(cwd, temp_cwd_name)
-            print("Temporary working directory: {}".format(temp_cwd))
-
-            # set the cut value
-            json_file = "{}/json_strangenesstutorial.json".format(temp_cwd)
-            set_cut_value(json_file, par_index, cut_value)
-
-            # Apply the cut (requires being in the alienv environment before running)
-            bash_script = "./run_step0.sh"
-
-            result = subprocess.run([bash_script], cwd=temp_cwd)
-            err_count += result.returncode
-
-            # warn if error
-            if result.returncode != 0:
-                print(
-                    "WARN: Error running MACROS/SignificanceFit.C for cut {} = {}".format(
-                        cut_parameters[par_index], cut_value
-                    )
-                )
-
-            # check if output directory exists
-            # add .gitkeep file to output directory if it is empty
-            if not os.path.isdir("output"):
-                os.mkdir("output")
-            if not os.listdir("output"):
-                os.system("touch {}/.gitkeep".format("output"))
-            if not os.path.isdir(output_dir):
-                os.mkdir(output_dir)
-            if not os.listdir(output_dir):
-                os.system("touch {}/.gitkeep".format(output_dir))
-
-            # Rename the output file to avoid overwriting and move to output directory
-            os.system(
-                "mv {}/AnalysisResults.root {}/AnalysisResults_{}_{}.root".format(
-                    temp_cwd, output_dir, cut_parameters[par_index], cut_value
-                )
-            )
-
-            # remove the temporary working directory
-            remove_temp_dir(temp_cwd)
-
-    # reset default cut values
-    for i in range(len(cut_parameters)):
-        set_cut_value(json_file, i, default_cut_values[i])
+                err_count += result
 
     # remove temp_dirs
     if os.path.isdir("{}/temp_dirs".format(cwd)):
