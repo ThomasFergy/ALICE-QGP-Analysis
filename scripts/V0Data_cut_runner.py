@@ -40,13 +40,10 @@ for cut in cut_parameters:
             cut_data[cut]["step"],
         )
     )
-########################################
 
 cwd = "data/V0Data"
 output_dir = "output/V0Data"
 original_json_file = "{}/json_strangenesstutorial_multiprocessing.json".format(cwd)
-# set default cut values
-
 
 cut_parameters_strangeness_tutorial = [
     "v0setting_dcanegtopv",
@@ -54,10 +51,6 @@ cut_parameters_strangeness_tutorial = [
     "v0setting_cospa",
     "v0setting_dcav0dau",
     "v0setting_radius",
-    # "cascadesetting_cospa",
-    # "cascadesetting_cascradius",
-    # "NSigmaTPCPion",
-    # "NSigmaTPCProton",
 ]
 
 

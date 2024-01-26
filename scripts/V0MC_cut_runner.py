@@ -40,7 +40,6 @@ for cut in cut_parameters:
             cut_data[cut]["step"],
         )
     )
-########################################
 
 cwd = "data/V0MC"
 output_dir = "output/V0MC"
@@ -52,10 +51,6 @@ cut_parameters_strangeness_tutorial = [
     "v0setting_cospa",
     "v0setting_dcav0dau",
     "v0setting_radius",
-    # "cascadesetting_cospa",
-    # "cascadesetting_cascradius",
-    # "NSigmaTPCPion",
-    # "NSigmaTPCProton",
 ]
 
 
@@ -185,7 +180,7 @@ def remove_tmp_dir(tmp_dir):
     os.system("rm -rf {}".format(tmp_dir))
 
 
-def process_cut(par_index, cut_value):
+def process_cut(par_index, aodmcs_files, cut_value):
     error_count = 0
     # round the cut value to remove floating point errors and to prevent recreating the same file
     cut_value = round(cut_value, 12)
@@ -303,7 +298,8 @@ if __name__ == "__main__":
         print("Applying cuts in parallel using {} processes...".format(mp.cpu_count()))
         with mp.Pool(processes=mp.cpu_count()) as pool:
             for result in pool.starmap(
-                process_cut, [(par_index, cut_value) for cut_value in cut_values]
+                process_cut,
+                [(par_index, aodmcs_files, cut_value) for cut_value in cut_values],
             ):
                 err_count += result
 
