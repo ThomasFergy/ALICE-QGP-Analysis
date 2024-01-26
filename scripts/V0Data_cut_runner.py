@@ -12,6 +12,8 @@ import os
 import json
 import subprocess
 import numpy as np
+import multiprocessing as mp
+import time
 
 ########################################
 # Set up using the cut_config.json file
@@ -39,6 +41,7 @@ for cut in cut_parameters:
             cut_data[cut]["step"],
         )
     )
+print(cut_value_list)
 ########################################
 
 cwd = "data/V0Data"
@@ -72,6 +75,31 @@ def set_cut_value(json_file, cut_name_index, cut_value):
         json.dump(data, f, indent=2)
 
 
+def create_temp_cwd(cwd, name):
+    """
+    Function to create a temporary working directory
+    """
+    if not os.path.isdir("{}/temp_dirs".format(cwd)):
+        os.mkdir("{}/temp_dirs".format(cwd))
+    temp_cwd = "{}/temp_dirs/temp_{}".format(cwd, name)
+    if not os.path.isdir(temp_cwd):
+        os.mkdir(temp_cwd)
+    # copy all files from the original directory to the temporary directory
+    for file in os.listdir(cwd):
+        if os.path.isfile("{}/{}".format(cwd, file)):
+            os.system("cp {}/{} {}/{}".format(cwd, file, temp_cwd, file))
+        # elif os.path.isdir("{}/{}".format(cwd, file)):
+        #    os.system("cp -r {}/{} {}/{}".format(cwd, file, temp_cwd, file))
+    return temp_cwd
+
+
+def remove_temp_dir(temp_dir):
+    """
+    Function to remove a temporary working directory
+    """
+    os.system("rm -rf {}".format(temp_dir))
+
+
 if __name__ == "__main__":
     err_count = 0
     for par_index in par_indices:
@@ -89,7 +117,6 @@ if __name__ == "__main__":
         for cut_value in cut_values:
             # round the cut value to remove floating point errors and to prevent recreating the same file
             cut_value = round(cut_value, 12)
-            set_cut_value(json_file, par_index, cut_value)
 
             # check if output file has already been produced
             if os.path.isfile(
@@ -113,10 +140,19 @@ if __name__ == "__main__":
             )
             print()
 
+            # create a temporary working directory
+            temp_cwd_name = str(cut_parameters[par_index]) + "_" + str(cut_value)
+            temp_cwd = create_temp_cwd(cwd, temp_cwd_name)
+            print("Temporary working directory: {}".format(temp_cwd))
+
+            # set the cut value
+            json_file = "{}/json_strangenesstutorial.json".format(temp_cwd)
+            set_cut_value(json_file, par_index, cut_value)
+
             # Apply the cut (requires being in the alienv environment before running)
             bash_script = "./run_step0.sh"
 
-            result = subprocess.run([bash_script], cwd=cwd)
+            result = subprocess.run([bash_script], cwd=temp_cwd)
             err_count += result.returncode
 
             # warn if error
@@ -141,13 +177,20 @@ if __name__ == "__main__":
             # Rename the output file to avoid overwriting and move to output directory
             os.system(
                 "mv {}/AnalysisResults.root {}/AnalysisResults_{}_{}.root".format(
-                    cwd, output_dir, cut_parameters[par_index], cut_value
+                    temp_cwd, output_dir, cut_parameters[par_index], cut_value
                 )
             )
+
+            # remove the temporary working directory
+            remove_temp_dir(temp_cwd)
 
     # reset default cut values
     for i in range(len(cut_parameters)):
         set_cut_value(json_file, i, default_cut_values[i])
+
+    # remove temp_dirs
+    if os.path.isdir("{}/temp_dirs".format(cwd)):
+        os.system("rm -rf {}/temp_dirs".format(cwd))
 
     if err_count != 0:
         print("Script finished with {} error(s)".format(err_count))
