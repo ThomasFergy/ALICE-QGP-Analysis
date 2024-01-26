@@ -12,6 +12,7 @@ import os
 import json
 import subprocess
 import numpy as np
+import multiprocessing as mp
 
 ########################################
 # Set up using the cut_config.json file
@@ -43,7 +44,7 @@ for cut in cut_parameters:
 
 cwd = "data/V0MC"
 output_dir = "output/V0MC"
-json_file = "{}/jsonConfigs/step3.json".format(cwd)
+original_json_file = "{}/jsonConfigs/step3_multiprocessing.json".format(cwd)
 
 cut_parameters_strangeness_tutorial = [
     "v0setting_dcanegtopv",
@@ -70,6 +71,11 @@ def set_cut_value(json_file, cut_name_index, cut_value):
     ] = str(cut_value)
     with open(json_file, "w") as f:
         json.dump(data, f, indent=2)
+
+
+# set default cut values
+for i in range(len(cut_parameters)):
+    set_cut_value(original_json_file, i, default_cut_values[i])
 
 
 def set_aodmcs_files():
@@ -118,75 +124,170 @@ def set_aodmcs_files():
     return aodmcs_files
 
 
-def set_aodcms_file_json(aodmcs_file):
+def set_aodcms_file_json(aodmcs_file, json_file):
     """
     Function to set the aodmcs file in the json file
     """
     with open(json_file, "r") as f:
         data = json.load(f)
-    data["internal-dpl-aod-reader"]["aod-file"] = "@" + aodmcs_file
+    data["internal-dpl-aod-reader"]["aod-file"] = "@../../" + aodmcs_file
     with open(json_file, "w") as f:
         json.dump(data, f, indent=2)
 
 
-def combine_root_files(aodmcs_files):
+def combine_root_files(cwd, par_index, cut_value):
     """
     Function to combine the root files
     """
-    print("---------- Combining root files ----------")
-    err_count = 0
-    # find what files exist in all the aodmcs directories
-    file_names = []
-    for aodmcs_file in aodmcs_files:
-        file_names.append(
-            os.listdir(cwd + "/results/step3/{}/".format(aodmcs_file[:-4]))
-        )
-    file_names = list(set.intersection(*map(set, file_names)))
-    print("Combining {} cut files...".format(len(file_names)))
-    for file_name in file_names:
-        files_to_combine = []
-        for aodmcs_file in aodmcs_files:
-            files_to_combine.append(
-                "results/step3/{}/{}".format(aodmcs_file[:-4], file_name)
+    # find all root files in cwd
+    root_files = []
+    for root, dirs, files in os.walk(cwd):
+        for file in files:
+            if file.endswith(".root"):
+                root_files.append(file)
+
+    file_name = "AnalysisResults_{}_{}.root".format(
+        cut_parameters[par_index], cut_value
+    )
+
+    result = subprocess.run(
+        ["hadd", "-f", "{}".format(file_name), *root_files],
+        cwd=cwd,
+        capture_output=True,
+    )
+    err = result.returncode
+    if err != 0:
+        print(
+            "Error combining root files for cut {} = {}".format(
+                cut_parameters[par_index], cut_value
             )
-
-        # if the file already exists in the output directory, skip it
-        if os.path.isfile("{}/{}".format(output_dir, file_name)):
-            print("Output file {} already exists".format(file_name))
-            print("Skipping...")
-            print()
-            continue
-
-        result = subprocess.run(
-            ["hadd", "-f", "results/step3/{}".format(file_name), *files_to_combine],
-            cwd=cwd,
         )
-        err_count += result.returncode
+    return err
 
-        # check if output directory exists
-        # add .gitkeep file to output directory if it is empty
-        if not os.path.isdir("output"):
-            os.mkdir("output")
-        if not os.listdir("output"):
-            os.system("touch {}/.gitkeep".format("output"))
-        if not os.path.isdir(output_dir):
-            os.mkdir(output_dir)
-        if not os.listdir(output_dir):
-            os.system("touch {}/.gitkeep".format(output_dir))
 
-        if result.returncode == 0:
-            # move the file to the output directory
-            os.system("mv {}/results/step3/{} {}/".format(cwd, file_name, output_dir))
+def create_tmp_cwd(cwd, name):
+    """
+    Function to create a temporary working directory
+    """
+    tmp_cwd = "{}/tmp_dirs/tmp_{}".format(cwd, name)
+    if not os.path.isdir(tmp_cwd):
+        os.mkdir(tmp_cwd)
+    # copy json_strangenesstutorial.json and run_step0.sh to tmp_cwd
+    os.system("cp {}/jsonConfigs/step3_multiprocessing.json {}".format(cwd, tmp_cwd))
+    os.system("cp {}/runStep3_multiprocessing.sh {}".format(cwd, tmp_cwd))
+    return tmp_cwd
 
-    if err_count != 0:
-        print("root file combining ended with {} error(s)".format(err_count))
-    else:
-        print("root file combining ended successfully")
+
+def remove_tmp_dir(tmp_dir):
+    """
+    Function to remove a temporary working directory
+    """
+    os.system("rm -rf {}".format(tmp_dir))
+
+
+def process_cut(par_index, cut_value):
+    error_count = 0
+    # round the cut value to remove floating point errors and to prevent recreating the same file
+    cut_value = round(cut_value, 12)
+
+    # check if output file has already been produced in output
+    if os.path.isfile(
+        "{}/AnalysisResults_{}_{}.root".format(
+            output_dir, cut_parameters[par_index], cut_value
+        )
+    ):
+        print(
+            "Output file already exists for cut {} = {}\nSkipping...\n".format(
+                cut_parameters[par_index], cut_value
+            )
+        )
+        return 0
+
+    print(
+        "----- Running cut {} = {}... -----\n".format(
+            cut_parameters[par_index], cut_value
+        )
+    )
+
+    # create a temporary working directory
+    tmp_cwd_name = str(cut_parameters[par_index]) + "_" + str(cut_value)
+    tmp_cwd = create_tmp_cwd(cwd, tmp_cwd_name)
+
+    json_file = "{}/step3_multiprocessing.json".format(tmp_cwd)
+    set_cut_value(json_file, par_index, cut_value)
+
+    bash_script = "./runStep3_multiprocessing.sh"
+
+    for aodmcs_file in aodmcs_files:
+        set_aodcms_file_json(aodmcs_file, json_file)
+
+        # Apply the cut (requires being in the alienv environment before running)
+        result = subprocess.run([bash_script], cwd=tmp_cwd)
+        error_count += result.returncode
+
+        # warn if error
+        if result.returncode != 0:
+            print(
+                "WARN: Error running ./runStep3_multiprocessing.sh for cut {} = {}".format(
+                    cut_parameters[par_index], cut_value
+                )
+            )
+            return error_count
+
+        # rename the output file
+        os.system(
+            "mv {}/AnalysisResults.root {}/AnalysisResults_{}.root".format(
+                tmp_cwd, tmp_cwd, aodmcs_file[:-4]
+            )
+        )
+        # rename the log file and move to logs directory
+        os.system(
+            "mv {}/log.txt {}/logs/log_{}_{}_{}.log".format(
+                tmp_cwd, cwd, aodmcs_file[:-4], cut_parameters[par_index], cut_value
+            )
+        )
+    # combine using hadd
+    error_count += combine_root_files(tmp_cwd, par_index, cut_value)
+
+    # move the output file to output directory
+    os.system(
+        "mv {}/AnalysisResults_{}_{}.root {}/AnalysisResults_{}_{}.root".format(
+            tmp_cwd,
+            cut_parameters[par_index],
+            cut_value,
+            output_dir,
+            cut_parameters[par_index],
+            cut_value,
+        )
+    )
+
+    # remove the temporary working directory
+    remove_tmp_dir(tmp_cwd)
+    print(
+        "----- Finished running cut {} = {} -----\n".format(
+            cut_parameters[par_index], cut_value
+        )
+    )
+    return error_count
 
 
 if __name__ == "__main__":
     err_count = 0
     aodmcs_files = set_aodmcs_files()
+
+    # check if required directories exists
+    if not os.path.isdir("{}/tmp_dirs".format(cwd)):
+        os.mkdir("{}/tmp_dirs".format(cwd))
+    if not os.path.isdir("{}/logs".format(cwd)):
+        os.mkdir("{}/logs".format(cwd))
+    if not os.path.isdir("output"):
+        os.mkdir("output")
+    if not os.listdir("output"):
+        os.system("touch {}/.gitkeep".format("output"))
+    if not os.path.isdir(output_dir):
+        os.mkdir(output_dir)
+    if not os.listdir(output_dir):
+        os.system("touch {}/.gitkeep".format(output_dir))
 
     for par_index in par_indices:
         print(
@@ -197,74 +298,18 @@ if __name__ == "__main__":
         print()
 
         cut_values = cut_value_list[par_index]
-        for cut_value in cut_values:
-            for aodmcs_file in aodmcs_files:
-                set_aodcms_file_json(aodmcs_file)
-                print("---------- Applying cuts to {} ----------".format(aodmcs_file))
-                # set default cut values (required here as step3.json is overwritten by dpl-config.json)
-                # not important but stops git complaining about changes to step3.json
-                for i in range(len(cut_parameters)):
-                    set_cut_value(json_file, i, default_cut_values[i])
 
-                # round the cut value to remove floating point errors and to prevent recreating the same file
-                cut_value = round(cut_value, 12)
-                set_cut_value(json_file, par_index, cut_value)
-                aodmcs_output_dir = cwd + "/results/step3/{}".format(aodmcs_file[:-4])
+        # apply cuts in parallel
+        print("Applying cuts in parallel using {} processes...".format(mp.cpu_count()))
+        with mp.Pool(processes=mp.cpu_count()) as pool:
+            for result in pool.starmap(
+                process_cut, [(par_index, cut_value) for cut_value in cut_values]
+            ):
+                err_count += result
 
-                # check if output file has already been produced
-                if os.path.isfile(
-                    "{}/AnalysisResults_{}_{}.root".format(
-                        aodmcs_output_dir, cut_parameters[par_index], cut_value
-                    )
-                ):
-                    print(
-                        "Output file already exists for cut {} = {}".format(
-                            cut_parameters[par_index], cut_value
-                        )
-                    )
-                    print("Skipping...")
-                    print()
-                    continue
-
-                print(
-                    "----- Running cut {} = {}... -----".format(
-                        cut_parameters[par_index], cut_value
-                    )
-                )
-                print()
-
-                # Apply the cut (requires being in the alienv environment before running)
-                bash_script = "./runStep3.sh"
-
-                result = subprocess.run([bash_script], cwd=cwd)
-                err_count += result.returncode
-
-                # warn if error
-                if result.returncode != 0:
-                    print(
-                        "WARN: Error running MACROS/SignificanceFit.C for cut {} = {}".format(
-                            cut_parameters[par_index], cut_value
-                        )
-                    )
-
-                # Rename the output file to avoid overwriting and move to output directory
-
-                if not os.path.isdir(aodmcs_output_dir):
-                    os.mkdir(aodmcs_output_dir)
-                os.system(
-                    "mv {}/results/step3/AnalysisResults.root {}/AnalysisResults_{}_{}.root".format(
-                        cwd, aodmcs_output_dir, cut_parameters[par_index], cut_value
-                    )
-                )
-            # Should be possible to combine some root files here
-            combine_root_files(aodmcs_files)
-
-    # reset default cut values
-    for i in range(len(cut_parameters)):
-        set_cut_value(json_file, i, default_cut_values[i])
-
-    # check root files are combined
-    combine_root_files(aodmcs_files)
+    # remove tmp_dirs
+    if os.path.isdir("{}/tmp_dirs".format(cwd)):
+        os.system("rm -rf {}/tmp_dirs".format(cwd))
 
     if err_count != 0:
         print("Script finished with {} error(s)".format(err_count))

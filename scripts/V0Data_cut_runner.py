@@ -13,7 +13,6 @@ import json
 import subprocess
 import numpy as np
 import multiprocessing as mp
-import time
 
 ########################################
 # Set up using the cut_config.json file
@@ -80,26 +79,26 @@ for i in range(len(cut_parameters)):
     set_cut_value(original_json_file, i, default_cut_values[i])
 
 
-def create_temp_cwd(cwd, name):
+def create_tmp_cwd(cwd, name):
     """
     Function to create a temporary working directory
     """
-    temp_cwd = "{}/temp_dirs/temp_{}".format(cwd, name)
-    if not os.path.isdir(temp_cwd):
-        os.mkdir(temp_cwd)
-    # copy json_strangenesstutorial.json and run_step0.sh to temp_cwd
+    tmp_cwd = "{}/tmp_dirs/tmp_{}".format(cwd, name)
+    if not os.path.isdir(tmp_cwd):
+        os.mkdir(tmp_cwd)
+    # copy json_strangenesstutorial.json and run_step0.sh to tmp_cwd
     os.system(
-        "cp {}/json_strangenesstutorial_multiprocessing.json {}".format(cwd, temp_cwd)
+        "cp {}/json_strangenesstutorial_multiprocessing.json {}".format(cwd, tmp_cwd)
     )
-    os.system("cp {}/run_step0_multiprocessing.sh {}".format(cwd, temp_cwd))
-    return temp_cwd
+    os.system("cp {}/run_step0_multiprocessing.sh {}".format(cwd, tmp_cwd))
+    return tmp_cwd
 
 
-def remove_temp_dir(temp_dir):
+def remove_tmp_dir(tmp_dir):
     """
     Function to remove a temporary working directory
     """
-    os.system("rm -rf {}".format(temp_dir))
+    os.system("rm -rf {}".format(tmp_dir))
 
 
 def process_cut(par_index, cut_value):
@@ -126,17 +125,16 @@ def process_cut(par_index, cut_value):
     )
 
     # create a temporary working directory
-    temp_cwd_name = str(cut_parameters[par_index]) + "_" + str(cut_value)
-    temp_cwd = create_temp_cwd(cwd, temp_cwd_name)
+    tmp_cwd_name = str(cut_parameters[par_index]) + "_" + str(cut_value)
+    tmp_cwd = create_tmp_cwd(cwd, tmp_cwd_name)
 
-    # set the cut value
-    json_file = "{}/json_strangenesstutorial_multiprocessing.json".format(temp_cwd)
+    json_file = "{}/json_strangenesstutorial_multiprocessing.json".format(tmp_cwd)
     set_cut_value(json_file, par_index, cut_value)
 
     # Apply the cut (requires being in the alienv environment before running)
     bash_script = "./run_step0_multiprocessing.sh"
 
-    result = subprocess.run([bash_script], cwd=temp_cwd)
+    result = subprocess.run([bash_script], cwd=tmp_cwd)
     err = result.returncode
 
     # warn if error
@@ -146,22 +144,23 @@ def process_cut(par_index, cut_value):
                 cut_parameters[par_index], cut_value
             )
         )
+        return err
 
     # Rename the output file to avoid overwriting and move to output directory
     os.system(
         "mv {}/AnalysisResults.root {}/AnalysisResults_{}_{}.root".format(
-            temp_cwd, output_dir, cut_parameters[par_index], cut_value
+            tmp_cwd, output_dir, cut_parameters[par_index], cut_value
         )
     )
     # rename the log file and move to logs directory
     os.system(
-        "mv {}/log.txt {}/logs/log_step_{}_{}.log".format(
-            temp_cwd, cwd, cut_parameters[par_index], cut_value
+        "mv {}/log.txt {}/logs/log_{}_{}.log".format(
+            tmp_cwd, cwd, cut_parameters[par_index], cut_value
         )
     )
 
     # remove the temporary working directory
-    remove_temp_dir(temp_cwd)
+    remove_tmp_dir(tmp_cwd)
     print(
         "----- Finished running cut {} = {} -----\n".format(
             cut_parameters[par_index], cut_value
@@ -172,10 +171,10 @@ def process_cut(par_index, cut_value):
 
 if __name__ == "__main__":
     err_count = 0
-    # check if output directory exists
-    # add .gitkeep file to output directory if it is empty
-    if not os.path.isdir("{}/temp_dirs".format(cwd)):
-        os.mkdir("{}/temp_dirs".format(cwd))
+
+    # check if required directories exists
+    if not os.path.isdir("{}/tmp_dirs".format(cwd)):
+        os.mkdir("{}/tmp_dirs".format(cwd))
     if not os.path.isdir("{}/logs".format(cwd)):
         os.mkdir("{}/logs".format(cwd))
     if not os.path.isdir("output"):
@@ -205,9 +204,9 @@ if __name__ == "__main__":
             ):
                 err_count += result
 
-    # remove temp_dirs
-    if os.path.isdir("{}/temp_dirs".format(cwd)):
-        os.system("rm -rf {}/temp_dirs".format(cwd))
+    # remove tmp_dirs
+    if os.path.isdir("{}/tmp_dirs".format(cwd)):
+        os.system("rm -rf {}/tmp_dirs".format(cwd))
 
     if err_count != 0:
         print("Script finished with {} error(s)".format(err_count))
