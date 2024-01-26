@@ -164,9 +164,13 @@ def combine_root_files(aodmcs_files):
         err_count += result.returncode
 
         # check if output directory exists
+        # add .gitkeep file to output directory if it is empty
+        if not os.path.isdir("output"):
+            os.mkdir("output")
+        if not os.listdir("output"):
+            os.system("touch {}/.gitkeep".format("output"))
         if not os.path.isdir(output_dir):
             os.mkdir(output_dir)
-        # add .gitkeep file to output directory if it is empty
         if not os.listdir(output_dir):
             os.system("touch {}/.gitkeep".format(output_dir))
 
