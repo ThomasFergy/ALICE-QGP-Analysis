@@ -1,10 +1,10 @@
 {
   "cuts_to_apply": {
     "dcanegtopv": true,
-    "dcapostopv": false,
-    "v0cospa": false,
-    "dcav0dau": false,
-    "v0radius": false
+    "dcapostopv": true,
+    "v0cospa": true,
+    "dcav0dau": true,
+    "v0radius": true
   },
   "default_cuts": {
     "dcanegtopv": 0.0,
