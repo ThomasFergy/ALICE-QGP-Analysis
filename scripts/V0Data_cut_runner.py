@@ -165,6 +165,9 @@ def process_cut(par_index, cut_value):
 if __name__ == "__main__":
     err_count = 0
 
+    # clear /dev/shm/*
+    os.system("rm -f /dev/shm/* >&/dev/null")
+
     # check if required directories exists
     if not os.path.isdir("{}/tmp_dirs".format(cwd)):
         os.mkdir("{}/tmp_dirs".format(cwd))

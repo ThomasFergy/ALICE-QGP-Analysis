@@ -121,6 +121,9 @@ def set_p_t_bins(json_file, p_t_bins):
 
 
 if __name__ == "__main__":
+    # clear /dev/shm/*
+    os.system("rm -f /dev/shm/* >&/dev/null")
+
     # set p_t bins
     set_p_t_bins(json_file, p_t_bins.tolist())
 

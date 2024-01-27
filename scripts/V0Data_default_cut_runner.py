@@ -49,6 +49,9 @@ def set_cut_value(json_file, cut_name_index, cut_value):
 
 
 if __name__ == "__main__":
+    # clear /dev/shm/*
+    os.system("rm -f /dev/shm/* >&/dev/null")
+
     # set default cut values
     for i in range(len(cut_parameters)):
         set_cut_value(json_file, i, default_cut_values[i])

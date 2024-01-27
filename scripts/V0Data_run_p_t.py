@@ -54,6 +54,9 @@ output_dir = "output/V0Data"
 json_file = "{}/step3Data.json".format(cwd)
 
 if __name__ == "__main__":
+    # clear /dev/shm/*
+    os.system("rm -f /dev/shm/* >&/dev/null")
+
     # set p_t bins
     set_p_t_bins(json_file, p_t_bins.tolist())
 
