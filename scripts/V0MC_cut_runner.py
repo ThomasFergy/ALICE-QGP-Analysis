@@ -219,7 +219,7 @@ def process_cut(par_index, aodmcs_files, cut_value):
 
         log(
             logfile,
-            "[INFO] ----- Running cut for {}... -----\n".format(aodmcs_file[:-4]),
+            "[INFO] ----- Running cut for {}... -----".format(aodmcs_file[:-4]),
         )
 
         # Apply the cut (requires being in the alienv environment before running)
@@ -244,11 +244,11 @@ def process_cut(par_index, aodmcs_files, cut_value):
         )
         log(
             logfile,
-            "[INFO] ----- Finished running cut for {} -----\n".format(aodmcs_file[:-4]),
+            "[INFO] ----- Finished running cut for {} -----".format(aodmcs_file[:-4]),
         )
         # rename the log file and move to logs directory
         os.system(
-            "mv {}/log.txt {}/logs/log_{}_{}_{}.log".format(
+            "mv {}/log.log {}/logs/log_{}_{}_{}.log".format(
                 tmp_cwd, cwd, aodmcs_file[:-4], cut_parameters[par_index], cut_value
             )
         )
