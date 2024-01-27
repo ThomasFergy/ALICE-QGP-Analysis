@@ -5,7 +5,7 @@ export ALICEO2_CCDB_LOCALCACHE=../../locCCDB
 
 STEP="step3"
 
-LOGFILE="log.txt"
+LOGFILE="log.log"
 
 DIR_THIS="$(dirname "$(realpath "$0")")"
 
@@ -22,4 +22,4 @@ o2-analysis-timestamp ${OPTION} \
 | o2-analysis-lf-lambdakzerobuilder ${OPTION} \
 | o2-analysis-lf-lambdakzerolabelbuilder ${OPTION} \
 | o2-analysistutorial-lf-strangeness-$STEP ${OPTION} \
-> "$LOGFILE" 2>&1
+>> "$LOGFILE" 2>&1

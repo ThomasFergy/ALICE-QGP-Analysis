@@ -57,6 +57,15 @@ if __name__ == "__main__":
     # clear /dev/shm/*
     os.system("rm -f /dev/shm/* >&/dev/null")
 
+    if not os.path.isdir("output"):
+        os.mkdir("output")
+    if not os.listdir("output"):
+        os.system("touch {}/.gitkeep".format("output"))
+    if not os.path.isdir(output_dir):
+        os.mkdir(output_dir)
+    if not os.listdir(output_dir):
+        os.system("touch {}/.gitkeep".format(output_dir))
+
     # set p_t bins
     set_p_t_bins(json_file, p_t_bins.tolist())
 
@@ -67,13 +76,6 @@ if __name__ == "__main__":
     bash_script = "./runStep3Data.sh"
 
     result = subprocess.run([bash_script], cwd=cwd)
-
-    # check if output directory exists
-    if not os.path.isdir(output_dir):
-        os.mkdir(output_dir)
-    # add .gitkeep file to output directory if it is empty
-    if not os.listdir(output_dir):
-        os.system("touch {}/.gitkeep".format(output_dir))
 
     # Rename the output file to avoid overwriting and move to output directory
     os.system(

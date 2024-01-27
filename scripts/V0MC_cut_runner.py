@@ -130,6 +130,14 @@ def set_aodcms_file_json(aodmcs_file, json_file):
         json.dump(data, f, indent=2)
 
 
+def log(logfile, string):
+    """
+    Function to log a string to the log file
+    """
+    with open(logfile, "a") as f:
+        f.write(string + "\n")
+
+
 def combine_root_files(cwd, par_index, cut_value):
     """
     Function to combine the root files
@@ -177,7 +185,7 @@ def remove_tmp_dir(tmp_dir):
     """
     Function to remove a temporary working directory
     """
-    os.system("rm -rf {}".format(tmp_dir))
+    os.system("rm -rf {} >&/dev/null".format(tmp_dir))
 
 
 def process_cut(par_index, aodmcs_files, cut_value):
@@ -191,18 +199,7 @@ def process_cut(par_index, aodmcs_files, cut_value):
             output_dir, cut_parameters[par_index], cut_value
         )
     ):
-        print(
-            "Output file already exists for cut {} = {}\nSkipping...\n".format(
-                cut_parameters[par_index], cut_value
-            )
-        )
         return 0
-
-    print(
-        "----- Running cut {} = {}... -----\n".format(
-            cut_parameters[par_index], cut_value
-        )
-    )
 
     # create a temporary working directory
     tmp_cwd_name = str(cut_parameters[par_index]) + "_" + str(cut_value)
@@ -216,16 +213,26 @@ def process_cut(par_index, aodmcs_files, cut_value):
     for aodmcs_file in aodmcs_files:
         set_aodcms_file_json(aodmcs_file, json_file)
 
+        logfile = "{}/log.log".format(tmp_cwd)
+        # make log file in tmp_cwd
+        os.system("touch {}".format(logfile))
+
+        log(
+            logfile,
+            "[INFO] ----- Running cut for {}... -----\n".format(aodmcs_file[:-4]),
+        )
+
         # Apply the cut (requires being in the alienv environment before running)
         result = subprocess.run([bash_script], cwd=tmp_cwd)
         error_count += result.returncode
 
         # warn if error
         if result.returncode != 0:
-            print(
-                "WARN: Error running ./runStep3_multiprocessing.sh for cut {} = {}".format(
-                    cut_parameters[par_index], cut_value
-                )
+            log(
+                logfile,
+                "[ERROR]: Issue running ./runStep3_multiprocessing.sh for {}".format(
+                    aodmcs_file[:-4]
+                ),
             )
             return error_count
 
@@ -234,6 +241,10 @@ def process_cut(par_index, aodmcs_files, cut_value):
             "mv {}/AnalysisResults.root {}/AnalysisResults_{}.root".format(
                 tmp_cwd, tmp_cwd, aodmcs_file[:-4]
             )
+        )
+        log(
+            logfile,
+            "[INFO] ----- Finished running cut for {} -----\n".format(aodmcs_file[:-4]),
         )
         # rename the log file and move to logs directory
         os.system(
@@ -258,12 +269,13 @@ def process_cut(par_index, aodmcs_files, cut_value):
 
     # remove the temporary working directory
     remove_tmp_dir(tmp_cwd)
-    print(
-        "----- Finished running cut {} = {} -----\n".format(
-            cut_parameters[par_index], cut_value
-        )
-    )
-    return error_count
+    return
+
+
+def process_wrapper(args):
+    par_index, aodmcs_files, cut_value = args
+    result = process_cut(par_index, aodmcs_files, cut_value)
+    return result
 
 
 if __name__ == "__main__":
@@ -308,15 +320,31 @@ if __name__ == "__main__":
             )
         )
         with mp.Pool(processes=No_of_simultaneous_processes) as pool:
-            for result in pool.starmap(
-                process_cut,
-                [(par_index, aodmcs_files, cut_value) for cut_value in cut_values],
+            print("Processing: ", end="", flush=True)
+            print("0%", end="", flush=True)
+            first = True
+            for i, result in enumerate(
+                pool.imap_unordered(
+                    process_wrapper,
+                    [(par_index, aodmcs_files, cut_value) for cut_value in cut_values],
+                )
             ):
                 err_count += result
+                progress = int(
+                    (i + 1) / len(cut_values) * 100
+                )  # Calculate progress as a percentage
+                if first:
+                    print("\b" * 2, end="", flush=True)
+                    first = False
+                print(f"{progress}%", end="", flush=True)
+                print(
+                    "\b" * (len(str(progress)) + 1), end="", flush=True
+                )  # Erase the previous percentage
+            print("100%\n")
 
     # remove tmp_dirs
     if os.path.isdir("{}/tmp_dirs".format(cwd)):
-        os.system("rm -rf {}/tmp_dirs".format(cwd))
+        os.system("rm -rf {}/tmp_dirs >&/dev/null".format(cwd))
 
     if err_count != 0:
         print("Script finished with {} error(s)".format(err_count))
