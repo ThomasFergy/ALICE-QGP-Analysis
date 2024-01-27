@@ -269,7 +269,7 @@ def process_cut(par_index, aodmcs_files, cut_value):
 
     # remove the temporary working directory
     remove_tmp_dir(tmp_cwd)
-    return
+    return error_count
 
 
 def process_wrapper(args):
