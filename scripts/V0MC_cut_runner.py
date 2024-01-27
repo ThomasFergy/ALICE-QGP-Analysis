@@ -295,11 +295,19 @@ if __name__ == "__main__":
         )
         print()
 
+        No_of_simultaneous_processes = -(
+            mp.cpu_count() // -3
+        )  # Can run out of memory if too high
+
         cut_values = cut_value_list[par_index]
 
         # apply cuts in parallel
-        print("Applying cuts in parallel using {} processes...".format(mp.cpu_count()))
-        with mp.Pool(processes=mp.cpu_count()) as pool:
+        print(
+            "Applying cuts in parallel using {} processes...".format(
+                No_of_simultaneous_processes
+            )
+        )
+        with mp.Pool(processes=No_of_simultaneous_processes) as pool:
             for result in pool.starmap(
                 process_cut,
                 [(par_index, aodmcs_files, cut_value) for cut_value in cut_values],
