@@ -229,7 +229,7 @@
   },
   "lambdakzero-initializer": "",
   "strangeness_tutorial": {
-    "nBins": "100",
+    "nBins": "10",
     "cutzvertex": "10",
     "v0setting_dcav0dau": "0.215034",
     "v0setting_dcapostopv": "0.0807743",
