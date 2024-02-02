@@ -25,5 +25,6 @@ performanceMetrics.json
 .vscode/
 tmp_dirs/
 logs/
+MCData/
 
 .gitignore
