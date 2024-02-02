@@ -132,10 +132,28 @@ def process_cut(par_index, cut_value):
     json_file = "{}/json_strangenesstutorial_multiprocessing.json".format(tmp_cwd)
     set_cut_value(json_file, par_index, cut_value)
 
-    # Apply the cut (requires being in the alienv environment before running)
+    if os.uname().sysname == "Darwin":
+        bash_script = [
+            "alienv",
+            "setenv",
+            "O2Physics/latest-master-o2",
+            "-c",
+            "./run_step0.sh",
+        ]
+    elif os.uname().sysname == "Linux":
+        bash_script = [
+            "alienv",
+            "setenv",
+            "O2Physics/latest-master-o2",
+            "-c",
+            "./run_step0.sh",
+        ]
+    else:
+        raise OSError("OS not supported")
+
     bash_script = "./run_step0_multiprocessing.sh"
 
-    result = subprocess.run([bash_script], cwd=tmp_cwd)
+    result = subprocess.run(bash_script, cwd=tmp_cwd)
     err = result.returncode
 
     # warn if error
@@ -195,6 +213,13 @@ if __name__ == "__main__":
     if not os.listdir(output_dir):
         os.system("touch {}/.gitkeep".format(output_dir))
 
+    if os.uname().sysname == "Darwin":
+        No_of_simultaneous_processes = mp.cpu_count()
+    elif os.uname().sysname == "Linux":
+        No_of_simultaneous_processes = -(
+            mp.cpu_count() // -3
+        )  # Can run out of memory if too high
+
     for par_index in par_indices:
         print(
             "---------- Applying cuts to {} ----------".format(
@@ -202,10 +227,6 @@ if __name__ == "__main__":
             )
         )
         print()
-
-        No_of_simultaneous_processes = -(
-            mp.cpu_count() // -3
-        )  # Can run out of memory if too high
 
         cut_values = cut_value_list[par_index]
 

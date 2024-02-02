@@ -70,9 +70,26 @@ if __name__ == "__main__":
     print()
 
     # Apply the cut (requires being in the alienv environment before running)
-    bash_script = "./run_step0.sh"
+    if os.uname().sysname == "Darwin":
+        bash_script = [
+            "alienv",
+            "setenv",
+            "O2Physics/latest-master-o2",
+            "-c",
+            "./run_step0.sh",
+        ]
+    elif os.uname().sysname == "Linux":
+        bash_script = [
+            "alienv",
+            "setenv",
+            "O2Physics/latest-master-o2",
+            "-c",
+            "./run_step0.sh",
+        ]
+    else:
+        raise OSError("OS not supported")
 
-    result = subprocess.run([bash_script], cwd=cwd)
+    result = subprocess.run(bash_script, cwd=cwd)
 
     # Rename the output file to avoid overwriting and move to output directory
     os.system(

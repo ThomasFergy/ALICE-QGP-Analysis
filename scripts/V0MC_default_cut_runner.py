@@ -4,7 +4,7 @@ import subprocess
 import numpy as np
 
 #################### p_t bins ####################
-p_t_bins = np.linspace(0.0, 10.0, 11)
+nBins = 10
 ##################################################
 
 ########################################
@@ -57,7 +57,13 @@ def set_aodmcs_files():
     Function to set the aodmcs files
     """
     # search for all AO2D files in the data directory
-    data_dir = "/disk/moose/alice/rl/run3/data/"
+    if os.uname().sysname == "Darwin":
+        data_dir = "/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/"
+    elif os.uname().sysname == "Linux":
+        data_dir = "/disk/moose/alice/rl/run3/data/"
+    else:
+        raise OSError("OS not supported")
+
     root_files = []
     for root, dirs, files in os.walk(data_dir):
         for file in files:
@@ -109,13 +115,13 @@ def set_aodcms_file_json(aodmcs_file):
         json.dump(data, f, indent=2)
 
 
-def set_p_t_bins(json_file, p_t_bins):
+def set_p_t_bins(json_file, nBins):
     """
     Function to set the p_t bins in the json file
     """
     with open(json_file, "r") as f:
         data = json.load(f)
-    data["lambdakzero-builder"]["axisPtQA"]["values"] = p_t_bins
+    data["strangeness_tutorial"]["nBins"] = nBins
     with open(json_file, "w") as f:
         json.dump(data, f, indent=2)
 
@@ -134,7 +140,7 @@ if __name__ == "__main__":
         os.system("touch {}/.gitkeep".format(output_dir))
 
     # set p_t bins
-    set_p_t_bins(json_file, p_t_bins.tolist())
+    set_p_t_bins(json_file, nBins)
 
     # set default cut values
     for i in range(len(cut_parameters)):
@@ -149,9 +155,27 @@ if __name__ == "__main__":
     for aodmcs_file in aodmcs_files:
         set_aodcms_file_json(aodmcs_file)
         aodmcs_output_dir = cwd + "/results/step3/{}".format(aodmcs_file[:-4])
-        # Apply the cut (requires being in the alienv environment before running)
-        bash_script = "./runStep3.sh"
-        result = subprocess.run([bash_script], cwd=cwd)
+
+        if os.uname().sysname == "Darwin":
+            bash_script = [
+                "alienv",
+                "setenv",
+                "O2Physics/latest-msater-o2",
+                "-c",
+                "./runStep3.sh",
+            ]
+        elif os.uname().sysname == "Linux":
+            bash_script = [
+                "alienv",
+                "setenv",
+                "O2Physics/latest-rl-o2",
+                "-c",
+                "./runStep3.sh",
+            ]
+        else:
+            raise OSError("OS not supported")
+
+        result = subprocess.run(bash_script, cwd=cwd)
 
         if not os.path.isdir(aodmcs_output_dir):
             os.mkdir(aodmcs_output_dir)

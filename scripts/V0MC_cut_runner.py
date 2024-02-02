@@ -78,7 +78,13 @@ def set_aodmcs_files():
     Function to set the aodmcs files
     """
     # search for all AO2D files in the data directory
-    data_dir = "/disk/moose/alice/rl/run3/data/"
+    if os.uname().sysname == "Darwin":
+        data_dir = "/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/"
+    elif os.uname().sysname == "Linux":
+        data_dir = "/disk/moose/alice/rl/run3/data/"
+    else:
+        raise OSError("OS not supported")
+
     root_files = []
     for root, dirs, files in os.walk(data_dir):
         for file in files:
@@ -208,7 +214,24 @@ def process_cut(par_index, aodmcs_files, cut_value):
     json_file = "{}/step3_multiprocessing.json".format(tmp_cwd)
     set_cut_value(json_file, par_index, cut_value)
 
-    bash_script = "./runStep3_multiprocessing.sh"
+    if os.uname().sysname == "Darwin":
+        bash_script = [
+            "alienv",
+            "setenv",
+            "O2Physics/latest-master-o2",
+            "-c",
+            "/runStep3_multiprocessing.sh",
+        ]
+    elif os.uname().sysname == "Linux":
+        bash_script = [
+            "alienv",
+            "setenv",
+            "O2Physics/latest-rl-o2",
+            "-c",
+            "/runStep3_multiprocessing.sh",
+        ]
+    else:
+        raise OSError("OS not supported")
 
     for aodmcs_file in aodmcs_files:
         set_aodcms_file_json(aodmcs_file, json_file)
@@ -223,7 +246,7 @@ def process_cut(par_index, aodmcs_files, cut_value):
         )
 
         # Apply the cut (requires being in the alienv environment before running)
-        result = subprocess.run([bash_script], cwd=tmp_cwd)
+        result = subprocess.run(bash_script, cwd=tmp_cwd)
         error_count += result.returncode
 
         # warn if error
@@ -299,6 +322,13 @@ if __name__ == "__main__":
     if not os.listdir(output_dir):
         os.system("touch {}/.gitkeep".format(output_dir))
 
+    if os.uname().sysname == "Darwin":
+        No_of_simultaneous_processes = mp.cpu_count()
+    elif os.uname().sysname == "Linux":
+        No_of_simultaneous_processes = -(
+            mp.cpu_count() // -3
+        )  # Can run out of memory if too high
+
     for par_index in par_indices:
         print(
             "---------- Applying cuts to {} for all MC runs ----------".format(
@@ -306,10 +336,6 @@ if __name__ == "__main__":
             )
         )
         print()
-
-        No_of_simultaneous_processes = -(
-            mp.cpu_count() // -3
-        )  # Can run out of memory if too high
 
         cut_values = cut_value_list[par_index]
 

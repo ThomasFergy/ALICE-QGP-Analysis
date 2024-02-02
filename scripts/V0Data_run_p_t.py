@@ -4,7 +4,7 @@ import subprocess
 import numpy as np
 
 #################### p_t bins ####################
-p_t_bins = np.linspace(0.0, 10.0, 11)
+nBins = 10
 ##################################################
 
 cut_parameters = ["dcanegtopv", "dcapostopv", "v0cospa", "dcav0dau", "v0radius"]
@@ -38,13 +38,13 @@ def set_cut_value(json_file, cut_name_index, cut_value):
         json.dump(data, f, indent=2)
 
 
-def set_p_t_bins(json_file, p_t_bins):
+def set_p_t_bins(json_file, nBins):
     """
     Function to set the p_t bins in the json file
     """
     with open(json_file, "r") as f:
         data = json.load(f)
-    data["lambdakzero-builder"]["axisPtQA"]["values"] = p_t_bins
+    data["strangeness_tutorial"]["nBins"] = nBins
     with open(json_file, "w") as f:
         json.dump(data, f, indent=2)
 
@@ -67,15 +67,32 @@ if __name__ == "__main__":
         os.system("touch {}/.gitkeep".format(output_dir))
 
     # set p_t bins
-    set_p_t_bins(json_file, p_t_bins.tolist())
+    set_p_t_bins(json_file, nBins)
 
     # set default cut values
     for i in range(len(cut_parameters)):
         set_cut_value(json_file, i, default_cut_values[i])
 
-    bash_script = "./runStep3Data.sh"
+    if os.uname().sysname == "Darwin":
+        bash_script = [
+            "alienv",
+            "setenv",
+            "O2Physics/latest-master-o2",
+            "-c",
+            "./runStep3Data.sh",
+        ]
+    elif os.uname().sysname == "Linux":
+        bash_script = [
+            "alienv",
+            "setenv",
+            "O2Physics/latest-rl-o2",
+            "-c",
+            "./runStep3Data.sh",
+        ]
+    else:
+        raise OSError("OS not supported")
 
-    result = subprocess.run([bash_script], cwd=cwd)
+    result = subprocess.run(bash_script, cwd=cwd)
 
     # Rename the output file to avoid overwriting and move to output directory
     os.system(
