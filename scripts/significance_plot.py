@@ -26,7 +26,16 @@ x_labels = [
 cpp_convert = {True: "true", False: "false"}
 
 
-def make_plot(V0_index, cut_index, cut_ranges, fit_and_plot_line=False):
+def delete_values(array, indices):
+    """
+    Function to delete values from an array
+    """
+    return np.delete(array, indices)
+
+
+def make_plot(
+    V0_index, cut_index, cut_ranges, significance_ranges, fit_and_plot_line=False
+):
     if V0_index > 1:
         return
     # get cut values
@@ -126,6 +135,56 @@ def make_plot(V0_index, cut_index, cut_ranges, fit_and_plot_line=False):
         & (cuts < cut_ranges[V0_names[V0_index]][cut_parameters[cut_index]][1])
     ]
 
+    min_significance = significance_ranges[V0_names[V0_index]][
+        cut_parameters[cut_index]
+    ][0]
+    max_significance = significance_ranges[V0_names[V0_index]][
+        cut_parameters[cut_index]
+    ][1]
+    # find indicies of values greater than max_significance
+    data_significance_indicies = np.where((data_significance_values > max_significance))
+
+    # delete the values
+    data_significance_values = delete_values(
+        data_significance_values, data_significance_indicies
+    )
+    data_significance_errors = delete_values(
+        data_significance_errors, data_significance_indicies
+    )
+    data_signal_values = delete_values(data_signal_values, data_significance_indicies)
+    data_signal_errors = delete_values(data_signal_errors, data_significance_indicies)
+    MC_significance_values = delete_values(
+        MC_significance_values, data_significance_indicies
+    )
+    MC_significance_errors = delete_values(
+        MC_significance_errors, data_significance_indicies
+    )
+    MC_signal_values = delete_values(MC_signal_values, data_significance_indicies)
+    MC_signal_errors = delete_values(MC_signal_errors, data_significance_indicies)
+    cuts = delete_values(cuts, data_significance_indicies)
+
+    # find indicies of values less than min_significance
+    data_significance_indicies = np.where((data_significance_values < min_significance))
+
+    # delete the values
+    data_significance_values = delete_values(
+        data_significance_values, data_significance_indicies
+    )
+    data_significance_errors = delete_values(
+        data_significance_errors, data_significance_indicies
+    )
+    data_signal_values = delete_values(data_signal_values, data_significance_indicies)
+    data_signal_errors = delete_values(data_signal_errors, data_significance_indicies)
+    MC_significance_values = delete_values(
+        MC_significance_values, data_significance_indicies
+    )
+    MC_significance_errors = delete_values(
+        MC_significance_errors, data_significance_indicies
+    )
+    MC_signal_values = delete_values(MC_signal_values, data_significance_indicies)
+    MC_signal_errors = delete_values(MC_signal_errors, data_significance_indicies)
+    cuts = delete_values(cuts, data_significance_indicies)
+
     # flip the arrays if cut_index is 3
     if cut_index == 3:
         data_significance_values = np.flip(data_significance_values)
@@ -195,6 +254,8 @@ def make_plot(V0_index, cut_index, cut_ranges, fit_and_plot_line=False):
         cpp_convert[fit_and_plot_line],
     )
 
+    print(args)
+
     result = subprocess.run(
         [
             "root",
@@ -205,12 +266,11 @@ def make_plot(V0_index, cut_index, cut_ranges, fit_and_plot_line=False):
         ],
         stdout=subprocess.PIPE,
     )
-    print(result.stdout.decode("utf-8"))
 
 
 if __name__ == "__main__":
-    V0_index = 0
-    cut_indices = [0, 1, 2, 3, 4]
+    V0_index = 1
+    cut_indices = [0, 3]
     fit_and_plot_line = False
     # min and max values for each cut parameter
     cut_ranges = {
@@ -222,7 +282,38 @@ if __name__ == "__main__":
             "dcav0dau": [0.1, 0.4],
             "v0radius": [0, 0.875],
         },
+        "LambdaData": {
+            "dcanegtopv": [0, 0.5],
+            "dcapostopv": [0, 0.5],
+            "v0cospa": [0.9, 1.0],
+            "dcav0dau": [0, 0.4],
+            "v0radius": [0, 1],
+        },
+    }
+
+    significance_ranges = {
+        "K0Data": {
+            "dcanegtopv": [0, 1000],
+            "dcapostopv": [0, 1000],
+            # "v0cospa": [0.985, 1.0],
+            "v0cospa": [0, 130],
+            "dcav0dau": [0, 1000],
+            "v0radius": [0, 1000],
+        },
+        "LambdaData": {
+            "dcanegtopv": [0, 130],
+            "dcapostopv": [0, 500],
+            "v0cospa": [0, 138],
+            "dcav0dau": [0, 136],
+            "v0radius": [0, 500],
+        },
     }
 
     for cut_index in cut_indices:
-        make_plot(V0_index, cut_index, cut_ranges, fit_and_plot_line)
+        make_plot(
+            V0_index,
+            cut_index,
+            cut_ranges,
+            significance_ranges,
+            fit_and_plot_line,
+        )

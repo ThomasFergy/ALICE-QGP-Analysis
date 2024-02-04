@@ -8,6 +8,7 @@ Method:
   Step 3: save the data in a database for later use.
   Step 4: Run the SignificancePlot.C root script to plot the significance vs the cut value
 """
+
 import os
 import json
 import subprocess
@@ -157,7 +158,9 @@ if __name__ == "__main__":
                 xlow = 1.08
                 xhigh = 1.15
                 MACRO = "SignificanceFitGaussPoly.C"
-                fit_params = "{1.115, 0.002, 1200, 1, 1, 1}"
+                fit_params = (
+                    "{1.11507, 0.00200285, 2297.47, -235445.0, 414260.0, -181693.0}"
+                )
             elif V0_index == 2:
                 xlow = 0.45
                 xhigh = 0.54
