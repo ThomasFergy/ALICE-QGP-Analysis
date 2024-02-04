@@ -14,7 +14,7 @@
     "v0radius": 0.9
   },
   "dcanegtopv": {
-    "UpperLimit": 0.15,
+    "UpperLimit": 0.30,
     "LowerLimit": 0.0,
     "step": 0.005
   },
@@ -24,13 +24,13 @@
     "step": 0.005
   },
   "v0cospa": {
-    "UpperLimit": 0.99,
+    "UpperLimit": 0.999,
     "LowerLimit": 0.95,
     "step": 0.0005
   },
   "dcav0dau": {
     "UpperLimit": 2,
-    "LowerLimit": 0.70,
+    "LowerLimit": 0.0,
     "step": 0.02
   },
   "v0radius": {
