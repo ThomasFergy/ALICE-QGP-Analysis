@@ -303,7 +303,8 @@ def process_wrapper(args):
 
 if __name__ == "__main__":
     err_count = 0
-    aodmcs_files = set_aodmcs_files()
+    # aodmcs_files = set_aodmcs_files()
+    aodmcs_files = ["aodmcs_0.txt", "aodmcs_1.txt", "aodmcs_2.txt"]
 
     # clear /dev/shm/*
     os.system("rm -f /dev/shm/* >&/dev/null")
