@@ -20,6 +20,8 @@ class FittingFunctions {
 
   static double GaussianWithPolynomial(double* x, double* par);
 
+  static double GaussianWithHorizontalLine(double* x, double* par);
+
   static double HorizontalLinePlusGenericLine(double* x, double* par);
 };
 

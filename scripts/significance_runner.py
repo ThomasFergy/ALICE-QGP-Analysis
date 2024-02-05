@@ -169,8 +169,8 @@ if __name__ == "__main__":
             elif V0_index == 3:
                 xlow = 1.08
                 xhigh = 1.15
-                MACRO = "SignificanceFitGaussPoly.C"
-                fit_params = "{1.115, 0.0015, 200, 2400, -4400, 2000}"
+                MACRO = "SignificanceFitGaussPolyV3.C"
+                fit_params = "{1.115, 0.0015, 200, 0, 0}"
 
             if i > 0 and iterate_fit_params:
                 # if not first cut, use previous cut's fit params as starting values
