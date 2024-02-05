@@ -100,7 +100,7 @@ void SignificanceWithSignalPlot(const char* filepath, const char* Title,
 
     std::vector<FitInfo> fitInfoVector;
 
-    if (cutIndex < 4) {
+    if (cutIndex < 999) { // disable for now using magic number
       fitInfoVector.push_back({"pol5", {248, 46, 0, 0, 0}});  // DCANegToPV
       fitInfoVector.push_back({"pol5", {248, 46, 0, 0, 0}});  // DCAPosToPV
       fitInfoVector.push_back({"pol2", {256, 0, 100}});       // V0CosPA
