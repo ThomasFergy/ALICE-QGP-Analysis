@@ -162,7 +162,8 @@ def combine_root_files(cwd, par_index, cut_value):
     result = subprocess.run(
         ["hadd", "-f", "{}".format(file_name), *root_files],
         cwd=cwd,
-        capture_output=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
     )
     err = result.returncode
     if err != 0:
