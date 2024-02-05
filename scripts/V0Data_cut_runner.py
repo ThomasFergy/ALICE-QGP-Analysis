@@ -138,7 +138,7 @@ def process_cut(par_index, cut_value):
             "setenv",
             "O2Physics/latest-master-o2",
             "-c",
-            "./run_step0.sh",
+            "./run_step0_multiprocessing.sh",
         ]
     elif os.uname().sysname == "Linux":
         bash_script = [
@@ -146,14 +146,12 @@ def process_cut(par_index, cut_value):
             "setenv",
             "O2Physics/latest-master-o2",
             "-c",
-            "./run_step0.sh",
+            "./run_step0_multiprocessing.sh",
         ]
     else:
         raise OSError("OS not supported")
 
-    bash_script = "./run_step0_multiprocessing.sh"
-
-    result = subprocess.run(bash_script, cwd=tmp_cwd)
+    result = subprocess.run(bash_script, cwd=tmp_cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     err = result.returncode
 
     # warn if error
@@ -219,6 +217,8 @@ if __name__ == "__main__":
         No_of_simultaneous_processes = -(
             mp.cpu_count() // -3
         )  # Can run out of memory if too high
+    else:
+        raise OSError("OS not supported")
 
     for par_index in par_indices:
         print(

@@ -220,7 +220,7 @@ def process_cut(par_index, aodmcs_files, cut_value):
             "setenv",
             "O2Physics/latest-master-o2",
             "-c",
-            "/runStep3_multiprocessing.sh",
+            "./runStep3_multiprocessing.sh",
         ]
     elif os.uname().sysname == "Linux":
         bash_script = [
@@ -228,7 +228,7 @@ def process_cut(par_index, aodmcs_files, cut_value):
             "setenv",
             "O2Physics/latest-rl-o2",
             "-c",
-            "/runStep3_multiprocessing.sh",
+            "./runStep3_multiprocessing.sh",
         ]
     else:
         raise OSError("OS not supported")
@@ -246,7 +246,7 @@ def process_cut(par_index, aodmcs_files, cut_value):
         )
 
         # Apply the cut (requires being in the alienv environment before running)
-        result = subprocess.run(bash_script, cwd=tmp_cwd)
+        result = subprocess.run(bash_script, cwd=tmp_cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         error_count += result.returncode
 
         # warn if error
@@ -329,6 +329,8 @@ if __name__ == "__main__":
         No_of_simultaneous_processes = -(
             mp.cpu_count() // -3
         )  # Can run out of memory if too high
+    else:
+        raise OSError("OS not supported")
 
     for par_index in par_indices:
         print(
