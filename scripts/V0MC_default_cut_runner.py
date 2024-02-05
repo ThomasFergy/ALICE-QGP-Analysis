@@ -146,7 +146,8 @@ if __name__ == "__main__":
     for i in range(len(cut_parameters)):
         set_cut_value(json_file, i, default_cut_values[i])
 
-    aodmcs_files = set_aodmcs_files()
+    # aodmcs_files = set_aodmcs_files()
+    aodmcs_files = ["aodmcs_0.txt", "aodmcs_1.txt", "aodmcs_2.txt"]
 
     # run the default cut values
     print("----- Running cut defaults -----")
