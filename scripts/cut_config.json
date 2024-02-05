@@ -36,6 +36,6 @@
   "v0radius": {
     "UpperLimit": 2.0,
     "LowerLimit": 0.0,
-    "step": 0.025
+    "step": 0.1
   }
 }
