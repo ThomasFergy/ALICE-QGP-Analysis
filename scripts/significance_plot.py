@@ -270,7 +270,7 @@ def make_plot(
 
 if __name__ == "__main__":
     V0_index = 1
-    cut_indices = [0, 3]
+    cut_indices = [0, 1, 2, 3, 4]
     fit_and_plot_line = False
     # min and max values for each cut parameter
     cut_ranges = {
