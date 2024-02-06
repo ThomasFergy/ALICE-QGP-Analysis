@@ -176,12 +176,12 @@ if __name__ == "__main__":
         else:
             raise OSError("OS not supported")
 
-        result = subprocess.run(bash_script, cwd=cwd)
+        result = subprocess.run(bash_script, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
         if not os.path.isdir(aodmcs_output_dir):
             os.mkdir(aodmcs_output_dir)
         os.system(
-            "mv {}/results/step3/AnalysisResults.root {}/AnalysisResults_default_cuts.root".format(
+            "mv {}/AnalysisResults.root {}/AnalysisResults_default_cuts.root".format(
                 cwd, aodmcs_output_dir
             )
         )
