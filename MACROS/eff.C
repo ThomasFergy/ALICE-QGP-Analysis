@@ -8,11 +8,10 @@
 void eff() {
   gROOT->Reset();
 
-  double rebinFactor = 10;
   // MC with optimal cuts
   TFile* f = new TFile(
       "Results/K0_CUTS_1/"
-      "AnalysisResults_optimal_cuts_MC.root");
+      "AnalysisResults_optimal_cuts_MC_10.root");
   f->cd("strangeness_tutorial/genParticles");
   TH1F* h1 = (TH1F*)gDirectory->Get("hPtK0ShortGen");
   if (h1 == nullptr) {
@@ -20,8 +19,6 @@ void eff() {
     exit(1);
   }
   h1->Sumw2();
-  // rebin the histogram
-  h1->Rebin(rebinFactor);
   Double_t norm1 = h1->GetEntries();
   std::cout << norm1 << std::endl;
   f->cd("strangeness_tutorial/kzeroShort");
@@ -31,17 +28,19 @@ void eff() {
     exit(1);
   }
   h2->Sumw2();
-  // rebin the histogram
-  h2->Rebin(rebinFactor);
   Double_t norm2 = h2->GetEntries();
   std::cout << norm2 << std::endl;
   // Efficiency
   // Creat a new canvas
   TCanvas* c1 = new TCanvas("c1", "c1", 900, 600);
+
   // Draw heff on the canvas
   TH1F* heff = new TH1F(*h2);
+  heff->SetTitle("Efficiencies");
   heff->Divide(h1);
   heff->Draw();
+  // dont draw the legend
+  heff->SetStats(0);
   // Save the canvas
   c1->SaveAs("efficiency.pdf");
 }
