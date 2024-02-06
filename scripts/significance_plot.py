@@ -270,8 +270,8 @@ def make_plot(
 
 if __name__ == "__main__":
     V0_index = 1
-    cut_indices = [4]
-    fit_and_plot_line = True
+    cut_indices = [0, 1, 2, 3, 4]
+    fit_and_plot_line = False
     # min and max values for each cut parameter
     cut_ranges = {
         "K0Data": {
@@ -287,7 +287,7 @@ if __name__ == "__main__":
             "dcapostopv": [0, 0.08],
             "v0cospa": [0, 0.9685],
             "dcav0dau": [0, 2],
-            "v0radius": [0.6, 1],
+            "v0radius": [0, 1],
         },
     }
 
@@ -302,7 +302,7 @@ if __name__ == "__main__":
         },
         "LambdaData": {
             "dcanegtopv": [0, 130],
-            "dcapostopv": [0, 500],
+            "dcapostopv": [0, 130],
             "v0cospa": [0, 200],
             "dcav0dau": [0, 136],
             "v0radius": [0, 125],

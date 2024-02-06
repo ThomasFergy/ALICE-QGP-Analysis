@@ -23,7 +23,7 @@ isMC = False
 V0_index = 1
 ########################################
 
-iterate_fit_params = True
+iterate_fit_params = False
 
 if isMC:
     cwd = "data/V0MC"
@@ -158,9 +158,7 @@ if __name__ == "__main__":
                 xlow = 1.08
                 xhigh = 1.15
                 MACRO = "SignificanceFitGaussPoly.C"
-                fit_params = (
-                    "{1.11507, 0.00200285, 2297.47, -235445.0, 414260.0, -181693.0}"
-                )
+                fit_params = "{1.11507, 0.00198793, 2330.22, -234810, 414257, -182227}"
             elif V0_index == 2:
                 xlow = 0.45
                 xhigh = 0.54
@@ -169,8 +167,8 @@ if __name__ == "__main__":
             elif V0_index == 3:
                 xlow = 1.08
                 xhigh = 1.15
-                MACRO = "SignificanceFitGaussPolyV3.C"
-                fit_params = "{1.115, 0.0015, 200, 0, 0}"
+                MACRO = "SignificanceFitGaussPoly.C"
+                fit_params = "{1.115, 0.00168524, 402.374, 22.9915, 1.14683, -16.6638}"
 
             if i > 0 and iterate_fit_params:
                 # if not first cut, use previous cut's fit params as starting values
