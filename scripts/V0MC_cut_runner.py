@@ -160,8 +160,27 @@ def combine_root_files(cwd, par_index, cut_value):
         cut_parameters[par_index], cut_value
     )
 
+    if os.uname().sysname == "Darwin":
+        bash_script = [
+            "alienv",
+            "setenv",
+            "O2Physics/latest-tf-o2",
+            "-c",
+            "hadd",
+        ]
+    elif os.uname().sysname == "Linux":
+        bash_script = [
+            "alienv",
+            "setenv",
+            "O2Physics/latest-rl-o2",
+            "-c",
+            "hadd",
+        ]
+    else:
+        raise OSError("OS not supported")
+
     result = subprocess.run(
-        ["hadd", "-f", "{}".format(file_name), *root_files],
+        [*bash_script, "-f", "{}".format(file_name), *root_files],
         cwd=cwd,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
