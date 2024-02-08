@@ -1,5 +1,12 @@
 #!/bin/bash
-# log file where the terminal output will be saved
+
+export IGNORE_VALIDITYCHECK_OF_CCDB_LOCALCACHE=1
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    export ALICEO2_CCDB_LOCALCACHE=/home/user274/ALICE-QGP-Analysis/data/V0MC/locCCDB
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    export ALICEO2_CCDB_LOCALCACHE=/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/locCCDB
+fi
+
 STEP="step3"
 
 # directory of this script
