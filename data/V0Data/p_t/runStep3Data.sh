@@ -1,7 +1,11 @@
 #!/bin/bash
 
 export IGNORE_VALIDITYCHECK_OF_CCDB_LOCALCACHE=1
-export ALICEO2_CCDB_LOCALCACHE=locCCDB
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    export ALICEO2_CCDB_LOCALCACHE=/home/user274/ALICE-QGP-Analysis/data/V0Data/p_t/locCCDB
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    export ALICEO2_CCDB_LOCALCACHE=/Users/tom/code/ALICE-QGP-Analysis/data/V0Data/p_t/locCCDB
+fi
 
 STEP="step3Data"
 
