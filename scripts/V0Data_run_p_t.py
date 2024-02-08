@@ -4,7 +4,7 @@ import subprocess
 import numpy as np
 
 #################### p_t bins ####################
-nBins = 10
+nBins = 100
 ##################################################
 
 cut_parameters = ["dcanegtopv", "dcapostopv", "v0cospa", "dcav0dau", "v0radius"]

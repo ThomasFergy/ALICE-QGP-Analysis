@@ -4,7 +4,7 @@ import subprocess
 import numpy as np
 
 #################### p_t bins ####################
-nBins = 10
+nBins = 100
 ##################################################
 
 ########################################
@@ -147,7 +147,10 @@ if __name__ == "__main__":
         set_cut_value(json_file, i, default_cut_values[i])
 
     # aodmcs_files = set_aodmcs_files()
-    aodmcs_files = ["aodmcs_0.txt", "aodmcs_1.txt", "aodmcs_2.txt"]
+    if os.uname().sysname == "Darwin":
+        aodmcs_files = set_aodmcs_files()
+    elif os.uname().sysname == "Linux":
+        aodmcs_files = ["aodmcs_0.txt", "aodmcs_1.txt", "aodmcs_2.txt"]
 
     # run the default cut values
     print("----- Running cut defaults -----")
@@ -176,9 +179,7 @@ if __name__ == "__main__":
         else:
             raise OSError("OS not supported")
 
-        result = subprocess.run(
-            bash_script, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
-        )
+        result = subprocess.run(bash_script, cwd=cwd)
 
         if not os.path.isdir(aodmcs_output_dir):
             os.mkdir(aodmcs_output_dir)
@@ -200,9 +201,28 @@ if __name__ == "__main__":
             )
         )
 
+    if os.uname().sysname == "Darwin":
+        bash_script = [
+            "alienv",
+            "setenv",
+            "O2Physics/latest-tf-o2",
+            "-c",
+            "hadd",
+        ]
+    elif os.uname().sysname == "Linux":
+        bash_script = [
+            "alienv",
+            "setenv",
+            "O2Physics/latest-rl-o2",
+            "-c",
+            "hadd",
+        ]
+    else:
+        raise OSError("OS not supported")
+
     result = subprocess.run(
         [
-            "hadd",
+            *bash_script,
             "-f",
             "results/step3/{}".format("AnalysisResults_default_cuts.root"),
             *files_to_combine,
