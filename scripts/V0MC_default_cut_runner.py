@@ -161,7 +161,7 @@ if __name__ == "__main__":
             bash_script = [
                 "alienv",
                 "setenv",
-                "O2Physics/latest-msater-o2",
+                "O2Physics/latest-tf-o2",
                 "-c",
                 "./runStep3.sh",
             ]
@@ -176,7 +176,9 @@ if __name__ == "__main__":
         else:
             raise OSError("OS not supported")
 
-        result = subprocess.run(bash_script, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        result = subprocess.run(
+            bash_script, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
 
         if not os.path.isdir(aodmcs_output_dir):
             os.mkdir(aodmcs_output_dir)

@@ -74,7 +74,7 @@ if __name__ == "__main__":
         bash_script = [
             "alienv",
             "setenv",
-            "O2Physics/latest-master-o2",
+            "O2Physics/latest-tf-o2",
             "-c",
             "./run_step0.sh",
         ]

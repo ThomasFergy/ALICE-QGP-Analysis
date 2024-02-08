@@ -8,6 +8,7 @@ Method:
   Step 3: Rename the output file to avoid overwriting and place into relevant output directory
   Step 4: go back to step 1 and repeat until you have applied all the cuts you want
 """
+
 import os
 import json
 import subprocess
@@ -136,7 +137,7 @@ def process_cut(par_index, cut_value):
         bash_script = [
             "alienv",
             "setenv",
-            "O2Physics/latest-master-o2",
+            "O2Physics/latest-tf-o2",
             "-c",
             "./run_step0_multiprocessing.sh",
         ]
@@ -151,7 +152,9 @@ def process_cut(par_index, cut_value):
     else:
         raise OSError("OS not supported")
 
-    result = subprocess.run(bash_script, cwd=tmp_cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    result = subprocess.run(
+        bash_script, cwd=tmp_cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+    )
     err = result.returncode
 
     # warn if error
