@@ -31,7 +31,7 @@ void eff() {
   Double_t norm2 = h2->GetEntries();
   std::cout << norm2 << std::endl;
   // Efficiency
-  // Creat a new canvas
+  // Create a new canvas
   TCanvas* c1 = new TCanvas("c1", "c1", 900, 600);
 
   // Draw heff on the canvas
