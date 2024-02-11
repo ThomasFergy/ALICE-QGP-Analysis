@@ -218,7 +218,7 @@ if __name__ == "__main__":
         No_of_simultaneous_processes = mp.cpu_count()
     elif os.uname().sysname == "Linux":
         No_of_simultaneous_processes = -(
-            mp.cpu_count() // -4
+            mp.cpu_count() // -6
         )  # Can run out of memory if too high
     else:
         raise OSError("OS not supported")
