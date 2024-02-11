@@ -7,11 +7,11 @@
     "v0radius": true
   },
   "default_cuts": {
-    "dcanegtopv": 0.117996,
-    "dcapostopv": 0.0326546,
+    "dcanegtopv": 0.17,
+    "dcapostopv": 0.024,
     "v0cospa": 0.95,
     "dcav0dau": 1.5,
-    "v0radius": 0.5
+    "v0radius": 0.8
   },
   "dcanegtopv": {
     "UpperLimit": 0.30,

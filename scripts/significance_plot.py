@@ -267,11 +267,13 @@ def make_plot(
         stdout=subprocess.PIPE,
     )
 
+    print(result.stdout)
+
 
 if __name__ == "__main__":
     V0_index = 1
     cut_indices = [0, 1, 2, 3, 4]
-    fit_and_plot_line = False
+    fit_and_plot_line = True
     # min and max values for each cut parameter
     cut_ranges = {
         "K0Data": {
@@ -284,7 +286,7 @@ if __name__ == "__main__":
         },
         "LambdaData": {
             "dcanegtopv": [0, 0.5],
-            "dcapostopv": [0, 0.08],
+            "dcapostopv": [0, 0.055],
             "v0cospa": [0, 0.9685],
             "dcav0dau": [0, 2],
             "v0radius": [0, 1],
