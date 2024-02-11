@@ -10,12 +10,12 @@
 TH1F* eff(std::vector<double>& bins, bool draw = false) {
   gROOT->Reset();
 
-  std::string MCFile = "Results/K0_CUTS_1/AnalysisResults_optimal_cuts_MC.root";
+  std::string MCFile = "output/V0MC/AnalysisResults_optimal_cuts_MC.root";
   TFile* f = new TFile(MCFile.c_str());
 
   // save generated pt histogram as hpt
   f->cd("strangeness_tutorial/genParticles");
-  TH1F* hpt = (TH1F*)gDirectory->Get("hPtK0ShortGen");
+  TH1F* hpt = (TH1F*)gDirectory->Get("hPtLambdaGen");
   if (hpt == nullptr) {
     std::cout << "hpt was not read" << std::endl;
     exit(1);
@@ -25,8 +25,8 @@ TH1F* eff(std::vector<double>& bins, bool draw = false) {
   std::cout << norm1 << std::endl;
 
   // save true reconstructed pt histogram as hptrue
-  f->cd("strangeness_tutorial/kzeroShort");
-  TH1F* hptrue = (TH1F*)gDirectory->Get("hPtK0ShortTrueRec");
+  f->cd("strangeness_tutorial/kLambda");
+  TH1F* hptrue = (TH1F*)gDirectory->Get("hPtLambdaTrueRec");
   if (hptrue == nullptr) {
     std::cout << "hptrue was not read" << std::endl;
     exit(1);
@@ -73,19 +73,18 @@ TH1F* eff(std::vector<double>& bins, bool draw = false) {
   return heff;
 }
 
-void EfficiencyCorrection() {
-  std::vector<double> bins = {0, 0.1, 0.2, 0.4, 0.8, 1.2, 2, 3, 4, 5, 6, 7};
+void EfficiencyCorrectionLambda() {
+  std::vector<double> bins = {0, 0.4, 0.8, 1.2, 1.6, 2, 3, 4, 5, 6, 7};
   bool draw = true;
 
-  double ptCut = 0.2;
+  double ptCut = 0.6;
 
-  std::string DataFile =
-      "Results/K0_CUTS_1/AnalysisResults_optimal_cuts_DATA_p_t.root";
+  std::string DataFile = "output/V0Data/AnalysisResults_optimal_cuts_p_t.root";
   TFile* f = new TFile(DataFile.c_str());
 
   // save pt histogram as hpt
-  f->cd("strangeness_tutorial/kzeroShort");
-  TH1F* hpt = (TH1F*)gDirectory->Get("hPtK0ShortSelected");
+  f->cd("strangeness_tutorial/kLambda");
+  TH1F* hpt = (TH1F*)gDirectory->Get("hPtLambdaSelected");
   if (hpt == nullptr) {
     std::cout << "hpt was not read" << std::endl;
     exit(1);
