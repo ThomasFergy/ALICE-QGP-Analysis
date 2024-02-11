@@ -1,8 +1,8 @@
-/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/AO2DMC5.root
-/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/AO2DMC4.root
-/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/AO2DMC8.root
-/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/AO2DMC3.root
-/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/AO2DMC2.root
-/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/AO2DMC1.root
-/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/AO2DMC7.root
-/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/AO2DMC6.root
+/disk/moose/alice/rl/run3/data/AO2DMC5.root
+/disk/moose/alice/rl/run3/data/AO2DMC4.root
+/disk/moose/alice/rl/run3/data/AO2DMC8.root
+/disk/moose/alice/rl/run3/data/AO2DMC3.root
+/disk/moose/alice/rl/run3/data/AO2DMC2.root
+/disk/moose/alice/rl/run3/data/AO2DMC1.root
+/disk/moose/alice/rl/run3/data/AO2DMC7.root
+/disk/moose/alice/rl/run3/data/AO2DMC6.root
