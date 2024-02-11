@@ -18,6 +18,9 @@ aodmcsAll.txt
 aodmcs_0.txt
 aodmcs_1.txt
 aodmcs_2.txt
+data/V0MC/aodmcs_0.txt
+data/V0MC/aodmcs_1.txt
+data/V0MC/aodmcs_2.txt
 log
 log.txt
 *.pdf
