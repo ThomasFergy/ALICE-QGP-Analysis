@@ -147,11 +147,7 @@ if __name__ == "__main__":
         set_cut_value(json_file, i, default_cut_values[i])
 
     # aodmcs_files = set_aodmcs_files()
-    if os.uname().sysname == "Darwin":
-        aodmcs_files = set_aodmcs_files()
-        aodmcs_files = ["aodmcs_0.txt"]
-    elif os.uname().sysname == "Linux":
-        aodmcs_files = ["aodmcs_0.txt", "aodmcs_1.txt", "aodmcs_2.txt"]
+    aodmcs_files = ["aodmcs_eff.txt"]
 
     # run the default cut values
     print("----- Running cut defaults -----")
@@ -167,7 +163,7 @@ if __name__ == "__main__":
                 "setenv",
                 "O2Physics/latest-tf-o2",
                 "-c",
-                "./runStep3.sh",
+                "./runStep3_eff.sh",
             ]
         elif os.uname().sysname == "Linux":
             bash_script = [
@@ -175,7 +171,7 @@ if __name__ == "__main__":
                 "setenv",
                 "O2Physics/latest-rl-o2",
                 "-c",
-                "./runStep3.sh",
+                "./runStep3_eff.sh",
             ]
         else:
             raise OSError("OS not supported")
