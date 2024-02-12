@@ -2,9 +2,9 @@
 
 export IGNORE_VALIDITYCHECK_OF_CCDB_LOCALCACHE=1
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    export ALICEO2_CCDB_LOCALCACHE=/home/user274/ALICE-QGP-Analysis/data/V0MC/locCCDB
+    export ALICEO2_CCDB_LOCALCACHE=/home/rl/alice/StrangenessHands-on/locCCDB
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    export ALICEO2_CCDB_LOCALCACHE=/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/locCCDB
+    export ALICEO2_CCDB_LOCALCACHE=/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/dataMCLHC23j4/locCCDB~
 fi
 
 STEP="step3"
