@@ -74,7 +74,7 @@ TH1F* eff(std::vector<double>& bins, bool draw = false) {
 }
 
 void EfficiencyCorrectionK0() {
-  std::vector<double> bins = {0, 0.1, 0.2, 0.4, 0.8, 1.2, 2, 3, 4, 5, 6, 7};
+  std::vector<double> bins = {0, 0.1, 0.2, 0.4, 0.8, 1.2, 2, 4, 6, 8, 10};
   bool draw = true;
 
   double ptCut = 0.2;
