@@ -1,0 +1,13 @@
+/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/dataMCLHC23j4/001/AO2D.root
+/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/dataMCLHC23j4/010/AO2D.root
+/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/dataMCLHC23j4/011/AO2D.root
+/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/dataMCLHC23j4/012/AO2D.root
+/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/dataMCLHC23j4/013/AO2D.root
+/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/dataMCLHC23j4/014/AO2D.root
+/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/dataMCLHC23j4/015/AO2D.root
+/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/dataMCLHC23j4/016/AO2D.root
+/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/dataMCLHC23j4/017/AO2D.root
+/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/dataMCLHC23j4/018/AO2D.root
+/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/dataMCLHC23j4/019/AO2D.root
+/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/dataMCLHC23j4/021/AO2D.root
+/Users/tom/code/ALICE-QGP-Analysis/data/V0MC/MCData/dataMCLHC23j4/031/AO2D.root
