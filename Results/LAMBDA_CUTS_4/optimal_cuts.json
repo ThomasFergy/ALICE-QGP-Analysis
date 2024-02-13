@@ -1,0 +1,17 @@
+{
+  "K0" : {
+    "dcanegtopv": 0,
+    "dcapostopv": 0,
+    "v0cospa": 0,
+    "dcav0dau": 0,
+    "v0radius": 0
+  },
+  "Lambda" : {
+    "dcanegtopv": 0.117996,
+    "dcapostopv": 0.0326546,
+    "v0cospa": 0.95,
+    "dcav0dau": 0.5,
+    "v0radius": 0.5
+  }
+}
+

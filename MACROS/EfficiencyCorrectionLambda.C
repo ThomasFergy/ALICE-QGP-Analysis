@@ -10,7 +10,8 @@
 TH1F* eff(std::vector<double>& bins, bool draw = false) {
   gROOT->Reset();
 
-  std::string MCFile = "output/V0MC/AnalysisResults_optimal_cuts_MC.root";
+  std::string MCFile =
+      "Results/LAMBDA_CUTS_4/AnalysisResults_optimal_cuts_MC.root";
   TFile* f = new TFile(MCFile.c_str());
 
   // save generated pt histogram as hpt
@@ -77,9 +78,10 @@ void EfficiencyCorrectionLambda() {
   std::vector<double> bins = {0, 0.4, 0.8, 1.2, 1.6, 2, 3, 4, 5, 6, 7};
   bool draw = true;
 
-  double ptCut = 0.6;
+  double ptCut = 0;
 
-  std::string DataFile = "output/V0Data/AnalysisResults_optimal_cuts_p_t.root";
+  std::string DataFile =
+      "Results/LAMBDA_CUTS_4/AnalysisResults_optimal_cuts_DATA_p_t.root";
   TFile* f = new TFile(DataFile.c_str());
 
   // save pt histogram as hpt
