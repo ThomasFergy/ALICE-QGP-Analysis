@@ -87,10 +87,6 @@ void SignificanceFitGaussPolyV3(const bool isMC, const bool isK0,
       h1->FindBin(ff1->GetParameter(0) - numOfSigmas * ff1->GetParameter(1)),
       h1->FindBin(ff1->GetParameter(0) + numOfSigmas * ff1->GetParameter(1)));
 
-  double B = pol2->Integral(
-                 ff1->GetParameter(0) - numOfSigmas * ff1->GetParameter(1),
-                 ff1->GetParameter(0) + numOfSigmas * ff1->GetParameter(1)) /
-             h1->GetBinWidth(0);
   double SPlusBBinErr = 0;
   for (int i = h1->FindBin(ff1->GetParameter(0) -
                            numOfSigmas * ff1->GetParameter(1));
@@ -100,6 +96,14 @@ void SignificanceFitGaussPolyV3(const bool isMC, const bool isK0,
     // count bin error for S
     SPlusBBinErr += h1->GetBinError(i) * h1->GetBinError(i);
   }
+
+  // B is the number of entries between 5 and 8 sigma either side of the peak
+  double B = h1->Integral(
+                 h1->FindBin(ff1->GetParameter(0) - 8 * ff1->GetParameter(1)),
+                 h1->FindBin(ff1->GetParameter(0) - 5 * ff1->GetParameter(1))) +
+             h1->Integral(
+                 h1->FindBin(ff1->GetParameter(0) + 5 * ff1->GetParameter(1)),
+                 h1->FindBin(ff1->GetParameter(0) + 8 * ff1->GetParameter(1)));
 
   double S = SPlusB - B;
 
