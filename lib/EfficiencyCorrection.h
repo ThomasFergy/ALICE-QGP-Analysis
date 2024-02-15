@@ -18,6 +18,12 @@ class EfficiencyCorrection {
   static TH1F* effLambda(std::string MCFile, std::vector<double>& bins,
                          bool draw = false);
 
+  static TH1F* effAntiLambdaIndv(std::string MCFile, std::vector<double>& bins,
+                                 bool draw = false);
+
+  static TH1F* effLambdaIndv(std::string MCFile, std::vector<double>& bins,
+                             bool draw = false);
+
   static TH1F* EfficiencyCorrectionK0(std::string DataFile, std::string MCFile,
                                       std::vector<double>& bins, double ptCut,
                                       bool draw = false);
@@ -26,6 +32,17 @@ class EfficiencyCorrection {
                                           std::string MCFile,
                                           std::vector<double>& bins,
                                           double ptCut, bool draw = false);
+
+  static TH1F* EfficiencyCorrectionAntiLambdaIndv(std::string DataFile,
+                                                  std::string MCFile,
+                                                  std::vector<double>& bins,
+                                                  double ptCut,
+                                                  bool draw = false);
+
+  static TH1F* EfficiencyCorrectionLambdaIndv(std::string DataFile,
+                                              std::string MCFile,
+                                              std::vector<double>& bins,
+                                              double ptCut, bool draw = false);
 };
 
 #endif
