@@ -9,7 +9,7 @@
   "Lambda" : {
     "dcanegtopv": 0.117996,
     "dcapostopv": 0.0326546,
-    "v0cospa": 0.95,
+    "v0cospa": 0.99,
     "dcav0dau": 0.5,
     "v0radius": 0.5
   }
