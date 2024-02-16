@@ -96,23 +96,22 @@ TH1F* EfficiencyCorrection::eff(std::string MCFile, std::vector<double>& bins,
   heff->SetTitle("Efficiencies");
   heff->Divide(hptrue_rebin, hpt_rebin);
   if (draw) {
-    TCanvas* c1 = new TCanvas("c1", "c1", 900, 600);
     heff->Draw();
     // dont draw the legend
     heff->SetStats(0);
     std::string fileName = "Efficiency_";
     switch (v0Type) {
       case V0Type::K0:
-        fileName += "K0.pdf";
+        fileName += "K0.root";
         break;
       case V0Type::Lambda:
-        fileName += "Lambda.pdf";
+        fileName += "Lambda.root";
         break;
       case V0Type::AntiLambda:
-        fileName += "AntiLambda.pdf";
+        fileName += "AntiLambda.root";
         break;
       case V0Type::LambdaAntiLambda:
-        fileName += "LambdaAntiLambda.pdf";
+        fileName += "LambdaAntiLambda.root";
         break;
         // default:
         //  std::cout << "Invalid V0Type: " << static_cast<int>(v0Type)
@@ -120,8 +119,7 @@ TH1F* EfficiencyCorrection::eff(std::string MCFile, std::vector<double>& bins,
         //  exit(1);
         //  break;
     }
-    c1->SaveAs(fileName.c_str());
-    delete c1;
+    heff->SaveAs(fileName.c_str());
   }
   return heff;
 }
@@ -196,9 +194,6 @@ TH1F* EfficiencyCorrection::EfficiencyCorrectionHist(std::string DataFile,
   hpt_corrected->GetXaxis()->SetRangeUser(
       0, binsFiltered[binsFiltered.size() - 1]);
   if (draw) {
-    // Create a new canvas
-    TCanvas* c2 = new TCanvas("c2", "c2", 900, 600);
-
     // Draw heff on the canvas
     hpt_corrected->SetTitle("Efficiency corrected pT");
 
@@ -208,16 +203,16 @@ TH1F* EfficiencyCorrection::EfficiencyCorrectionHist(std::string DataFile,
     std::string fileName = "efficiency_corrected_";
     switch (v0Type) {
       case V0Type::K0:
-        fileName += "K0.pdf";
+        fileName += "K0.root";
         break;
       case V0Type::Lambda:
-        fileName += "Lambda.pdf";
+        fileName += "Lambda.root";
         break;
       case V0Type::AntiLambda:
-        fileName += "AntiLambda.pdf";
+        fileName += "AntiLambda.root";
         break;
       case V0Type::LambdaAntiLambda:
-        fileName += "LambdaAntiLambda.pdf";
+        fileName += "LambdaAntiLambda.root";
         break;
         // default:
         //   std::cout << "Invalid V0Type: " << static_cast<int>(v0Type)
@@ -225,8 +220,57 @@ TH1F* EfficiencyCorrection::EfficiencyCorrectionHist(std::string DataFile,
         //   exit(1);
         //   break;
     }
-    c2->SaveAs(fileName.c_str());
-    delete c2;
+    hpt_corrected->SaveAs(fileName.c_str());
   }
   return hpt_corrected;
+}
+
+double EfficiencyCorrection::LevyTsallis(double* x, double* par) {
+  // THIS IS UNUSED SO FAR. NEEDS TO BE GENERALISED FOR ALL V0 TYPES
+  // Extracting parameters
+  double C = par[0];
+  double T = par[1];
+  double n = par[2];
+
+  // Fixed parameters
+  double m = 0.497648;  // mass in GeV/c^2
+  double pt = x[0];
+
+  // Calculating the function
+  double numerator = C * (n - 1) * (n - 2) * pt;
+  double denominator = n * T * (n * T + m * (n - 2));
+  double factor = 1 + (sqrt(pt * pt + m * m) - m) / (n * T);
+
+  double result = numerator / denominator * pow(factor, -n);
+
+  return result;
+}
+
+TH1F* EfficiencyCorrection::ApplyFit(TH1F* h, std::vector<double>& bins,
+                                     double ptCut, V0Type v0Type) {
+  // THIS IS UNUSED SO FAR. NEEDS TO BE GENERALISED FOR ALL V0 TYPES
+  TF1* ff1 = new TF1("fit", LevyTsallis, 0, 10, 3);
+  ff1->SetParameters(410180, 0.208813, 5.14298);
+  ff1->SetParNames("C", "T", "n");
+  // dont draw fit
+  h->Fit(ff1, "R");
+  h->SaveAs("LastFit.root");
+
+  // create a blank histogram
+  TH1F* hfit = new TH1F("hfit", "hfit", bins.size() - 1, &bins[0]);
+  // iterate through the bins of the new histogram
+  // if the centre of the bin is less than the ptCut, set the bin content to the
+  // fit otherwise set the bin content the the value of the original histogram
+  for (size_t i = 0; i < bins.size() - 1; ++i) {
+    double binCentre = (bins[i] + bins[i + 1]) / 2;
+    if (binCentre < ptCut) {
+      hfit->SetBinContent(i + 1, ff1->Eval(binCentre));
+      hfit->SetBinError(i + 1, sqrt(ff1->Eval(binCentre)));
+    } else {
+      hfit->SetBinContent(i + 1, h->GetBinContent(i + 1));
+      hfit->SetBinError(i + 1, h->GetBinError(i + 1));
+    }
+  }
+
+  return hfit;
 }
