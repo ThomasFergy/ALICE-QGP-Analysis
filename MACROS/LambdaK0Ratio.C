@@ -33,21 +33,13 @@ void LambdaK0Ratio() {
   double ptCut_K0 = 1;
   double ptCut_Lambda = 1;
 
-  // Eff plots
-  TH1F* hK0Eff = EfficiencyCorrection::eff(K0MCFile, bins, V0Type::K0, draw);
-  TH1F* hLambdaEff =
-      EfficiencyCorrection::eff(LambdaMCFile, bins, V0Type::Lambda, draw);
-  TH1F* hAntiLambdaEff =
-      EfficiencyCorrection::eff(LambdaMCFile, bins, V0Type::AntiLambda, draw);
-  TH1F* hLambdaAntiLambdaEff = EfficiencyCorrection::eff(
-      LambdaMCFile, bins, V0Type::LambdaAntiLambda, draw);
-
   ////////////////////////////////////////////////////////////////
   // Lambda to K0 ratio
   TH1F* hK0 = EfficiencyCorrection::EfficiencyCorrectionHist(
       K0DataFile, K0MCFile, bins, ptCut_K0, V0Type::K0, draw);
   TH1F* hLambda = EfficiencyCorrection::EfficiencyCorrectionHist(
-      LambdaDataFile, LambdaMCFile, bins, ptCut_Lambda, V0Type::Lambda, draw);
+      LambdaDataFile, LambdaMCFile, bins, ptCut_Lambda,
+      V0Type::LambdaAntiLambda, draw);
 
   // divide the histograms
   TH1F* hRatio = (TH1F*)hLambda->Clone("hRatio");
@@ -56,22 +48,13 @@ void LambdaK0Ratio() {
   hRatio->SaveAs("LambdaK0Ratio.root");
 
   ////////////////////////////////////////////////////////////////
-  // AntiLambda to K0 ratio
-  TH1F* hAntiLambda = EfficiencyCorrection::EfficiencyCorrectionHist(
-      LambdaDataFile, LambdaMCFile, bins, ptCut_Lambda, V0Type::AntiLambda,
-      draw);
+  // Indv Lambda to K0 ratio
+  TH1F* hLambdaIndv = EfficiencyCorrection::EfficiencyCorrectionHist(
+      LambdaDataFile, LambdaMCFile, bins, ptCut_Lambda, V0Type::Lambda, draw);
 
   // divide the histograms
-  TH1F* hRatioAntiLambda = (TH1F*)hAntiLambda->Clone("hRatioAntiLambda");
-  hRatioAntiLambda->Divide(hK0);
-  hRatioAntiLambda->Draw();
-  hRatioAntiLambda->SaveAs("AntiLambdaK0Ratio.root");
-
-  ////////////////////////////////////////////////////////////////
-  // AntiLambda to Lambda ratio
-  TH1F* hRatioLambdaAntiLambda =
-      (TH1F*)hAntiLambda->Clone("hRatioLambdaAntiLambda");
-  hRatioLambdaAntiLambda->Divide(hLambda);
-  hRatioLambdaAntiLambda->Draw();
-  hRatioLambdaAntiLambda->SaveAs("AntiLambdaLambdaRatio.root");
+  hRatio = (TH1F*)hLambdaIndv->Clone("hRatio");
+  hRatio->Divide(hK0);
+  hRatio->Draw();
+  hRatio->SaveAs("LambdaIndvK0Ratio.root");
 }

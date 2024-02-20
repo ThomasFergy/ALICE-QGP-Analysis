@@ -145,7 +145,7 @@ TH1F* EfficiencyCorrection::EfficiencyCorrectionHist(std::string DataFile,
       hpt = (TH1F*)gDirectory->Get("hPtAntiLambdaSelected");
       break;
     case V0Type::LambdaAntiLambda:
-      f->cd("strangeness_tutorial/kLambdaAntiLambda");
+      f->cd("strangeness_tutorial/kLambdaAndAntiLambda");
       hpt = (TH1F*)gDirectory->Get("hPtLambdaAntiLambdaSelected");
       break;
       // default:
