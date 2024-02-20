@@ -247,30 +247,32 @@ double EfficiencyCorrection::LevyTsallis(double* x, double* par) {
 }
 
 TH1F* EfficiencyCorrection::ApplyFit(TH1F* h, std::vector<double>& bins,
-                                     double ptCut, V0Type v0Type) {
-  // THIS IS UNUSED SO FAR. NEEDS TO BE GENERALISED FOR ALL V0 TYPES
+                                     double ptCut, V0Type v0Type,
+                                     std::vector<double> params) {
+  TH1F* hcopy = (TH1F*)h->Clone("hcopy");
   TF1* ff1 = new TF1("fit", LevyTsallis, 0, 10, 3);
-  ff1->SetParameters(410180, 0.208813, 5.14298);
+  ff1->SetParameters(params[0], params[1], params[2]);
   ff1->SetParNames("C", "T", "n");
   // dont draw fit
   h->Fit(ff1, "R");
   h->SaveAs("LastFit.root");
 
-  // create a blank histogram
-  TH1F* hfit = new TH1F("hfit", "hfit", bins.size() - 1, &bins[0]);
-  // iterate through the bins of the new histogram
-  // if the centre of the bin is less than the ptCut, set the bin content to the
-  // fit otherwise set the bin content the the value of the original histogram
+  // make blank histogram with defined bins
+  TH1F* hreturn = new TH1F("hcopy", "hcopy", bins.size() - 1, &bins[0]);
+
+  // for bins with a center less than ptCut, set the content to evaluate the fit
   for (size_t i = 0; i < bins.size() - 1; ++i) {
-    double binCentre = (bins[i] + bins[i + 1]) / 2;
-    if (binCentre < ptCut) {
-      hfit->SetBinContent(i + 1, ff1->Eval(binCentre));
-      hfit->SetBinError(i + 1, sqrt(ff1->Eval(binCentre)));
+    double binCenter = (bins[i] + bins[i + 1]) / 2;
+    int bin = hreturn->FindBin(binCenter);
+    if (binCenter < ptCut) {
+      // find which bin of copy corresponds to binCenter
+      hreturn->SetBinContent(bin, ff1->Eval(binCenter));
+      hreturn->SetBinError(bin, 0.1 * ff1->Eval(binCenter));
     } else {
-      hfit->SetBinContent(i + 1, h->GetBinContent(i + 1));
-      hfit->SetBinError(i + 1, h->GetBinError(i + 1));
+      hreturn->SetBinContent(bin,
+                             hcopy->GetBinContent(hcopy->FindBin(binCenter)));
+      hreturn->SetBinError(bin, hcopy->GetBinError(hcopy->FindBin(binCenter)));
     }
   }
-
-  return hfit;
+  return hreturn;
 }
