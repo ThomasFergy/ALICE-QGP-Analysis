@@ -16,6 +16,10 @@ enum class V0Type { K0, Lambda, AntiLambda, LambdaAntiLambda };
 
 class EfficiencyCorrection {
  public:
+  static TH1F* getUncorrectedHist(std::string DataFile,
+                                  std::vector<double>& bins, double ptCut,
+                                  V0Type v0Type, bool draw = false);
+
   static TH1F* eff(std::string MCFile, std::vector<double>& bins, V0Type v0Type,
                    bool draw = false);
 

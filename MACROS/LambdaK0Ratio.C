@@ -16,6 +16,17 @@ void LambdaK0Ratio() {
                               1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9,
                               2,   2.2, 2.4, 2.6, 2.8, 3,   3.2, 3.4, 3.6, 3.8,
                               4,   4.5, 5,   6,   7,   8,   10};
+
+  // bins = {0,    0.1, 0.2, 0.3, 0.4, 0.5, 0.6,  0.7, 0.8,  0.9,
+  //         1.0,  1.1, 1.2, 1.3, 1.4, 1.5, 1.75, 2,   2.25, 2.5,
+  //         2.75, 3,   3.5, 4,   4.5, 5,   6,    8,   10};
+
+  // bins = {};
+
+  // for (int i = 0; i < 100; i++) {
+  //   bins.push_back(i * 0.1);
+  // }
+
   bool draw = true;
 
   // files
@@ -25,60 +36,98 @@ void LambdaK0Ratio() {
   std::string LambdaMCFile =
       "Results/LAMBDA_CUTS_4/AnalysisResults_optimal_cuts_MC.root";
 
+  std::string AntiLambdaMCFile =
+      "Results/LAMBDA_CUTS_4/AnalysisResults_optimal_cuts_ANTI_MC.root";
+
   std::string K0DataFile =
       "Results/K0_CUTS_1/AnalysisResults_optimal_cuts_DATA_p_t.root";
 
   std::string LambdaDataFile =
       "Results/LAMBDA_CUTS_4/AnalysisResults_optimal_cuts_DATA_p_t.root";
 
+  std::string AntiLambdaDataFile =
+      "Results/LAMBDA_CUTS_4/AnalysisResults_optimal_cuts_ANTI_DATA_p_t.root";
+
   double ptCut_K0 = 0.2;
-  double ptCut_Lambda = 2;
+  double ptCut_Lambda = 1;
+  double ptCut_AntiLambda = 1;
 
-  ////////////////////////////////////////////////////////////////
-  // Lambda to K0 ratio
-  TH1F* hK0 = EfficiencyCorrection::EfficiencyCorrectionHist(
-      K0DataFile, K0MCFile, bins, ptCut_K0, V0Type::K0, draw);
-  TH1F* hLambda = EfficiencyCorrection::EfficiencyCorrectionHist(
-      LambdaDataFile, LambdaMCFile, bins, ptCut_Lambda, V0Type::Lambda, draw);
+  // uncorrected lambda to anti-lambda ratio
 
-  // apply fits
-  hK0 = EfficiencyCorrection::ApplyFit(hK0, bins, ptCut_K0, V0Type::K0,
-                                       {410180, 0.208813, 5.14298});
+  TH1F* hLambda = EfficiencyCorrection::getUncorrectedHist(
+      LambdaDataFile, bins, 0, V0Type::Lambda, draw);
 
-  hK0->SaveAs("TEST.root");
-
-  hLambda = EfficiencyCorrection::ApplyFit(
-      hLambda, bins, ptCut_Lambda, V0Type::Lambda, {284868, 0.227003, 7.37477});
-
-  hLambda->SaveAs("TEST2.root");
+  TH1F* hAntiLambda = EfficiencyCorrection::getUncorrectedHist(
+      AntiLambdaDataFile, bins, 0, V0Type::AntiLambda, draw);
 
   // divide the histograms
-  TH1F* hRatio = (TH1F*)hLambda->Clone("hRatio");
-  hRatio->Divide(hK0);
-  hRatio->Draw();
-  hRatio->SaveAs("LambdaK0Ratio.root");
+  hAntiLambda->Divide(hLambda);
+  hAntiLambda->SetTitle("#Lambda / #bar{#Lambda} ratio uncorrected");
+  hAntiLambda->SaveAs("Results/UncorrectedLambdaAntiLambdaRatio.root");
 
-  exit(0);  // the rest still need to be implemented
-  ////////////////////////////////////////////////////////////////
-  // Indv Lambda to K0 ratio
-  TH1F* hLambdaIndv = EfficiencyCorrection::EfficiencyCorrectionHist(
-      LambdaDataFile, LambdaMCFile, bins, ptCut_Lambda, V0Type::Lambda, draw);
+  // corrected lambda to anti-lambda ratio
 
-  // divide the histograms
-  hRatio = (TH1F*)hLambdaIndv->Clone("hRatio");
-  hRatio->Divide(hK0);
-  hRatio->Draw();
-  hRatio->SaveAs("LambdaIndvK0Ratio.root");
+  hLambda = EfficiencyCorrection::EfficiencyCorrectionHist(
+      LambdaDataFile, LambdaMCFile, bins, 0, V0Type::Lambda, draw);
 
-  ////////////////////////////////////////////////////////////////
-  // Indv AntiLambda to K0 ratio
-  TH1F* hAntiLambdaIndv = EfficiencyCorrection::EfficiencyCorrectionHist(
-      LambdaDataFile, LambdaMCFile, bins, ptCut_Lambda, V0Type::AntiLambda,
-      draw);
+  hAntiLambda = EfficiencyCorrection::EfficiencyCorrectionHist(
+      AntiLambdaDataFile, AntiLambdaMCFile, bins, 0, V0Type::AntiLambda, draw);
 
   // divide the histograms
-  hRatio = (TH1F*)hAntiLambdaIndv->Clone("hRatio");
-  hRatio->Divide(hK0);
-  hRatio->Draw();
-  hRatio->SaveAs("AntiLambdaIndvK0Ratio.root");
+  hAntiLambda->Divide(hLambda);
+  hAntiLambda->SetTitle("#Lambda / #bar{#Lambda} ratio Corrected");
+  hAntiLambda->SaveAs("Results/CorrectedLambdaAntiLambdaRatio.root");
+
+  // uncorrected lambda to K0 ratio
+
+  TH1F* hK0 = EfficiencyCorrection::getUncorrectedHist(K0DataFile, bins, 0,
+                                                       V0Type::K0, draw);
+
+  hLambda = EfficiencyCorrection::getUncorrectedHist(LambdaDataFile, bins, 0,
+                                                     V0Type::Lambda, draw);
+
+  // divide the histograms lambda / K0
+  hLambda->Divide(hK0);
+  hLambda->SetTitle("#Lambda / K^{0} ratio uncorrected");
+  hLambda->SaveAs("Results/UncorrectedLambdaK0Ratio.root");
+
+  // corrected lambda to K0 ratio
+
+  hK0 = EfficiencyCorrection::EfficiencyCorrectionHist(
+      K0DataFile, K0MCFile, bins, 0, V0Type::K0, draw);
+
+  hLambda = EfficiencyCorrection::EfficiencyCorrectionHist(
+      LambdaDataFile, LambdaMCFile, bins, 0, V0Type::Lambda, draw);
+
+  // divide the histograms lambda / K0
+  hLambda->Divide(hK0);
+  hLambda->SetTitle("#Lambda / K^{0} ratio Corrected");
+  hLambda->SaveAs("Results/CorrectedLambdaK0Ratio.root");
+
+  // uncorrected anti-lambda to K0 ratio
+
+  hK0 = EfficiencyCorrection::getUncorrectedHist(K0DataFile, bins, 0,
+                                                 V0Type::K0, draw);
+
+  hAntiLambda = EfficiencyCorrection::getUncorrectedHist(
+      AntiLambdaDataFile, bins, 0, V0Type::AntiLambda, draw);
+
+  // divide the histograms anti-lambda / K0
+  hAntiLambda->Divide(hK0);
+  hAntiLambda->SetTitle("#bar{#Lambda} / K^{0} ratio uncorrected");
+  hAntiLambda->SaveAs("Results/UncorrectedAntiLambdaK0Ratio.root");
+
+  // corrected anti-lambda to K0 ratio
+
+  hK0 = EfficiencyCorrection::EfficiencyCorrectionHist(
+      K0DataFile, K0MCFile, bins, 0, V0Type::K0, draw);
+
+  hAntiLambda = EfficiencyCorrection::EfficiencyCorrectionHist(
+      AntiLambdaDataFile, AntiLambdaMCFile, bins, 0, V0Type::AntiLambda, draw);
+
+  // divide the histograms anti-lambda / K0
+  // log scale for x axis
+  hAntiLambda->Divide(hK0);
+  hAntiLambda->SetTitle("#bar{#Lambda} / K^{0} ratio Corrected");
+  hAntiLambda->SaveAs("Results/CorrectedAntiLambdaK0Ratio.root");
 }

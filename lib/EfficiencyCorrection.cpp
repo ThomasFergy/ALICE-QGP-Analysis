@@ -119,7 +119,8 @@ TH1F* EfficiencyCorrection::eff(std::string MCFile, std::vector<double>& bins,
         //  exit(1);
         //  break;
     }
-    heff->SaveAs(fileName.c_str());
+    std::string outputPath = "Results/" + fileName;
+    heff->SaveAs(outputPath.c_str());
   }
   return heff;
 }
@@ -220,9 +221,72 @@ TH1F* EfficiencyCorrection::EfficiencyCorrectionHist(std::string DataFile,
         //   exit(1);
         //   break;
     }
-    hpt_corrected->SaveAs(fileName.c_str());
+    std::string outputPath = "Results/" + fileName;
+    heff->SaveAs(outputPath.c_str());
   }
   return hpt_corrected;
+}
+
+TH1F* EfficiencyCorrection::getUncorrectedHist(std::string DataFile,
+                                               std::vector<double>& bins,
+                                               double ptCut, V0Type v0Type,
+                                               bool draw) {
+  TFile* f = new TFile(DataFile.c_str());
+  TH1F* hpt = nullptr;
+  switch (v0Type) {
+    case V0Type::K0:
+      f->cd("strangeness_tutorial/kzeroShort");
+      hpt = (TH1F*)gDirectory->Get("hPtK0ShortSelected");
+      break;
+    case V0Type::Lambda:
+      f->cd("strangeness_tutorial/kLambda");
+      hpt = (TH1F*)gDirectory->Get("hPtLambdaSelected");
+      break;
+    case V0Type::AntiLambda:
+      f->cd("strangeness_tutorial/kAntiLambda");
+      hpt = (TH1F*)gDirectory->Get("hPtAntiLambdaSelected");
+      break;
+    case V0Type::LambdaAntiLambda:
+      f->cd("strangeness_tutorial/kLambdaAndAntiLambda");
+      hpt = (TH1F*)gDirectory->Get("hPtLambdaAntiLambdaSelected");
+      break;
+      // default:
+      //   std::cout << "Invalid V0Type: " << static_cast<int>(v0Type) <<
+      //   std::endl; exit(1);
+      //  break;
+  }
+  if (hpt == nullptr) {
+    std::cout << "hpt was not read" << std::endl;
+    // say which file and which histogram was not read
+    std::cout << DataFile << std::endl;
+    exit(1);
+  }
+  hpt->Sumw2();
+  Double_t norm1 = hpt->GetEntries();
+
+  // Rebin the histograms using custom bins
+  // create a new histogram with the custom bins
+  // filter out the bins that are below the ptCut
+  std::vector<double> binsFiltered;
+  for (size_t i = 0; i < bins.size() - 1; ++i) {
+    if (bins[i] >= ptCut) {
+      binsFiltered.push_back(bins[i]);
+    }
+  }
+
+  TH1F* hpt_rebin = new TH1F("hpt_rebin", "hpt_rebin", binsFiltered.size() - 1,
+                             &binsFiltered[0]);
+
+  for (size_t i = 0; i < binsFiltered.size() - 1; ++i) {
+    double binLow = binsFiltered[i] + 1e-10;
+    double binHigh = binsFiltered[i + 1] - 1e-10;
+    // find integral between binsFiltered[i] and binsFiltered[i+1]
+    int count = hpt->Integral(hpt->FindBin(binLow), hpt->FindBin(binLow));
+    hpt_rebin->SetBinContent(i + 1, count);
+  }
+
+  hpt_rebin->Sumw2();
+  return hpt_rebin;
 }
 
 double EfficiencyCorrection::LevyTsallis(double* x, double* par) {
@@ -260,7 +324,8 @@ TH1F* EfficiencyCorrection::ApplyFit(TH1F* h, std::vector<double>& bins,
   // make blank histogram with defined bins
   TH1F* hreturn = new TH1F("hcopy", "hcopy", bins.size() - 1, &bins[0]);
 
-  // for bins with a center less than ptCut, set the content to evaluate the fit
+  // for bins with a center less than ptCut, set the content to evaluate the
+  // fit
   for (size_t i = 0; i < bins.size() - 1; ++i) {
     double binCenter = (bins[i] + bins[i + 1]) / 2;
     int bin = hreturn->FindBin(binCenter);
