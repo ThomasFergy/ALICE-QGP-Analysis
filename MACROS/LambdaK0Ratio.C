@@ -63,7 +63,7 @@ void LambdaK0Ratio() {
   // divide the histograms
   hAntiLambda->Divide(hLambda);
   hAntiLambda->SetTitle("#Lambda / #bar{#Lambda} ratio uncorrected");
-  hAntiLambda->SaveAs("Results/UncorrectedLambdaAntiLambdaRatio.root");
+  hAntiLambda->SaveAs("Results/Uncorrected_LambdaAntiLambdaRatio.root");
 
   // corrected lambda to anti-lambda ratio
 
@@ -76,7 +76,7 @@ void LambdaK0Ratio() {
   // divide the histograms
   hAntiLambda->Divide(hLambda);
   hAntiLambda->SetTitle("#Lambda / #bar{#Lambda} ratio Corrected");
-  hAntiLambda->SaveAs("Results/CorrectedLambdaAntiLambdaRatio.root");
+  hAntiLambda->SaveAs("Results/Corrected_LambdaAntiLambdaRatio.root");
 
   // uncorrected lambda to K0 ratio
 
@@ -89,7 +89,7 @@ void LambdaK0Ratio() {
   // divide the histograms lambda / K0
   hLambda->Divide(hK0);
   hLambda->SetTitle("#Lambda / K^{0} ratio uncorrected");
-  hLambda->SaveAs("Results/UncorrectedLambdaK0Ratio.root");
+  hLambda->SaveAs("Results/Uncorrected_LambdaK0Ratio.root");
 
   // corrected lambda to K0 ratio
 
@@ -102,7 +102,7 @@ void LambdaK0Ratio() {
   // divide the histograms lambda / K0
   hLambda->Divide(hK0);
   hLambda->SetTitle("#Lambda / K^{0} ratio Corrected");
-  hLambda->SaveAs("Results/CorrectedLambdaK0Ratio.root");
+  hLambda->SaveAs("Results/Corrected_LambdaK0Ratio.root");
 
   // uncorrected anti-lambda to K0 ratio
 
@@ -115,7 +115,7 @@ void LambdaK0Ratio() {
   // divide the histograms anti-lambda / K0
   hAntiLambda->Divide(hK0);
   hAntiLambda->SetTitle("#bar{#Lambda} / K^{0} ratio uncorrected");
-  hAntiLambda->SaveAs("Results/UncorrectedAntiLambdaK0Ratio.root");
+  hAntiLambda->SaveAs("Results/Uncorrected_AntiLambdaK0Ratio.root");
 
   // corrected anti-lambda to K0 ratio
 
@@ -129,5 +129,5 @@ void LambdaK0Ratio() {
   // log scale for x axis
   hAntiLambda->Divide(hK0);
   hAntiLambda->SetTitle("#bar{#Lambda} / K^{0} ratio Corrected");
-  hAntiLambda->SaveAs("Results/CorrectedAntiLambdaK0Ratio.root");
+  hAntiLambda->SaveAs("Results/Corrected_AntiLambdaK0Ratio.root");
 }

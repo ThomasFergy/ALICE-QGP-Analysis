@@ -201,7 +201,7 @@ TH1F* EfficiencyCorrection::EfficiencyCorrectionHist(std::string DataFile,
     hpt_corrected->Draw();
     // dont draw the legend
     hpt_corrected->SetStats(0);
-    std::string fileName = "efficiency_corrected_";
+    std::string fileName = "Corrected_Efficiency_";
     switch (v0Type) {
       case V0Type::K0:
         fileName += "K0.root";
@@ -222,7 +222,7 @@ TH1F* EfficiencyCorrection::EfficiencyCorrectionHist(std::string DataFile,
         //   break;
     }
     std::string outputPath = "Results/" + fileName;
-    heff->SaveAs(outputPath.c_str());
+    hpt_corrected->SaveAs(outputPath.c_str());
   }
   return hpt_corrected;
 }
