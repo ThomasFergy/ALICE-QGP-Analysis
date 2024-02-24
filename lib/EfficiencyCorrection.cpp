@@ -289,7 +289,7 @@ TH1F* EfficiencyCorrection::getUncorrectedHist(std::string DataFile,
   return hpt_rebin;
 }
 
-double EfficiencyCorrection::LevyTsallis(double* x, double* par) {
+double EfficiencyCorrection::LevyTsallisK0(double* x, double* par) {
   // THIS IS UNUSED SO FAR. NEEDS TO BE GENERALISED FOR ALL V0 TYPES
   // Extracting parameters
   double C = par[0];
@@ -310,14 +310,46 @@ double EfficiencyCorrection::LevyTsallis(double* x, double* par) {
   return result;
 }
 
+double EfficiencyCorrection::LevyTsallisLambda(double* x, double* par) {
+  // THIS IS UNUSED SO FAR. NEEDS TO BE GENERALISED FOR ALL V0 TYPES
+  // Extracting parameters
+  double C = par[0];
+  double T = par[1];
+  double n = par[2];
+
+  // Fixed parameters
+  double m = 1.115683;  // mass in GeV/c^2
+  double pt = x[0];
+
+  // Calculating the function
+  double numerator = C * (n - 1) * (n - 2) * pt;
+  double denominator = n * T * (n * T + m * (n - 2));
+  double factor = 1 + (sqrt(pt * pt + m * m) - m) / (n * T);
+
+  double result = numerator / denominator * pow(factor, -n);
+
+  return result;
+}
+
 TH1F* EfficiencyCorrection::ApplyFit(TH1F* h, std::vector<double>& bins,
                                      double ptCut, V0Type v0Type,
                                      std::vector<double> params) {
   TH1F* hcopy = (TH1F*)h->Clone("hcopy");
-  TF1* ff1 = new TF1("fit", LevyTsallis, 0, 10, 3);
+  TF1* ff1;
+  double mass;
+  if (v0Type == V0Type::K0) {
+    ff1 = new TF1("fit", LevyTsallisK0, 0, 10, 3);
+    mass = 0.497648;
+  } else if (v0Type == V0Type::Lambda || v0Type == V0Type::AntiLambda) {
+    ff1 = new TF1("fit", LevyTsallisLambda, 0, 10, 3);
+    mass = 1.115683;
+  } else {
+    std::cout << "Invalid V0Type: " << static_cast<int>(v0Type) << std::endl;
+    exit(1);
+  }
   ff1->SetParameters(params[0], params[1], params[2]);
   ff1->SetParNames("C", "T", "n");
-  // dont draw fit
+
   h->Fit(ff1, "R");
   h->SaveAs("LastFit.root");
 
@@ -332,7 +364,8 @@ TH1F* EfficiencyCorrection::ApplyFit(TH1F* h, std::vector<double>& bins,
     if (binCenter < ptCut) {
       // find which bin of copy corresponds to binCenter
       hreturn->SetBinContent(bin, ff1->Eval(binCenter));
-      hreturn->SetBinError(bin, 0.1 * ff1->Eval(binCenter));
+      hreturn->SetBinError(bin, 0);  // temporary, need to calculate the
+                                     // error properly later
     } else {
       hreturn->SetBinContent(bin,
                              hcopy->GetBinContent(hcopy->FindBin(binCenter)));

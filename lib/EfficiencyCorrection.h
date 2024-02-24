@@ -28,12 +28,12 @@ class EfficiencyCorrection {
                                         std::vector<double>& bins, double ptCut,
                                         V0Type v0Type, bool draw = false);
 
-  // THIS IS UNUSED SO FAR. NEEDS TO BE GENERALISED FOR ALL V0 TYPES
   static TH1F* ApplyFit(TH1F* h, std::vector<double>& bins, double ptCut,
                         V0Type v0Type, std::vector<double> params);
 
-  // THIS IS UNUSED SO FAR. NEEDS TO BE GENERALISED FOR ALL V0 TYPES
-  static double LevyTsallis(double* x, double* par);
+  static double LevyTsallisK0(double* x, double* par);
+
+  static double LevyTsallisLambda(double* x, double* par);
 };
 
 #endif
