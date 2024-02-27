@@ -17,16 +17,6 @@ void LambdaK0Ratio() {
                               2,   2.2, 2.4, 2.6, 2.8, 3,   3.2, 3.4, 3.6, 3.8,
                               4,   4.5, 5,   6,   7,   8,   10};
 
-  // bins = {0,    0.1, 0.2, 0.3, 0.4, 0.5, 0.6,  0.7, 0.8,  0.9,
-  //         1.0,  1.1, 1.2, 1.3, 1.4, 1.5, 1.75, 2,   2.25, 2.5,
-  //         2.75, 3,   3.5, 4,   4.5, 5,   6,    8,   10};
-
-  // bins = {};
-
-  // for (int i = 0; i < 100; i++) {
-  //   bins.push_back(i * 0.1);
-  // }
-
   bool draw = true;
 
   // files
@@ -52,156 +42,12 @@ void LambdaK0Ratio() {
   double ptCut_Lambda = 0.6;
   double ptCut_AntiLambda = 0.6;
 
-  // uncorrected lambda to anti-lambda ratio
+  std::string testMCFile = "output/V0MC/AnalysisResults_default_cuts_MC.root";
 
-  TH1F* hLambda = EfficiencyCorrection::getUncorrectedHist(
-      LambdaDataFile, bins, 0, V0Type::Lambda, draw);
-
-  TH1F* hAntiLambda = EfficiencyCorrection::getUncorrectedHist(
-      AntiLambdaDataFile, bins, 0, V0Type::AntiLambda, draw);
-
-  // divide the histograms
-  hAntiLambda->Divide(hLambda);
-  hAntiLambda->SetTitle("#Lambda / #bar{#Lambda} ratio uncorrected");
-  hAntiLambda->SaveAs("Results/Uncorrected_LambdaAntiLambdaRatio.root");
-
-  // corrected lambda to anti-lambda ratio
-
-  hLambda = EfficiencyCorrection::EfficiencyCorrectionHist(
-      LambdaDataFile, LambdaMCFile, bins, 0, V0Type::Lambda, draw);
-
-  hAntiLambda = EfficiencyCorrection::EfficiencyCorrectionHist(
-      AntiLambdaDataFile, AntiLambdaMCFile, bins, 0, V0Type::AntiLambda, draw);
-
-  // divide the histograms
-  hAntiLambda->Divide(hLambda);
-  hAntiLambda->SetTitle("#Lambda / #bar{#Lambda} ratio Corrected");
-  hAntiLambda->SaveAs("Results/Corrected_LambdaAntiLambdaRatio.root");
-
-  // uncorrected lambda to K0 ratio
-
-  TH1F* hK0 = EfficiencyCorrection::getUncorrectedHist(K0DataFile, bins, 0,
-                                                       V0Type::K0, draw);
-
-  hLambda = EfficiencyCorrection::getUncorrectedHist(LambdaDataFile, bins, 0,
-                                                     V0Type::Lambda, draw);
-
-  // divide the histograms lambda / K0
-  hLambda->Divide(hK0);
-  hLambda->SetTitle("#Lambda / K^{0} ratio uncorrected");
-  hLambda->SaveAs("Results/Uncorrected_LambdaK0Ratio.root");
-
-  // corrected lambda to K0 ratio
-
-  hK0 = EfficiencyCorrection::EfficiencyCorrectionHist(
-      K0DataFile, K0MCFile, bins, 0, V0Type::K0, draw);
-
-  hLambda = EfficiencyCorrection::EfficiencyCorrectionHist(
-      LambdaDataFile, LambdaMCFile, bins, 0, V0Type::Lambda, draw);
-
-  // divide the histograms lambda / K0
-  hLambda->Divide(hK0);
-  hLambda->SetTitle("#Lambda / K^{0} ratio Corrected");
-  hLambda->SaveAs("Results/Corrected_LambdaK0Ratio.root");
-
-  // uncorrected anti-lambda to K0 ratio
-
-  hK0 = EfficiencyCorrection::getUncorrectedHist(K0DataFile, bins, 0,
-                                                 V0Type::K0, draw);
-
-  hAntiLambda = EfficiencyCorrection::getUncorrectedHist(
-      AntiLambdaDataFile, bins, 0, V0Type::AntiLambda, draw);
-
-  // divide the histograms anti-lambda / K0
-  hAntiLambda->Divide(hK0);
-  hAntiLambda->SetTitle("#bar{#Lambda} / K^{0} ratio uncorrected");
-  hAntiLambda->SaveAs("Results/Uncorrected_AntiLambdaK0Ratio.root");
-
-  // corrected anti-lambda to K0 ratio
-
-  hK0 = EfficiencyCorrection::EfficiencyCorrectionHist(
-      K0DataFile, K0MCFile, bins, 0, V0Type::K0, draw);
-
-  hAntiLambda = EfficiencyCorrection::EfficiencyCorrectionHist(
-      AntiLambdaDataFile, AntiLambdaMCFile, bins, 0, V0Type::AntiLambda, draw);
-
-  // divide the histograms anti-lambda / K0
-  // log scale for x axis
-  hAntiLambda->Divide(hK0);
-  hAntiLambda->SetTitle("#bar{#Lambda} / K^{0} ratio Corrected");
-  hAntiLambda->SaveAs("Results/Corrected_AntiLambdaK0Ratio.root");
-
-  /////////////////////////////
-  // lambda to anti-lambda ratio with pt cut and fit and no efficiency
-  // corrections
-  /////////////////////////////
-
-  hLambda = EfficiencyCorrection::getUncorrectedHist(
-      LambdaDataFile, bins, ptCut_Lambda, V0Type::Lambda, draw);
-
-  hAntiLambda = EfficiencyCorrection::getUncorrectedHist(
-      AntiLambdaDataFile, bins, ptCut_AntiLambda, V0Type::AntiLambda, draw);
-
-  // Apply fit
-  std::vector<double> LambdaParams = {284868, 0.227003, 7.37477};
-
-  hAntiLambda = EfficiencyCorrection::ApplyFit(
-      hAntiLambda, bins, ptCut_AntiLambda, V0Type::AntiLambda, LambdaParams);
-
-  hLambda = EfficiencyCorrection::ApplyFit(hLambda, bins, ptCut_Lambda,
-                                           V0Type::Lambda, LambdaParams);
-
-  // divide the histograms
-  hAntiLambda->Divide(hLambda);
-  hAntiLambda->SetTitle(
-      "#Lambda / #bar{#Lambda} ratio uncorrected with pt cut");
-  hAntiLambda->SaveAs("Results/Uncorrected_LambdaAntiLambdaRatio_ptCut.root");
-
-  exit(0);  // The rest of the code is not yet functioning as expected
-
-  /////////////////////////////
-  // lambda to K0 ratio with pt cut and fit and no efficiency corrections
-  /////////////////////////////
-
-  hK0 = EfficiencyCorrection::getUncorrectedHist(K0DataFile, bins, ptCut_K0,
-                                                 V0Type::K0, draw);
-
-  hLambda = EfficiencyCorrection::getUncorrectedHist(
-      LambdaDataFile, bins, ptCut_Lambda, V0Type::Lambda, draw);
-
-  // Apply fit
-  std::vector<double> K0Params = {12660, 0.240553, 1184.34};
-
-  hLambda = EfficiencyCorrection::ApplyFit(hLambda, bins, ptCut_Lambda,
-                                           V0Type::Lambda, LambdaParams);
-
-  hK0 =
-      EfficiencyCorrection::ApplyFit(hK0, bins, ptCut_K0, V0Type::K0, K0Params);
-
-  // divide the histograms
-  hLambda->Divide(hK0);
-  hLambda->SetTitle("#Lambda / K^{0} ratio uncorrected with pt cut");
-  hLambda->SaveAs("Results/Uncorrected_LambdaK0Ratio_ptCut.root");
-
-  /////////////////////////////
-  // AntiLambda to K0 ratio with pt cut and fit and no efficiency corrections
-  /////////////////////////////
-
-  hK0 = EfficiencyCorrection::getUncorrectedHist(K0DataFile, bins, ptCut_K0,
-                                                 V0Type::K0, draw);
-
-  hAntiLambda = EfficiencyCorrection::getUncorrectedHist(
-      AntiLambdaDataFile, bins, ptCut_AntiLambda, V0Type::AntiLambda, draw);
-
-  // Apply fit
-  hAntiLambda = EfficiencyCorrection::ApplyFit(
-      hAntiLambda, bins, ptCut_AntiLambda, V0Type::AntiLambda, LambdaParams);
-
-  hK0 =
-      EfficiencyCorrection::ApplyFit(hK0, bins, ptCut_K0, V0Type::K0, K0Params);
-
-  // divide the histograms
-  hAntiLambda->Divide(hK0);
-  hAntiLambda->SetTitle("#bar{#Lambda} / K^{0} ratio uncorrected with pt cut");
-  hAntiLambda->SaveAs("Results/Uncorrected_AntiLambdaK0Ratio_ptCut.root");
+  // get test efficiencies from file
+  TH1F* hK0Eff = EfficiencyCorrection::eff(K0MCFile, bins, V0Type::K0, draw);
+  TH1F* hLambdaEff =
+      EfficiencyCorrection::eff(LambdaMCFile, bins, V0Type::Lambda, draw);
+  TH1F* hAntiLambdaEff = EfficiencyCorrection::eff(AntiLambdaMCFile, bins,
+                                                   V0Type::AntiLambda, draw);
 }
