@@ -16,6 +16,7 @@ enum class V0Type { K0, Lambda, AntiLambda, LambdaAntiLambda };
 
 class EfficiencyCorrection {
  public:
+  static TH1F* getRebinHist(TH1F* h, std::vector<double>& bins);
   static TH1F* getUncorrectedHist(std::string DataFile,
                                   std::vector<double>& bins, double ptCut,
                                   V0Type v0Type, bool draw = false);
@@ -23,8 +24,17 @@ class EfficiencyCorrection {
   static TH1F* eff(std::string MCFile, std::vector<double>& bins, V0Type v0Type,
                    bool draw = false);
 
+  static TH1F* eff(std::string MCFileLambda, std::string MCFileAntiLambda,
+                   std::vector<double>& bins, V0Type v0Type, bool draw = false);
+
   static TH1F* EfficiencyCorrectionHist(std::string DataFile,
                                         std::string MCFile,
+                                        std::vector<double>& bins, double ptCut,
+                                        V0Type v0Type, bool draw = false);
+
+  static TH1F* EfficiencyCorrectionHist(std::string DataFile,
+                                        std::string MCFileLambda,
+                                        std::string MCFileAntiLambda,
                                         std::vector<double>& bins, double ptCut,
                                         V0Type v0Type, bool draw = false);
 

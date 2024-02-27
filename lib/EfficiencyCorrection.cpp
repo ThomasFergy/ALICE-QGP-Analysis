@@ -125,6 +125,208 @@ TH1F* EfficiencyCorrection::eff(std::string MCFile, std::vector<double>& bins,
   return heff;
 }
 
+TH1F* EfficiencyCorrection::eff(std::string MCFileLambda,
+                                std::string MCFileAntiLambda,
+                                std::vector<double>& bins, V0Type v0Type,
+                                bool draw) {
+  gROOT->Reset();
+
+  TFile* f1 = new TFile(MCFileLambda.c_str());
+  TFile* f2 = new TFile(MCFileAntiLambda.c_str());
+
+  // save generated pt histogram as hpt
+  f1->cd("strangeness_tutorial/genParticles");
+  TH1F* hpt1 = (TH1F*)gDirectory->Get("hPtLambdaGen");
+  f2->cd("strangeness_tutorial/genParticles");
+  TH1F* hpt2 = (TH1F*)gDirectory->Get("hPtAntiLambdaGen");
+
+  if (hpt1 == nullptr) {
+    std::cout << "hpt was not read" << std::endl;
+    // say which file and which histogram was not read
+    std::cout << MCFileLambda << std::endl;
+    exit(1);
+  }
+  if (hpt2 == nullptr) {
+    std::cout << "hpt was not read" << std::endl;
+    // say which file and which histogram was not read
+    std::cout << MCFileAntiLambda << std::endl;
+    exit(1);
+  }
+  hpt1->Sumw2();
+  hpt2->Sumw2();
+
+  // save true reconstructed pt histogram as hptrue
+  f1->cd("strangeness_tutorial/kLambda");
+  TH1F* hptrue1 = (TH1F*)gDirectory->Get("hPtLambdaTrueRec");
+
+  f2->cd("strangeness_tutorial/kAntiLambda");
+  TH1F* hptrue2 = (TH1F*)gDirectory->Get("hPtAntiLambdaTrueRec");
+
+  if (hptrue1 == nullptr) {
+    std::cout << "hptrue was not read" << std::endl;
+    // say which file and which histogram was not read
+    std::cout << MCFileLambda << std::endl;
+    exit(1);
+  }
+  if (hptrue2 == nullptr) {
+    std::cout << "hptrue was not read" << std::endl;
+    // say which file and which histogram was not read
+    std::cout << MCFileAntiLambda << std::endl;
+    exit(1);
+  }
+  hptrue1->Sumw2();
+  hptrue2->Sumw2();
+
+  // add hpt1 and hpt2 into hpt
+  TH1F* hpt = (TH1F*)hpt1->Clone("hpt");
+  hpt->Add(hpt2);
+  // add hptrue1 and hptrue2 into hptrue
+  TH1F* hptrue = (TH1F*)hptrue1->Clone("hptrue");
+  hptrue->Add(hptrue2);
+  // Rebin the histograms using custom bins
+  // create a new histogram with the custom bins
+  TH1F* hpt_rebin =
+      new TH1F("hpt_rebin", "hpt_rebin", bins.size() - 1, &bins[0]);
+
+  TH1F* hptrue_rebin =
+      new TH1F("hptrue_rebin", "hptrue_rebin", bins.size() - 1, &bins[0]);
+
+  for (size_t i = 0; i < bins.size() - 1; ++i) {
+    double binLow = bins[i] + 1e-10;
+    double binHigh = bins[i + 1] - 1e-10;
+    // find integral between bins[i] and bins[i+1]
+    int count = hpt->Integral(hpt->FindBin(binLow), hpt->FindBin(binLow));
+    hpt_rebin->SetBinContent(i + 1, count);
+    hpt_rebin->SetBinError(i + 1, TMath::Sqrt(count));
+
+    count = hptrue->Integral(hptrue->FindBin(binLow), hptrue->FindBin(binLow));
+    hptrue_rebin->SetBinContent(i + 1, count);
+    hptrue_rebin->SetBinError(i + 1, TMath::Sqrt(count));
+  }
+
+  // Draw heff on the canvas
+  TH1F* heff = new TH1F("heff", "heff", bins.size() - 1, &bins[0]);
+  heff->SetTitle("Efficiencies");
+  heff->Divide(hptrue_rebin, hpt_rebin);
+  if (draw) {
+    heff->Draw();
+    // dont draw the legend
+    heff->SetStats(0);
+    std::string fileName = "Efficiency_COMBINED_LAMBDAS.root";
+    std::string outputPath = "Results/" + fileName;
+    heff->SaveAs(outputPath.c_str());
+  }
+
+  // double all bins in heff
+  for (size_t i = 0; i < bins.size() - 1; ++i) {
+    double binLow = bins[i] + 1e-10;
+    double binHigh = bins[i + 1] - 1e-10;
+    heff->SetBinContent(i + 1, heff->GetBinContent(i + 1) * 2);
+  }
+  return heff;
+}
+
+TH1F* EfficiencyCorrection::EfficiencyCorrectionHist(
+    std::string DataFile, std::string MCFileLambda,
+    std::string MCFileAntiLambda, std::vector<double>& bins, double ptCut,
+    V0Type v0Type, bool draw) {
+  TFile* f = new TFile(DataFile.c_str());
+  TH1F* hpt = nullptr;
+  switch (v0Type) {
+    case V0Type::K0:
+      f->cd("strangeness_tutorial/kzeroShort");
+      hpt = (TH1F*)gDirectory->Get("hPtK0ShortSelected");
+      break;
+    case V0Type::Lambda:
+      f->cd("strangeness_tutorial/kLambda");
+      hpt = (TH1F*)gDirectory->Get("hPtLambdaSelected");
+      break;
+    case V0Type::AntiLambda:
+      f->cd("strangeness_tutorial/kAntiLambda");
+      hpt = (TH1F*)gDirectory->Get("hPtAntiLambdaSelected");
+      break;
+    case V0Type::LambdaAntiLambda:
+      f->cd("strangeness_tutorial/kLambdaAndAntiLambda");
+      hpt = (TH1F*)gDirectory->Get("hPtLambdaAntiLambdaSelected");
+      break;
+      // default:
+      //   std::cout << "Invalid V0Type: " << static_cast<int>(v0Type) <<
+      //   std::endl; exit(1);
+      //  break;
+  }
+  if (hpt == nullptr) {
+    std::cout << "hpt was not read" << std::endl;
+    // say which file and which histogram was not read
+    std::cout << DataFile << std::endl;
+    exit(1);
+  }
+  hpt->Sumw2();
+  Double_t norm1 = hpt->GetEntries();
+
+  // Rebin the histograms using custom bins
+  // create a new histogram with the custom bins
+  // filter out the bins that are below the ptCut
+  std::vector<double> binsFiltered;
+  for (size_t i = 0; i < bins.size() - 1; ++i) {
+    if (bins[i] >= ptCut) {
+      binsFiltered.push_back(bins[i]);
+    }
+  }
+
+  TH1F* heff = eff(MCFileLambda, MCFileAntiLambda, binsFiltered, v0Type, draw);
+  TH1F* hpt_rebin = new TH1F("hpt_rebin", "hpt_rebin", binsFiltered.size() - 1,
+                             &binsFiltered[0]);
+
+  for (size_t i = 0; i < binsFiltered.size() - 1; ++i) {
+    double binLow = binsFiltered[i] + 1e-10;
+    double binHigh = binsFiltered[i + 1] - 1e-10;
+    // find integral between binsFiltered[i] and binsFiltered[i+1]
+    int count = hpt->Integral(hpt->FindBin(binLow), hpt->FindBin(binLow));
+    hpt_rebin->SetBinContent(i + 1, count);
+  }
+
+  hpt_rebin->Sumw2();
+
+  // Efficiency correction
+  TH1F* hpt_corrected = new TH1F("hpt_corrected", "hpt_corrected",
+                                 binsFiltered.size() - 1, &binsFiltered[0]);
+
+  hpt_corrected->Divide(hpt_rebin, heff);
+  hpt_corrected->GetXaxis()->SetRangeUser(
+      0, binsFiltered[binsFiltered.size() - 1]);
+  if (draw) {
+    // Draw heff on the canvas
+    hpt_corrected->SetTitle("Efficiency corrected pT");
+
+    hpt_corrected->Draw();
+    // dont draw the legend
+    hpt_corrected->SetStats(0);
+    std::string fileName = "Corrected_Efficiency_";
+    switch (v0Type) {
+      case V0Type::K0:
+        fileName += "K0.root";
+        break;
+      case V0Type::Lambda:
+        fileName += "Lambda.root";
+        break;
+      case V0Type::AntiLambda:
+        fileName += "AntiLambda.root";
+        break;
+      case V0Type::LambdaAntiLambda:
+        fileName += "LambdaAntiLambda.root";
+        break;
+        // default:
+        //   std::cout << "Invalid V0Type: " << static_cast<int>(v0Type)
+        //             << std::endl;
+        //   exit(1);
+        //   break;
+    }
+    std::string outputPath = "Results/" + fileName;
+    hpt_corrected->SaveAs(outputPath.c_str());
+  }
+  return hpt_corrected;
+}
+
 TH1F* EfficiencyCorrection::EfficiencyCorrectionHist(std::string DataFile,
                                                      std::string MCFile,
                                                      std::vector<double>& bins,
@@ -373,4 +575,19 @@ TH1F* EfficiencyCorrection::ApplyFit(TH1F* h, std::vector<double>& bins,
     }
   }
   return hreturn;
+}
+
+TH1F* EfficiencyCorrection::getRebinHist(TH1F* h, std::vector<double>& bins) {
+  TH1F* hrebin = new TH1F("hrebin", "hrebin", bins.size() - 1, &bins[0]);
+  for (size_t i = 0; i < bins.size() - 1; ++i) {
+    double binLow = bins[i] + 1e-10;
+    double binHigh = bins[i + 1] - 1e-10;
+    // find integral between bins[i] and bins[i+1]
+    int count = h->Integral(h->FindBin(binLow), h->FindBin(binLow));
+    hrebin->SetBinContent(i + 1, count);
+    hrebin->SetBinError(i + 1, TMath::Sqrt(count));  // temporary, need to
+                                                     // calculate the error
+                                                     // properly later
+  }
+  return hrebin;
 }
