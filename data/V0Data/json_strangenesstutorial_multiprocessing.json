@@ -50,11 +50,11 @@
   "lambdakzero-builder": {
     "createV0CovMats": "-1",
     "d_UseAutodetectMode": "false",
-    "dcanegtopv": "0.117996",
-    "dcapostopv": "0.0326546",
-    "v0cospa": "0.95",
-    "dcav0dau": "1.5",
-    "v0radius": "0.5",
+    "dcanegtopv": "0",
+    "dcapostopv": "0",
+    "v0cospa": "0",
+    "dcav0dau": "1000",
+    "v0radius": "0",
     "tpcrefit": "0",
     "d_bz": "-999",
     "d_UseAbsDCA": "true",
@@ -117,15 +117,15 @@
     "processStandard": "false"
   },
   "strangeness_tutorial": {
-    "nBins": "100",
-    "v0setting_dcav0dau": "1.5",
-    "v0setting_dcapostopv": "0.0326546",
-    "v0setting_dcanegtopv": "0.117996",
-    "v0setting_cospa": "0.95",
-    "v0setting_radius": "0.5",
-    "cascadesetting_cospa": "0.98",
-    "cascadesetting_cascradius": "0.5",
-    "NSigmaTPCPion": "4",
-    "NSigmaTPCProton": "4"
+    "nBins": "500",
+    "v0setting_dcav0dau": "1000",
+    "v0setting_dcapostopv": "0",
+    "v0setting_dcanegtopv": "0",
+    "v0setting_cospa": "0",
+    "v0setting_radius": "0",
+    "cascadesetting_cospa": "0.0",
+    "cascadesetting_cascradius": "0.0",
+    "NSigmaTPCPion": "15",
+    "NSigmaTPCProton": "15"
   }
 }
