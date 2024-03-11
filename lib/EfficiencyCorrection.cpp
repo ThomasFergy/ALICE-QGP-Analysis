@@ -1,5 +1,11 @@
 #include "EfficiencyCorrection.h"
 
+double calculateError(double x, double deltaX, double y, double deltaY) {
+  double relativeError =
+      (1.0 / y) * sqrt(pow(deltaX, 2) + pow((x * deltaY / pow(y, 2)), 2));
+  return relativeError;
+}
+
 TH1F* EfficiencyCorrection::eff(std::string MCFile, std::vector<double>& bins,
                                 V0Type v0Type, bool draw) {
   gROOT->Reset();
@@ -95,6 +101,15 @@ TH1F* EfficiencyCorrection::eff(std::string MCFile, std::vector<double>& bins,
   TH1F* heff = new TH1F("heff", "heff", bins.size() - 1, &bins[0]);
   heff->SetTitle("Efficiencies");
   heff->Divide(hptrue_rebin, hpt_rebin);
+  // set the errors
+  for (size_t i = 0; i < bins.size() - 1; ++i) {
+    double x = hptrue_rebin->GetBinContent(i + 1);
+    double deltaX = hptrue_rebin->GetBinError(i + 1);
+    double y = hpt_rebin->GetBinContent(i + 1);
+    double deltaY = hpt_rebin->GetBinError(i + 1);
+    double relativeError = calculateError(x, deltaX, y, deltaY);
+    heff->SetBinError(i + 1, relativeError);
+  }
   if (draw) {
     heff->Draw();
     // dont draw the legend
@@ -208,6 +223,14 @@ TH1F* EfficiencyCorrection::eff(std::string MCFileLambda,
   TH1F* heff = new TH1F("heff", "heff", bins.size() - 1, &bins[0]);
   heff->SetTitle("Efficiencies");
   heff->Divide(hptrue_rebin, hpt_rebin);
+  for (size_t i = 0; i < bins.size() - 1; ++i) {
+    double x = hptrue_rebin->GetBinContent(i + 1);
+    double deltaX = hptrue_rebin->GetBinError(i + 1);
+    double y = hpt_rebin->GetBinContent(i + 1);
+    double deltaY = hpt_rebin->GetBinError(i + 1);
+    double relativeError = calculateError(x, deltaX, y, deltaY);
+    heff->SetBinError(i + 1, relativeError);
+  }
   if (draw) {
     heff->Draw();
     // dont draw the legend
@@ -283,6 +306,7 @@ TH1F* EfficiencyCorrection::EfficiencyCorrectionHist(
     // find integral between binsFiltered[i] and binsFiltered[i+1]
     int count = hpt->Integral(hpt->FindBin(binLow), hpt->FindBin(binLow));
     hpt_rebin->SetBinContent(i + 1, count);
+    hpt_rebin->SetBinError(i + 1, TMath::Sqrt(count));
   }
 
   hpt_rebin->Sumw2();
@@ -296,7 +320,12 @@ TH1F* EfficiencyCorrection::EfficiencyCorrectionHist(
       0, binsFiltered[binsFiltered.size() - 1]);
   if (draw) {
     // Draw heff on the canvas
-    hpt_corrected->SetTitle("Efficiency corrected pT");
+    hpt_corrected->SetMarkerStyle(20);
+    hpt_corrected->SetMarkerSize(0.7);
+    hpt_corrected->SetMarkerColor(kBlack);
+    hpt_corrected->SetLineColor(kBlack);
+    hpt_corrected->GetXaxis()->SetTitle("p_{T} (GeV/c)");
+    hpt_corrected->GetYaxis()->SetTitle("Efficiency corrected counts");
 
     hpt_corrected->Draw();
     // dont draw the legend
@@ -305,15 +334,21 @@ TH1F* EfficiencyCorrection::EfficiencyCorrectionHist(
     switch (v0Type) {
       case V0Type::K0:
         fileName += "K0.root";
+        hpt_corrected->SetTitle("Efficiency corrected p_{T} for K^{0}_{S}");
         break;
       case V0Type::Lambda:
         fileName += "Lambda.root";
+        hpt_corrected->SetTitle("Efficiency corrected p_{T} for #Lambda");
         break;
       case V0Type::AntiLambda:
         fileName += "AntiLambda.root";
+        hpt_corrected->SetTitle("Efficiency corrected p_{T} for #bar{#Lambda}");
         break;
       case V0Type::LambdaAntiLambda:
         fileName += "LambdaAntiLambda.root";
+        hpt_corrected->SetTitle(
+            "Efficiency corrected p_{T} for #Lambda and "
+            "#bar{#Lambda}");
         break;
         // default:
         //   std::cout << "Invalid V0Type: " << static_cast<int>(v0Type)
@@ -385,6 +420,7 @@ TH1F* EfficiencyCorrection::EfficiencyCorrectionHist(std::string DataFile,
     // find integral between binsFiltered[i] and binsFiltered[i+1]
     int count = hpt->Integral(hpt->FindBin(binLow), hpt->FindBin(binLow));
     hpt_rebin->SetBinContent(i + 1, count);
+    hpt_rebin->SetBinError(i + 1, TMath::Sqrt(count));
   }
 
   hpt_rebin->Sumw2();
@@ -398,7 +434,13 @@ TH1F* EfficiencyCorrection::EfficiencyCorrectionHist(std::string DataFile,
       0, binsFiltered[binsFiltered.size() - 1]);
   if (draw) {
     // Draw heff on the canvas
-    hpt_corrected->SetTitle("Efficiency corrected pT");
+
+    hpt_corrected->SetMarkerStyle(20);
+    hpt_corrected->SetMarkerSize(0.7);
+    hpt_corrected->SetMarkerColor(kBlack);
+    hpt_corrected->SetLineColor(kBlack);
+    hpt_corrected->GetXaxis()->SetTitle("p_{T} (GeV/c)");
+    hpt_corrected->GetYaxis()->SetTitle("Efficiency corrected counts");
 
     hpt_corrected->Draw();
     // dont draw the legend
@@ -407,15 +449,21 @@ TH1F* EfficiencyCorrection::EfficiencyCorrectionHist(std::string DataFile,
     switch (v0Type) {
       case V0Type::K0:
         fileName += "K0.root";
+        hpt_corrected->SetTitle("Efficiency corrected p_{T} for K^{0}_{S}");
         break;
       case V0Type::Lambda:
         fileName += "Lambda.root";
+        hpt_corrected->SetTitle("Efficiency corrected p_{T} for #Lambda");
         break;
       case V0Type::AntiLambda:
         fileName += "AntiLambda.root";
+        hpt_corrected->SetTitle("Efficiency corrected p_{T} for #bar{#Lambda}");
         break;
       case V0Type::LambdaAntiLambda:
         fileName += "LambdaAntiLambda.root";
+        hpt_corrected->SetTitle(
+            "Efficiency corrected p_{T} for #Lambda and "
+            "#bar{#Lambda}");
         break;
         // default:
         //   std::cout << "Invalid V0Type: " << static_cast<int>(v0Type)
@@ -485,6 +533,7 @@ TH1F* EfficiencyCorrection::getUncorrectedHist(std::string DataFile,
     // find integral between binsFiltered[i] and binsFiltered[i+1]
     int count = hpt->Integral(hpt->FindBin(binLow), hpt->FindBin(binLow));
     hpt_rebin->SetBinContent(i + 1, count);
+    hpt_rebin->SetBinError(i + 1, TMath::Sqrt(count));
   }
 
   hpt_rebin->Sumw2();
