@@ -48,19 +48,19 @@ TH1F* EfficiencyCorrection::eff(std::string MCFile, std::vector<double>& bins,
   switch (v0Type) {
     case V0Type::K0:
       f->cd("strangeness_tutorial/kzeroShort");
-      hptrue = (TH1F*)gDirectory->Get("hPtK0ShortTrueRec");
+      hptrue = (TH1F*)gDirectory->Get("hPtK0ShortSelected");
       break;
     case V0Type::Lambda:
       f->cd("strangeness_tutorial/kLambda");
-      hptrue = (TH1F*)gDirectory->Get("hPtLambdaTrueRec");
+      hptrue = (TH1F*)gDirectory->Get("hPtLambdaSelected");
       break;
     case V0Type::AntiLambda:
       f->cd("strangeness_tutorial/kAntiLambda");
-      hptrue = (TH1F*)gDirectory->Get("hPtAntiLambdaTrueRec");
+      hptrue = (TH1F*)gDirectory->Get("hPtAntiLambdaSelected");
       break;
     case V0Type::LambdaAntiLambda:
       f->cd("strangeness_tutorial/kLambdaAndAntiLambda");
-      hptrue = (TH1F*)gDirectory->Get("hPtLambdaAntiLambdaTrueRec");
+      hptrue = (TH1F*)gDirectory->Get("hPtLambdaAntiLambdaSelected");
       // default:
       //   std::cout << "Invalid V0Type: " << static_cast<int>(v0Type) <<
       //   std::endl;
@@ -172,10 +172,10 @@ TH1F* EfficiencyCorrection::eff(std::string MCFileLambda,
 
   // save true reconstructed pt histogram as hptrue
   f1->cd("strangeness_tutorial/kLambda");
-  TH1F* hptrue1 = (TH1F*)gDirectory->Get("hPtLambdaTrueRec");
+  TH1F* hptrue1 = (TH1F*)gDirectory->Get("hPtLambdaSelected");
 
   f2->cd("strangeness_tutorial/kAntiLambda");
-  TH1F* hptrue2 = (TH1F*)gDirectory->Get("hPtAntiLambdaTrueRec");
+  TH1F* hptrue2 = (TH1F*)gDirectory->Get("hPtAntiLambdaSelected");
 
   if (hptrue1 == nullptr) {
     std::cout << "hptrue was not read" << std::endl;

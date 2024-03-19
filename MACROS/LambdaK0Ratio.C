@@ -26,6 +26,7 @@ void LambdaK0Ratio() {
   bool draw = true;
 
   // files
+
   std::string K0MCFile =
       "Results/K0_CUTS_1/AnalysisResults_optimal_cuts_MC.root";
 
@@ -44,94 +45,46 @@ void LambdaK0Ratio() {
   std::string AntiLambdaDataFile =
       "Results/LAMBDA_CUTS_4/AnalysisResults_optimal_cuts_ANTI_DATA_p_t.root";
 
-  double ptCut_K0 = 0.2;
-  double ptCut_Lambda = 0.6;
-  double ptCut_AntiLambda = 0.6;
+  double ptCut_K0 = 0;
+  double ptCut_Lambda = 0;
+  double ptCut_AntiLambda = 0;
 
-  // get efficiencies for k0
-  TH1F* hK0Eff = EfficiencyCorrection::eff(K0MCFile, bins, V0Type::K0, draw);
+  std::string testMCFile = "output/V0MC/AnalysisResults_default_cuts_MC.root";
+  // std::string testDataFile =
+  //     "output/V0Data/AnalysisResults_default_cuts_p_t.root";
 
-  hK0Eff->Rebin(2);
+  // corrected K0
+  TH1F* K0EffCorrected = EfficiencyCorrection::EfficiencyCorrectionHist(
+      K0DataFile, testMCFile, bins, ptCut_K0, V0Type::K0, draw);
 
-  // half all counts in the histogram
-  for (int i = 1; i <= hK0Eff->GetNbinsX(); i++) {
-    hK0Eff->SetBinContent(i, hK0Eff->GetBinContent(i) / 2);
+  // corrected Lambda
+  TH1F* LambdaEffCorrected = EfficiencyCorrection::EfficiencyCorrectionHist(
+      LambdaDataFile, testMCFile, testMCFile, bins, ptCut_Lambda,
+      V0Type::Lambda, draw);
+
+  // corrected AntiLambda
+  TH1F* AntiLambdaEffCorrected = EfficiencyCorrection::EfficiencyCorrectionHist(
+      AntiLambdaDataFile, testMCFile, testMCFile, bins, ptCut_AntiLambda,
+      V0Type::AntiLambda, draw);
+
+  // lambda + antilambda / 2 K0 ratio
+  TH1F* LambdaAntiLambdaToK0Ratio = (TH1F*)LambdaEffCorrected->Clone();
+  LambdaAntiLambdaToK0Ratio->Divide(K0EffCorrected);
+  LambdaAntiLambdaToK0Ratio->SetMarkerStyle(20);
+  LambdaAntiLambdaToK0Ratio->SetMarkerSize(0.8);
+  LambdaAntiLambdaToK0Ratio->SetMarkerColor(kBlack);
+  LambdaAntiLambdaToK0Ratio->SetLineColor(kBlack);
+  LambdaAntiLambdaToK0Ratio->SetLineWidth(1);
+  LambdaAntiLambdaToK0Ratio->SetStats(kFALSE);
+  // fix errors
+  for (int i = 1; i <= LambdaAntiLambdaToK0Ratio->GetNbinsX(); i++) {
+    double x = LambdaEffCorrected->GetBinContent(i);
+    double deltaX = LambdaEffCorrected->GetBinError(i);
+    double y = AntiLambdaEffCorrected->GetBinContent(i);
+    double deltaY = AntiLambdaEffCorrected->GetBinError(i);
+    double relativeError = calculateError2(x, deltaX, y, deltaY);
+    LambdaAntiLambdaToK0Ratio->SetBinError(
+        i, relativeError * LambdaAntiLambdaToK0Ratio->GetBinContent(i));
   }
-
-  // change title etc
-  hK0Eff->SetTitle("Efficiency for K^{0}_{S}");
-  hK0Eff->GetXaxis()->SetTitle("p_{T} (GeV/c)");
-  hK0Eff->GetYaxis()->SetTitle("Efficiency");
-
-  hK0Eff->SetMarkerStyle(20);
-  hK0Eff->SetMarkerSize(0.7);
-  hK0Eff->SetMarkerColor(kBlack);
-  hK0Eff->SetLineColor(kBlack);
-
-  hK0Eff->SaveAs("Results/K0Eff.root");
-
-  bins = {0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.6, 2, 2.4, 2.6, 3, 3.5, 4, 6, 10};
-
-  // get corrected lambda to K0 ratio
-  TH1F* hK0 = EfficiencyCorrection::EfficiencyCorrectionHist(
-      K0DataFile, K0MCFile, bins, 0, V0Type::K0, draw);
-
-  TH1F* hLambda = EfficiencyCorrection::EfficiencyCorrectionHist(
-      LambdaDataFile, LambdaMCFile, AntiLambdaMCFile, bins, 0, V0Type::Lambda,
-      draw);
-
-  // get uncorrected K0 and saveas
-
-  TH1F* hK0Uncorrected = EfficiencyCorrection::getUncorrectedHist(
-      K0DataFile, bins, 0, V0Type::K0, draw);
-
-  hK0Uncorrected->SetTitle("Uncorrected K^{0}_{S}");
-  hK0Uncorrected->GetXaxis()->SetTitle("p_{T} (GeV/c)");
-  hK0Uncorrected->GetYaxis()->SetTitle("Counts");
-  hK0Uncorrected->SetMarkerStyle(20);
-  hK0Uncorrected->SetMarkerSize(0.7);
-  hK0Uncorrected->SetMarkerColor(kBlack);
-  hK0Uncorrected->SetLineColor(kBlack);
-  hK0Uncorrected->SaveAs("Results/K0Uncorrected.root");
-
-  // do the same for lambda
-  TH1F* hLambdaUncorrected = EfficiencyCorrection::getUncorrectedHist(
-      LambdaDataFile, bins, 0, V0Type::Lambda, draw);
-
-  hLambdaUncorrected->SetTitle("Uncorrected #Lambda");
-  hLambdaUncorrected->GetXaxis()->SetTitle("p_{T} (GeV/c)");
-  hLambdaUncorrected->GetYaxis()->SetTitle("Counts");
-  hLambdaUncorrected->SetMarkerStyle(20);
-  hLambdaUncorrected->SetMarkerSize(0.7);
-  hLambdaUncorrected->SetMarkerColor(kBlack);
-  hLambdaUncorrected->SetLineColor(kBlack);
-  hLambdaUncorrected->SaveAs("Results/LambdaUncorrected.root");
-
-  // bins = {0,   0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1,
-  //         1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2,   2.2, 2.4, 2.6,
-  //         2.8, 3,   3.2, 3.4, 3.6, 3.8, 4,   4.5, 5,   5.5, 6,   10};
-
-  bins = {0,   0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1,
-          1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2,   2.2, 2.4, 2.6,
-          2.8, 3,   3.2, 3.4, 3.6, 3.8, 4,   4.5, 5,   5.5, 6};
-
-  // uncorrected anti lambda to lambda ratio
-  TH1F* hAntiLambdaUncorrected = EfficiencyCorrection::getUncorrectedHist(
-      AntiLambdaDataFile, bins, 0, V0Type::AntiLambda, draw);
-
-  hLambdaUncorrected = EfficiencyCorrection::getUncorrectedHist(
-      LambdaDataFile, bins, 0, V0Type::Lambda, draw);
-
-  TH1F* hAntiLambda = (TH1F*)hAntiLambdaUncorrected->Clone("hAntiLambda");
-
-  hAntiLambda->Divide(hLambdaUncorrected);
-
-  hAntiLambda->SetTitle("Uncorrected #bar{#Lambda} / #Lambda");
-  hAntiLambda->GetXaxis()->SetTitle("p_{T} (GeV/c)");
-  hAntiLambda->GetYaxis()->SetTitle("#bar{#Lambda} / #Lambda");
-  hAntiLambda->SetMarkerStyle(20);
-  hAntiLambda->SetMarkerSize(0.7);
-  hAntiLambda->SetMarkerColor(kBlack);
-  hAntiLambda->SetLineColor(kBlack);
-  hAntiLambda->SaveAs("Results/AntiLambdaLambdaRatioUncorrected.root");
+  LambdaAntiLambdaToK0Ratio->SaveAs("Results/LambdaAntiLambdaToK0Ratio.root");
 }
